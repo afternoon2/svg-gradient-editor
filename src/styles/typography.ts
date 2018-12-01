@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { modularScale } from 'polished';
 
-const modularSize = (size: number): string => modularScale(size, 1, 'minorThird');
+export const modularSize = (size: number): string => modularScale(size, 1, 'minorThird');
 
 export const typography = css`
 
@@ -33,10 +33,10 @@ export const typography = css`
     font-size: ${modularSize(0)};
   }
 
-  p, label, span, dl, dd, dt {
+  p, label, span, dl, dd, dt, a {
     font-family: 'Open Sans', sans-serif;
     font-size: ${modularSize(0)};
+    letter-spacing: .035em;
   }
-
 
 `;
