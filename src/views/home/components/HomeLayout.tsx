@@ -54,7 +54,6 @@ export const NavMenuItem = styled.li`
   color: blue;
   text-transform: uppercase;
   font-size: ${modularSize(0.5)};
-  border-radius: 8px;
   @media screen and (max-width: ${breakpoints.sm}px) {
     width: 100%;
   }
@@ -62,7 +61,3 @@ export const NavMenuItem = styled.li`
     width: 50%;
   }
 `;
-
-export type MainGalleryProps = {
-  areas?: string;
-};
