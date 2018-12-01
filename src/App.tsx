@@ -7,6 +7,7 @@ import { StoreThemeProvider } from './components/layout/StoreThemeProvider';
 import { ViewWrapper } from './components/layout/ViewWrapper';
 import { Home } from './views/home/Home';
 import { GlobalStyles } from './components/layout/GlobalStyles';
+import { ThemeSwitch } from './components/layout/ThemeSwitch';
 
 const App = () => (
   <Provider store={store}>
@@ -20,6 +21,7 @@ const App = () => (
               component={Home}
             />
           </Switch>
+          <ThemeSwitch />
           <GlobalStyles />
         </ViewWrapper>
       </ConnectedRouter>
