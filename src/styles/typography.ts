@@ -5,6 +5,11 @@ export const modularSize = (size: number): string => modularScale(size, 1, 'mino
 
 export const typography = css`
 
+  h1, h2, h3, h4, h5, h6, code, p,
+  label, span, a, dd, dt, dl, pre {
+    color: ${props => props.theme.text};
+  }
+
   h1, h2, h3, h4, h5, h6, code {
     font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }

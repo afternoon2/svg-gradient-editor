@@ -12,6 +12,7 @@ const ViewWrapper = styled.div`
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
+  background-color: ${props => props.theme.main_400};
   @media screen and (max-width: ${breakpoints.md}px) {
     width: 100%;
   }
