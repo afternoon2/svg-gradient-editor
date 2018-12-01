@@ -1,9 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 import { fontFace } from '../../styles/fontFace';
+import { typography } from '../../styles/typography';
 
 export const GlobalStyles = createGlobalStyle`
 
   ${fontFace};
+
+  ${typography};
 
   body {
     margin: 0;
