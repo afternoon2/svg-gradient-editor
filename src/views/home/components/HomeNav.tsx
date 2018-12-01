@@ -10,7 +10,7 @@ export const HomeNav = () => (
   <MainNav>
     <NavMenu>
       <NavMenuItem>
-        <NavLink to="/">
+        <NavLink to="/editor">
           Editor
         </NavLink>
       </NavMenuItem>
