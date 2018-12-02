@@ -2,8 +2,9 @@ import styled from '../../../../styles/styledComponents';
 
 export const EditorArea = styled.section`
   box-sizing: border-box;
-  background-color: pink;
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* height: 100%; */
   @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
     width: 100%;
   }
