@@ -18,7 +18,7 @@ export type AppTheme = {
   breakpoints: AppThemeBreakpoints,
 };
 
-const breakpoints = {
+const breakpoints: AppThemeBreakpoints = {
   sm: 768,
   md: 1440,
   lg: 1800,
