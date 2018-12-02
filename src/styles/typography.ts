@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from './styledComponents';
 import { modularScale } from 'polished';
 
 export const modularSize = (size: number): string => modularScale(size, 1, 'minorThird');
@@ -7,7 +7,7 @@ export const typography = css`
 
   h1, h2, h3, h4, h5, h6, code, p,
   label, span, a, dd, dt, dl, pre {
-    color: ${props => props.theme.text};
+    color: ${props => props.theme.colors.text};
   }
 
   h1, h2, h3, h4, h5, h6, code {

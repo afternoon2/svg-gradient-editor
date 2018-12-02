@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from './styledComponents';
 
 export const fontFace = css`
   /* fira-mono-regular - latin */

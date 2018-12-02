@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { default as styled } from 'styled-components';
 import Switch, { ReactSwitchProps } from 'react-switch';
 import { setTheme } from '../../store/application/actions';
 import { bindActionCreators } from 'redux';
 import { modularSize } from '../../styles/typography';
+import styled from '../../styles/styledComponents';
+import { AppTheme } from '../../styles/themes';
 
 const SwitchWrapper = styled.div`
   position: absolute;
@@ -15,8 +16,14 @@ const SwitchWrapper = styled.div`
   z-index: 999999;
 `;
 
-const SwitchLabel = styled.label`
-  color: ${props => props.theme.text};
+type SwitchLabelProps = {
+  theme: AppTheme,
+  children: React.ReactNode,
+  htmlFor: string,
+};
+
+const SwitchLabel = styled.label<SwitchLabelProps>`
+  color: ${props => props.theme.colors.text};
   padding-right: 10px;
   font-size: ${modularSize(-2)};
 `;

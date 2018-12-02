@@ -1,5 +1,4 @@
-import { default as styled } from 'styled-components';
-import { breakpoints } from '../../../styles/breakpoints';
+import styled from '../../../styles/styledComponents';
 import { modularSize } from '../../../styles/typography';
 
 export const HomeMain = styled.main`
@@ -38,10 +37,10 @@ export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  @media (max-width: ${breakpoints.sm}px) {
+  @media (max-width: ${props => props.theme.breakpoints.sm}px) {
     flex-direction: column;
   }
-  @media (min-width: ${breakpoints.sm + 1}px) {
+  @media (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
     flex-direction: row;
   }
 `;
@@ -54,10 +53,10 @@ export const NavMenuItem = styled.li`
   color: blue;
   text-transform: uppercase;
   font-size: ${modularSize(0.5)};
-  @media screen and (max-width: ${breakpoints.sm}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
     width: 100%;
   }
-  @media screen and (min-width: ${breakpoints.sm + 1}px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
     width: 50%;
   }
 `;

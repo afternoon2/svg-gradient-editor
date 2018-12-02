@@ -1,8 +1,11 @@
-import * as React from 'react';
-import { default as styled } from 'styled-components';
-import { breakpoints } from '../../styles/breakpoints';
+import styled from '../../styles/styledComponents';
+import { AppTheme } from '../../styles/themes';
 
-const ViewWrapper = styled.div`
+export type ViewWrapperProps = {
+  theme: AppTheme,
+};
+
+const ViewWrapper = styled.div<ViewWrapperProps>`
   margin: 0 auto;
   min-height: 100vh;
   position: relative;
@@ -12,11 +15,11 @@ const ViewWrapper = styled.div`
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  background-color: ${props => props.theme.main_400};
-  @media screen and (max-width: ${breakpoints.md}px) {
+  background-color: ${props => props.theme.colors.main_400};
+  @media screen and (max-width: ${props => props.theme.breakpoints.md}px) {
     width: 100%;
   }
-  @media screen and (min-width: ${breakpoints.md + 1}px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.md + 1}px) {
     max-width: 1440px;
   }
 `;

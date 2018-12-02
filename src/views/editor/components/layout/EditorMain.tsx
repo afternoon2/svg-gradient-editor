@@ -1,8 +1,8 @@
-import { default as styled } from 'styled-components';
+import styled from '../../../../styles/styledComponents';
 
 export const EditorMain = styled.main`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   height: inherit;
   display: flex;
   align-items: center;
