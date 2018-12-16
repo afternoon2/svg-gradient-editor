@@ -6,6 +6,9 @@ const ArtboardSVG = styled.svg`
   width: 100%;
   min-height: 100vh;
   fill: yellow;
+  &:hover {
+    cursor: crosshair;
+  }
 `;
 
 type ArtboardEvent = React.MouseEvent | React.TouchEvent;

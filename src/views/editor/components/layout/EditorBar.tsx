@@ -4,7 +4,7 @@ export const EditorBar = styled.aside`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: cornflowerblue;
+  background-color: ${props => props.theme.colors.main_300};
   @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
     position: absolute;
     bottom: 0;
@@ -17,8 +17,8 @@ export const EditorBar = styled.aside`
     position: relative;
     right: 0;
     top: 0;
-    height: 100vh;
-    min-width: 300px;
-    max-width: 300px;
+    min-height: 100vh;
+    min-width: 400px;
+    max-width: 400px;
   }
 `;
