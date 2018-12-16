@@ -10,7 +10,7 @@ export const typography = css`
     color: ${props => props.theme.colors.text};
   }
 
-  h1, h2, h3, h4, h5, h6, code {
+  h1, h2, h3, h4, h5, h6, code, legend {
     font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
@@ -42,6 +42,10 @@ export const typography = css`
     font-family: 'Open Sans', sans-serif;
     font-size: ${modularSize(0)};
     letter-spacing: .035em;
+  }
+
+  legend {
+    font-size: ${modularSize(0)};
   }
 
 `;

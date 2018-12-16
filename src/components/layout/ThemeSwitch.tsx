@@ -45,7 +45,7 @@ const SwitchComp = (props: ReactSwitchProps & SwitchProps) => {
   return (
     <SwitchWrapper>
       <SwitchLabel htmlFor="themeSwitch">
-        Dark theme
+        Toggle theme
       </SwitchLabel>
       <Switch
         id="themeSwitch"
