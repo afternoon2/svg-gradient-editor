@@ -13,15 +13,11 @@ const SettingsWrapper = styled.div`
   }
 `;
 
-class Settings extends React.Component {
-  public render(): React.ReactNode {
-    return (
-      <SettingsWrapper>
-        <SettingsNav />
-        <SettingsContent />
-      </SettingsWrapper>
-    );
-  }
-}
+const Settings = () => (
+  <SettingsWrapper>
+    <SettingsNav />
+    <SettingsContent />
+  </SettingsWrapper>
+);
 
 export { Settings };
