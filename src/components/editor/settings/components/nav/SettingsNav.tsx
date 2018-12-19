@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setSettingsView } from '../../../../../store/editor/settings/nav/actions';
 import { EditorSettingsView } from '../../../../../store/editor/settings/nav/reducer';
 import { bindActionCreators } from 'redux';
@@ -17,13 +18,15 @@ const SettingsNavComponent = (props: SettingsNavComponentProps): React.ReactNode
         active={props.view === 'list'}
         onClick={() => props.clickHandler('list')}
       >
-        List
+        <FontAwesomeIcon icon="list" size="2x"/>
+        <span>List</span>
       </NavbarButton>
       <NavbarButton
         active={props.view === 'gradient'}
         onClick={() => props.clickHandler('gradient')}
       >
-        Gradient
+        <FontAwesomeIcon icon="paint-roller" size="2x"/>
+        <span>Gradients</span>
       </NavbarButton>
     </Navbar>
   );
