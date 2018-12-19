@@ -64,7 +64,7 @@ const SwitchComp = (props: ReactSwitchProps & SwitchProps) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  checked: state.application.theme === 'dark',
+  checked: state.application.theme === 'light',
   theme: state.application.theme,
 });
 

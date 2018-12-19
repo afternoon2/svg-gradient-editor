@@ -10,7 +10,7 @@ type SettingsNavComponentProps = {
   clickHandler: (newView: EditorSettingsView) => void,
 };
 
-const SettingsNavComponent = (props: SettingsNavComponentProps) => {
+const SettingsNavComponent = (props: SettingsNavComponentProps): React.ReactNode => {
   return (
     <Navbar>
       <NavbarButton
