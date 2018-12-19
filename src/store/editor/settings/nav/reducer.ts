@@ -27,4 +27,4 @@ export const nav =
       default:
         return state;
     }
-  }
+  };
