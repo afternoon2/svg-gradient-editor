@@ -1,5 +1,6 @@
 export type AppThemeColors = {
   primary: string;
+  danger: string;
   main_100: string;
   main_200: string;
   main_300: string;
@@ -27,6 +28,7 @@ const breakpoints: AppThemeBreakpoints = {
 export const darkTheme: AppTheme = {
   colors: {
     primary: '#5383D6',
+    danger: '#CC0E3A',
     main_100: '#11151c',
     main_200: '#212C3F',
     main_300: '#364256',
@@ -39,6 +41,7 @@ export const darkTheme: AppTheme = {
 export const lightTheme: AppTheme = {
   colors: {
     primary: '#EAF9FF',
+    danger: '#CC0E3A',
     main_100: '#A4BCAD',
     main_200: '#CEE5D7',
     main_300: '#DCEAE2',

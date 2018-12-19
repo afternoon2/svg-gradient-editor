@@ -26,7 +26,7 @@ const SettingsNavComponent = (props: SettingsNavComponentProps): React.ReactNode
         onClick={() => props.clickHandler('gradient')}
       >
         <FontAwesomeIcon icon="paint-roller" size="2x"/>
-        <span>Gradients</span>
+        <span>Gradient</span>
       </NavbarButton>
     </Navbar>
   );
