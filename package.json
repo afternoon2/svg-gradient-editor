@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^4.3.1",
     "connected-react-router": "^5.0.1",
     "history": "^4.7.2",
+    "nanoid": "^2.0.0",
     "polished": "^2.3.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -43,6 +44,7 @@
   ],
   "devDependencies": {
     "@types/history": "^4.7.2",
+    "@types/nanoid": "^1.2.0",
     "@types/react-redux": "^6.0.10",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^4.1.2",

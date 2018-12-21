@@ -35,11 +35,13 @@ export type OutputColor = {
 };
 
 export type Gradient = {
+  isEmpty: boolean,
   id: string,
+  name?: string;
   type: 'linear' | 'radial',
   focalPoints: boolean,
   attributes: LinearGradientAttributes | RadialGradientAttributes,
   chroma: ChromaAttributes,
-  input: number[],
+  colors: number[],
   output: OutputColor[],
 };

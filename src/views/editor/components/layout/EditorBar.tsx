@@ -11,7 +11,7 @@ export const EditorBar = styled.aside`
     left: 0;
     z-index: 2;
     width: 100%;
-    height: 140px;
+    height: 180px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
     position: relative;
