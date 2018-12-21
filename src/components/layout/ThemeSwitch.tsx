@@ -9,11 +9,17 @@ import { AppTheme } from '../../styles/themes';
 
 const SwitchWrapper = styled.div`
   position: absolute;
-  right: 10px;
-  bottom: 10px;
   display: flex;
   align-items: center;
   z-index: 999999;
+  @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
+    right: 10px;
+    top: 10px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
+    right: 10px;
+    bottom: 10px;
+  }
 `;
 
 type SwitchLabelProps = {
