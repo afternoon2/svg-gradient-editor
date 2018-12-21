@@ -5,12 +5,12 @@ export const modularSize = (size: number): string => modularScale(size, 1, 'mino
 
 export const typography = css`
 
-  h1, h2, h3, h4, h5, h6, code, p,
+  h1, h2, h3, h4, h5, h6, code,
   label, span, a, dd, dt, dl, pre {
     color: ${props => props.theme.colors.text};
   }
 
-  h1, h2, h3, h4, h5, h6, code, legend {
+  h1, h2, h3, h4, h5, h6, code, legend, p {
     font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
@@ -39,9 +39,12 @@ export const typography = css`
   }
 
   p, label, span, dl, dd, dt, a {
-    font-family: 'Open Sans', sans-serif;
     font-size: ${modularSize(0)};
     letter-spacing: .035em;
+  }
+
+  label, span, dd, dt, a {
+    font-family: 'Open Sans', sans-serif;
   }
 
   legend {
