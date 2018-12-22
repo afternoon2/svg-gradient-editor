@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Gradient } from '../../../../../store/editor/_gradientTypes';
-import { ListItemWrapper, WrapperHeader, HeaderLink } from './layout';
+import { ListItemWrapper, WrapperHeader, WrapperContent, HeaderLink } from './layout';
 
 export type GradientListItemProps = {
   gradient: Gradient,
@@ -16,14 +16,24 @@ export const GradientListItem = (props: GradientListItemProps) => {
   return (
     <ListItemWrapper>
       <WrapperHeader>
-        <HeaderLink onClick={() => toggleCollapse(!collapsed)}>
+        <HeaderLink
+          onClick={() => toggleCollapse(!collapsed)}
+          title="Show/hide gradient"
+        >
           <FontAwesomeIcon icon={collapsed ? 'caret-down' : 'caret-up'} />
         </HeaderLink>
         <span>{gradient.name}</span>
-        <HeaderLink danger onClick={() => onDelete(gradient.id)}>
+        <HeaderLink
+          danger
+          onClick={() => onDelete(gradient.id)}
+          title="Delete gradient"
+        >
           <FontAwesomeIcon icon="trash" size="xs" />
         </HeaderLink>
       </WrapperHeader>
+      <WrapperContent
+        hidden={collapsed}
+      ></WrapperContent>
     </ListItemWrapper>
   );
 };

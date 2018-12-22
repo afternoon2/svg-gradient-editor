@@ -32,6 +32,7 @@ export const WrapperHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: .25em;
+  transition: 120ms all ease-in-out;
   ${props => mediaMixin(props.theme, {
     sm: `
       width: 35px;
@@ -69,4 +70,24 @@ export const HeaderLink = styled.a<HeaderLinkProps>`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const WrapperContent = styled.main`
+  box-sizing: border-box;
+  background-color: ${props => props.theme.colors.main_400};
+  border: 2px solid ${props => props.theme.colors.main_200};
+  padding: .5em;
+  display: ${props => props.hidden ? 'none' : 'flex'};
+  ${props => mediaMixin(props.theme, {
+    sm: `
+      width: auto;
+      height: 100%;
+      border-radius: 0 4px 4px 0;
+    `,
+    md: `
+      width: 100%;
+      height: auto;
+      border-radius: 0 0 4px 4px;
+    `,
+  })}
 `;
