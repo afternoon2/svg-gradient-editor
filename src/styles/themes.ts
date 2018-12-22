@@ -40,12 +40,12 @@ export const darkTheme: AppTheme = {
 
 export const lightTheme: AppTheme = {
   colors: {
-    primary: '#EAF9FF',
+    primary: '#5383D6',
     danger: '#CC0E3A',
-    main_100: '#A4BCAD',
-    main_200: '#CEE5D7',
-    main_300: '#DCEAE2',
-    main_400: '#EBF4EE',
+    main_100: '#898993',
+    main_200: '#B6B6C1',
+    main_300: '#CECEE0',
+    main_400: '#DEDEEF',
     text: '#212121',
   },
   breakpoints,
