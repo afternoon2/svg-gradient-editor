@@ -40,7 +40,7 @@ export const darkTheme: AppTheme = {
 
 export const lightTheme: AppTheme = {
   colors: {
-    primary: '#5383D6',
+    primary: '#18e09d',
     danger: '#CC0E3A',
     main_100: '#898993',
     main_200: '#B6B6C1',

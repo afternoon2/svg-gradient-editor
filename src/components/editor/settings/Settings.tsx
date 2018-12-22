@@ -1,28 +1,34 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import nanoid from 'nanoid';
 import { addGradient } from '../../../store/editor/settings/actions';
-import { SettingsWrapper, SettingsHeader, IconButton } from './layout';
+import { SettingsWrapper, SettingsHeader, SettingsContent } from './layout';
+import { SearchInput } from '../../common/SearchInput';
+import { GradientList } from './components/GradientList';
 import { Gradient } from '../../../store/editor/_gradientTypes';
 
 type SettingsComponentProps = {
   addGradient: (gradient: Gradient) => void,
+  gradients: Gradient[],
 };
 
 class SettingsComponent extends React.Component<SettingsComponentProps> {
   public render(): React.ReactNode {
+    const { gradients } = this.props;
     return (
       <SettingsWrapper>
         <SettingsHeader>
-          <IconButton
-            title="Add Gradient"
-            onClick={this.pushGradient}
-          >
-            <FontAwesomeIcon icon="plus" size="2x" />
-          </IconButton>
+          <SearchInput
+            width="100%"
+            placeholder="Search..."
+            disabled={gradients.length === 0}
+            onChange={this.searchGradients}
+          />
         </SettingsHeader>
+        <SettingsContent>
+          <GradientList />
+        </SettingsContent>
       </SettingsWrapper>
     );
   }
@@ -51,14 +57,22 @@ class SettingsComponent extends React.Component<SettingsComponentProps> {
       output: [],
     });
   }
+
+  searchGradients = (event: React.ChangeEvent): void => {
+    
+  }
 }
+
+const mapStateToProps = (state: any) => ({
+  gradients: state.editor.settings.gradients,
+});
 
 const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   addGradient,
 }, dispatch);
 
 export const Settings = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
   null,
   { pure: false },
