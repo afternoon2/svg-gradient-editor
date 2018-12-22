@@ -1,4 +1,5 @@
 import styled from '../../../styles/styledComponents';
+import { mediaMixin } from '../../../styles/mixins';
 
 export const SettingsWrapper = styled.div`
   box-sizing: border-box;
@@ -14,16 +15,18 @@ export const SettingsHeader = styled.header`
   background-color: ${props => props.theme.colors.main_200};
   padding: .5em;
   display: flex;
-  @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
-    width: 50px;
-    height: inherit;
-    flex-direction: column;
-  }
-  @media screen and (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
-    width: 100%;
-    height: 50px;
-    flex-direction: row;
-  }
+  ${props => mediaMixin(props.theme, {
+    sm: `
+      width: 50px;
+      height: inherit;
+      flex-direction: column;
+    `,
+    md: `
+      width: 100%;
+      height: 50px;
+      flex-direction: row;
+    `,
+  })}
 `;
 
 export const IconButton = styled.button`
@@ -38,4 +41,11 @@ export const IconButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const SettingsContent = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  display: flex;
 `;

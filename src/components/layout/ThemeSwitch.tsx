@@ -6,20 +6,23 @@ import { bindActionCreators } from 'redux';
 import { modularSize } from '../../styles/typography';
 import styled from '../../styles/styledComponents';
 import { AppTheme } from '../../styles/themes';
+import { mediaMixin } from '../../styles/mixins';
 
 const SwitchWrapper = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
   z-index: 999999;
-  @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
-    right: 10px;
-    top: 10px;
-  }
-  @media screen and (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
-    right: 10px;
-    bottom: 10px;
-  }
+  ${props => mediaMixin(props.theme, {
+    sm: `
+      right: 10px;
+      top: 10px;
+    `,
+    md: `
+      right: 10px;
+      bottom: 10px;
+    `,
+  })}
 `;
 
 type SwitchLabelProps = {

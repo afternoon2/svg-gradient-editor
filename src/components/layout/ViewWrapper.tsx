@@ -1,5 +1,6 @@
 import styled from '../../styles/styledComponents';
 import { AppTheme } from '../../styles/themes';
+import { mediaMixin } from '../../styles/mixins';
 
 export type ViewWrapperProps = {
   theme: AppTheme,
@@ -16,12 +17,10 @@ const ViewWrapper = styled.div<ViewWrapperProps>`
   padding: 0;
   box-sizing: border-box;
   background-color: ${props => props.theme.colors.main_400};
-  @media screen and (max-width: ${props => props.theme.breakpoints.md}px) {
-    width: 100%;
-  }
-  @media screen and (min-width: ${props => props.theme.breakpoints.md + 1}px) {
-    max-width: 1440px;
-  }
+  ${props => mediaMixin(props.theme, {
+    sm: `width: 100%;`,
+    md: `max-width: 1440px;`,
+  })}
 `;
 
 export { ViewWrapper };

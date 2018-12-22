@@ -1,5 +1,6 @@
 import styled from '../../../styles/styledComponents';
 import { modularSize } from '../../../styles/typography';
+import { mediaMixin } from '../../../styles/mixins';
 
 export const HomeMain = styled.main`
   width: 100%;
@@ -37,12 +38,10 @@ export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  @media (max-width: ${props => props.theme.breakpoints.sm}px) {
-    flex-direction: column;
-  }
-  @media (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
-    flex-direction: row;
-  }
+  ${props => mediaMixin(props.theme, {
+    sm: 'flex-direction: column;',
+    md: 'flex-direction: row;',
+  })}
 `;
 
 export const NavMenuItem = styled.li`
@@ -53,10 +52,8 @@ export const NavMenuItem = styled.li`
   color: blue;
   text-transform: uppercase;
   font-size: ${modularSize(0.5)};
-  @media screen and (max-width: ${props => props.theme.breakpoints.sm}px) {
-    width: 100%;
-  }
-  @media screen and (min-width: ${props => props.theme.breakpoints.sm + 1}px) {
-    width: 50%;
-  }
+  ${props => mediaMixin(props.theme, {
+    sm: 'width: 100%;',
+    md: 'width: 50%;',
+  })}
 `;
