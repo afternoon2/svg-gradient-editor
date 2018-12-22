@@ -11,6 +11,7 @@ import {
   faCaretUp,
   faPlus,
   faSearch,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { ConnectedRouter } from 'connected-react-router';
 import { StoreThemeProvider } from './components/layout/StoreThemeProvider';
@@ -26,6 +27,7 @@ library.add(faCaretDown);
 library.add(faCaretUp);
 library.add(faPlus);
 library.add(faSearch);
+library.add(faTrash);
 
 const App = () => (
   <Provider store={store}>

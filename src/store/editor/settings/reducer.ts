@@ -4,14 +4,12 @@ import { Gradient } from '../_gradientTypes';
 
 export type EditorSettingsListReducer = {
   gradients: Gradient[],
-  selected: string[];
 };
 
 export type EditorSettingsListAction = ActionType<typeof editorSettingsListActions>;
 
 export const initialState: EditorSettingsListReducer = {
   gradients: [],
-  selected: [],
 };
 
 export const settings =
@@ -25,6 +23,13 @@ export const settings =
         return {
           ...state,
           gradients: newGradients,
+        }
+      case getType(editorSettingsListActions.deleteGradient):
+        return {
+          ...state,
+          gradients: state.gradients.filter(
+            (gradient: Gradient) => gradient.id !== action.payload,
+          ),
         }
       default:
         return state;

@@ -11,7 +11,8 @@ export const typography = css`
     color: ${props => props.theme.colors.text};
   }
 
-  h1, h2, h3, h4, h5, h6, code, legend, p, input, select, option, button {
+  h1, h2, h3, h4, h5, h6, code, legend, p, input, select, option, button,
+  label, span, dd, dt, a {
     font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
@@ -42,10 +43,6 @@ export const typography = css`
   p, label, span, dl, dd, dt, a {
     font-size: ${modularSize(0)};
     letter-spacing: .035em;
-  }
-
-  label, span, dd, dt, a {
-    font-family: 'Open Sans', sans-serif;
   }
 
   legend {

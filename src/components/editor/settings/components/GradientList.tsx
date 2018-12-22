@@ -2,24 +2,27 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GradientListWrapper } from './layout';
-import { GradientListItem } from './GradientListItem';
+import { GradientListItem } from './item/GradientListItem';
 import { Gradient } from '../../../../store/editor/_gradientTypes';
+import { deleteGradient } from '../../../../store/editor/settings/actions';
 
 type GradientListComponentProps = {
   gradients: Gradient[],
+  deleteGradient: (id: string) => void,
 };
 
 class GradientListComponent extends React.Component<GradientListComponentProps> {
   public render(): React.ReactNode {
-    const { gradients } = this.props;
+    const { gradients, deleteGradient } = this.props;
     return (
       <GradientListWrapper>
-          {gradients.map((gradient: Gradient): React.ReactNode => (
-            <GradientListItem
-              key={gradient.id}
-              gradient={gradient}
-            />
-          ))}
+        {gradients.map((gradient: Gradient) => (
+          <GradientListItem
+            gradient={gradient}
+            key={gradient.id}
+            onDelete={deleteGradient}
+          />
+        ))}
       </GradientListWrapper>
     );
   }
@@ -30,13 +33,13 @@ const mapStateToProps = (state: any) => ({
   selected: state.editor.settings.selected,
 });
 
-// const mapDispatchToProps = (dispatch: any) => bindActionCreators({
-
-// }, dispatch)
+const mapDispatchToProps = (dispatch: any) => bindActionCreators({
+  deleteGradient,
+}, dispatch)
 
 export const GradientList = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
   null,
   { pure: false },
 )(GradientListComponent);
