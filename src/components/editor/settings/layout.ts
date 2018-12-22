@@ -7,10 +7,7 @@ export const SettingsWrapper = styled.div`
   width: 100%;
   height: inherit;
   display: flex;
-  ${props => mediaMixin(props.theme, {
-    sm: 'flex-direction: row',
-    md: 'flex-direction: column;'
-  })}
+  flex-direction: column;
   h6 {
     margin: 0 0 .2em 0;
   }
@@ -22,18 +19,9 @@ export const SettingsHeader = styled.header`
   padding: .5em;
   display: flex;
   justify-content: space-around;
-  ${props => mediaMixin(props.theme, {
-    sm: `
-      width: 50px;
-      height: inherit;
-      flex-direction: column;
-    `,
-    md: `
-      width: 100%;
-      height: 50px;
-      flex-direction: row;
-    `,
-  })}
+  width: 100%;
+  height: 50px;
+  flex-direction: row;
 `;
 
 export const IconButton = styled.button`
@@ -51,18 +39,15 @@ export const IconButton = styled.button`
 `;
 
 export const SettingsContent = styled.div`
-  width: auto;
+  width: 100%;
   box-sizing: border-box;
   height: auto;
   display: flex;
   ${props => mediaMixin(props.theme, {
     sm: `
-      flex-direction: row;
       overflow-y: auto;
     `,
-    md: `
-      flex-direction: column;
-    `,
+    md: ``,
   })}
 `;
 
