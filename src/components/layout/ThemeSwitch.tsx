@@ -9,10 +9,10 @@ import { AppTheme } from '../../styles/themes';
 import { mediaMixin } from '../../styles/mixins';
 
 const SwitchWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
-  z-index: 999999;
+  z-index: 100;
   ${props => mediaMixin(props.theme, {
     sm: `
       right: 10px;
