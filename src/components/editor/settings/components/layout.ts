@@ -8,11 +8,6 @@ export const GradientListWrapper = styled.ul`
   margin: 0;
   width: 100%;
   height: auto;
-  display: flex;
-  ${props => mediaMixin(props.theme, {
-  sm: `flex-direction: row;`,
-  md: ` flex-direction: column;`,
-})}
 `;
 
 export const GradientListItemHeader = styled.header`

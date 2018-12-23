@@ -33,18 +33,8 @@ export const WrapperHeader = styled.header`
   justify-content: space-between;
   padding: .25em;
   transition: 120ms all ease-in-out;
-  ${props => mediaMixin(props.theme, {
-    sm: `
-      width: 35px;
-      height: 100%;
-      flex-direction: column;
-    `,
-    md: `
-      width: 100%;
-      height: 35px;
-      flex-direction: row;
-    `,
-  })}
+  width: 100%;
+  height: 35px;
 `;
 
 type HeaderLinkProps = {

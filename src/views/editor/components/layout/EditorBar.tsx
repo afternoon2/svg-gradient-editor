@@ -6,6 +6,7 @@ export const EditorBar = styled.aside`
   margin: 0;
   padding: 0;
   background-color: ${props => props.theme.colors.main_300};
+  overflow-y: auto;
   ${props => mediaMixin(props.theme, {
     sm: `
       position: absolute;
@@ -13,13 +14,14 @@ export const EditorBar = styled.aside`
       left: 0;
       z-index: 2;
       width: 100%;
-      height: 180px;
+      height: 280px;
     `,
     md: `
-      position: relative;
+      position: absolute;
+      z-index: 2;
       right: 0;
       top: 0;
-      min-height: 100vh;
+      height: 100vh;
       min-width: 400px;
       max-width: 400px;
     `

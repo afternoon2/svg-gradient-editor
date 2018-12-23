@@ -4,7 +4,7 @@ import styled from '../../../styles/styledComponents';
 const ArtboardSVG = styled.svg`
   box-sizing: border-box;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 5px);
   fill: yellow;
   &:hover {
     cursor: crosshair;

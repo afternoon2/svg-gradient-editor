@@ -39,12 +39,17 @@ export const IconButton = styled.button`
 export const SettingsContent = styled.div`
   width: 100%;
   box-sizing: border-box;
-  height: auto;
-  display: flex;
+  overflow-y: auto;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.23);
+  &::-webkit-scrollbar {
+    display: none;
+  }
   ${props => mediaMixin(props.theme, {
     sm: `
-      overflow-y: auto;
+      height: calc(280px - 40px);
     `,
-    md: ``,
+    md: `
+      height: 80vh;
+    `,
   })}
 `;
