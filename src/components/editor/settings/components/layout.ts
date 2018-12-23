@@ -1,3 +1,4 @@
+import { rgba } from 'polished';
 import styled from '../../../../styles/styledComponents';
 import { mediaMixin } from '../../../../styles/mixins';
 
@@ -47,4 +48,13 @@ export const ControlsWrapper = styled.div`
       `,
 })}
   }
+`;
+
+export const NoContent = styled.span`
+  color: ${props => rgba(props.theme.colors.text, 0.5)};
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;

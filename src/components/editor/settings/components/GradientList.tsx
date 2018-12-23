@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { GradientListWrapper } from './layout';
+import { GradientListWrapper, NoContent } from './layout';
 import { GradientListItem } from './item/GradientListItem';
 import { Gradient } from '../../../../store/editor/_gradientTypes';
 import { deleteGradient } from '../../../../store/editor/settings/actions';
@@ -23,6 +23,9 @@ class GradientListComponent extends React.Component<GradientListComponentProps> 
             onDelete={deleteGradient}
           />
         ))}
+        {
+          gradients.length === 0 ? <NoContent>No gradients created</NoContent> : null
+        }
       </GradientListWrapper>
     );
   }

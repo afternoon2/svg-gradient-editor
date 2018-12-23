@@ -1,5 +1,4 @@
 import styled from '../../../../../styles/styledComponents';
-import { mediaMixin } from '../../../../../styles/mixins';
 
 export const ListItemWrapper = styled.li`
   box-sizing: border-box;
@@ -7,22 +6,8 @@ export const ListItemWrapper = styled.li`
   display: flex;
   flex-direction: column;
   margin: .5em 0;
-  &:first-child {
-    margin: 0 0 .5em 0;
-  }
-  &:last-child {
-    margin: .5em 0 0 0;
-  }
-  ${props => mediaMixin(props.theme, {
-  sm: `
-      width: auto;
-      height: 100%;
-    `,
-  md: `
-      width: 100%;
-      height: auto;
-    `,
-})}
+  width: 100%;
+  height: auto;
 `;
 
 export const WrapperHeader = styled.header`
@@ -47,16 +32,8 @@ export const HeaderLink = styled.a<HeaderLinkProps>`
   align-items: center;
   justify-content: center;
   color: ${props => props.danger ? props.theme.colors.danger : props.theme.colors.text};
-  ${props => mediaMixin(props.theme, {
-    sm: `
-      width: 35px;
-      height: 100%;
-    `,
-    md: `
-      width: 35px;
-      height: 35px;
-    `,
-  })}
+  width: 35px;
+  height: 100%;
   &:hover {
     cursor: pointer;
   }
@@ -68,16 +45,7 @@ export const WrapperContent = styled.main`
   border: 2px solid ${props => props.theme.colors.main_200};
   padding: .5em;
   display: ${props => props.hidden ? 'none' : 'flex'};
-  ${props => mediaMixin(props.theme, {
-    sm: `
-      width: auto;
-      height: 100%;
-      border-radius: 0 4px 4px 0;
-    `,
-    md: `
-      width: 100%;
-      height: auto;
-      border-radius: 0 0 4px 4px;
-    `,
-  })}
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 4px 4px;
 `;
