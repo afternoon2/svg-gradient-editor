@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Gradient } from '../../../../../store/editor/_gradientTypes';
 import { ListItemWrapper, WrapperHeader, WrapperContent, HeaderLink } from './layout';
+import { ListItemForm } from './ListItemForm';
 
 export type GradientListItemProps = {
   gradient: Gradient,
@@ -31,9 +32,9 @@ export const GradientListItem = (props: GradientListItemProps) => {
           <FontAwesomeIcon icon="trash" size="xs" />
         </HeaderLink>
       </WrapperHeader>
-      <WrapperContent
-        hidden={collapsed}
-      ></WrapperContent>
+      <WrapperContent hidden={collapsed}>
+        <ListItemForm gradient={gradient} />
+      </WrapperContent>
     </ListItemWrapper>
   );
 };

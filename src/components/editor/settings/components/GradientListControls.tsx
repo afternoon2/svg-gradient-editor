@@ -59,8 +59,8 @@ class GradientListControlsComponent extends React.Component<ControlsComponentPro
         isEmpty: true,
         name: (event.target as HTMLInputElement).value,
         id: nanoid(),
-        type: 'linear',
-        focalPoints: false,
+        type: 'radial',
+        focalPoints: true,
         attributes: {
           x1: -1,
           y1: -1,
