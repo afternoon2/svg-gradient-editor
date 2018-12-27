@@ -19,7 +19,6 @@ import { Home } from './views/home/Home';
 import { Editor } from './views/editor/Editor';
 import { GlobalStyles } from './components/layout/GlobalStyles';
 import { ThemeSwitch } from './components/layout/ThemeSwitch';
-import 'react-dropdown/style.css';
 
 library.add(faChevronLeft);
 library.add(faList);

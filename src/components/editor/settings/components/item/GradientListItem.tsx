@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Gradient } from '../../../../../store/editor/_gradientTypes';
 import { ListItemWrapper, WrapperHeader, WrapperContent, HeaderLink } from './layout';
-import { ListItemForm } from './ListItemForm';
+import { ListItemForm } from './form/ListItemForm';
 
 export type GradientListItemProps = {
   gradient: Gradient,

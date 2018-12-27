@@ -7,7 +7,7 @@ export const typography = css`
 
   h1, h2, h3, h4, h5, h6, code,
   label, span, a, dd, dt, dl, pre, legend, select, option, input,
-  button, p {
+  button, p, legend {
     color: ${props => props.theme.colors.text};
   }
 

@@ -48,6 +48,5 @@ export const WrapperContent = styled.main`
   width: 100%;
   height: auto;
   border-radius: 0 0 4px 4px;
-  display: flex;
   flex-direction: column;
 `;
