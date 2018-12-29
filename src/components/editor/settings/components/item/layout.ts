@@ -1,4 +1,5 @@
 import styled from '../../../../../styles/styledComponents';
+import { modularSize } from '../../../../../styles/typography';
 
 export const ListItemWrapper = styled.li`
   box-sizing: border-box;
@@ -49,4 +50,22 @@ export const WrapperContent = styled.main`
   height: auto;
   border-radius: 0 0 4px 4px;
   flex-direction: column;
+`;
+
+export const FormRow = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: .5em;
+  h5 {
+    font-size: ${modularSize(-1.2)};
+    margin: 0;
+  }
+`;
+
+export const FormLabel = styled.label`
+  font-size: ${modularSize(-1.65)};
+  padding-right: .5em;
 `;

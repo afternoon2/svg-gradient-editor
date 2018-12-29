@@ -1,8 +1,8 @@
 import * as React from 'react';
-import styled from '../../../../../../../../styles/styledComponents';
-import { FormLabel } from '../../layout';
+import styled from '../../../../../../styles/styledComponents';
+import { FormLabel } from '../layout';
 
-const FSelect = styled.select`
+export const FSelect = styled.select`
   color: ${props => props.theme.colors.text};
   background-color: ${props => props.theme.colors.main_400};
 `;
@@ -16,7 +16,7 @@ export type FormSelectProps = {
   label: string,
   options: string[],
   value?: string,
-  onChange?: (event?: React.ChangeEvent) => void,
+  onChange?: any,
 };
 
 export const FormSelect = (props: FormSelectProps) => {

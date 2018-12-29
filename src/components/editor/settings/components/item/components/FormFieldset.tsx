@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../../../../../../../styles/styledComponents';
-import { modularSize } from '../../../../../../../../styles/typography';
+import styled from '../../../../../../styles/styledComponents';
+import { modularSize } from '../../../../../../styles/typography';
 import { rgba } from 'polished';
 
 const FFieldset = styled.fieldset`
@@ -11,6 +11,8 @@ const FFieldset = styled.fieldset`
   border: 1px solid ${props => rgba(props.theme.colors.text, 0.45)};
   border-radius: 3px;
   color: ${props => props.theme.colors.text};
+  display: flex;
+  flex-direction: column;
 `;
 
 const FLegend = styled.legend`

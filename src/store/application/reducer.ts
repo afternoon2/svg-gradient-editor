@@ -8,7 +8,7 @@ export type ApplicationReducer = {
 export type ApplicationAction = ActionType<typeof appActions>;
 
 export const initialState: ApplicationReducer = {
-  theme: 'dark',
+  theme: 'light',
 };
 
 export const application =
