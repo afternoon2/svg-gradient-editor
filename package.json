@@ -17,6 +17,7 @@
     "nanoid": "^2.0.0",
     "polished": "^2.3.0",
     "react": "16.7.0-alpha.0",
+    "react-color": "^2.17.0",
     "react-dom": "16.7.0-alpha.0",
     "react-numeric-input": "^2.2.3",
     "react-redux": "^5.1.1",
@@ -47,6 +48,7 @@
   "devDependencies": {
     "@types/history": "^4.7.2",
     "@types/nanoid": "^1.2.0",
+    "@types/react-color": "^2.14.0",
     "@types/react-numeric-input": "^2.2.3",
     "@types/react-redux": "^6.0.10",
     "@types/redux": "^3.6.0",

@@ -16,14 +16,17 @@ import {
   updateGradientType,
   toggleFocalPoints,
   toggleChromaJs,
+  addColor,
 } from '../../../../../store/editor/settings/actions';
 import {
   AttributePayload,
   TypePayload,
   FocalPointsTogglePayload,
   ChromaJsTogglePayload,
+  AddColorPayload,
 } from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
+import { GradientColors } from './GradientColors';
 import { ItemHeader } from './ItemHeader';
 
 export type GradientListItemProps = {
@@ -34,6 +37,7 @@ export type GradientListItemProps = {
   updateGradientType: (payload: TypePayload) => void,
   toggleFocalPoints: (payload: FocalPointsTogglePayload) => void,
   toggleChromaJs: (payload: ChromaJsTogglePayload) => void,
+  addColor: (payload: AddColorPayload) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -133,7 +137,11 @@ class ListItem extends React.Component<GradientListItemProps> {
           </FormRow>
           <FormRow>
             <FormFieldset legend="Colors">
-
+              <GradientColors
+                addColor={this.props.addColor}
+                colors={this.gradient.colors}
+                gradientId={this.gradient.id}
+              />
             </FormFieldset>
           </FormRow>
         </WrapperContent>
@@ -152,6 +160,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   updateGradientType,
   toggleFocalPoints,
   toggleChromaJs,
+  addColor,
 }, dispatch);
 
 export const GradientListItem = connect(

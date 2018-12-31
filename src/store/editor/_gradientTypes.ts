@@ -28,6 +28,11 @@ export type ChromaAttributes = {
   samples: number,
 };
 
+export type InputColor = {
+  id: string,
+  color: number[],
+};
+
 export type OutputColor = {
   color: string,
   offset: number,
@@ -42,6 +47,6 @@ export type Gradient = {
   useChroma: boolean,
   attributes: LinearGradientAttributes | RadialGradientAttributes,
   chroma: ChromaAttributes,
-  colors: number[],
+  colors: InputColor[],
   output: OutputColor[],
 };

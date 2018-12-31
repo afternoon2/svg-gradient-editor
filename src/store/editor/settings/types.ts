@@ -1,3 +1,5 @@
+import { InputColor } from "../_gradientTypes";
+
 export type AttributePayload = {
   id: string,
   attribute: string,
@@ -18,4 +20,9 @@ export type FocalPointsTogglePayload = {
 export type ChromaJsTogglePayload = {
   id: string,
   useChroma: boolean,
+};
+
+export type AddColorPayload = {
+  id: string,
+  color: InputColor,
 };

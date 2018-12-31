@@ -1,6 +1,12 @@
 import { createAction } from 'typesafe-actions';
-import { Gradient } from '../_gradientTypes';
-import { AttributePayload, TypePayload, FocalPointsTogglePayload, ChromaJsTogglePayload } from './types';
+import { Gradient, InputColor } from '../_gradientTypes';
+import {
+  AttributePayload, 
+  TypePayload, 
+  FocalPointsTogglePayload, 
+  ChromaJsTogglePayload,
+  AddColorPayload,
+} from './types';
 
 export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
   return (gradient: Gradient) => resolve(gradient);
@@ -24,4 +30,8 @@ export const toggleFocalPoints = createAction('@editor/settings/TOGGLE_FOCAL_POI
 
 export const toggleChromaJs = createAction('@editor/settings/TOGGLE_CHROMA_USAGE', (resolve) => {
   return (payload: ChromaJsTogglePayload) => resolve(payload);
+});
+
+export const addColor = createAction('@editor/settings/ADD_COLOR', (resolve) => {
+  return (payload: AddColorPayload) => resolve(payload);
 });
