@@ -9,3 +9,8 @@ export type TypePayload = {
   gradientType: 'linear' | 'radial',
   focalPoints?: boolean,
 };
+
+export type FocalPointsTogglePayload = {
+  id: string,
+  focalPoints: boolean,
+};

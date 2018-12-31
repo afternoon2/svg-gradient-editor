@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Gradient } from '../../../../../store/editor/_gradientTypes';
 import {
   ListItemWrapper,
-  WrapperHeader,
   WrapperContent,
-  HeaderLink,
   FormRow
 } from './layout';
 import { FormFieldset } from './components/FormFieldset';
 import { FormSelect } from './components/FormSelect';
-import { deleteGradient, updateAttribute, updateGradientType } from '../../../../../store/editor/settings/actions';
-import { AttributePayload, TypePayload } from '../../../../../store/editor/settings/types';
+import { FormSwitch } from './components/FormSwitch';
+import {
+  deleteGradient,
+  updateAttribute,
+  updateGradientType,
+  toggleFocalPoints,
+} from '../../../../../store/editor/settings/actions';
+import { AttributePayload, TypePayload, FocalPointsTogglePayload } from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
 import { ItemHeader } from './ItemHeader';
 
@@ -23,6 +26,7 @@ export type GradientListItemProps = {
   deleteGradient: (gradientId: string) => void,
   updateAttribute: (payload: AttributePayload) => void,
   updateGradientType: (payload: TypePayload) => void,
+  toggleFocalPoints: (payload: FocalPointsTogglePayload) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -60,7 +64,7 @@ class ListItem extends React.Component<GradientListItemProps> {
 
   public render() {
     const { collapsed, types } = this.state;
-    const { deleteGradient, updateGradientType } = this.props;
+    const { deleteGradient, updateGradientType, toggleFocalPoints } = this.props;
     return (
       <ListItemWrapper>
         <ItemHeader
@@ -83,6 +87,23 @@ class ListItem extends React.Component<GradientListItemProps> {
                   })}
                 />
               </FormRow>
+              {
+                this.gradient.type === 'radial' ?
+                  <FormRow>
+                    <FormSwitch
+                      label="Focal points"
+                      checked={this.gradient.focalPoints}
+                      onChange={(focalPoints: boolean) => toggleFocalPoints({
+                        id: this.gradient.id,
+                        focalPoints,
+                      })}
+                    />
+                  </FormRow> :
+                  null
+              }
+              <FormRow>
+
+              </FormRow>
             </FormFieldset>
           </FormRow>
           <FormRow>
@@ -91,6 +112,7 @@ class ListItem extends React.Component<GradientListItemProps> {
                 attributes={this.gradient.attributes}
                 type={this.gradient.type}
                 onAttributeChange={this.onAttributeChange}
+                focalPoints={this.gradient.focalPoints}
               />
             </FormFieldset>
           </FormRow>
@@ -108,6 +130,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   deleteGradient,
   updateAttribute,
   updateGradientType,
+  toggleFocalPoints,
 }, dispatch);
 
 export const GradientListItem = connect(

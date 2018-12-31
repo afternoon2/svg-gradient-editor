@@ -1,6 +1,6 @@
 import { createAction } from 'typesafe-actions';
 import { Gradient } from '../_gradientTypes';
-import { AttributePayload, TypePayload } from './types';
+import { AttributePayload, TypePayload, FocalPointsTogglePayload } from './types';
 
 export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
   return (gradient: Gradient) => resolve(gradient);
@@ -16,4 +16,8 @@ export const updateGradientType = createAction('@editor/settings/UPDATE_GRADIENT
 
 export const updateAttribute = createAction('@editor/settings/UPDATE_ATTRIBUTE', (resolve) => {
   return (payload: AttributePayload) => resolve(payload);
+});
+
+export const toggleFocalPoints = createAction('@editor/settings/TOGGLE_FOCAL_POINTS', (resolve) => {
+  return (payload: FocalPointsTogglePayload) => resolve(payload);
 });

@@ -1,7 +1,11 @@
 import { ActionType, getType } from 'typesafe-actions';
 import * as editorSettingsListActions from './actions';
 import { Gradient } from '../_gradientTypes';
-import { updateAttributeInGradient, updateTypeInGradient } from './helpers';
+import {
+  updateAttributeInGradient,
+  updateTypeInGradient,
+  toggleFocalPoints,
+} from './helpers';
 
 export type EditorSettingsListReducer = {
   gradients: Gradient[],
@@ -39,11 +43,15 @@ export const settings =
         }
       case getType(editorSettingsListActions.updateAttribute):
         const newGradientList = updateAttributeInGradient(action.payload, state.gradients);
-        console.log(newGradientList);
         return {
           ...state,
           gradients: newGradientList,
         };
+      case getType(editorSettingsListActions.toggleFocalPoints):
+        return {
+          ...state,
+          gradients: toggleFocalPoints(action.payload, state.gradients),
+        }
       default:
         return state;
     }

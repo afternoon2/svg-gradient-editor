@@ -8,10 +8,11 @@ export type GradientAttributesProps = {
   attributes: LinearGradientAttributes | RadialGradientAttributes,
   type: 'linear' | 'radial',
   onAttributeChange: (event: React.ChangeEvent, label: string, value: number | string) => void,
+  focalPoints?: boolean,
 };
 
 export const GradientAttributes = (props: GradientAttributesProps): JSX.Element => {
-  const { attributes, type, onAttributeChange } = props;
+  const { attributes, type, onAttributeChange, focalPoints } = props;
   const [ spreadMethods ] = React.useState([
     'none',
     'pad',
@@ -125,38 +126,38 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           />
         </FormRow>
         {
-          typeof (attributes as RadialGradientAttributes).fx === 'number' ?
-            <FormRow>
-              <FormNumber
-                label="fx"
-                min={-10000}
-                max={10000}
-                step={1}
-                value={(attributes as RadialGradientAttributes).fx as number}
-                onChange={(event: React.ChangeEvent) => onAttributeChange(
-                  event,
-                  'fx',
-                  parseInt((event.target as HTMLInputElement).value, 10),
-                )}
-              />
-            </FormRow> : null
-        }
-        {
-          typeof (attributes as RadialGradientAttributes).fy === 'number' ?
-            <FormRow>
-              <FormNumber
-                label="fx"
-                min={-10000}
-                max={10000}
-                step={1}
-                value={(attributes as RadialGradientAttributes).fy as number}
-                onChange={(event: React.ChangeEvent) => onAttributeChange(
-                  event,
-                  'fy',
-                  parseInt((event.target as HTMLInputElement).value, 10),
-                )}
-              />
-            </FormRow> : null
+          focalPoints ?
+            <React.Fragment>
+              <FormRow>
+                <FormNumber
+                  label="fx"
+                  min={-10000}
+                  max={10000}
+                  step={1}
+                  value={(attributes as RadialGradientAttributes).fx as number}
+                  onChange={(event: React.ChangeEvent) => onAttributeChange(
+                    event,
+                    'fx',
+                    parseInt((event.target as HTMLInputElement).value, 10),
+                  )}
+                />
+              </FormRow>
+              <FormRow>
+                <FormNumber
+                  label="fy"
+                  min={-10000}
+                  max={10000}
+                  step={1}
+                  value={(attributes as RadialGradientAttributes).fy as number}
+                  onChange={(event: React.ChangeEvent) => onAttributeChange(
+                    event,
+                    'fy',
+                    parseInt((event.target as HTMLInputElement).value, 10),
+                  )}
+                />
+              </FormRow>
+            </React.Fragment> :
+            null
         }
         <FormRow>
           <FormSelect
