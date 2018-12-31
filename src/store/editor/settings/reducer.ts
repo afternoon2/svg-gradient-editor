@@ -1,7 +1,7 @@
 import { ActionType, getType } from 'typesafe-actions';
 import * as editorSettingsListActions from './actions';
 import { Gradient } from '../_gradientTypes';
-import { updateAttributeInGradient } from './helpers';
+import { updateAttributeInGradient, updateTypeInGradient } from './helpers';
 
 export type EditorSettingsListReducer = {
   gradients: Gradient[],
@@ -32,6 +32,11 @@ export const settings =
             (gradient: Gradient) => gradient.id !== action.payload,
           ),
         };
+      case getType(editorSettingsListActions.updateGradientType):
+        return {
+          ...state,
+          gradients: updateTypeInGradient(action.payload, state.gradients),
+        }
       case getType(editorSettingsListActions.updateAttribute):
         const newGradientList = updateAttributeInGradient(action.payload, state.gradients);
         console.log(newGradientList);

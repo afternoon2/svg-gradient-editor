@@ -3,3 +3,8 @@ export type AttributePayload = {
   attribute: string,
   value: any,
 };
+
+export type TypePayload = {
+  id: string,
+  gradientType: 'linear' | 'radial',
+};

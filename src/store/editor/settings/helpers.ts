@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
-import { AttributePayload } from './types';
-import { Gradient } from '../_gradientTypes';
+import { AttributePayload, TypePayload } from './types';
+import { Gradient, LinearGradientAttributes, RadialGradientAttributes } from '../_gradientTypes';
 
 export const updateAttributeInGradient = (
   payload: AttributePayload,
@@ -21,3 +21,37 @@ export const updateAttributeInGradient = (
   );
   return newData;
 }
+
+export const updateTypeInGradient = (
+  payload: TypePayload,
+  gradients: Gradient[]
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const defaultAttributes: (LinearGradientAttributes | RadialGradientAttributes) =
+    payload.gradientType === 'linear' ?
+    {
+      x1: 0,
+      y1: 0,
+      x2: 0,
+      y2: 0,
+    } :
+    {
+      cx: 0,
+      cy: 0,
+      r: 10,
+    };
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        type: {
+          $set: payload.gradientType,
+        },
+        attributes: {
+          $set: defaultAttributes,
+        }
+      }
+    }
+  );
+  return newData;
+};

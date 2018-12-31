@@ -1,5 +1,4 @@
 import * as React from 'react';
-import nanoid from 'nanoid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,8 +12,8 @@ import {
 } from './layout';
 import { FormFieldset } from './components/FormFieldset';
 import { FormSelect } from './components/FormSelect';
-import { deleteGradient, updateAttribute } from '../../../../../store/editor/settings/actions';
-import { AttributePayload } from '../../../../../store/editor/settings/types';
+import { deleteGradient, updateAttribute, updateGradientType } from '../../../../../store/editor/settings/actions';
+import { AttributePayload, TypePayload } from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
 
 export type GradientListItemProps = {
@@ -22,6 +21,7 @@ export type GradientListItemProps = {
   gradients: Gradient[],
   deleteGradient: (gradientId: string) => void,
   updateAttribute: (payload: AttributePayload) => void,
+  updateGradientType: (payload: TypePayload) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -31,12 +31,6 @@ class ListItem extends React.Component<GradientListItemProps> {
     types: [
       'linear',
       'radial',
-    ],
-    spreadMethods: [
-      'none',
-      'pad',
-      'repeat',
-      'reflect',
     ],
   };
 
@@ -65,7 +59,7 @@ class ListItem extends React.Component<GradientListItemProps> {
 
   public render() {
     const { collapsed, types } = this.state;
-    const { deleteGradient } = this.props;
+    const { deleteGradient, updateGradientType } = this.props;
     return (
       <ListItemWrapper>
         <WrapperHeader>
@@ -92,7 +86,10 @@ class ListItem extends React.Component<GradientListItemProps> {
                   value={this.gradient.type}
                   options={types}
                   label="Type"
-                  onChange={() => { }}
+                  onChange={(event: React.ChangeEvent) => updateGradientType({
+                    id: this.gradient.id,
+                    gradientType: (event.target as HTMLInputElement).value as ('linear' | 'radial'),
+                  })}
                 />
               </FormRow>
             </FormFieldset>
@@ -118,7 +115,8 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   deleteGradient,
-  updateAttribute
+  updateAttribute,
+  updateGradientType,
 }, dispatch);
 
 export const GradientListItem = connect(

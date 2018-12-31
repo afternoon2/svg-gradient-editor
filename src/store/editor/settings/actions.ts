@@ -1,15 +1,19 @@
 import { createAction } from 'typesafe-actions';
 import { Gradient } from '../_gradientTypes';
-import { AttributePayload } from './types';
+import { AttributePayload, TypePayload } from './types';
 
-export const addGradient = createAction('@editor/settings/list/ADD_GRADIENT', (resolve) => {
+export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
   return (gradient: Gradient) => resolve(gradient);
 });
 
-export const deleteGradient = createAction('@editor/settings/list/DELETE_GRADIENT', (resolve) => {
+export const deleteGradient = createAction('@editor/settings/DELETE_GRADIENT', (resolve) => {
   return (gradientId: string) => resolve(gradientId);
 });
 
-export const updateAttribute = createAction('@editor/settings/list/UPDATE_ATTRIBUTE', (resolve) => {
+export const updateGradientType = createAction('@editor/settings/UPDATE_GRADIENT_TYPE', (resolve) => {
+  return (payload: TypePayload) => resolve(payload);
+});
+
+export const updateAttribute = createAction('@editor/settings/UPDATE_ATTRIBUTE', (resolve) => {
   return (payload: AttributePayload) => resolve(payload);
 });
