@@ -1,16 +1,16 @@
 export type LinearGradientAttributes = {
-  x1: number | null,
-  y1: number | null,
-  x2: number | null,
-  y2: number | null,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
 };
 
 export type RadialGradientAttributes = {
-  cx: number | null,
-  cy: number | null,
-  r: number | null,
-  fx?: number | null,
-  fy?: number | null,
+  cx: number,
+  cy: number,
+  r: number,
+  fx?: number,
+  fy?: number,
   spreadMethod?: 'pad' | 'repeat' | 'reflect',
 };
 

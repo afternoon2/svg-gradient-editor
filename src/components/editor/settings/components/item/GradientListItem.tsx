@@ -13,9 +13,9 @@ import {
 } from './layout';
 import { FormFieldset } from './components/FormFieldset';
 import { FormSelect } from './components/FormSelect';
-import { FormNumber } from './components/FormNumber';
 import { deleteGradient, updateAttribute } from '../../../../../store/editor/settings/actions';
 import { AttributePayload } from '../../../../../store/editor/settings/types';
+import { GradientAttributes } from './GradientAttributes';
 
 export type GradientListItemProps = {
   id: string,
@@ -48,69 +48,17 @@ class ListItem extends React.Component<GradientListItemProps> {
     );
   }
 
-  private renderAttributes = () => {
-    const { attributes } = this.gradient;
-    const { spreadMethods } = this.state;
-    return Object.entries(attributes)
-      .map((entry: [string, any]) => {
-        const id = nanoid();
-        switch (entry[0]) {
-          case 'x1':
-          case 'y1':
-          case 'x2':
-          case 'y2':
-          case 'fx':
-          case 'fy':
-          case 'cx':
-          case 'cy':
-          case 'r':
-            return (
-              <FormRow key={id}>
-                {entry[1]}
-                <FormNumber
-                  label={entry[0]}
-                  min={-10000}
-                  max={10000}
-                  step={1}
-                  value={parseInt(entry[1], 10)}
-                  onChange={(event: React.ChangeEvent) => this.onAttributeChange(
-                    event,
-                    entry[0],
-                    parseInt((event.target as HTMLInputElement).value, 10),
-                  )}
-                />
-              </FormRow>
-            );
-          case 'spreadMethod':
-            return (
-              <FormRow key={id}>
-                <FormSelect
-                  label={entry[0]}
-                  options={spreadMethods}
-                  value={entry[1]}
-                  onChange={(event: React.ChangeEvent) => this.onAttributeChange(
-                    event,
-                    entry[0],
-                    (event.target as HTMLInputElement).value,
-                  )}
-                />
-              </FormRow>
-            );
-        }
-      });
-  };
-
   private onAttributeChange = (
     event: React.ChangeEvent,
     attribute: string,
     value: string | number
   ) => {
-    event.preventDefault();
     this.props.updateAttribute({
       id: this.gradient.id,
       attribute,
       value: value,
     });
+    event.preventDefault();
   }
 
   private toggleCollapse = () => this.setState({ collapsed: !this.state.collapsed });
@@ -151,7 +99,11 @@ class ListItem extends React.Component<GradientListItemProps> {
           </FormRow>
           <FormRow>
             <FormFieldset legend="Attributes">
-              {this.renderAttributes()}
+              <GradientAttributes
+                attributes={this.gradient.attributes}
+                type={this.gradient.type}
+                onAttributeChange={this.onAttributeChange}
+              />
             </FormFieldset>
           </FormRow>
         </WrapperContent>
