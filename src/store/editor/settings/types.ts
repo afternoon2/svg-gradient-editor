@@ -7,4 +7,5 @@ export type AttributePayload = {
 export type TypePayload = {
   id: string,
   gradientType: 'linear' | 'radial',
+  focalPoints?: boolean,
 };

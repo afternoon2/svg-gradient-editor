@@ -39,6 +39,8 @@ export const updateTypeInGradient = (
       cx: 0,
       cy: 0,
       r: 10,
+      fx: 0,
+      fy: 0,
     };
   const newData: Gradient[] = update(
     gradients,

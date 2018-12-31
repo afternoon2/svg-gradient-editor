@@ -113,7 +113,7 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
         <FormRow>
           <FormNumber
             label="r"
-            min={-10000}
+            min={0}
             max={10000}
             step={1}
             value={(attributes as RadialGradientAttributes).r}
@@ -124,6 +124,40 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
             )}
           />
         </FormRow>
+        {
+          typeof (attributes as RadialGradientAttributes).fx === 'number' ?
+            <FormRow>
+              <FormNumber
+                label="fx"
+                min={-10000}
+                max={10000}
+                step={1}
+                value={(attributes as RadialGradientAttributes).fx as number}
+                onChange={(event: React.ChangeEvent) => onAttributeChange(
+                  event,
+                  'fx',
+                  parseInt((event.target as HTMLInputElement).value, 10),
+                )}
+              />
+            </FormRow> : null
+        }
+        {
+          typeof (attributes as RadialGradientAttributes).fy === 'number' ?
+            <FormRow>
+              <FormNumber
+                label="fx"
+                min={-10000}
+                max={10000}
+                step={1}
+                value={(attributes as RadialGradientAttributes).fy as number}
+                onChange={(event: React.ChangeEvent) => onAttributeChange(
+                  event,
+                  'fy',
+                  parseInt((event.target as HTMLInputElement).value, 10),
+                )}
+              />
+            </FormRow> : null
+        }
         <FormRow>
           <FormSelect
             label="Spread method"
