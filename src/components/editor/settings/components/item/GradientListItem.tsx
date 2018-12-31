@@ -15,6 +15,7 @@ import { FormSelect } from './components/FormSelect';
 import { deleteGradient, updateAttribute, updateGradientType } from '../../../../../store/editor/settings/actions';
 import { AttributePayload, TypePayload } from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
+import { ItemHeader } from './ItemHeader';
 
 export type GradientListItemProps = {
   id: string,
@@ -62,22 +63,12 @@ class ListItem extends React.Component<GradientListItemProps> {
     const { deleteGradient, updateGradientType } = this.props;
     return (
       <ListItemWrapper>
-        <WrapperHeader>
-          <HeaderLink
-            onClick={() => this.toggleCollapse()}
-            title="Show/hide gradient"
-          >
-            <FontAwesomeIcon icon={collapsed ? 'caret-down' : 'caret-up'} />
-          </HeaderLink>
-          <span>{this.gradient.name}</span>
-          <HeaderLink
-            danger
-            onClick={() => deleteGradient(this.gradient.id)}
-            title="Delete gradient"
-          >
-            <FontAwesomeIcon icon="trash" size="xs" />
-          </HeaderLink>
-        </WrapperHeader>
+        <ItemHeader
+          toggleCollapse={this.toggleCollapse}
+          deleteGradient={deleteGradient}
+          collapsed={collapsed}
+          gradient={this.gradient}
+        />
         <WrapperContent hidden={collapsed}>
           <FormRow>
             <FormFieldset legend="Properties">
