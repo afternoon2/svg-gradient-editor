@@ -14,3 +14,8 @@ export type FocalPointsTogglePayload = {
   id: string,
   focalPoints: boolean,
 };
+
+export type ChromaJsTogglePayload = {
+  id: string,
+  useChroma: boolean,
+};

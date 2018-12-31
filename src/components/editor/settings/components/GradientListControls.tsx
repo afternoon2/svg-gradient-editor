@@ -61,6 +61,7 @@ class GradientListControlsComponent extends React.Component<ControlsComponentPro
         id: nanoid(),
         type: 'linear',
         focalPoints: false,
+        useChroma: false,
         attributes: {
           x1: 0,
           y1: 0,
@@ -68,7 +69,6 @@ class GradientListControlsComponent extends React.Component<ControlsComponentPro
           y2: 0,
         },
         chroma: {
-          isInput: false,
           interpolation: 'linear',
           mode: 'rgb',
           lightnessCorrection: false,

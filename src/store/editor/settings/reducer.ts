@@ -5,6 +5,7 @@ import {
   updateAttributeInGradient,
   updateTypeInGradient,
   toggleFocalPoints,
+  toggleChromaJs,
 } from './helpers';
 
 export type EditorSettingsListReducer = {
@@ -51,6 +52,11 @@ export const settings =
         return {
           ...state,
           gradients: toggleFocalPoints(action.payload, state.gradients),
+        }
+      case getType(editorSettingsListActions.toggleChromaJs):
+        return {
+          ...state,
+          gradients: toggleChromaJs(action.payload, state.gradients),
         }
       default:
         return state;

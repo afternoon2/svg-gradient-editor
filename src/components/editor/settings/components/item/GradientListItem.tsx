@@ -15,8 +15,14 @@ import {
   updateAttribute,
   updateGradientType,
   toggleFocalPoints,
+  toggleChromaJs,
 } from '../../../../../store/editor/settings/actions';
-import { AttributePayload, TypePayload, FocalPointsTogglePayload } from '../../../../../store/editor/settings/types';
+import {
+  AttributePayload,
+  TypePayload,
+  FocalPointsTogglePayload,
+  ChromaJsTogglePayload,
+} from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
 import { ItemHeader } from './ItemHeader';
 
@@ -27,6 +33,7 @@ export type GradientListItemProps = {
   updateAttribute: (payload: AttributePayload) => void,
   updateGradientType: (payload: TypePayload) => void,
   toggleFocalPoints: (payload: FocalPointsTogglePayload) => void,
+  toggleChromaJs: (payload: ChromaJsTogglePayload) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -87,6 +94,17 @@ class ListItem extends React.Component<GradientListItemProps> {
                   })}
                 />
               </FormRow>
+              <FormRow>
+                <FormSwitch
+                  label="Use chroma.js"
+                  checked={this.gradient.useChroma}
+                  disabled={this.gradient.colors.length === 0}
+                  onChange={(useChroma: boolean) => this.props.toggleChromaJs({
+                    id: this.gradient.id,
+                    useChroma,
+                  })}
+                />
+              </FormRow>
               {
                 this.gradient.type === 'radial' ?
                   <FormRow>
@@ -101,9 +119,6 @@ class ListItem extends React.Component<GradientListItemProps> {
                   </FormRow> :
                   null
               }
-              <FormRow>
-
-              </FormRow>
             </FormFieldset>
           </FormRow>
           <FormRow>
@@ -114,6 +129,11 @@ class ListItem extends React.Component<GradientListItemProps> {
                 onAttributeChange={this.onAttributeChange}
                 focalPoints={this.gradient.focalPoints}
               />
+            </FormFieldset>
+          </FormRow>
+          <FormRow>
+            <FormFieldset legend="Colors">
+
             </FormFieldset>
           </FormRow>
         </WrapperContent>
@@ -131,6 +151,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   updateAttribute,
   updateGradientType,
   toggleFocalPoints,
+  toggleChromaJs,
 }, dispatch);
 
 export const GradientListItem = connect(

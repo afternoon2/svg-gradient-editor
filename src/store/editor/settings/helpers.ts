@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { AttributePayload, TypePayload, FocalPointsTogglePayload } from './types';
+import { AttributePayload, TypePayload, FocalPointsTogglePayload, ChromaJsTogglePayload } from './types';
 import { Gradient, LinearGradientAttributes, RadialGradientAttributes } from '../_gradientTypes';
 
 export const updateAttributeInGradient = (
@@ -69,6 +69,24 @@ export const toggleFocalPoints = (
       [targetIndex]: {
         focalPoints: {
           $set: payload.focalPoints,
+        },
+      },
+    },
+  );
+  return newData;
+};
+
+export const toggleChromaJs = (
+  payload: ChromaJsTogglePayload,
+  gradients: Gradient[],
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        useChroma: {
+          $set: payload.useChroma,
         },
       },
     },

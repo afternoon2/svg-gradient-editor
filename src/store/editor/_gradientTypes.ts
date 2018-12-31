@@ -15,7 +15,6 @@ export type RadialGradientAttributes = {
 };
 
 export type ChromaAttributes = {
-  isInput: boolean,
   interpolation: 'linear' | 'bezier',
   mode:
     'lch'
@@ -40,6 +39,7 @@ export type Gradient = {
   name?: string;
   type: 'linear' | 'radial',
   focalPoints: boolean,
+  useChroma: boolean,
   attributes: LinearGradientAttributes | RadialGradientAttributes,
   chroma: ChromaAttributes,
   colors: number[],

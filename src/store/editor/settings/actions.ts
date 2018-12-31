@@ -1,6 +1,6 @@
 import { createAction } from 'typesafe-actions';
 import { Gradient } from '../_gradientTypes';
-import { AttributePayload, TypePayload, FocalPointsTogglePayload } from './types';
+import { AttributePayload, TypePayload, FocalPointsTogglePayload, ChromaJsTogglePayload } from './types';
 
 export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
   return (gradient: Gradient) => resolve(gradient);
@@ -20,4 +20,8 @@ export const updateAttribute = createAction('@editor/settings/UPDATE_ATTRIBUTE',
 
 export const toggleFocalPoints = createAction('@editor/settings/TOGGLE_FOCAL_POINTS', (resolve) => {
   return (payload: FocalPointsTogglePayload) => resolve(payload);
+});
+
+export const toggleChromaJs = createAction('@editor/settings/TOGGLE_CHROMA_USAGE', (resolve) => {
+  return (payload: ChromaJsTogglePayload) => resolve(payload);
 });

@@ -7,10 +7,11 @@ export type FormSwitchProps = {
   label: string,
   checked: boolean,
   onChange: (value: boolean) => void,
+  disabled?: boolean,
 };
 
 export const FormSwitch = (props: FormSwitchProps) => {
-  const { label, checked, onChange } = props;
+  const { label, checked, onChange, disabled } = props;
   return (
     <React.Fragment>
       <FormLabel>
@@ -26,6 +27,7 @@ export const FormSwitch = (props: FormSwitchProps) => {
         onChange={onChange}
         onColor="#5383D6"
         offColor="#A4BCAD"
+        disabled={disabled || false}
       />
     </React.Fragment>
   );
