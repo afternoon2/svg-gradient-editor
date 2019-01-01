@@ -25,6 +25,7 @@ export type FormButtonProps = {
   children: React.ReactNode,
   disabled?: boolean,
   title?: string,
+  style?: any,
 };
 
 export const FormButton = (props: FormButtonProps) => {
@@ -33,12 +34,14 @@ export const FormButton = (props: FormButtonProps) => {
     disabled,
     title,
     children,
+    style,
   } = props;
   return (
     <FButton
       onClick={onClick}
       disabled={disabled}
       title={title}
+      style={style}
     >
       {children}
     </FButton>

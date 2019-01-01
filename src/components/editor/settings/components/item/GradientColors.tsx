@@ -1,20 +1,30 @@
 import * as React from 'react';
 import nanoid from 'nanoid';
 import { FormButton } from './components/FormButton';
+import { FormSwitch } from './components/FormSwitch';
 import { FormRow } from './layout';
 import { GradientColor } from './GradientColor';
 import { InputColor } from '../../../../../store/editor/_gradientTypes';
-import { AddColorPayload, DeleteColorPayload } from '../../../../../store/editor/settings/types';
+import { AddColorPayload, DeleteColorPayload, ChromaJsTogglePayload } from '../../../../../store/editor/settings/types';
 
 export type GradientColorsProps = {
   addColor: (payload: AddColorPayload) => void,
   deleteColor: (payload: DeleteColorPayload) => void,
   colors: InputColor[],
   gradientId: string,
+  useChroma: boolean,
+  onChromaJsToggle: (payload: ChromaJsTogglePayload) => void,
 };
 
 export const GradientColors = (props: GradientColorsProps) => {
-  const { addColor, deleteColor, colors, gradientId } = props;
+  const {
+    addColor, 
+    deleteColor, 
+    colors, 
+    gradientId,
+    useChroma,
+    onChromaJsToggle,
+  } = props;
 
   const renderColors = () => colors
     .map((color: InputColor) => (
@@ -33,6 +43,7 @@ export const GradientColors = (props: GradientColorsProps) => {
     <React.Fragment>
       <FormRow>
         <FormButton
+          style={{ marginRight: '1em' }}
           text="Add Color"
           onClick={() => addColor({
             id: gradientId,
@@ -48,6 +59,15 @@ export const GradientColors = (props: GradientColorsProps) => {
         >
           Add Colors
         </FormButton>
+        <FormSwitch
+          label="Use chroma.js"
+          checked={useChroma}
+          disabled={colors.length < 2}
+          onChange={(useChroma: boolean) => onChromaJsToggle({
+            id: gradientId,
+            useChroma,
+          })}
+        />
       </FormRow>
       {renderColors()}
     </React.Fragment>

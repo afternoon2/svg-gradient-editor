@@ -26,7 +26,6 @@ const FColorWrapper = styled.div<ColorWrapperProps>`
 `;
 
 const FColorName = styled.span`
-  user-select: none;
   width: 70%;
   font-size: ${modularSize(-1.65)};
   mix-blend-mode: ${BLEND_MODE};

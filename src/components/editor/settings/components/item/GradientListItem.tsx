@@ -101,17 +101,17 @@ class ListItem extends React.Component<GradientListItemProps> {
                   })}
                 />
               </FormRow>
-              <FormRow>
+              {/*<FormRow>
                 <FormSwitch
                   label="Use chroma.js"
                   checked={this.gradient.useChroma}
-                  disabled={this.gradient.colors.length === 0}
+                  disabled={this.gradient.colors.length < 2}
                   onChange={(useChroma: boolean) => this.props.toggleChromaJs({
                     id: this.gradient.id,
                     useChroma,
                   })}
                 />
-              </FormRow>
+                </FormRow>*/}
               {
                 this.gradient.type === 'radial' ?
                   <FormRow>
@@ -145,9 +145,20 @@ class ListItem extends React.Component<GradientListItemProps> {
                 deleteColor={this.props.deleteColor}
                 colors={this.gradient.colors}
                 gradientId={this.gradient.id}
+                useChroma={this.gradient.useChroma}
+                onChromaJsToggle={this.props.toggleChromaJs}
               />
             </FormFieldset>
           </FormRow>
+          {
+            this.gradient.useChroma && this.gradient.colors.length >= 2 ?
+              <FormRow>
+                <FormFieldset legend="Chroma">
+                
+                </FormFieldset>
+              </FormRow> :
+              null
+          }
         </WrapperContent>
       </ListItemWrapper>
     );

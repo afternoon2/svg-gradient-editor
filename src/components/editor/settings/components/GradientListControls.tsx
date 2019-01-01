@@ -56,7 +56,6 @@ class GradientListControlsComponent extends React.Component<ControlsComponentPro
       event.key === 'Enter'
     ) {
       const gradient: Gradient = {
-        isEmpty: true,
         name: (event.target as HTMLInputElement).value,
         id: nanoid(),
         type: 'linear',
