@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Gradient } from '../../../../../store/editor/_gradientTypes';
+import { Gradient, ColorMode } from '../../../../../store/editor/_gradientTypes';
 import {
   ListItemWrapper,
   WrapperContent,
@@ -18,6 +18,9 @@ import {
   toggleChromaJs,
   addColor,
   deleteColor,
+  setGradientInterpolation,
+  setGradientColorMode,
+  setLightnessCorrection,
 } from '../../../../../store/editor/settings/actions';
 import {
   AttributePayload,
@@ -26,9 +29,12 @@ import {
   ChromaJsTogglePayload,
   AddColorPayload,
   DeleteColorPayload,
+  InterpolationPayload,
+  ColorModePayload,
 } from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
 import { GradientColors } from './GradientColors';
+import { GradientChromaAttributes } from './GradientChromaAttributes';
 import { ItemHeader } from './ItemHeader';
 
 export type GradientListItemProps = {
@@ -41,6 +47,9 @@ export type GradientListItemProps = {
   toggleChromaJs: (payload: ChromaJsTogglePayload) => void,
   addColor: (payload: AddColorPayload) => void,
   deleteColor: (payload: DeleteColorPayload) => void,
+  setGradientInterpolation: (payload: InterpolationPayload) => void,
+  setGradientColorMode: (payload: ColorModePayload) => void,
+  setLightnessCorrection: (gradientId: string) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -101,17 +110,6 @@ class ListItem extends React.Component<GradientListItemProps> {
                   })}
                 />
               </FormRow>
-              {/*<FormRow>
-                <FormSwitch
-                  label="Use chroma.js"
-                  checked={this.gradient.useChroma}
-                  disabled={this.gradient.colors.length < 2}
-                  onChange={(useChroma: boolean) => this.props.toggleChromaJs({
-                    id: this.gradient.id,
-                    useChroma,
-                  })}
-                />
-                </FormRow>*/}
               {
                 this.gradient.type === 'radial' ?
                   <FormRow>
@@ -154,7 +152,21 @@ class ListItem extends React.Component<GradientListItemProps> {
             this.gradient.useChroma && this.gradient.colors.length >= 2 ?
               <FormRow>
                 <FormFieldset legend="Chroma">
-                
+                  <GradientChromaAttributes
+                    attributes={this.gradient.chroma}
+                    onInterpolationChange={
+                      (interpolation: 'linear' | 'bezier') => this.props.setGradientInterpolation({
+                        id: this.gradient.id,
+                        interpolation,
+                      })}
+                    onLightnessCorrection={() => this.props.setLightnessCorrection(
+                      this.gradient.id,
+                    )}
+                    onModeChange={(mode: ColorMode) => this.props.setGradientColorMode({
+                      id: this.gradient.id,
+                      mode,
+                    })}
+                  />
                 </FormFieldset>
               </FormRow> :
               null
@@ -177,6 +189,9 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   toggleChromaJs,
   addColor,
   deleteColor,
+  setGradientInterpolation,
+  setGradientColorMode,
+  setLightnessCorrection,
 }, dispatch);
 
 export const GradientListItem = connect(

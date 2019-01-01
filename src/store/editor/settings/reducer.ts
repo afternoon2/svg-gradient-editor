@@ -8,6 +8,9 @@ import {
   toggleChromaJs,
   addColorToGradient,
   deleteColorFromGradient,
+  setGradientInterpolation,
+  setGradientMode,
+  setLightnessCorrection,
 } from './helpers';
 
 export type EditorSettingsListReducer = {
@@ -64,12 +67,27 @@ export const settings =
         return {
           ...state,
           gradients: addColorToGradient(action.payload, state.gradients),
-        }
+        };
       case getType(editorSettingsListActions.deleteColor):
         return {
           ...state,
           gradients: deleteColorFromGradient(action.payload, state.gradients),
-        }
+        };
+      case getType(editorSettingsListActions.setGradientInterpolation):
+        return {
+          ...state,
+          gradients: setGradientInterpolation(action.payload, state.gradients),
+        };
+      case getType(editorSettingsListActions.setGradientColorMode):
+        return {
+          ...state,
+          gradients: setGradientMode(action.payload, state.gradients),
+        };
+      case getType(editorSettingsListActions.setLightnessCorrection):
+        return {
+          ...state,
+          gradients: setLightnessCorrection(action.payload, state.gradients),
+        };
       default:
         return state;
     }

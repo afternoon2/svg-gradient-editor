@@ -1,6 +1,21 @@
 import update from 'immutability-helper';
-import { AttributePayload, TypePayload, FocalPointsTogglePayload, ChromaJsTogglePayload, AddColorPayload, DeleteColorPayload } from './types';
-import { Gradient, LinearGradientAttributes, RadialGradientAttributes, InputColor } from '../_gradientTypes';
+import {
+  AttributePayload,
+  TypePayload,
+  FocalPointsTogglePayload,
+  ChromaJsTogglePayload,
+  AddColorPayload,
+  DeleteColorPayload,
+  InterpolationPayload,
+  ColorModePayload
+} from './types';
+import {
+  Gradient,
+  LinearGradientAttributes,
+  RadialGradientAttributes,
+  InputColor,
+  ColorMode,
+} from '../_gradientTypes';
 
 export const updateAttributeInGradient = (
   payload: AttributePayload,
@@ -125,6 +140,66 @@ export const deleteColorFromGradient = (
       [gradientIndex]: {
         colors: {
           $splice: [[colorIndex, 1]]
+        },
+      },
+    },
+  );
+  return newData;
+};
+
+export const setGradientInterpolation = (
+  payload: InterpolationPayload,
+  gradients: Gradient[],
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        chroma: {
+          interpolation: {
+            $set: payload.interpolation as ('linear' | 'bezier'),
+          },
+        }
+      }
+    }
+  );
+  return newData;
+};
+
+export const setGradientMode = (
+  payload: ColorModePayload,
+  gradients: Gradient[],
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        chroma: {
+          mode: {
+            $set: payload.mode as ColorMode
+          },
+        },
+      },
+    },
+  );
+  return newData;
+};
+
+export const setLightnessCorrection = (
+  payload: string,
+  gradients: Gradient[],
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        chroma: {
+          lightnessCorrection: {
+            $set: !gradients[targetIndex].chroma.lightnessCorrection,
+          },
         },
       },
     },

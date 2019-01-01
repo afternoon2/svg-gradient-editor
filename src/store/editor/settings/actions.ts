@@ -7,6 +7,8 @@ import {
   ChromaJsTogglePayload,
   AddColorPayload,
   DeleteColorPayload,
+  InterpolationPayload,
+  ColorModePayload,
 } from './types';
 
 export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
@@ -40,3 +42,18 @@ export const addColor = createAction('@editor/settings/ADD_COLOR', (resolve) => 
 export const deleteColor = createAction('@editor/settings/DELETE_COLOR', (resolve) => {
   return (payload: DeleteColorPayload) => resolve(payload);
 });
+
+export const setGradientInterpolation = createAction(
+  '@editor/settings/SET_INTERPOLATION',
+  (resolve) => (payload: InterpolationPayload) => resolve(payload),
+);
+
+export const setGradientColorMode = createAction(
+  '@editor/settings/SET_COLOR_MODE',
+  (resolve) => (payload: ColorModePayload) => resolve(payload),
+);
+
+export const setLightnessCorrection = createAction(
+  '@editor/settings/SET_LIGHTNESS_CORRECTION',
+  (resolve) => (gradientId: string) => resolve(gradientId),
+);

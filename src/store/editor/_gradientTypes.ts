@@ -14,16 +14,17 @@ export type RadialGradientAttributes = {
   spreadMethod?: 'pad' | 'repeat' | 'reflect',
 };
 
+export type ColorMode = 'lch'
+  | 'hsv'
+  | 'lab'
+  | 'rgb'
+  | 'hsl'
+  | 'hsi'
+  | 'hcl';
+
 export type ChromaAttributes = {
   interpolation: 'linear' | 'bezier',
-  mode:
-    'lch'
-    | 'hsv'
-    | 'lab'
-    | 'rgb'
-    | 'hsl'
-    | 'hsi'
-    | 'hcl',
+  mode: ColorMode,
   lightnessCorrection: boolean,
   samples: number,
 };
