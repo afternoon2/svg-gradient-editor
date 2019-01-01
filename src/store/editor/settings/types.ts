@@ -41,3 +41,8 @@ export type ColorModePayload = {
   id: string,
   mode: ColorMode,
 };
+
+export type SamplesPayload = {
+  id: string,
+  samples: number,
+};

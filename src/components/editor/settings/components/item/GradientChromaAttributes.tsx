@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FormRow } from './layout';
 import { FormSelect } from './components/FormSelect';
 import { FormSwitch } from './components/FormSwitch';
+import { FormRange } from './components/FormRange';
 import { ColorMode, ChromaAttributes } from '../../../../../store/editor/_gradientTypes';
 
 export type ChromaAttributesProps = {
@@ -9,6 +10,7 @@ export type ChromaAttributesProps = {
   onInterpolationChange: (interpolation: 'linear' | 'bezier') => void,
   onModeChange: (mode: ColorMode) => void,
   onLightnessCorrection: (value: any) => void,
+  onSamplesChange: (value: number) => void,
 };
 
 export const GradientChromaAttributes = (props: ChromaAttributesProps) => {
@@ -30,6 +32,7 @@ export const GradientChromaAttributes = (props: ChromaAttributesProps) => {
     onInterpolationChange,
     onModeChange,
     onLightnessCorrection,
+    onSamplesChange,
   } = props;
   
   return (
@@ -63,6 +66,22 @@ export const GradientChromaAttributes = (props: ChromaAttributesProps) => {
           label="Lightness correction"
           checked={attributes.lightnessCorrection}
           onChange={onLightnessCorrection}
+        />
+      </FormRow>
+      <FormRow>
+        <FormRange
+          width="60%"
+          label="Samples"
+          min={2}
+          max={30}
+          step={1}
+          value={attributes.samples}
+          onChange={(event: React.ChangeEvent) => onSamplesChange(
+            parseInt(
+              (event.target as HTMLInputElement).value,
+              10
+            ),
+          )}
         />
       </FormRow>
     </React.Fragment>

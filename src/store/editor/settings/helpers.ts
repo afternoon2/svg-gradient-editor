@@ -7,7 +7,8 @@ import {
   AddColorPayload,
   DeleteColorPayload,
   InterpolationPayload,
-  ColorModePayload
+  ColorModePayload,
+  SamplesPayload
 } from './types';
 import {
   Gradient,
@@ -199,6 +200,26 @@ export const setLightnessCorrection = (
         chroma: {
           lightnessCorrection: {
             $set: !gradients[targetIndex].chroma.lightnessCorrection,
+          },
+        },
+      },
+    },
+  );
+  return newData;
+};
+
+export const setGradientSamples = (
+  payload: SamplesPayload,
+  gradients: Gradient[]
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        chroma: {
+          samples: {
+            $set: payload.samples,
           },
         },
       },

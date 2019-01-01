@@ -11,6 +11,7 @@ import {
   setGradientInterpolation,
   setGradientMode,
   setLightnessCorrection,
+  setGradientSamples,
 } from './helpers';
 
 export type EditorSettingsListReducer = {
@@ -88,6 +89,11 @@ export const settings =
           ...state,
           gradients: setLightnessCorrection(action.payload, state.gradients),
         };
+      case getType(editorSettingsListActions.setGradientSamples):
+        return {
+          ...state,
+          gradients: setGradientSamples(action.payload, state.gradients),
+        }
       default:
         return state;
     }

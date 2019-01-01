@@ -21,6 +21,7 @@ import {
   setGradientInterpolation,
   setGradientColorMode,
   setLightnessCorrection,
+  setGradientSamples,
 } from '../../../../../store/editor/settings/actions';
 import {
   AttributePayload,
@@ -31,6 +32,7 @@ import {
   DeleteColorPayload,
   InterpolationPayload,
   ColorModePayload,
+  SamplesPayload,
 } from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
 import { GradientColors } from './GradientColors';
@@ -50,6 +52,7 @@ export type GradientListItemProps = {
   setGradientInterpolation: (payload: InterpolationPayload) => void,
   setGradientColorMode: (payload: ColorModePayload) => void,
   setLightnessCorrection: (gradientId: string) => void,
+  setGradientSamples: (payload: SamplesPayload) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -166,6 +169,10 @@ class ListItem extends React.Component<GradientListItemProps> {
                       id: this.gradient.id,
                       mode,
                     })}
+                    onSamplesChange={(samples: number) => this.props.setGradientSamples({
+                      id: this.gradient.id,
+                      samples,
+                    })}
                   />
                 </FormFieldset>
               </FormRow> :
@@ -192,6 +199,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   setGradientInterpolation,
   setGradientColorMode,
   setLightnessCorrection,
+  setGradientSamples,
 }, dispatch);
 
 export const GradientListItem = connect(

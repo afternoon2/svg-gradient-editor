@@ -9,6 +9,7 @@ import {
   DeleteColorPayload,
   InterpolationPayload,
   ColorModePayload,
+  SamplesPayload,
 } from './types';
 
 export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
@@ -57,3 +58,8 @@ export const setLightnessCorrection = createAction(
   '@editor/settings/SET_LIGHTNESS_CORRECTION',
   (resolve) => (gradientId: string) => resolve(gradientId),
 );
+
+export const setGradientSamples = createAction(
+  '@editor/settings/SET_SAMPLES',
+  (resolve) => (payload: SamplesPayload) => resolve(payload),
+)
