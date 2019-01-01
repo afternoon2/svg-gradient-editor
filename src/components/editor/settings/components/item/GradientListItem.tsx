@@ -17,6 +17,7 @@ import {
   toggleFocalPoints,
   toggleChromaJs,
   addColor,
+  editColor,
   deleteColor,
   setGradientInterpolation,
   setGradientColorMode,
@@ -48,6 +49,7 @@ export type GradientListItemProps = {
   toggleFocalPoints: (payload: FocalPointsTogglePayload) => void,
   toggleChromaJs: (payload: ChromaJsTogglePayload) => void,
   addColor: (payload: AddColorPayload) => void,
+  editColor: (payload: AddColorPayload) => void,
   deleteColor: (payload: DeleteColorPayload) => void,
   setGradientInterpolation: (payload: InterpolationPayload) => void,
   setGradientColorMode: (payload: ColorModePayload) => void,
@@ -144,6 +146,7 @@ class ListItem extends React.Component<GradientListItemProps> {
               <GradientColors
                 addColor={this.props.addColor}
                 deleteColor={this.props.deleteColor}
+                editColor={this.props.editColor}
                 colors={this.gradient.colors}
                 gradientId={this.gradient.id}
                 useChroma={this.gradient.useChroma}
@@ -195,6 +198,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   toggleFocalPoints,
   toggleChromaJs,
   addColor,
+  editColor,
   deleteColor,
   setGradientInterpolation,
   setGradientColorMode,

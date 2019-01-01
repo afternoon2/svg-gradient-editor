@@ -128,6 +128,30 @@ export const addColorToGradient = (
   return newData;
 };
 
+export const editColorInGradient = (
+  payload: AddColorPayload,
+  gradients: Gradient[],
+): Gradient[] => {
+  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const colorIndex: number = gradients[targetIndex].colors
+    .findIndex((color: InputColor) => color.id === payload.color.id);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        colors: {
+          [colorIndex]: {
+            color: {
+              $set: payload.color.color,
+            }
+          }
+        }
+      },
+    },
+  );
+  return newData;
+};
+
 export const deleteColorFromGradient = (
   payload: DeleteColorPayload,
   gradients: Gradient[]

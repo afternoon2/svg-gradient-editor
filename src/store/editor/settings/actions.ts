@@ -40,6 +40,10 @@ export const addColor = createAction('@editor/settings/ADD_COLOR', (resolve) => 
   return (payload: AddColorPayload) => resolve(payload);
 });
 
+export const editColor = createAction('@editor/settings/EDIT_COLOR', (resolve) => {
+  return (payload: AddColorPayload) => resolve(payload);
+});
+
 export const deleteColor = createAction('@editor/settings/DELETE_COLOR', (resolve) => {
   return (payload: DeleteColorPayload) => resolve(payload);
 });

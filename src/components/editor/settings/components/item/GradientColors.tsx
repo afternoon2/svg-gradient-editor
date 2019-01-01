@@ -10,6 +10,7 @@ import { AddColorPayload, DeleteColorPayload, ChromaJsTogglePayload } from '../.
 export type GradientColorsProps = {
   addColor: (payload: AddColorPayload) => void,
   deleteColor: (payload: DeleteColorPayload) => void,
+  editColor: (payload: AddColorPayload) => void,
   colors: InputColor[],
   gradientId: string,
   useChroma: boolean,
@@ -24,6 +25,7 @@ export const GradientColors = (props: GradientColorsProps) => {
     gradientId,
     useChroma,
     onChromaJsToggle,
+    editColor,
   } = props;
 
   const renderColors = () => colors
@@ -34,6 +36,10 @@ export const GradientColors = (props: GradientColorsProps) => {
           onDelete={() => deleteColor({
             gradientId,
             colorId: color.id,
+          })}
+          onEdit={(color: InputColor) => editColor({
+            id: gradientId,
+            color,
           })}
         />
       </FormRow>
@@ -53,6 +59,7 @@ export const GradientColors = (props: GradientColorsProps) => {
                 Math.floor(Math.random() * 255),
                 Math.floor(Math.random() * 255),
                 Math.floor(Math.random() * 255),
+                1
               ],
             },
           })}

@@ -7,6 +7,7 @@ import {
   toggleFocalPoints,
   toggleChromaJs,
   addColorToGradient,
+  editColorInGradient,
   deleteColorFromGradient,
   setGradientInterpolation,
   setGradientMode,
@@ -68,6 +69,11 @@ export const settings =
         return {
           ...state,
           gradients: addColorToGradient(action.payload, state.gradients),
+        };
+      case getType(editorSettingsListActions.editColor):
+        return {
+          ...state,
+          gradients: editColorInGradient(action.payload, state.gradients),
         };
       case getType(editorSettingsListActions.deleteColor):
         return {

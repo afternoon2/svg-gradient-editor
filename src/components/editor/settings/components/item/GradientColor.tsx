@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SketchPicker } from 'react-color';
+import { SketchPicker, ColorResult } from 'react-color';
 import styled from '../../../../../styles/styledComponents';
 import { modularSize } from '../../../../../styles/typography';
 import { InputColor } from '../../../../../store/editor/_gradientTypes';
@@ -51,13 +51,23 @@ const FColorLink = styled.a`
   }
 `;
 
+const FColorPickerWrapper = styled.div`
+  position: absolute;
+  z-index: 10;
+  .sketch-picker input {
+    color: #212121 !important;
+  }
+`;
+
 export type GradientColorProps = {
   color: InputColor,
   onDelete: () => void,
+  onEdit: (color: InputColor) => void,
 };
 
 export const GradientColor = (props: GradientColorProps) => {
-  const { color, onDelete } = props;
+  const { color, onDelete, onEdit } = props;
+  const [ picker, togglePicker ] = React.useState(false);
   return (
     <FColorWrapper
       background={`rgba(${[...color.color]})`}
@@ -73,6 +83,7 @@ export const GradientColor = (props: GradientColorProps) => {
       <FColorManager>
         <FColorLink
           title="Edit color"
+          onClick={() => togglePicker(!picker)}
         >
           <FontAwesomeIcon icon="edit" />
         </FColorLink>
@@ -83,6 +94,29 @@ export const GradientColor = (props: GradientColorProps) => {
           <FontAwesomeIcon icon="trash"/>
         </FColorLink>
       </FColorManager>
+      {
+        picker ?
+          <FColorPickerWrapper>
+            <SketchPicker
+              color={{
+                r: color.color[0],
+                g: color.color[1],
+                b: color.color[2],
+                a: color.color[3] || 1,
+              }}
+              onChangeComplete={(newColor: ColorResult) => onEdit({
+                id: color.id,
+                color: [
+                  newColor.rgb.r,
+                  newColor.rgb.g,
+                  newColor.rgb.b,
+                  newColor.rgb.a as number
+                ],
+              })}
+            />
+          </FColorPickerWrapper> :
+          null
+      }
     </FColorWrapper>
   );
 };
