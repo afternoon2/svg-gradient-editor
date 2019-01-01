@@ -4,25 +4,27 @@ import { FormButton } from './components/FormButton';
 import { FormRow } from './layout';
 import { GradientColor } from './GradientColor';
 import { InputColor } from '../../../../../store/editor/_gradientTypes';
-import { AddColorPayload } from '../../../../../store/editor/settings/types';
+import { AddColorPayload, DeleteColorPayload } from '../../../../../store/editor/settings/types';
 
 export type GradientColorsProps = {
   addColor: (payload: AddColorPayload) => void,
+  deleteColor: (payload: DeleteColorPayload) => void,
   colors: InputColor[],
   gradientId: string,
 };
 
 export const GradientColors = (props: GradientColorsProps) => {
-  const { addColor, colors, gradientId } = props;
-  const [ defaultColor ] = React.useState([232, 123, 85]);
+  const { addColor, deleteColor, colors, gradientId } = props;
 
   const renderColors = () => colors
     .map((color: InputColor) => (
-      <FormRow>
+      <FormRow key={color.id}>
         <GradientColor
-          key={color.id}
           color={color}
-          onDelete={(id: string) => {}}
+          onDelete={() => deleteColor({
+            gradientId,
+            colorId: color.id,
+          })}
         />
       </FormRow>
     ));
@@ -36,7 +38,11 @@ export const GradientColors = (props: GradientColorsProps) => {
             id: gradientId,
             color: {
               id: nanoid(),
-              color: defaultColor,
+              color: [
+                Math.floor(Math.random() * 255),
+                Math.floor(Math.random() * 255),
+                Math.floor(Math.random() * 255),
+              ],
             },
           })}
         >

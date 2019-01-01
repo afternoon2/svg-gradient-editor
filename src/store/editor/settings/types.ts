@@ -26,3 +26,8 @@ export type AddColorPayload = {
   id: string,
   color: InputColor,
 };
+
+export type DeleteColorPayload = {
+  gradientId: string,
+  colorId: string,
+};

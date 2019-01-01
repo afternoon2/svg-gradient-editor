@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { AttributePayload, TypePayload, FocalPointsTogglePayload, ChromaJsTogglePayload, AddColorPayload } from './types';
+import { AttributePayload, TypePayload, FocalPointsTogglePayload, ChromaJsTogglePayload, AddColorPayload, DeleteColorPayload } from './types';
 import { Gradient, LinearGradientAttributes, RadialGradientAttributes, InputColor } from '../_gradientTypes';
 
 export const updateAttributeInGradient = (
@@ -106,6 +106,26 @@ export const addColorToGradient = (
         colors: {
           $push: [payload.color],
         }
+      },
+    },
+  );
+  return newData;
+};
+
+export const deleteColorFromGradient = (
+  payload: DeleteColorPayload,
+  gradients: Gradient[]
+): Gradient[] => {
+  const gradientIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.gradientId);
+  const colorIndex: number = gradients[gradientIndex].colors
+    .findIndex((color: InputColor) => color.id === payload.colorId);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [gradientIndex]: {
+        colors: {
+          $splice: [[colorIndex, 1]]
+        },
       },
     },
   );

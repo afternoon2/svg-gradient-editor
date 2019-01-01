@@ -1,11 +1,12 @@
 import { createAction } from 'typesafe-actions';
-import { Gradient, InputColor } from '../_gradientTypes';
+import { Gradient } from '../_gradientTypes';
 import {
   AttributePayload, 
   TypePayload, 
   FocalPointsTogglePayload, 
   ChromaJsTogglePayload,
   AddColorPayload,
+  DeleteColorPayload,
 } from './types';
 
 export const addGradient = createAction('@editor/settings/ADD_GRADIENT', (resolve) => {
@@ -34,4 +35,8 @@ export const toggleChromaJs = createAction('@editor/settings/TOGGLE_CHROMA_USAGE
 
 export const addColor = createAction('@editor/settings/ADD_COLOR', (resolve) => {
   return (payload: AddColorPayload) => resolve(payload);
+});
+
+export const deleteColor = createAction('@editor/settings/DELETE_COLOR', (resolve) => {
+  return (payload: DeleteColorPayload) => resolve(payload);
 });

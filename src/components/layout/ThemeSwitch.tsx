@@ -19,7 +19,7 @@ const SwitchWrapper = styled.div`
       top: 10px;
     `,
     md: `
-      right: 10px;
+      left: 10px;
       bottom: 10px;
     `,
   })}

@@ -9,9 +9,13 @@ const FButton = styled.button`
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.text};
   transition: 120ms all ease-in-out;
+  border: 1px solid ${props => props.theme.colors.main_300};
   &:hover {
     cursor: pointer;
     background-color: ${props => darken(0.05, props.theme.colors.primary)};
+  }
+  &:focus {
+    outline: 1px solid ${props => props.theme.colors.main_100};
   }
 `;
 
