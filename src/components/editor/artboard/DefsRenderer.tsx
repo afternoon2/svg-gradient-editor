@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import nanoid from 'nanoid';
-import { Gradient, OutputColor, InputColor } from '../../../store/editor/_gradientTypes';
+import { Gradient, OutputColor, InputColor, RadialGradientAttributes } from '../../../store/editor/_gradientTypes';
 
 export type DefsRendererProps = {
   gradients: Gradient[],
@@ -30,7 +30,7 @@ const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
         )
       )
     }
-  }
+  };
   if (props.gradient.type === 'linear') {
     return (
       <linearGradient
@@ -42,11 +42,21 @@ const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
       </linearGradient>
     );
   } else {
+    const {
+      cx, cy, r, fx, fy, spreadMethod
+    } = props.gradient.attributes as RadialGradientAttributes;
+    // @ts-ignore
+    const _spreadMethod = spreadMethod === 'none' ? undefined : spreadMethod;
     return (
       <radialGradient
         gradientUnits="objectBoundingBox"
         id={props.gradient.id}
-        {...props.gradient.attributes}
+        cx={cx}
+        cy={cy}
+        r={r}
+        fx={props.gradient.focalPoints ? fx : undefined}
+        fy={props.gradient.focalPoints ? fy : undefined}
+        spreadMethod={_spreadMethod as ('pad' | 'repeat' | 'reflect')}
       >
         {renderStops()}
       </radialGradient>
