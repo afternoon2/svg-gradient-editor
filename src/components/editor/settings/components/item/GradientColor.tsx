@@ -5,13 +5,18 @@ import { modularSize } from '../../../../../styles/typography';
 import { InputColor } from '../../../../../store/editor/_gradientTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const BLEND_MODE = 'hard-light';
-
-type ColorWrapperProps = {
+type ColorSampleProps = {
   background: string,
 };
 
-const FColorWrapper = styled.div<ColorWrapperProps>`
+const ColorSample = styled.div<ColorSampleProps>`
+  width: 40px;
+  height: 40px;
+  background-color: ${props => props.background};
+  border-radius: 4px;
+`;
+
+const FColorWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 40px;
@@ -19,16 +24,16 @@ const FColorWrapper = styled.div<ColorWrapperProps>`
   display: flex;
   display: flex;
   align-items: center;
-  background-color: ${props => props.background};
   color: ${props => props.theme.colors.text};
   border-radius: 4px;
   padding: .5em;
 `;
 
 const FColorName = styled.span`
-  width: 70%;
+  width: 50%;
   font-size: ${modularSize(-1.65)};
-  mix-blend-mode: ${BLEND_MODE};
+  box-sizing: border-box;
+  margin-left: .5em;
 `;
 
 const FColorManager = styled.div`
@@ -37,7 +42,6 @@ const FColorManager = styled.div`
 `;
 
 const FColorLink = styled.a`
-  mix-blend-mode: ${BLEND_MODE};
   font-size: ${modularSize(-1.65)};
   box-sizing: border-box;
   text-decoration: none;
@@ -69,9 +73,8 @@ export const GradientColor = (props: GradientColorProps) => {
   const { color, onDelete, onEdit } = props;
   const [ picker, togglePicker ] = React.useState(false);
   return (
-    <FColorWrapper
-      background={`rgba(${[...color.color]})`}
-    >
+    <FColorWrapper>
+      <ColorSample background={`rgba(${[...color.color]})`}/>
       <FColorName>
         rgba(
         {color.color[0]},&nbsp;
@@ -104,7 +107,7 @@ export const GradientColor = (props: GradientColorProps) => {
                 b: color.color[2],
                 a: color.color[3] || 1,
               }}
-              onChangeComplete={(newColor: ColorResult) => onEdit({
+              onChange={(newColor: ColorResult) => onEdit({
                 id: color.id,
                 color: [
                   newColor.rgb.r,
