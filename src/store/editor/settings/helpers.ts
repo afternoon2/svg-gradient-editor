@@ -18,11 +18,15 @@ import {
   ColorMode,
 } from '../_gradientTypes';
 
+const getGradientIndex = (gradients: Gradient[], targetId: string) => gradients.findIndex(
+  (gradient: Gradient) => gradient.id === targetId
+);
+
 export const updateAttributeInGradient = (
   payload: AttributePayload,
   gradients: Gradient[]
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex(gradient => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -42,7 +46,7 @@ export const updateTypeInGradient = (
   payload: TypePayload,
   gradients: Gradient[]
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const defaultAttributes: (LinearGradientAttributes | RadialGradientAttributes) =
     payload.gradientType === 'linear' ?
     {
@@ -78,7 +82,7 @@ export const toggleFocalPoints = (
   payload: FocalPointsTogglePayload,
   gradients: Gradient[]
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -96,7 +100,7 @@ export const toggleChromaJs = (
   payload: ChromaJsTogglePayload,
   gradients: Gradient[],
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -114,7 +118,7 @@ export const addColorToGradient = (
   payload: AddColorPayload,
   gradients: Gradient[],
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -132,7 +136,7 @@ export const editColorInGradient = (
   payload: AddColorPayload,
   gradients: Gradient[],
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const colorIndex: number = gradients[targetIndex].colors
     .findIndex((color: InputColor) => color.id === payload.color.id);
   const newData: Gradient[] = update(
@@ -156,7 +160,7 @@ export const deleteColorFromGradient = (
   payload: DeleteColorPayload,
   gradients: Gradient[]
 ): Gradient[] => {
-  const gradientIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.gradientId);
+  const gradientIndex: number = getGradientIndex(gradients, payload.gradientId);
   const colorIndex: number = gradients[gradientIndex].colors
     .findIndex((color: InputColor) => color.id === payload.colorId);
   const newData: Gradient[] = update(
@@ -176,7 +180,7 @@ export const setGradientInterpolation = (
   payload: InterpolationPayload,
   gradients: Gradient[],
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -196,7 +200,7 @@ export const setGradientMode = (
   payload: ColorModePayload,
   gradients: Gradient[],
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -216,7 +220,7 @@ export const setLightnessCorrection = (
   payload: string,
   gradients: Gradient[],
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload);
+  const targetIndex: number = getGradientIndex(gradients, payload);
   const newData: Gradient[] = update(
     gradients,
     {
@@ -236,7 +240,7 @@ export const setGradientSamples = (
   payload: SamplesPayload,
   gradients: Gradient[]
 ): Gradient[] => {
-  const targetIndex: number = gradients.findIndex((gradient: Gradient) => gradient.id === payload.id);
+  const targetIndex: number = getGradientIndex(gradients, payload.id);
   const newData: Gradient[] = update(
     gradients,
     {

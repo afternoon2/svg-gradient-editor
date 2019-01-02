@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import nanoid from 'nanoid';
 import { Gradient, OutputColor, InputColor, RadialGradientAttributes } from '../../../store/editor/_gradientTypes';
 
-export type DefsRendererProps = {
-  gradients: Gradient[],
-};
-
 const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
   const renderStops = () => {
     if (props.gradient.useChroma) {
@@ -62,6 +58,10 @@ const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
       </radialGradient>
     )
   }
+};
+
+export type DefsRendererProps = {
+  gradients: Gradient[],
 };
 
 const DefsRendererComponent = (props: DefsRendererProps) => {
