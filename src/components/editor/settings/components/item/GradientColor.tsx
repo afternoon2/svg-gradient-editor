@@ -22,8 +22,8 @@ const FColorWrapper = styled.div`
   height: 40px;
   box-sizing: border-box;
   display: flex;
-  display: flex;
   align-items: center;
+  justify-content: space-between;
   color: ${props => props.theme.colors.text};
   border-radius: 4px;
   padding: .5em;
@@ -34,11 +34,13 @@ const FColorName = styled.span`
   font-size: ${modularSize(-1.65)};
   box-sizing: border-box;
   margin-left: .5em;
+  padding-right: 1em;
 `;
 
 const FColorManager = styled.div`
   width: 30%;
   display: flex;
+  box-sizing: border-box;
 `;
 
 const FColorLink = styled.a`
@@ -58,6 +60,8 @@ const FColorLink = styled.a`
 const FColorPickerWrapper = styled.div`
   position: absolute;
   z-index: 10;
+  right: 3em;
+  top: 3em;
   .sketch-picker input {
     color: #212121 !important;
   }
@@ -72,6 +76,27 @@ export type GradientColorProps = {
 export const GradientColor = (props: GradientColorProps) => {
   const { color, onDelete, onEdit } = props;
   const [ picker, togglePicker ] = React.useState(false);
+
+  let pickerParent: React.MutableRefObject<null | HTMLDivElement> = React.useRef(null);
+
+  const outsideClickHandler = () => {
+    const clickHandler = (event: MouseEvent) => {
+      if (
+        pickerParent.current !== null &&
+        !(pickerParent.current as HTMLDivElement).contains(event.target as HTMLDivElement)
+      ) {
+        togglePicker(false);
+        document.removeEventListener('click', clickHandler, false);
+      }
+    };
+
+    if (pickerParent && picker) {
+      document.addEventListener('click', clickHandler, false);
+    }
+  };
+
+  React.useEffect(outsideClickHandler, [picker]);
+
   return (
     <FColorWrapper>
       <ColorSample background={`rgba(${[...color.color]})`}/>
@@ -99,7 +124,7 @@ export const GradientColor = (props: GradientColorProps) => {
       </FColorManager>
       {
         picker ?
-          <FColorPickerWrapper>
+          <FColorPickerWrapper ref={pickerParent}>
             <SketchPicker
               color={{
                 r: color.color[0],
