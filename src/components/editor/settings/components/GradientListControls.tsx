@@ -28,14 +28,14 @@ class GradientListControlsComponent extends React.Component<ControlsComponentPro
     const { gradients } = this.props;
     return (
       <ControlsWrapper>
-        <AppInput
+        {/*<AppInput
           width="100%"
           placeholder={this.state.searchPlaceholder}
           disabled={gradients.length === 0}
           // onChange={searchGradients}
           icon="search"
           className="settingsControlInputs"
-        />
+        />*/}
         <AppInput
           placeholder={this.state.addPlaceholder}
           title="Type gradient's name and press enter"
