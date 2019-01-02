@@ -7,12 +7,18 @@ import { modularSize } from '../../styles/typography';
 import styled from '../../styles/styledComponents';
 import { AppTheme } from '../../styles/themes';
 import { mediaMixin } from '../../styles/mixins';
+import { rgba } from 'polished';
 
 const SwitchWrapper = styled.div`
   position: fixed;
   display: flex;
   align-items: center;
   z-index: 100;
+  padding: .5em;
+  box-sizing: border-box;
+  background-color: ${props => rgba(props.theme.colors.main_400, 0.5)};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
   ${props => mediaMixin(props.theme, {
     sm: `
       right: 10px;
