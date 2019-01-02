@@ -101,12 +101,10 @@ export const GradientColor = (props: GradientColorProps) => {
     <FColorWrapper>
       <ColorSample background={`rgba(${[...color.color]})`}/>
       <FColorName>
-        rgba(
-        {color.color[0]},&nbsp;
-        {color.color[1]},&nbsp;
-        {color.color[2]},&nbsp;
-        {color.color[3] || 1}
-      )
+        <strong>R</strong> {color.color[0]},&nbsp;
+        <strong>G</strong> {color.color[1]},&nbsp;
+        <strong>B</strong> {color.color[2]},&nbsp;
+        <strong>A</strong> {color.color[3] || 1}
       </FColorName>
       <FColorManager>
         <FColorLink
