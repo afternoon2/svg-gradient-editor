@@ -49,7 +49,7 @@ export const SettingsContent = styled.div`
       height: calc(280px - 40px);
     `,
     md: `
-      height: 80vh;
+      height: 95vh;
     `,
   })}
 `;

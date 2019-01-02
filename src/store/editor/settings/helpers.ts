@@ -48,13 +48,13 @@ export const updateTypeInGradient = (
     {
       x1: 0,
       y1: 0,
-      x2: 0,
-      y2: 0,
+      x2: 1,
+      y2: 1,
     } :
     {
-      cx: 0,
-      cy: 0,
-      r: 10,
+      cx: 0.5,
+      cy: 0.5,
+      r: 1,
       fx: 0,
       fy: 0,
     };

@@ -25,56 +25,56 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
         <FormRow>
           <FormNumber
             label="x1"
-            min={-10000}
-            max={10000}
-            step={1}
+            min={-1}
+            max={1}
+            step={0.01}
             value={(attributes as LinearGradientAttributes).x1}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'x1',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
         <FormRow>
           <FormNumber
             label="y1"
-            min={-10000}
-            max={10000}
-            step={1}
+            min={-1}
+            max={1}
+            step={0.01}
             value={(attributes as LinearGradientAttributes).y1}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'y1',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
         <FormRow>
           <FormNumber
             label="x2"
-            min={-10000}
-            max={10000}
-            step={1}
+            min={-1}
+            max={1}
+            step={0.01}
             value={(attributes as LinearGradientAttributes).x2}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'x2',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
         <FormRow>
           <FormNumber
             label="y2"
-            min={-10000}
-            max={10000}
-            step={1}
+            min={-1}
+            max={1}
+            step={0.01}
             value={(attributes as LinearGradientAttributes).y2}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'y2',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
@@ -86,28 +86,28 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
         <FormRow>
           <FormNumber
             label="cx"
-            min={-10000}
-            max={10000}
-            step={1}
+            min={-1}
+            max={1}
+            step={0.01}
             value={(attributes as RadialGradientAttributes).cx}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'cx',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
         <FormRow>
           <FormNumber
             label="cy"
-            min={-10000}
-            max={10000}
-            step={1}
+            min={-1}
+            max={1}
+            step={0.01}
             value={(attributes as RadialGradientAttributes).cy}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'cy',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
@@ -115,13 +115,13 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           <FormNumber
             label="r"
             min={0}
-            max={10000}
-            step={1}
+            max={1}
+            step={0.01}
             value={(attributes as RadialGradientAttributes).r}
             onChange={(event: React.ChangeEvent) => onAttributeChange(
               event,
               'r',
-              parseInt((event.target as HTMLInputElement).value, 10),
+              parseFloat((event.target as HTMLInputElement).value),
             )}
           />
         </FormRow>
@@ -131,28 +131,28 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
               <FormRow>
                 <FormNumber
                   label="fx"
-                  min={-10000}
-                  max={10000}
-                  step={1}
+                  min={0}
+                  max={1}
+                  step={0.01}
                   value={(attributes as RadialGradientAttributes).fx as number}
                   onChange={(event: React.ChangeEvent) => onAttributeChange(
                     event,
                     'fx',
-                    parseInt((event.target as HTMLInputElement).value, 10),
+                    parseFloat((event.target as HTMLInputElement).value),
                   )}
                 />
               </FormRow>
               <FormRow>
                 <FormNumber
                   label="fy"
-                  min={-10000}
-                  max={10000}
-                  step={1}
+                  min={0}
+                  max={1}
+                  step={0.01}
                   value={(attributes as RadialGradientAttributes).fy as number}
                   onChange={(event: React.ChangeEvent) => onAttributeChange(
                     event,
                     'fy',
-                    parseInt((event.target as HTMLInputElement).value, 10),
+                    parseFloat((event.target as HTMLInputElement).value),
                   )}
                 />
               </FormRow>
