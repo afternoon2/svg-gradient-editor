@@ -9,20 +9,11 @@ const ArtboardSVG = styled.svg`
   min-height: calc(100vh - 5px);
 `;
 
-class Artboard extends React.Component {
-
-  private renderDefinitions = () => {};
-
-  private renderGradients = () => {};
-
-  public render(): React.ReactNode {
-    return (
-      <ArtboardSVG>
-        <DefsRenderer />
-        <FiguresRenderer />
-      </ArtboardSVG>
-    );
-  }
-}
+const Artboard = () => (
+    <ArtboardSVG>
+      <DefsRenderer />
+      <FiguresRenderer />
+    </ArtboardSVG>
+  );
 
 export { Artboard };

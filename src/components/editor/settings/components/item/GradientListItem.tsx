@@ -103,6 +103,19 @@ class ListItem extends React.Component<GradientListItemProps> {
         />
         <WrapperContent hidden={collapsed}>
           <FormRow>
+            <FormFieldset legend="Colors">
+              <GradientColors
+                addColor={this.props.addColor}
+                deleteColor={this.props.deleteColor}
+                editColor={this.props.editColor}
+                colors={this.gradient.colors}
+                gradientId={this.gradient.id}
+                useChroma={this.gradient.useChroma}
+                onChromaJsToggle={this.props.toggleChromaJs}
+              />
+            </FormFieldset>
+          </FormRow>
+          <FormRow>
             <FormFieldset legend="Properties">
               <FormRow>
                 <FormSelect
@@ -138,19 +151,6 @@ class ListItem extends React.Component<GradientListItemProps> {
                 type={this.gradient.type}
                 onAttributeChange={this.onAttributeChange}
                 focalPoints={this.gradient.focalPoints}
-              />
-            </FormFieldset>
-          </FormRow>
-          <FormRow>
-            <FormFieldset legend="Colors">
-              <GradientColors
-                addColor={this.props.addColor}
-                deleteColor={this.props.deleteColor}
-                editColor={this.props.editColor}
-                colors={this.gradient.colors}
-                gradientId={this.gradient.id}
-                useChroma={this.gradient.useChroma}
-                onChromaJsToggle={this.props.toggleChromaJs}
               />
             </FormFieldset>
           </FormRow>

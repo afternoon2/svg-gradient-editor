@@ -41,6 +41,7 @@ const SwitchLabel = styled.label<SwitchLabelProps>`
   color: ${props => props.theme.colors.text};
   padding-right: 10px;
   font-size: ${modularSize(-2)};
+  font-weight: bold;
 `;
 
 type SwitchProps = {

@@ -8,24 +8,24 @@ type GradientListComponentProps = {
   gradients: Gradient[],
 };
 
-class GradientListComponent extends React.Component<GradientListComponentProps> {
-  public render(): React.ReactNode {
-    const { gradients } = this.props;
-    return (
-      <GradientListWrapper>
-        {gradients.map((gradient: Gradient) => (
-          <GradientListItem
-            key={gradient.id}
-            id={gradient.id}
-          />
-        ))}
-        {
-          gradients.length === 0 ? <NoContent>No gradients created</NoContent> : null
-        }
-      </GradientListWrapper>
-    );
-  }
-}
+const GradientListComponent = (props: GradientListComponentProps) => {
+  const { gradients } = props;
+  return (
+    <GradientListWrapper>
+      {gradients.map((gradient: Gradient) => (
+        <GradientListItem
+          key={gradient.id}
+          id={gradient.id}
+        />
+      ))}
+      {
+        gradients.length === 0 ?
+          <NoContent>No gradients created</NoContent> :
+          null
+      }
+    </GradientListWrapper>
+  );
+};
 
 const mapStateToProps = (state: any) => ({
   gradients: state.editor.settings.gradients,
