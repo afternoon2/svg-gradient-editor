@@ -14,6 +14,9 @@ const ColorSample = styled.div<ColorSampleProps>`
   height: 40px;
   background-color: ${props => props.background};
   border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const FColorWrapper = styled.div`
@@ -87,6 +90,8 @@ export const GradientColor = (props: GradientColorProps) => {
       ) {
         togglePicker(false);
         document.removeEventListener('click', clickHandler, false);
+      } else if (pickerParent.current === null) {
+        document.removeEventListener('click', clickHandler, false);
       }
     };
 
@@ -99,7 +104,10 @@ export const GradientColor = (props: GradientColorProps) => {
 
   return (
     <FColorWrapper>
-      <ColorSample background={`rgba(${[...color.color]})`}/>
+      <ColorSample
+        background={`rgba(${[...color.color]})`}
+        onClick={() => togglePicker(!picker)}
+      />
       <FColorName>
         <strong>R</strong> {color.color[0]},&nbsp;
         <strong>G</strong> {color.color[1]},&nbsp;
