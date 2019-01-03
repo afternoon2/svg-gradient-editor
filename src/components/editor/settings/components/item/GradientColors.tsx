@@ -59,7 +59,7 @@ export const GradientColors = (props: GradientColorsProps) => {
                 Math.floor(Math.random() * 255),
                 Math.floor(Math.random() * 255),
                 Math.floor(Math.random() * 255),
-                1
+                0.5,
               ],
             },
           })}
