@@ -1,4 +1,4 @@
-import { InputColor, ColorMode } from "../_gradientTypes";
+import { InputColor, ColorMode, ColorInterpolation } from "../_gradientTypes";
 
 export type AttributePayload = {
   id: string,
@@ -34,7 +34,7 @@ export type DeleteColorPayload = {
 
 export type InterpolationPayload = {
   id: string,
-  interpolation: 'linear' | 'bezier',
+  interpolation: ColorInterpolation,
 };
 
 export type ColorModePayload = {

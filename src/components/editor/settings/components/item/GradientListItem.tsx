@@ -39,6 +39,7 @@ import { GradientAttributes } from './GradientAttributes';
 import { GradientColors } from './GradientColors';
 import { GradientChromaAttributes } from './GradientChromaAttributes';
 import { ItemHeader } from './ItemHeader';
+import { ColorInterpolation } from '../../../../../store/editor/_gradientTypes';
 
 export type GradientListItemProps = {
   id: string,
@@ -161,7 +162,7 @@ class ListItem extends React.Component<GradientListItemProps> {
                   <GradientChromaAttributes
                     attributes={this.gradient.chroma}
                     onInterpolationChange={
-                      (interpolation: 'linear' | 'bezier') => this.props.setGradientInterpolation({
+                      (interpolation: ColorInterpolation) => this.props.setGradientInterpolation({
                         id: this.gradient.id,
                         interpolation,
                       })}

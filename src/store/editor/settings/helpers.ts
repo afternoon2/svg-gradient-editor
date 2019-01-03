@@ -16,6 +16,7 @@ import {
   RadialGradientAttributes,
   InputColor,
   ColorMode,
+  ColorInterpolation,
 } from '../_gradientTypes';
 
 const getGradientIndex = (gradients: Gradient[], targetId: string) => gradients.findIndex(
@@ -187,7 +188,7 @@ export const setGradientInterpolation = (
       [targetIndex]: {
         chroma: {
           interpolation: {
-            $set: payload.interpolation as ('linear' | 'bezier'),
+            $set: payload.interpolation as (ColorInterpolation),
           },
         }
       }

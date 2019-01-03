@@ -22,8 +22,10 @@ export type ColorMode = 'lch'
   | 'hsi'
   | 'hcl';
 
+export type ColorInterpolation = 'linear' | 'bezier';
+
 export type ChromaAttributes = {
-  interpolation: 'linear' | 'bezier',
+  interpolation: ColorInterpolation,
   mode: ColorMode,
   lightnessCorrection: boolean,
   samples: number,

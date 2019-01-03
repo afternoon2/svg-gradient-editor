@@ -3,11 +3,11 @@ import { FormRow } from './layout';
 import { FormSelect } from './components/FormSelect';
 import { FormSwitch } from './components/FormSwitch';
 import { FormRange } from './components/FormRange';
-import { ColorMode, ChromaAttributes } from '../../../../../store/editor/_gradientTypes';
+import { ColorMode, ColorInterpolation, ChromaAttributes } from '../../../../../store/editor/_gradientTypes';
 
 export type ChromaAttributesProps = {
   attributes: ChromaAttributes,
-  onInterpolationChange: (interpolation: 'linear' | 'bezier') => void,
+  onInterpolationChange: (interpolation: ColorInterpolation) => void,
   onModeChange: (mode: ColorMode) => void,
   onLightnessCorrection: (value: any) => void,
   onSamplesChange: (value: number) => void,
@@ -43,7 +43,7 @@ export const GradientChromaAttributes = (props: ChromaAttributesProps) => {
           options={interpolations}
           value={attributes.interpolation}
           onChange={(event: React.ChangeEvent) => onInterpolationChange(
-            (event.target as HTMLInputElement).value as ('linear' | 'bezier'),
+            (event.target as HTMLInputElement).value as (ColorInterpolation),
           )}
         />
       </FormRow>

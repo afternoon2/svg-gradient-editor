@@ -1,19 +1,8 @@
 import { ActionType, getType } from 'typesafe-actions';
 import * as editorSettingsListActions from './actions';
+import * as helpers from './helpers';
+import * as payloads from './types';
 import { Gradient } from '../_gradientTypes';
-import {
-  updateAttributeInGradient,
-  updateTypeInGradient,
-  toggleFocalPoints,
-  toggleChromaJs,
-  addColorToGradient,
-  editColorInGradient,
-  deleteColorFromGradient,
-  setGradientInterpolation,
-  setGradientMode,
-  setLightnessCorrection,
-  setGradientSamples,
-} from './helpers';
 
 export type EditorSettingsListReducer = {
   gradients: Gradient[],
@@ -32,7 +21,7 @@ export const settings =
   ) => {
     switch (action.type) {
       case getType(editorSettingsListActions.addGradient):
-        const newGradients: Gradient[] = [...state.gradients, action.payload];
+        const newGradients: Gradient[] = [...state.gradients, action.payload as Gradient];
         return {
           ...state,
           gradients: newGradients,
@@ -47,10 +36,10 @@ export const settings =
       case getType(editorSettingsListActions.updateGradientType):
         return {
           ...state,
-          gradients: updateTypeInGradient(action.payload, state.gradients),
+          gradients: helpers.updateTypeInGradient(action.payload as payloads.TypePayload, state.gradients),
         }
       case getType(editorSettingsListActions.updateAttribute):
-        const newGradientList = updateAttributeInGradient(action.payload, state.gradients);
+        const newGradientList = helpers.updateAttributeInGradient(action.payload as payloads.AttributePayload, state.gradients);
         return {
           ...state,
           gradients: newGradientList,
@@ -58,47 +47,47 @@ export const settings =
       case getType(editorSettingsListActions.toggleFocalPoints):
         return {
           ...state,
-          gradients: toggleFocalPoints(action.payload, state.gradients),
+          gradients: helpers.toggleFocalPoints(action.payload as payloads.FocalPointsTogglePayload, state.gradients),
         };
       case getType(editorSettingsListActions.toggleChromaJs):
         return {
           ...state,
-          gradients: toggleChromaJs(action.payload, state.gradients),
+          gradients: helpers.toggleChromaJs(action.payload as payloads.ChromaJsTogglePayload, state.gradients),
         };
       case getType(editorSettingsListActions.addColor):
         return {
           ...state,
-          gradients: addColorToGradient(action.payload, state.gradients),
+          gradients: helpers.addColorToGradient(action.payload as payloads.AddColorPayload, state.gradients),
         };
       case getType(editorSettingsListActions.editColor):
         return {
           ...state,
-          gradients: editColorInGradient(action.payload, state.gradients),
+          gradients: helpers.editColorInGradient(action.payload as payloads.AddColorPayload, state.gradients),
         };
       case getType(editorSettingsListActions.deleteColor):
         return {
           ...state,
-          gradients: deleteColorFromGradient(action.payload, state.gradients),
+          gradients: helpers.deleteColorFromGradient(action.payload as payloads.DeleteColorPayload, state.gradients),
         };
       case getType(editorSettingsListActions.setGradientInterpolation):
         return {
           ...state,
-          gradients: setGradientInterpolation(action.payload, state.gradients),
+          gradients: helpers.setGradientInterpolation(action.payload as payloads.InterpolationPayload, state.gradients),
         };
       case getType(editorSettingsListActions.setGradientColorMode):
         return {
           ...state,
-          gradients: setGradientMode(action.payload, state.gradients),
+          gradients: helpers.setGradientMode(action.payload as payloads.ColorModePayload, state.gradients),
         };
       case getType(editorSettingsListActions.setLightnessCorrection):
         return {
           ...state,
-          gradients: setLightnessCorrection(action.payload, state.gradients),
+          gradients: helpers.setLightnessCorrection(action.payload as string, state.gradients),
         };
       case getType(editorSettingsListActions.setGradientSamples):
         return {
           ...state,
-          gradients: setGradientSamples(action.payload, state.gradients),
+          gradients: helpers.setGradientSamples(action.payload as payloads.SamplesPayload, state.gradients),
         }
       default:
         return state;
