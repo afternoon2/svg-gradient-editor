@@ -11,7 +11,7 @@ const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
           <stop
             key={nanoid()}
             offset={color.offset}
-            stopColor={color.color}
+            stopColor={`rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]})`}
           />
         )
       )

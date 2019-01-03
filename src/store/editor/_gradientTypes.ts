@@ -37,7 +37,7 @@ export type InputColor = {
 };
 
 export type OutputColor = {
-  color: string,
+  color: number[],
   offset: number,
 };
 

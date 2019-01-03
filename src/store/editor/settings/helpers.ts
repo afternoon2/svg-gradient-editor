@@ -1,15 +1,5 @@
 import update from 'immutability-helper';
-import {
-  AttributePayload,
-  TypePayload,
-  FocalPointsTogglePayload,
-  ChromaJsTogglePayload,
-  AddColorPayload,
-  DeleteColorPayload,
-  InterpolationPayload,
-  ColorModePayload,
-  SamplesPayload
-} from './types';
+import * as payloads from './types';
 import {
   Gradient,
   LinearGradientAttributes,
@@ -24,7 +14,7 @@ const getGradientIndex = (gradients: Gradient[], targetId: string) => gradients.
 );
 
 export const updateAttributeInGradient = (
-  payload: AttributePayload,
+  payload: payloads.AttributePayload,
   gradients: Gradient[]
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -44,7 +34,7 @@ export const updateAttributeInGradient = (
 }
 
 export const updateTypeInGradient = (
-  payload: TypePayload,
+  payload: payloads.TypePayload,
   gradients: Gradient[]
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -80,7 +70,7 @@ export const updateTypeInGradient = (
 };
 
 export const toggleFocalPoints = (
-  payload: FocalPointsTogglePayload,
+  payload: payloads.FocalPointsTogglePayload,
   gradients: Gradient[]
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -98,7 +88,7 @@ export const toggleFocalPoints = (
 };
 
 export const toggleChromaJs = (
-  payload: ChromaJsTogglePayload,
+  payload: payloads.ChromaJsTogglePayload,
   gradients: Gradient[],
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -116,7 +106,7 @@ export const toggleChromaJs = (
 };
 
 export const addColorToGradient = (
-  payload: AddColorPayload,
+  payload: payloads.AddColorPayload,
   gradients: Gradient[],
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -134,7 +124,7 @@ export const addColorToGradient = (
 };
 
 export const editColorInGradient = (
-  payload: AddColorPayload,
+  payload: payloads.AddColorPayload,
   gradients: Gradient[],
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -158,7 +148,7 @@ export const editColorInGradient = (
 };
 
 export const deleteColorFromGradient = (
-  payload: DeleteColorPayload,
+  payload: payloads.DeleteColorPayload,
   gradients: Gradient[]
 ): Gradient[] => {
   const gradientIndex: number = getGradientIndex(gradients, payload.gradientId);
@@ -178,7 +168,7 @@ export const deleteColorFromGradient = (
 };
 
 export const setGradientInterpolation = (
-  payload: InterpolationPayload,
+  payload: payloads.InterpolationPayload,
   gradients: Gradient[],
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -198,7 +188,7 @@ export const setGradientInterpolation = (
 };
 
 export const setGradientMode = (
-  payload: ColorModePayload,
+  payload: payloads.ColorModePayload,
   gradients: Gradient[],
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);
@@ -238,7 +228,7 @@ export const setLightnessCorrection = (
 };
 
 export const setGradientSamples = (
-  payload: SamplesPayload,
+  payload: payloads.SamplesPayload,
   gradients: Gradient[]
 ): Gradient[] => {
   const targetIndex: number = getGradientIndex(gradients, payload.id);

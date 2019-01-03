@@ -11,6 +11,7 @@
     "@types/react": "^16.7.10",
     "@types/react-dom": "^16.0.11",
     "@types/react-router-dom": "^4.3.1",
+    "chroma-js": "^2.0.2",
     "connected-react-router": "^5.0.1",
     "history": "^4.7.2",
     "immutability-helper": "^2.9.0",
@@ -46,6 +47,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/chroma-js": "^1.4.1",
     "@types/history": "^4.7.2",
     "@types/nanoid": "^1.2.0",
     "@types/react-color": "^2.14.0",
