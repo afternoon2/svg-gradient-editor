@@ -66,7 +66,7 @@ export const GradientColors = (props: GradientColorsProps) => {
         >
           Add Colors
         </FormButton>
-        <FormSwitch
+        {/*<FormSwitch
           label="Use chroma.js"
           checked={useChroma}
           disabled={colors.length < 2}
@@ -74,7 +74,7 @@ export const GradientColors = (props: GradientColorsProps) => {
             id: gradientId,
             useChroma,
           })}
-        />
+        />*/}
       </FormRow>
       {renderColors()}
     </React.Fragment>
