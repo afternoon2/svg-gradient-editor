@@ -10,32 +10,8 @@ import {
 import { FormFieldset } from './components/FormFieldset';
 import { FormSelect } from './components/FormSelect';
 import { FormSwitch } from './components/FormSwitch';
-import {
-  deleteGradient,
-  updateAttribute,
-  updateGradientType,
-  toggleFocalPoints,
-  toggleChromaJs,
-  addColor,
-  editColor,
-  deleteColor,
-  setGradientInterpolation,
-  setGradientColorMode,
-  setLightnessCorrection,
-  setGradientSamples,
-  deleteAllColors,
-} from '../../../../../store/editor/settings/actions';
-import {
-  AttributePayload,
-  TypePayload,
-  FocalPointsTogglePayload,
-  ChromaJsTogglePayload,
-  AddColorPayload,
-  DeleteColorPayload,
-  InterpolationPayload,
-  ColorModePayload,
-  SamplesPayload,
-} from '../../../../../store/editor/settings/types';
+import * as actions from '../../../../../store/editor/settings/actions';
+import * as payloads from '../../../../../store/editor/settings/types';
 import { GradientAttributes } from './GradientAttributes';
 import { GradientColors } from './GradientColors';
 import { GradientChromaAttributes } from './GradientChromaAttributes';
@@ -46,18 +22,19 @@ export type GradientListItemProps = {
   id: string,
   gradients: Gradient[],
   deleteGradient: (gradientId: string) => void,
-  updateAttribute: (payload: AttributePayload) => void,
-  updateGradientType: (payload: TypePayload) => void,
-  toggleFocalPoints: (payload: FocalPointsTogglePayload) => void,
-  toggleChromaJs: (payload: ChromaJsTogglePayload) => void,
-  addColor: (payload: AddColorPayload) => void,
-  editColor: (payload: AddColorPayload) => void,
-  deleteColor: (payload: DeleteColorPayload) => void,
-  setGradientInterpolation: (payload: InterpolationPayload) => void,
-  setGradientColorMode: (payload: ColorModePayload) => void,
+  updateAttribute: (payload: payloads.AttributePayload) => void,
+  updateGradientType: (payload: payloads.TypePayload) => void,
+  toggleFocalPoints: (payload: payloads.FocalPointsTogglePayload) => void,
+  toggleChromaJs: (payload: payloads.ChromaJsTogglePayload) => void,
+  addColor: (payload: payloads.AddColorPayload) => void,
+  editColor: (payload: payloads.AddColorPayload) => void,
+  deleteColor: (payload: payloads.DeleteColorPayload) => void,
+  setGradientInterpolation: (payload: payloads.InterpolationPayload) => void,
+  setGradientColorMode: (payload: payloads.ColorModePayload) => void,
   setLightnessCorrection: (gradientId: string) => void,
-  setGradientSamples: (payload: SamplesPayload) => void,
+  setGradientSamples: (payload: payloads.SamplesPayload) => void,
   deleteAllColors: (payload: string) => void,
+  computeChromaColors: (payload: string) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -196,19 +173,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => bindActionCreators({
-  deleteGradient,
-  updateAttribute,
-  updateGradientType,
-  toggleFocalPoints,
-  toggleChromaJs,
-  addColor,
-  editColor,
-  deleteColor,
-  setGradientInterpolation,
-  setGradientColorMode,
-  setLightnessCorrection,
-  setGradientSamples,
-  deleteAllColors,
+  ...actions,
 }, dispatch);
 
 export const GradientListItem = connect(

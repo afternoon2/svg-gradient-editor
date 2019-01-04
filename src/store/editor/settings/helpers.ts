@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 import * as payloads from './types';
+import { gradient } from '../../../utils/gradient';
 import {
   Gradient,
   LinearGradientAttributes,
@@ -251,7 +252,6 @@ export const deleteAllColorsFromGradient = (
   payload: string,
   gradients: Gradient[],
 ): Gradient[] => {
-  console.log(payload);
   const targetIndex: number = getGradientIndex(gradients, payload);
   const newData: Gradient[] = update(
     gradients,
@@ -264,4 +264,22 @@ export const deleteAllColorsFromGradient = (
     },
   );
   return newData;
-}
+};
+
+export const computeChromaColors = (
+  payload: string,
+  gradients: Gradient[],
+): Gradient[] => {
+  const targetIndex: number = getGradientIndex(gradients, payload);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        output: {
+          $set: gradient(gradients[targetIndex]),
+        },
+      },
+    },
+  );
+  return newData;
+};

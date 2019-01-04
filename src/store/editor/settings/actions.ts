@@ -63,3 +63,8 @@ export const deleteAllColors = createAction(
   actionTypes.DELETE_ALL_COLORS,
   (resolve) => (gradientId: string) => resolve(gradientId),
 );
+
+export const computeChromaColors = createAction(
+  actionTypes.COMPUTE_CHROMA_COLORS,
+  (resolve) => (gradientId: string) => resolve(gradientId),
+);
