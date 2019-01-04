@@ -246,3 +246,22 @@ export const setGradientSamples = (
   );
   return newData;
 };
+
+export const deleteAllColorsFromGradient = (
+  payload: string,
+  gradients: Gradient[],
+): Gradient[] => {
+  console.log(payload);
+  const targetIndex: number = getGradientIndex(gradients, payload);
+  const newData: Gradient[] = update(
+    gradients,
+    {
+      [targetIndex]: {
+        colors: {
+          $set: [],
+        },
+      },
+    },
+  );
+  return newData;
+}

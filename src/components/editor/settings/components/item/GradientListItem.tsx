@@ -23,6 +23,7 @@ import {
   setGradientColorMode,
   setLightnessCorrection,
   setGradientSamples,
+  deleteAllColors,
 } from '../../../../../store/editor/settings/actions';
 import {
   AttributePayload,
@@ -56,6 +57,7 @@ export type GradientListItemProps = {
   setGradientColorMode: (payload: ColorModePayload) => void,
   setLightnessCorrection: (gradientId: string) => void,
   setGradientSamples: (payload: SamplesPayload) => void,
+  deleteAllColors: (payload: string) => void,
 };
 
 class ListItem extends React.Component<GradientListItemProps> {
@@ -113,6 +115,7 @@ class ListItem extends React.Component<GradientListItemProps> {
                 gradientId={this.gradient.id}
                 useChroma={this.gradient.useChroma}
                 onChromaJsToggle={this.props.toggleChromaJs}
+                deleteAllColors={() => this.props.deleteAllColors(this.gradient.id)}
               />
             </FormFieldset>
           </FormRow>
@@ -205,6 +208,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators({
   setGradientColorMode,
   setLightnessCorrection,
   setGradientSamples,
+  deleteAllColors,
 }, dispatch);
 
 export const GradientListItem = connect(

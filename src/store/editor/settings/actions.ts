@@ -58,3 +58,8 @@ export const setGradientSamples = createAction(
   actionTypes.SET_SAMPLES,
   (resolve) => (payload: payloads.SamplesPayload) => resolve(payload),
 );
+
+export const deleteAllColors = createAction(
+  actionTypes.DELETE_ALL_COLORS,
+  (resolve) => (gradientId: string) => resolve(gradientId),
+);

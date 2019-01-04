@@ -89,6 +89,11 @@ export const settings =
           ...state,
           gradients: helpers.setGradientSamples(action.payload as payloads.SamplesPayload, state.gradients),
         }
+      case getType(editorSettingsListActions.deleteAllColors):
+        return {
+          ...state,
+          gradients: helpers.deleteAllColorsFromGradient(action.payload as string, state.gradients),
+        }
       default:
         return state;
     }

@@ -11,6 +11,7 @@ export type GradientColorsProps = {
   addColor: (payload: AddColorPayload) => void,
   deleteColor: (payload: DeleteColorPayload) => void,
   editColor: (payload: AddColorPayload) => void,
+  deleteAllColors: () => void,
   colors: InputColor[],
   gradientId: string,
   useChroma: boolean,
@@ -26,6 +27,7 @@ export const GradientColors = (props: GradientColorsProps) => {
     useChroma,
     onChromaJsToggle,
     editColor,
+    deleteAllColors,
   } = props;
 
   const renderColors = () => colors
@@ -50,7 +52,6 @@ export const GradientColors = (props: GradientColorsProps) => {
       <FormRow>
         <FormButton
           style={{ marginRight: '1em' }}
-          text="Add Color"
           onClick={() => addColor({
             id: gradientId,
             color: {
@@ -64,7 +65,14 @@ export const GradientColors = (props: GradientColorsProps) => {
             },
           })}
         >
-          Add Colors
+          Add Color
+        </FormButton>
+        <FormButton
+          disabled={colors.length === 0}
+          level="danger"
+          onClick={deleteAllColors}
+        >
+          Remove All
         </FormButton>
         {/*<FormSwitch
           label="Use chroma.js"
