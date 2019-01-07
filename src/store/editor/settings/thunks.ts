@@ -98,11 +98,11 @@ export const editColor = (
   dispatch: Dispatch<EditorSettingsListAction>,
   getState: () => any,
 ) => {
+  dispatch(actions.editColor(payload));
   const gradient: Gradient = <Gradient>getGradientFromState(
     payload.id,
     getState(),
   );
-  dispatch(actions.editColor(payload));
   if (gradient.useChroma) {
     const throttled = throttle(
       () => dispatch(actions.computeChromaColors(payload.id)),

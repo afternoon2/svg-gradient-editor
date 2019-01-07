@@ -2,14 +2,72 @@ import * as React from 'react';
 import { FormLabel } from '../layout';
 import styled from '../../../../../../styles/styledComponents';
 import { modularSize } from '../../../../../../styles/typography';
+import { AppTheme } from '../../../../../../styles/themes';
 
 type FRangeInputProps = {
   width?: string,
 };
 
+const thumbStyles = (theme: AppTheme): string => `
+  height: 16px;
+  width: 16px;
+  border-radius: 4px;
+  background: ${theme.colors.primary};
+`;
+
+const trackStyles = (theme: AppTheme): string => `
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+  background: ${theme.colors.main_300};
+  border-radius: 4px;
+  border: none;
+`;
+
 const FRangeInput = styled.input<FRangeInputProps>`
+  -webkit-appearance: none;
+  margin-right: .5em;
+  background: transparent;
   width: ${props => props.width || '100%'};
   height: 35px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    ${props => thumbStyles(props.theme)};
+  }
+
+  &::-moz-range-thumb {
+    ${props => thumbStyles(props.theme)};
+  }
+
+  &::-ms-thumb {
+    ${props => thumbStyles(props.theme)};
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::ms-track {
+    width: ${props => props.width || '100%'};
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+    ${props => trackStyles(props.theme)};
+  }
+
+  &::-webkit-slider-runnable-track {
+    ${props => trackStyles(props.theme)};
+  }
+  
+  &::-moz-range-track {
+    ${props => trackStyles(props.theme)};
+  }
 `;
 
 const FRangeValue = styled.span`
@@ -25,7 +83,8 @@ export type FormRangeProps = {
   max: number,
   step: number,
   onChange: (event: React.ChangeEvent) => void,
-  width?: string,
+  inputWidth: string,
+  labelWidth: string,
 };
 
 export const FormRange = (props: FormRangeProps) => {
@@ -36,15 +95,16 @@ export const FormRange = (props: FormRangeProps) => {
     max,
     step,
     onChange,
-    width,
+    inputWidth,
+    labelWidth,
   } = props;
   return (
     <React.Fragment>
-      <FormLabel>
+      <FormLabel style={{ width: labelWidth }}>
         {label}:
       </FormLabel>
       <FRangeInput
-        width={width}
+        width={inputWidth}
         type="range"
         min={min}
         max={max}

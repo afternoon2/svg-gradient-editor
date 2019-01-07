@@ -70,7 +70,8 @@ export const GradientChromaAttributes = (props: ChromaAttributesProps) => {
       </FormRow>
       <FormRow>
         <FormRange
-          width="60%"
+          inputWidth="40%"
+          labelWidth="20%"
           label="Samples"
           min={2}
           max={30}

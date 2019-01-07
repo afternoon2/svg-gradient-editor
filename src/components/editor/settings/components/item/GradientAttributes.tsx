@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FormNumber } from './components/FormNumber';
 import { FormSelect } from './components/FormSelect';
+import { FormRange } from './components/FormRange';
 import { FormRow } from './layout';
 import { LinearGradientAttributes, RadialGradientAttributes } from '../../../../../store/editor/_gradientTypes';
 
@@ -23,7 +23,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
     return (
       <React.Fragment>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="x1"
             min={-1}
             max={1}
@@ -37,7 +39,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           />
         </FormRow>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="y1"
             min={-1}
             max={1}
@@ -51,7 +55,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           />
         </FormRow>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="x2"
             min={-1}
             max={1}
@@ -65,7 +71,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           />
         </FormRow>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="y2"
             min={-1}
             max={1}
@@ -84,7 +92,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
     return (
       <React.Fragment>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="cx"
             min={-1}
             max={1}
@@ -98,7 +108,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           />
         </FormRow>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="cy"
             min={-1}
             max={1}
@@ -112,7 +124,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           />
         </FormRow>
         <FormRow>
-          <FormNumber
+          <FormRange
+            inputWidth="70%"
+            labelWidth="30px"
             label="r"
             min={0}
             max={1}
@@ -129,7 +143,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
           focalPoints ?
             <React.Fragment>
               <FormRow>
-                <FormNumber
+                <FormRange
+                  inputWidth="70%"
+                  labelWidth="30px"
                   label="fx"
                   min={0}
                   max={1}
@@ -143,7 +159,9 @@ export const GradientAttributes = (props: GradientAttributesProps): JSX.Element 
                 />
               </FormRow>
               <FormRow>
-                <FormNumber
+                <FormRange
+                  inputWidth="70%"
+                  labelWidth="30px"
                   label="fy"
                   min={0}
                   max={1}
