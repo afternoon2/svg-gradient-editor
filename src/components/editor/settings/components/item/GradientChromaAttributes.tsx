@@ -23,8 +23,8 @@ export const GradientChromaAttributes = (props: ChromaAttributesProps) => {
     'lch',
     'hsv',
     'lab',
+    'hsi',
     'hsl',
-    'hci',
     'hcl',
   ]);
   const {

@@ -15,6 +15,7 @@
     "connected-react-router": "^5.0.1",
     "history": "^4.7.2",
     "immutability-helper": "^2.9.0",
+    "lodash.throttle": "^4.1.1",
     "nanoid": "^2.0.0",
     "polished": "^2.3.0",
     "react": "16.7.0-alpha.0",
@@ -28,6 +29,7 @@
     "react-switch": "^3.0.4",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.2",
     "typescript": "^3.2.1"
   },
@@ -49,6 +51,7 @@
   "devDependencies": {
     "@types/chroma-js": "^1.4.1",
     "@types/history": "^4.7.2",
+    "@types/lodash.throttle": "^4.1.4",
     "@types/nanoid": "^1.2.0",
     "@types/react-color": "^2.14.0",
     "@types/react-numeric-input": "^2.2.3",

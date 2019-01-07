@@ -138,7 +138,7 @@ export const GradientColor = (props: GradientColorProps) => {
                 b: color.color[2],
                 a: color.color[3] || 1,
               }}
-              onChange={(newColor: ColorResult) => onEdit({
+              onChangeComplete={(newColor: ColorResult) => onEdit({
                 id: color.id,
                 color: [
                   newColor.rgb.r,

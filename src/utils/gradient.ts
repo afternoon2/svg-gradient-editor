@@ -45,19 +45,20 @@ const normalize = (base: any) => {
     ))
     }
 
-export const gradient = (gradient: Gradient): OutputColor[] => {
-  const _colors: string[] = gradient.colors
+export const gradient = (grad: Gradient): OutputColor[] => {
+  const _colors: string[] = grad.colors
     .map((color: InputColor): string => {
       const c = color.color;
       return `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${c[3]})`;
     });
-  const scaleCreator = gradient.chroma.interpolation === 'linear' ?
+  const scaleCreator = grad.chroma.interpolation === 'linear' ?
     createLinearScale : createBezierScale;
-  const scale = scaleCreator(gradient.chroma, _colors);
-  const base: chroma.Color[] = createBase(gradient.chroma.samples, scale);
+  const scale = scaleCreator(grad.chroma, _colors);
+  const base: chroma.Color[] = createBase(grad.chroma.samples, scale);
   const rawResult = normalize(base);
-  return rawResult.map((color: any): OutputColor => ({
-    color: [color.r, color.g, color.b, color.a],
-    offset: rawResult.indexOf(color) / (100 * rawResult.length),
+  const toReturn: OutputColor[] = rawResult.map((color: any): OutputColor => ({
+    color,
+    offset: rawResult.indexOf(color) / (100 / rawResult.length),
   }));
+  return toReturn;
 };

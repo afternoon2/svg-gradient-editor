@@ -10,9 +10,12 @@ import {
   ColorInterpolation,
 } from '../_gradientTypes';
 
-const getGradientIndex = (gradients: Gradient[], targetId: string) => gradients.findIndex(
+export const getGradientIndex = (gradients: Gradient[], targetId: string) => gradients.findIndex(
   (gradient: Gradient) => gradient.id === targetId
 );
+
+export const getGradient = (gradients: Gradient[], targetId: string) =>
+  gradients.find((gradient: Gradient) => gradient.id === targetId);
 
 export const updateAttributeInGradient = (
   payload: payloads.AttributePayload,

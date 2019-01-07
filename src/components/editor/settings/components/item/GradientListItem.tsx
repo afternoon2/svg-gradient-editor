@@ -12,6 +12,7 @@ import { FormSelect } from './components/FormSelect';
 import { FormSwitch } from './components/FormSwitch';
 import * as actions from '../../../../../store/editor/settings/actions';
 import * as payloads from '../../../../../store/editor/settings/types';
+import * as thunks from '../../../../../store/editor/settings/thunks';
 import { GradientAttributes } from './GradientAttributes';
 import { GradientColors } from './GradientColors';
 import { GradientChromaAttributes } from './GradientChromaAttributes';
@@ -173,7 +174,10 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => bindActionCreators({
-  ...actions,
+  ...thunks,
+  addGradient: actions.addGradient,
+  deleteGradient: actions.deleteGradient,
+  deleteAllColors: actions.deleteAllColors,
 }, dispatch);
 
 export const GradientListItem = connect(
@@ -181,4 +185,5 @@ export const GradientListItem = connect(
   mapDispatchToProps,
   null,
   { pure: false },
+  // @ts-ignore
 )(ListItem);
