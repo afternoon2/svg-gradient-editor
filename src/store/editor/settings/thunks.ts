@@ -118,11 +118,11 @@ export const deleteColor = (
   dispatch: Dispatch<EditorSettingsListAction>,
   getState: () => any,
 ) => {
+  dispatch(actions.deleteColor(payload));
   const gradient: Gradient = <Gradient>getGradientFromState(
     payload.gradientId,
     getState(),
   );
-  dispatch(actions.deleteColor(payload));
   if (gradient.useChroma && gradient.colors.length >= 2) {
     dispatch(actions.computeChromaColors(payload.gradientId));
   }
