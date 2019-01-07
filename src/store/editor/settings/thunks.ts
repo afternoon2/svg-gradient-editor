@@ -6,7 +6,7 @@ import * as payloads from './types';
 import { getGradient, computeChromaColors } from './helpers';
 import { EditorSettingsListAction } from './reducer';
 
-const THROTTLE_TIMES: number = 10;
+const THROTTLE_TIMES: number = 20;
 
 const getGradientFromState = (id: string, state: any): Gradient =>
   <Gradient>getGradient(

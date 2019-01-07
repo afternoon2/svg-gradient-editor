@@ -58,7 +58,7 @@ export const gradient = (grad: Gradient): OutputColor[] => {
   const rawResult = normalize(base);
   const toReturn: OutputColor[] = rawResult.map((color: any): OutputColor => ({
     color,
-    offset: rawResult.indexOf(color) / (100 / rawResult.length),
+    offset: (rawResult.indexOf(color) / rawResult.length) * 100,
   }));
   return toReturn;
 };
