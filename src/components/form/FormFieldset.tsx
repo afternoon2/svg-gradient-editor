@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../../../../../styles/styledComponents';
-import { modularSize } from '../../../../../../styles/typography';
+import styled from '../../styles/styledComponents';
+import { modularSize } from '../../styles/typography';
 import { rgba } from 'polished';
 
 const FFieldset = styled.fieldset`

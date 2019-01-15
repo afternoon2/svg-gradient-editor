@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { darken } from 'polished';
-import styled from '../../../../../../styles/styledComponents';
+import styled from '../../styles/styledComponents';
 
 type FButtonProps = {
   level?: 'primary' | 'danger',

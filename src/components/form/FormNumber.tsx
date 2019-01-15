@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { rgba } from 'polished';
-import styled from '../../../../../../styles/styledComponents';
-import { FormLabel } from '../layout';
+import styled from '../../styles/styledComponents';
+import { FormLabel } from './FormLabel';
 
 const FNumber = styled.input`
   color: ${props => props.theme.colors.text};

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import nanoid from 'nanoid';
 import Switch from 'react-switch';
-import { FormLabel } from '../layout';
+import { FormLabel } from './FormLabel';
 
 export type FormSwitchProps = {
   label: string,

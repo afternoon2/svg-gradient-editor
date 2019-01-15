@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { FormLabel } from '../layout';
-import styled from '../../../../../../styles/styledComponents';
-import { modularSize } from '../../../../../../styles/typography';
-import { AppTheme } from '../../../../../../styles/themes';
+import { FormLabel } from './FormLabel';
+import styled from '../../styles/styledComponents';
+import { modularSize } from '../../styles/typography';
+import { AppTheme } from '../../styles/themes';
 
 type FRangeInputProps = {
   width?: string,

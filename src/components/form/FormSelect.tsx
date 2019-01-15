@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../../../../../styles/styledComponents';
-import { FormLabel } from '../layout';
+import styled from '../../styles/styledComponents';
+import { FormLabel } from './FormLabel';
 
 export const FSelect = styled.select`
   color: ${props => props.theme.colors.text};
