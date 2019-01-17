@@ -10,8 +10,8 @@ const initialState = {};
 export const history = createBrowserHistory();
 
 const middlewares = [
-  applyMiddleware(routerMiddleware(history)),
   applyMiddleware(thunk),
+  applyMiddleware(routerMiddleware(history)),
 ];
 
 let composed = middlewares;

@@ -4,7 +4,7 @@ import {
   OutputColor,
   InputColor,
   ChromaAttributes
-} from '../store/editor/_gradientTypes';
+} from '../store/_types';
 
 const createLinearScale = (attrs: ChromaAttributes, colors: string[]) => {
   if (attrs.lightnessCorrection) {

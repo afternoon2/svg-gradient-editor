@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Gradient } from '../../../store/editor/_gradientTypes';
+import { Gradient } from '../../../store/_types';
 import nanoid from 'nanoid';
 
 export type FiguresRendererProps = {

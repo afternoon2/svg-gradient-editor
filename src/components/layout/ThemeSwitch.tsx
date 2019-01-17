@@ -45,42 +45,44 @@ const SwitchLabel = styled.label<SwitchLabelProps>`
 `;
 
 type SwitchProps = {
-  checked: boolean,
   theme: 'dark' | 'light',
   onChange: (newTheme: 'light' | 'dark') => void,
 };
 
-const SwitchComp = (props: ReactSwitchProps & SwitchProps) => {
+class SwitchComp extends React.PureComponent<ReactSwitchProps & SwitchProps> {
 
-  const clickHandler = () => {
-    const newTheme: 'dark' | 'light' = props.theme === 'dark' ?
-      'light' : 'dark'; 
-    props.onChange(newTheme);
-  };
+  private changeHandler = () => {
+    const { theme, onChange } = this.props;
+    const newTheme: 'dark' | 'light' = theme === 'dark' ?
+      'light' : 'dark';
+    onChange(newTheme);
+  }
 
-  return (
-    <SwitchWrapper>
-      <SwitchLabel htmlFor="themeSwitch">
-        Toggle theme
-      </SwitchLabel>
-      <Switch
-        id="themeSwitch"
-        checked={props.checked}
-        onChange={clickHandler}
-        className="themeSwitch"
-        checkedIcon={false}
-        uncheckedIcon={false}
-        width={35}
-        height={20}
-        onColor="#5383D6"
-        offColor="#A4BCAD"
-      />
-    </SwitchWrapper>
-  );
+  public render() {
+    const { theme } = this.props;
+    return (
+      <SwitchWrapper>
+        <SwitchLabel htmlFor="themeSwitch">
+          Toggle theme
+        </SwitchLabel>
+        <Switch
+          id="themeSwitch"
+          checked={theme === 'light'}
+          onChange={this.changeHandler}
+          className="themeSwitch"
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={35}
+          height={20}
+          onColor="#5383D6"
+          offColor="#A4BCAD"
+        />
+      </SwitchWrapper>
+    );
+  }
 };
 
 const mapStateToProps = (state: any) => ({
-  checked: state.application.theme === 'light',
   theme: state.application.theme,
 });
 
@@ -92,6 +94,5 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators(
 export const ThemeSwitch = connect(
   mapStateToProps,
   mapDispatchToProps,
-  null,
-  { pure: false },
-)(SwitchComp as React.ComponentType);
+  // @ts-ignore
+)(SwitchComp);

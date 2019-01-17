@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import nanoid from 'nanoid';
-import { Gradient, OutputColor, InputColor, RadialGradientAttributes } from '../../../store/editor/_gradientTypes';
+import { Gradient, OutputColor, InputColor, RadialGradientAttributes } from '../../../store/_types';
 
 const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
   const renderStops = () => {

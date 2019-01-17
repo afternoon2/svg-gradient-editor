@@ -43,7 +43,6 @@ export type OutputColor = {
 
 export type Gradient = {
   id: string,
-  name?: string;
   type: 'linear' | 'radial',
   focalPoints: boolean,
   useChroma: boolean,

@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { SettingsWrapper, SettingsHeader, SettingsContent } from './layout';
-import { GradientList } from './components/GradientList';
-import { GradientListControls } from './components/GradientListControls';
+import { SettingsWrapper } from './layout';
+import { SettingsHeader } from './header/SettingsHeader';
+import { SettingsContent } from './content/SettingsContent';
 
 export const Settings = () => (
   <SettingsWrapper>
-    <SettingsHeader>
-      <GradientListControls />
-    </SettingsHeader>
-    <SettingsContent>
-      <GradientList />
-    </SettingsContent>
+    <SettingsHeader />
+    <SettingsContent />
   </SettingsWrapper>
 );
 
