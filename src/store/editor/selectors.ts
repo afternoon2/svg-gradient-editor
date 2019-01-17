@@ -26,3 +26,8 @@ export const colorById = (state: any, gradientId: string) =>
 
 export const typeofGradient = (state: any, gradientId: string): 'linear' | 'radial' =>
   fromGradients(state, gradientId).type;
+
+export const attributeFromGradient = (state: any, id: string) =>
+  (attribute: string): number =>
+    // @ts-ignore
+    fromGradients(state, id).attributes[attribute];

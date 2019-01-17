@@ -36,6 +36,8 @@ export const editor = (
       return mutations.toggleChroma(state, action.payload);
     case getType(EditorActions.setGradientType):
       return mutations.setGradientType(state, action.payload);
+    case getType(EditorActions.setAttribute):
+      return mutations.setAttribute(state, action.payload);
     default:
       return state;
   }

@@ -40,3 +40,8 @@ export const setGradientType = createAction(
   '@editor/SET_GRADIENT_TYPE', (resolve) =>
     (payload: payloads.GradientTypePayload) => resolve(payload),
 );
+
+export const setAttribute = createAction(
+  '@editor/SET_ATTRIBUTE', (resolve) =>
+    (payload: payloads.AttributeEditionPayload) => resolve(payload)
+);

@@ -126,3 +126,21 @@ export const setGradientType = (state: EditorReducer, payload: payloads.Gradient
     },
   );
 };
+
+export const setAttribute = (state: EditorReducer, payload: payloads.AttributeEditionPayload): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload.id);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          attributes: {
+            [payload.attribute]: {
+              $set: payload.value,
+            },
+          },
+        },
+      },
+    },
+  );
+}

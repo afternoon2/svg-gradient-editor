@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Item, ItemHeader, ItemContent, IconButton, HeaderLink } from './layout';
 import { Colors } from './colors/Colors';
 import { Properties } from './properties/Properties';
+import { Attributes } from './attributes/Attributes';
 import * as actions from '../../../../../store/editor/actions';
 
 type ListItemComponentProps = {
@@ -20,6 +21,7 @@ const ListItemComponent = (props: ListItemComponentProps) => {
   const renderContent = () => collapsed ? null : <ItemContent>
     <Colors id={id} />
     <Properties id={id} />
+    <Attributes id={id} />
   </ItemContent>
   return (
     <Item>

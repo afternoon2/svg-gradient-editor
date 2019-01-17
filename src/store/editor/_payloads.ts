@@ -11,3 +11,9 @@ export type GradientTypePayload = {
   id: string,
   type: 'linear' | 'radial',
 };
+
+export type AttributeEditionPayload = {
+  id: string,
+  attribute: string,
+  value: number,
+};
