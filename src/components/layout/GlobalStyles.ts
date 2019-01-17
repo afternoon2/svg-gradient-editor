@@ -1,10 +1,7 @@
 import { createGlobalStyle } from '../../styles/styledComponents';
-import { fontFace } from '../../styles/fontFace';
 import { typography } from '../../styles/typography';
 
 export const GlobalStyles = createGlobalStyle`
-
-  ${fontFace};
 
   ${typography};
 
