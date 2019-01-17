@@ -26,6 +26,10 @@ export const editor = (
       return mutations.deleteGradient(state, action.payload);
     case getType(EditorActions.addColor):
       return mutations.addColor(state, action.payload);
+    case getType(EditorActions.deleteColor):
+      return mutations.deleteColor(state, action.payload);
+    case getType(EditorActions.editColor):
+      return mutations.editColor(state, action.payload);
     case getType(EditorActions.deleteAllColors):
       return mutations.deleteAllColors(state, action.payload);
     case getType(EditorActions.toggleChroma):

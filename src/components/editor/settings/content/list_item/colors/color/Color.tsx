@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
 import { SketchPicker, ColorResult } from 'react-color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,15 +13,19 @@ import {
 } from './layout';
 import { InputColor } from '../../../../../../../store/_types';
 import * as selectors from '../../../../../../../store/editor/selectors';
+import * as actions from '../../../../../../../store/editor/actions';
+import * as payloads from '../../../../../../../store/editor/_payloads';
 
 export type ColorComponentProps = {
   colorId: string,
   gradientId: string,
   color: InputColor,
+  editColor: (payload: payloads.ColorEditionPayload) => void,
+  deleteColor: (payload: payloads.ColorPayload) => void,
 };
 
 const ColorComponent = (props: ColorComponentProps) => {
-  const { color } = props;
+  const { color, editColor, deleteColor, colorId, gradientId } = props;
   const [ picker, togglePicker ] = React.useState(false);
 
   let pickerParent: React.MutableRefObject<null | HTMLDivElement> = React.useRef(null);
@@ -52,6 +57,16 @@ const ColorComponent = (props: ColorComponentProps) => {
           b: color.color[2],
           a: color.color[3] || 1,
         }}
+        onChangeComplete={(newColor: ColorResult) => editColor({
+          gradientId,
+          colorId,
+          color: [
+            newColor.rgb.r,
+            newColor.rgb.g,
+            newColor.rgb.b,
+            newColor.rgb.a as number,
+          ],
+        })}
       />
     </CPickerWrapper>
     : null;
@@ -77,7 +92,10 @@ const ColorComponent = (props: ColorComponentProps) => {
         </CLink>
         <CLink
           title="Delete color"
-          onClick={() => {}}
+          onClick={() => deleteColor({
+            gradientId,
+            colorId,
+          })}
         >
           <FontAwesomeIcon icon="trash" />
         </CLink>
@@ -91,9 +109,14 @@ const mapStateToProps = (state: any, ownProps: { [key: string]: string }) => ({
   color: selectors.colorById(state, ownProps.gradientId)(ownProps.colorId),
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+  editColor: actions.editColor,
+  deleteColor: actions.deleteColor,
+}, dispatch);
+
 export const Color = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
   null,
   { pure: false },
 )(ColorComponent);

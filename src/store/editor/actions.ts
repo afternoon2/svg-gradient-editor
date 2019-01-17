@@ -16,6 +16,16 @@ export const addColor = createAction(
     (payload: payloads.ColorPayload) => resolve(payload)
 );
 
+export const deleteColor = createAction(
+  '@editor/DELETE_COLOR', (resolve) =>
+    (payload: payloads.ColorPayload) => resolve(payload)
+);
+
+export const editColor = createAction(
+  '@editor/EDIT_COLOR', (resolve) =>
+    (payload: payloads.ColorEditionPayload) => resolve(payload)
+);
+
 export const deleteAllColors = createAction(
   '@editor/DELETE_ALL_COLORS', (resolve) =>
     (id: string) => resolve(id),

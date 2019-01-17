@@ -23,10 +23,11 @@ export const CWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   color: ${props => props.theme.colors.text};
   border-radius: 4px;
   padding: .5em;
+  margin: 0;
 `;
 
 export const CName = styled.span`

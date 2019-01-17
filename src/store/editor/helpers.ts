@@ -34,3 +34,8 @@ export const createColor = (id: string): InputColor => ({
 
 export const getGradientIndex = (state: EditorReducer, id: string): number =>
   state.gradients.findIndex((gradient: Gradient) => gradient.id === id);
+
+export const getColorIndex = (state: EditorReducer, gradientIndex: number, colorId: string): number => {
+  return state.gradients[gradientIndex].colors
+    .findIndex((color: InputColor) => color.id === colorId);
+}

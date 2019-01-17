@@ -41,6 +41,46 @@ export const addColor = (state: EditorReducer, payload: payloads.ColorPayload): 
   );
 };
 
+export const deleteColor = (state: EditorReducer, payload: payloads.ColorPayload): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload.gradientId);
+  const colorIndex: number = helpers.getColorIndex(state, targetIndex, payload.colorId);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          colors: {
+            $splice: [
+              [colorIndex, 1],
+            ],
+          },
+        },
+      },
+    },
+  );
+};
+
+export const editColor = (state: EditorReducer, payload: payloads.ColorEditionPayload): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload.gradientId);
+  const colorIndex: number = helpers.getColorIndex(state, targetIndex, payload.colorId);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          colors: {
+            [colorIndex]: {
+              color: {
+                $set: payload.color,
+              },
+            },
+          },
+        },
+      },
+    },
+  );
+};
+
 export const deleteAllColors = (state: EditorReducer, payload: string): EditorReducer => {
   const targetIndex: number = helpers.getGradientIndex(state, payload);
   return update(

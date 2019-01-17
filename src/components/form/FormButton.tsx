@@ -14,6 +14,7 @@ const FButton = styled.button<FButtonProps>`
   color: ${props => props.level === 'danger' ? '#fcfcfc' : props.theme.colors.text};
   transition: 120ms all ease-in-out;
   border: 1px solid ${props => props.theme.colors.main_300};
+  outline: none;
   &:hover {
     cursor: pointer;
     background-color: ${props => darken(0.05, props.level === 'danger' ? props.theme.colors.danger : props.theme.colors.primary)};

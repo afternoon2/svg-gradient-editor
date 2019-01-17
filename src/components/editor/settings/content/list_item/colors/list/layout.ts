@@ -2,6 +2,7 @@ import styled from '../../../../../../../styles/styledComponents';
 
 export const CList = styled.ul`
   box-sizing: border-box;
+  width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
