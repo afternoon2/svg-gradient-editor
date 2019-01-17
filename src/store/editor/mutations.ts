@@ -110,3 +110,19 @@ export const toggleChroma = (state: EditorReducer, payload: string): EditorReduc
     },
   );
 };
+
+export const setGradientType = (state: EditorReducer, payload: payloads.GradientTypePayload): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload.id);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          type: {
+            $set: payload.type,
+          },
+        },
+      },
+    },
+  );
+};

@@ -35,3 +35,8 @@ export const toggleChroma = createAction(
   '@editor/TOGGLE_CHROMA', (resolve) =>
     (id: string) => resolve(id)
 );
+
+export const setGradientType = createAction(
+  '@editor/SET_GRADIENT_TYPE', (resolve) =>
+    (payload: payloads.GradientTypePayload) => resolve(payload),
+);

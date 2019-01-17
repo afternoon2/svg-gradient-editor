@@ -23,3 +23,6 @@ export const isUsingChroma = (state: any, id: string): boolean =>
 export const colorById = (state: any, gradientId: string) =>
   (colorId: string): InputColor => <InputColor>colorsFromGradient(state, gradientId)
     .find((color: InputColor) => color.id === colorId);
+
+export const typeofGradient = (state: any, gradientId: string): 'linear' | 'radial' =>
+  fromGradients(state, gradientId).type;

@@ -4,6 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Item, ItemHeader, ItemContent, IconButton, HeaderLink } from './layout';
 import { Colors } from './colors/Colors';
+import { Properties } from './properties/Properties';
 import * as actions from '../../../../../store/editor/actions';
 
 type ListItemComponentProps = {
@@ -18,6 +19,7 @@ const ListItemComponent = (props: ListItemComponentProps) => {
   const { index, id, deleteGradient } = props;
   const renderContent = () => collapsed ? null : <ItemContent>
     <Colors id={id} />
+    <Properties id={id} />
   </ItemContent>
   return (
     <Item>

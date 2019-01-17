@@ -6,3 +6,8 @@ export type ColorPayload = {
 export type ColorEditionPayload = ColorPayload & {
   color: number[],
 };
+
+export type GradientTypePayload = {
+  id: string,
+  type: 'linear' | 'radial',
+};
