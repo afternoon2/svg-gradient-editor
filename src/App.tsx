@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import { store, history } from './store/store';
+import { store } from './store/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faChevronLeft,
@@ -14,7 +13,6 @@ import {
   faTrash,
   faEdit,
 } from '@fortawesome/free-solid-svg-icons';
-import { ConnectedRouter } from 'connected-react-router';
 import { StoreThemeProvider } from './components/layout/StoreThemeProvider';
 import { Editor } from './views/editor/Editor';
 import { GlobalStyles } from './components/layout/GlobalStyles';
@@ -33,19 +31,11 @@ library.add(faEdit);
 const App = () => (
   <Provider store={store}>
     <StoreThemeProvider>
-      <ConnectedRouter history={history}>
         <React.Fragment>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={Editor}
-            />
-          </Switch>
+          <Editor />
           <ThemeSwitch />
           <GlobalStyles />
         </React.Fragment>
-      </ConnectedRouter>
     </StoreThemeProvider>
   </Provider>
 );
