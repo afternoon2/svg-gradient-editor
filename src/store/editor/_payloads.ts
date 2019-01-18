@@ -1,3 +1,5 @@
+import { LinearGradientAttributes, RadialGradientAttributes } from "../_types";
+
 export type ColorPayload = {
   gradientId: string,
   colorId: string
@@ -15,5 +17,9 @@ export type GradientTypePayload = {
 export type AttributeEditionPayload = {
   id: string,
   attribute: string,
-  value: number,
+  value: number | string,
+};
+
+export type AttributesReplacementPayload = GradientTypePayload & {
+  attributes: LinearGradientAttributes | RadialGradientAttributes,
 };

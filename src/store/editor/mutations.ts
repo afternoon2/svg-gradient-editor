@@ -143,4 +143,39 @@ export const setAttribute = (state: EditorReducer, payload: payloads.AttributeEd
       },
     },
   );
-}
+};
+
+export const toggleFocalPoints = (state: EditorReducer, payload: string): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          focalPoints: {
+            $set: !state.gradients[targetIndex].focalPoints,
+          },
+        },
+      },
+    },
+  );
+};
+
+export const replaceGradientAttributes = (
+  state: EditorReducer,
+  payload: payloads.AttributesReplacementPayload
+): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload.id);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          attributes: {
+            $set: payload.attributes,
+          },
+        },
+      },
+    },
+  );
+};

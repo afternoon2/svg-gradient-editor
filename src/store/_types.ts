@@ -9,8 +9,8 @@ export type RadialGradientAttributes = {
   cx: number,
   cy: number,
   r: number,
-  fx?: number,
-  fy?: number,
+  fx: number,
+  fy: number,
   spreadMethod?: 'pad' | 'repeat' | 'reflect',
 };
 

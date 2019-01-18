@@ -38,6 +38,10 @@ export const editor = (
       return mutations.setGradientType(state, action.payload);
     case getType(EditorActions.setAttribute):
       return mutations.setAttribute(state, action.payload);
+    case getType(EditorActions.toggleFocalPoints):
+      return mutations.toggleFocalPoints(state, action.payload);
+    case getType(EditorActions.replaceGradientAttributes):
+      return mutations.replaceGradientAttributes(state, action.payload);
     default:
       return state;
   }

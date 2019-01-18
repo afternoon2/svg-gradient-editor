@@ -71,9 +71,10 @@ const FRangeInput = styled.input<FRangeInputProps>`
 `;
 
 const FRangeValue = styled.span`
-  width: auto;
+  width: 50px;
   font-weight: bold;
   font-size: ${modularSize(-1)};
+  text-align: right;
 `;
 
 export type FormRangeProps = {

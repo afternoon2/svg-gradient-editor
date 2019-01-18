@@ -5,7 +5,7 @@ import { FormRow } from '../../../../../../form/FormRow';
 import { FormSelect } from '../../../../../../form/FormSelect';
 import * as selectors from '../../../../../../../store/editor/selectors';
 import * as payloads from '../../../../../../../store/editor/_payloads';
-import { setGradientType } from '../../../../../../../store/editor/actions';
+import { setGradientType } from '../../../../../../../store/editor/thunks';
 
 type GradientTypeComponentProps = {
   id: string,
@@ -42,4 +42,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
 export const GradientType = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GradientTypeComponent);
+)(GradientTypeComponent as React.ComponentType);

@@ -1,5 +1,4 @@
-import { Gradient, InputColor } from '../_types';
-import { ColorPayload } from './_payloads';
+import { Gradient, InputColor, LinearGradientAttributes, RadialGradientAttributes } from '../_types';
 
 export const idList = (state: any): string[] =>
   state.editor.gradients.map((gradient: Gradient): string => gradient.id);
@@ -31,3 +30,9 @@ export const attributeFromGradient = (state: any, id: string) =>
   (attribute: string): number =>
     // @ts-ignore
     fromGradients(state, id).attributes[attribute];
+
+export const hasFocalPoints = (state: any, id: string): boolean =>
+  fromGradients(state, id).focalPoints;
+
+export const attributesOf = (state: any, id: string): LinearGradientAttributes | RadialGradientAttributes =>
+  fromGradients(state, id).attributes;

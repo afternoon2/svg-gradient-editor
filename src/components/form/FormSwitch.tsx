@@ -6,7 +6,7 @@ import { FormLabel } from './FormLabel';
 export type FormSwitchProps = {
   label: string,
   checked: boolean,
-  onChange: (value: boolean) => void,
+  onChange: (value?: boolean) => void,
   disabled?: boolean,
 };
 

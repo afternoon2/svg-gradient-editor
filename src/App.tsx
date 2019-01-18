@@ -16,7 +16,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ConnectedRouter } from 'connected-react-router';
 import { StoreThemeProvider } from './components/layout/StoreThemeProvider';
-import { Home } from './views/home/Home';
 import { Editor } from './views/editor/Editor';
 import { GlobalStyles } from './components/layout/GlobalStyles';
 import { ThemeSwitch } from './components/layout/ThemeSwitch';
@@ -40,11 +39,6 @@ const App = () => (
             <Route
               exact
               path="/"
-              component={Home}
-            />
-            <Route
-              exact
-              path="/editor"
               component={Editor}
             />
           </Switch>

@@ -45,3 +45,13 @@ export const setAttribute = createAction(
   '@editor/SET_ATTRIBUTE', (resolve) =>
     (payload: payloads.AttributeEditionPayload) => resolve(payload)
 );
+
+export const toggleFocalPoints = createAction(
+  '@editor/TOGGLE_FOCAL_POINTS', (resolve) =>
+    (id: string) => resolve(id)
+);
+
+export const replaceGradientAttributes = createAction(
+  '@editor/REPLACE_GRADIENT_ATTRIBUTES', (resolve) =>
+    (payload: payloads.AttributesReplacementPayload) => resolve(payload)
+);

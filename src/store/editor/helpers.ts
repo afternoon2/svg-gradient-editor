@@ -39,3 +39,18 @@ export const getColorIndex = (state: EditorReducer, gradientIndex: number, color
   return state.gradients[gradientIndex].colors
     .findIndex((color: InputColor) => color.id === colorId);
 }
+
+export const defaultLinearAttributes = () => ({
+  x1: 0,
+  y1: 0,
+  x2: 1,
+  y2: 0,
+});
+
+export const defaultRadialAttributes = () => ({
+  cx: 0.5,
+  cy: 0.5,
+  r: 1,
+  fx: 0,
+  fy: 0
+});
