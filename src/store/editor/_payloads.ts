@@ -1,4 +1,9 @@
-import { LinearGradientAttributes, RadialGradientAttributes } from "../_types";
+import {
+  LinearGradientAttributes,
+  RadialGradientAttributes,
+  ColorMode,
+  ColorInterpolation,
+} from "../_types";
 
 export type ColorPayload = {
   gradientId: string,
@@ -22,4 +27,10 @@ export type AttributeEditionPayload = {
 
 export type AttributesReplacementPayload = GradientTypePayload & {
   attributes: LinearGradientAttributes | RadialGradientAttributes,
+};
+
+export type ChromaEditionPayload = {
+  id: string,
+  attribute: 'interpolation' | 'mode' | 'lightnessCorrection' | 'samples',
+  value: ColorInterpolation | (ColorMode) | boolean | number,
 };

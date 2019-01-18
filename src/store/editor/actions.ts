@@ -55,3 +55,8 @@ export const replaceGradientAttributes = createAction(
   '@editor/REPLACE_GRADIENT_ATTRIBUTES', (resolve) =>
     (payload: payloads.AttributesReplacementPayload) => resolve(payload)
 );
+
+export const setChromaAttribute = createAction(
+  '@editor/SET_CHROMA_ATTRIBUTE', (resolve) =>
+    (payload: payloads.ChromaEditionPayload) => resolve(payload)
+);

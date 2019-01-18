@@ -179,3 +179,21 @@ export const replaceGradientAttributes = (
     },
   );
 };
+
+export const setChromaAttribute = (state: EditorReducer, payload: payloads.ChromaEditionPayload): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload.id);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          chroma: {
+            [payload.attribute]: {
+              $set: payload.value,
+            },
+          },
+        },
+      },
+    },
+  );
+}

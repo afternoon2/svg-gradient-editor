@@ -42,6 +42,8 @@ export const editor = (
       return mutations.toggleFocalPoints(state, action.payload);
     case getType(EditorActions.replaceGradientAttributes):
       return mutations.replaceGradientAttributes(state, action.payload);
+    case getType(EditorActions.setChromaAttribute):
+      return mutations.setChromaAttribute(state, action.payload);
     default:
       return state;
   }
