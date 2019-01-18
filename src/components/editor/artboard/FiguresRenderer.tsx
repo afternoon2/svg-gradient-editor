@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Gradient } from '../../../store/_types';
+import { idList } from '../../../store/editor/selectors';
 import nanoid from 'nanoid';
 
 export type FiguresRendererProps = {
@@ -33,12 +33,10 @@ const FiguresRendererComponent = (props: FiguresRendererProps): JSX.Element => {
 };
 
 const mapStateToProps = (state: any) => ({
-  gradients: state.editor.settings.gradients.map((gradient: Gradient) => gradient.id),
+  gradients: idList(state),
 });
 
 export const FiguresRenderer = connect(
   mapStateToProps,
   null,
-  null,
-  { pure: false },
 )(FiguresRendererComponent);

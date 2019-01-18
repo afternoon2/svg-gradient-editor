@@ -60,3 +60,8 @@ export const setChromaAttribute = createAction(
   '@editor/SET_CHROMA_ATTRIBUTE', (resolve) =>
     (payload: payloads.ChromaEditionPayload) => resolve(payload)
 );
+
+export const computeChromaColors = createAction(
+  '@editor/COMPUTE_CHROMA_COLORS',
+  (resolve) => (gradientId: string) => resolve(gradientId),
+);

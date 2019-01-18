@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 import { EditorReducer } from './reducer';
+import { gradient } from '../../utils/gradient';
 import * as helpers from './helpers';
 import * as payloads from './_payloads';
 
@@ -196,4 +197,20 @@ export const setChromaAttribute = (state: EditorReducer, payload: payloads.Chrom
       },
     },
   );
-}
+};
+
+export const computeChromaColors = (state: EditorReducer, payload: string): EditorReducer => {
+  const targetIndex: number = helpers.getGradientIndex(state, payload);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          output: {
+            $set: gradient(state.gradients[targetIndex]),
+          }
+        }
+      }
+    }
+  );
+};

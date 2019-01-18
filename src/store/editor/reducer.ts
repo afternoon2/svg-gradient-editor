@@ -44,6 +44,8 @@ export const editor = (
       return mutations.replaceGradientAttributes(state, action.payload);
     case getType(EditorActions.setChromaAttribute):
       return mutations.setChromaAttribute(state, action.payload);
+    case getType(EditorActions.computeChromaColors):
+      return mutations.computeChromaColors(state, action.payload);
     default:
       return state;
   }

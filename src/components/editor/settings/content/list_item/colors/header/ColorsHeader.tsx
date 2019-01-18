@@ -13,7 +13,7 @@ type ColorsHeaderComponentProps = {
   id: string,
   colorsAmount: number,
   chroma: boolean,
-  addColor: (payload: payloads.ColorPayload) => void,
+  addColor: (payload: payloads.ColorPayload) => (dispatch: Dispatch) => void,
   deleteAllColors: (payload: string) => void,
   toggleChroma: (payload: string) => void,
 };
@@ -83,5 +83,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
 export const ColorsHeader = connect(
   mapStateToProps,
   mapDispatchToProps,
+  // @ts-ignore
 )(ColorsHeaderComponent);
-

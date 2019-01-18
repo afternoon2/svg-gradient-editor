@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import nanoid from 'nanoid';
+import { gradients } from '../../../store/editor/selectors';
 import { Gradient, OutputColor, InputColor, RadialGradientAttributes } from '../../../store/_types';
 
 const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
@@ -78,7 +79,7 @@ const DefsRendererComponent = (props: DefsRendererProps) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  gradients: state.editor.settings.gradients,
+  gradients: gradients(state),
 });
 
 export const DefsRenderer = connect(
