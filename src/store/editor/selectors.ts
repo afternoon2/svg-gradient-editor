@@ -3,6 +3,9 @@ import { Gradient, InputColor, LinearGradientAttributes, RadialGradientAttribute
 export const gradients = (state: any): Gradient[] =>
   state.editor.gradients;
 
+export const gradientsAmount = (state: any): number =>
+  gradients(state).length;
+
 export const idList = (state: any): string[] =>
   state.editor.gradients.map((gradient: Gradient): string => gradient.id);
 

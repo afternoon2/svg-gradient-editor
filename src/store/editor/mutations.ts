@@ -214,3 +214,13 @@ export const computeChromaColors = (state: EditorReducer, payload: string): Edit
     }
   );
 };
+
+export const deleteAllGradients = (state: EditorReducer): EditorReducer =>
+  update(
+    state,
+    {
+      gradients: {
+        $set: [],
+      },
+    },
+  );

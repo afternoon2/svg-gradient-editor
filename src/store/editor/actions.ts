@@ -65,3 +65,8 @@ export const computeChromaColors = createAction(
   '@editor/COMPUTE_CHROMA_COLORS',
   (resolve) => (gradientId: string) => resolve(gradientId),
 );
+
+export const deleteAllGradients = createAction(
+  '@editor/DELETE_ALL_GRADIENTS', (resolve) =>
+    () => resolve(), 
+);

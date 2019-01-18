@@ -7,9 +7,12 @@ import { FormRow } from '../../../form/FormRow';
 import { FormButton } from '../../../form/FormButton';
 import { SHeader } from './layout';
 import * as actions from '../../../../store/editor/actions';
+import { gradientsAmount } from '../../../../store/editor/selectors';
 
 export type SettingsHeaderComponentProps = {
   addGradient: (id: string) => void,
+  deleteAllGradients: () => void,
+  gradientsAmount: number,
 };
 
 class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponentProps> {
@@ -24,7 +27,10 @@ class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponen
     throttled();
   };
 
+  deleteAllGradients = () => this.props.deleteAllGradients();
+
   public render() {
+    const { gradientsAmount } = this.props;
     return (
       <SHeader>
         <FormRow>
@@ -33,18 +39,33 @@ class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponen
           >
             Add Gradient
           </FormButton>
+          <FormButton
+            style={{
+              marginLeft: '0.5em',
+            }}
+            level="danger"
+            onClick={this.deleteAllGradients}
+            disabled={gradientsAmount === 0}
+          >
+            Delete All
+          </FormButton>
         </FormRow>
       </SHeader>
     );
   }
 };
 
+const mapStateToProps = (state: any) => ({
+  gradientsAmount: gradientsAmount(state),
+})
+
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
   addGradient: actions.addGradient,
+  deleteAllGradients: actions.deleteAllGradients,
 }, dispatch);
 
 export const SettingsHeader = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
   null,
   { pure: true },
