@@ -13,7 +13,7 @@ import {
 } from './layout';
 import { InputColor } from '../../../../../../../store/_types';
 import * as selectors from '../../../../../../../store/editor/selectors';
-import * as actions from '../../../../../../../store/editor/actions';
+import * as thunks from '../../../../../../../store/editor/thunks';
 import * as payloads from '../../../../../../../store/editor/_payloads';
 
 export type ColorComponentProps = {
@@ -110,8 +110,8 @@ const mapStateToProps = (state: any, ownProps: { [key: string]: string }) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
-  editColor: actions.editColor,
-  deleteColor: actions.deleteColor,
+  editColor: thunks.editColor,
+  deleteColor: thunks.deleteColor,
 }, dispatch);
 
 export const Color = connect(
@@ -119,4 +119,4 @@ export const Color = connect(
   mapDispatchToProps,
   null,
   { pure: false },
-)(ColorComponent);
+)(ColorComponent as React.ComponentType);

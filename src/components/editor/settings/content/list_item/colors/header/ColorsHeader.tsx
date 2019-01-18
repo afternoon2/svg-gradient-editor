@@ -7,6 +7,7 @@ import { FormButton } from '../../../../../../form/FormButton';
 import { FormSwitch } from '../../../../../../form/FormSwitch';
 import * as selectors from '../../../../../../../store/editor/selectors';
 import * as actions from '../../../../../../../store/editor/actions';
+import * as thunks from '../../../../../../../store/editor/thunks';
 import * as payloads from '../../../../../../../store/editor/_payloads';
 
 type ColorsHeaderComponentProps = {
@@ -75,9 +76,9 @@ const mapStateToProps = (state: any, ownProps: { [key: string]: string }) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
-  addColor: actions.addColor,
+  addColor: thunks.addColor,
   deleteAllColors: actions.deleteAllColors,
-  toggleChroma: actions.toggleChroma,
+  toggleChroma: thunks.toggleChroma,
 }, dispatch);
 
 export const ColorsHeader = connect(

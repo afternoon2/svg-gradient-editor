@@ -6,7 +6,7 @@ import { FormRange } from '../../../../../form/FormRange';
 import { FormSwitch } from '../../../../../form/FormSwitch';
 import { FormSelect } from '../../../../../form/FormSelect';
 import * as selectors from '../../../../../../store/editor/selectors';
-import { setChromaAttribute } from '../../../../../../store/editor/actions';
+import { setChromaAttribute } from '../../../../../../store/editor/thunks';
 import { ChromaEditionPayload } from '../../../../../../store/editor/_payloads';
 import { ChromaAttributes, ColorInterpolation, ColorMode } from '../../../../../../store/_types';
 import { Dispatch, bindActionCreators } from 'redux';
@@ -109,4 +109,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
 export const Chroma = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ChromaAttributesComponent);
+)(ChromaAttributesComponent as React.ComponentType);

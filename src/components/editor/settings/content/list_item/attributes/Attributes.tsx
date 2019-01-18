@@ -6,7 +6,7 @@ import { FormRange } from '../../../../../form/FormRange';
 import { FormSelect } from '../../../../../form/FormSelect';
 import * as selectors from '../../../../../../store/editor/selectors';
 import * as payloads from '../../../../../../store/editor/_payloads';
-import { setAttribute } from '../../../../../../store/editor/actions';
+import { setAttribute } from '../../../../../../store/editor/thunks';
 import { LinearGradientAttributes, RadialGradientAttributes } from '../../../../../../store/_types';
 import { Dispatch, bindActionCreators } from 'redux';
 
@@ -223,4 +223,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
 export const Attributes = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AttributesComponent);
+)(AttributesComponent as React.ComponentType);

@@ -43,7 +43,7 @@ const normalize = (base: any) => {
     .map((val: any) => val.filter(
       (el: any) => typeof el !== 'boolean'
     ))
-    }
+  }
 
 export const gradient = (grad: Gradient): OutputColor[] => {
   const _colors: string[] = grad.colors
