@@ -3,6 +3,7 @@ import styled from '../../../styles/styledComponents';
 import { DefsRenderer } from './DefsRenderer';
 import { FiguresRenderer } from './FiguresRenderer';
 import { SaveIcon } from '../../common/SaveIcon';
+import saveAs from 'file-saver';
 
 const ArtboardSVG = styled.svg`
   box-sizing: border-box;
@@ -17,8 +18,11 @@ const Artboard = () => {
     if (svg) {
       // @ts-ignore
       const content: string = svg.current.outerHTML;
-      document.execCommand('Copy');
-      alert(content);
+      const file = new Blob([content], {
+        type: 'text/plain;charset=utf-8',
+      });
+      // @ts-ignore
+      saveAs(file, 'gradient.svg');
     }
   };
 
