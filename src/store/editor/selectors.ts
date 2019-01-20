@@ -1,4 +1,5 @@
 import { Gradient, InputColor, LinearGradientAttributes, RadialGradientAttributes, ChromaAttributes } from '../_types';
+import { AppModal } from '../application/_types';
 
 export const gradients = (state: any): Gradient[] =>
   state.editor.gradients;
@@ -45,3 +46,5 @@ export const attributesOf = (state: any, id: string): LinearGradientAttributes |
 
 export const chromaAttributesOf = (state: any, id: string): ChromaAttributes =>
   fromGradients(state, id).chroma;
+
+export const currentModal = (state: any): AppModal => state.application.modal;
