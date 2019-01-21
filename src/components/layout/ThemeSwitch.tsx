@@ -13,7 +13,7 @@ const SwitchWrapper = styled.div`
   position: fixed;
   display: flex;
   align-items: center;
-  z-index: 100;
+  z-index: 1;
   padding: .5em;
   box-sizing: border-box;
   background-color: ${props => rgba(props.theme.colors.main_400, 0.5)};

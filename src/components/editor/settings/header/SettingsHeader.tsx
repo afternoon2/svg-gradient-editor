@@ -6,16 +6,22 @@ import throttle from 'lodash.throttle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FormRow } from '../../../form/FormRow';
 import { FormButton } from '../../../form/FormButton';
+import { AppModal } from '../../../common/AppModal';
 import { SHeader, SHeaderContentDivider, SHeaderIconButton } from './layout';
 import * as editorActions from '../../../../store/editor/actions';
 import * as appActions from '../../../../store/application/actions';
+import * as appSelectors from '../../../../store/application/selectors';
 import { gradientsAmount } from '../../../../store/editor/selectors';
+import { PresetForm } from '../../../presets/PresetForm';
 
 export type SettingsHeaderComponentProps = {
   addGradient: (id: string) => void,
   deleteAllGradients: () => void,
   openModal: () => void,
+  closeModal: () => void,
+  modal: boolean,
   gradientsAmount: number,
+  presetRootId: string,
 };
 
 class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponentProps> {
@@ -33,7 +39,13 @@ class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponen
   deleteAllGradients = () => this.props.deleteAllGradients();
 
   public render() {
-    const { gradientsAmount, openModal } = this.props;
+    const {
+      gradientsAmount,
+      openModal,
+      closeModal,
+      modal,
+      presetRootId,
+    } = this.props;
     return (
       <SHeader>
         <FormRow style={{
@@ -68,6 +80,17 @@ class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponen
               />
             </SHeaderIconButton>
           </SHeaderContentDivider>
+          {
+            modal
+            ? <AppModal
+              heading="Save Preset"
+              containerId={presetRootId}
+              onClose={closeModal}
+            >
+              <PresetForm />
+            </AppModal>
+            : null
+          }
         </FormRow>
       </SHeader>
     );
@@ -76,17 +99,17 @@ class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponen
 
 const mapStateToProps = (state: any) => ({
   gradientsAmount: gradientsAmount(state),
+  modal: appSelectors.modal(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
   addGradient: editorActions.addGradient,
   deleteAllGradients: editorActions.deleteAllGradients,
   openModal: appActions.openModal,
+  closeModal: appActions.closeModal,
 }, dispatch);
 
 export const SettingsHeader = connect(
   mapStateToProps,
   mapDispatchToProps,
-  null,
-  { pure: true },
 )(SettingsHeaderComponent);

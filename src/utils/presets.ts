@@ -10,5 +10,5 @@ export const loadPresets = (): Preset[] => {
   return [];
 };
 
-export const savePreset = (gradients: Gradient[]) =>
-  localStorage.setItem(nanoid(), JSON.stringify(gradients));
+export const savePreset = (preset: Preset) =>
+  localStorage.setItem(nanoid(), JSON.stringify(preset));

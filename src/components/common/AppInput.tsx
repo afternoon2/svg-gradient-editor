@@ -1,61 +1,72 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from '../../styles/styledComponents';
-import { TextInput } from './TextInput';
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { placeholder } from 'polished';
 
-type AppInputWrapperProps = {
-  width: string;
-  disabled?: boolean;
-};
-
-const AppInputWrapper = styled.div<AppInputWrapperProps>`
-  width: ${props => props.width || '100%'};
-  height: 35px;
+const AppInputWrapper = styled.div`
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
   display: flex;
-  align-items: center;
-  position: relative;
-  transition: 120ms all ease-in-out;
-  .AppInputIcon {
-    position: absolute;
-    right: .5em;
-    z-index: 2;
-    color: ${props => props.theme.colors.text};
-    margin-left: .5em;
-    background-color: ${props => props.theme.colors.main_400};
-    opacity: ${props => props.disabled ? 0.5 : 1};
+  flex-direction: column;
+`;
+
+const WrapperInput = styled.input<{ error: boolean }>`
+  box-sizing: border-box;
+  padding: .5em;
+  width: 100%;
+  height: 35px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid ${props => props.theme.colors.main_400};
+  outline: none;
+  background-color: ${props => props.theme.colors.main_300};
+  color: ${props => props.theme.colors.text};
+  border-bottom: ${props => props.error ? `2px solid ${props.theme.colors.danger}px` : null};
+  &:focus {
+    outline: none;
   }
 `;
 
-export type AppInputProps = {
-  width: string;
-  placeholder: string;
-  disabled: boolean;
-  icon?: string;
-  title?: string;
-  className?: string;
-  onChange?: (event: React.ChangeEvent) => void;
-  onKeyDown?: (event: React.KeyboardEvent) => void;
+const WrapperMessage = styled.span`
+  width: 100%;
+  height: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding-top: 5px;
+  color: ${props => props.theme.colors.danger};
+`;
+
+type AppInputProps = {
+  placeholder: string,
+  errorMessage: string,
+  error: boolean,
+  value?: string,
+  onChange?: (event: React.ChangeEvent) => void,
+  onKeyDown?: (event: React.KeyboardEvent) => void, 
 };
 
 export const AppInput = (props: AppInputProps) => {
+  const {
+    placeholder,
+    value,
+    onChange,
+    onKeyDown,
+    error,
+    errorMessage,
+  } = props;
   return (
-    <AppInputWrapper
-      width={props.width}
-      disabled={props.disabled}
-      className={props.className}
-    >
-      <TextInput
-        placeholder={props.placeholder}
-        disabled={props.disabled}
-        onChange={props.onChange}
-        onKeyDown={props.onKeyDown}
-        title={props.title}
+    <AppInputWrapper>
+      <WrapperInput
+        error={error}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
       />
-      <FontAwesomeIcon 
-        className="AppInputIcon"
-        icon={(props.icon as IconProp)}
-      />
+      <WrapperMessage>
+        {error ? errorMessage : null}
+      </WrapperMessage>
     </AppInputWrapper>
   );
 };

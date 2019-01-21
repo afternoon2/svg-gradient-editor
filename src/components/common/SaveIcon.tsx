@@ -6,7 +6,7 @@ const SIWrapper = styled.a`
   position: absolute;
   bottom: .5em;
   right: calc(400px + .5em);
-  z-index: 100;
+  z-index: 2;
   text-decoration: none;
   color: ${props => props.theme.colors.text};
   mix-blend-mode: difference;

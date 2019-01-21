@@ -14,6 +14,7 @@ import {
   faEdit,
   faCode,
   faSave,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { StoreThemeProvider } from './components/layout/StoreThemeProvider';
 import { Editor } from './views/editor/Editor';
@@ -31,6 +32,7 @@ library.add(faTrash);
 library.add(faEdit);
 library.add(faCode);
 library.add(faSave);
+library.add(faTimes);
 
 const App = () => (
   <Provider store={store}>
