@@ -1,16 +1,14 @@
 import nanoid from 'nanoid';
-import { Gradient } from '../store/_types';
+import { Gradient, Preset } from '../store/_types';
 
-export const loadPresets = () => {
-  let presets: Gradient[][] | null = null;
-  const currentValues: string[] = Object.values(localStorage);
-  if (currentValues.length > 0) {
-    try {
-      presets = currentValues.map((value: string): Gradient[] => JSON.parse(value));
-    } catch (err) {}
+export const loadPresets = (): Preset[] => {
+  const itemsInStorage: string[] = Object.values(localStorage);
+  if (itemsInStorage.length > 0) {
+    return itemsInStorage
+      .map((item: string): Preset => JSON.parse(item));
   }
-  return presets;
+  return [];
 };
 
-export const savePreset = (preset: Gradient[]) =>
-  localStorage.setItem(nanoid(), JSON.stringify(preset));
+export const savePreset = (gradients: Gradient[]) =>
+  localStorage.setItem(nanoid(), JSON.stringify(gradients));
