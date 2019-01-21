@@ -8,3 +8,13 @@ export const selectPreset = createAction(
   '@application/SELECT_PRESET', (resolve) =>
     (selectedPreset: number) => resolve(selectedPreset)
 );
+
+export const openModal = createAction(
+  '@application/OPEN_MODAL', (resolve) =>
+    () => resolve()
+);
+
+export const closeModal = createAction(
+  '@application/CLOSE_MODAL', (resolve) =>
+    () => resolve()
+);

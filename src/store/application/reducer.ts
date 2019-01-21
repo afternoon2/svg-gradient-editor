@@ -7,6 +7,7 @@ export type ApplicationReducer = {
   theme: 'dark' | 'light',
   presets: Preset[],
   selectedPreset: number | null,
+  modal: boolean,
 };
 
 export type ApplicationAction = ActionType<typeof appActions>;
@@ -15,6 +16,7 @@ export const initialState: ApplicationReducer = {
   theme: 'dark',
   presets: loadPresets(),
   selectedPreset: null,
+  modal: false,
 };
 
 export const application =
@@ -32,6 +34,16 @@ export const application =
         return {
           ...state,
           selectedPreset: action.payload,
+        };
+      case getType(appActions.openModal):
+        return {
+          ...state,
+          modal: true,
+        };
+      case getType(appActions.closeModal):
+        return {
+          ...state,
+          modal: false,
         };
       default:
         return state;
