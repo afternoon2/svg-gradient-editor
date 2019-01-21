@@ -1,11 +1,10 @@
-import { Gradient, Preset } from '../_types';
+import { Gradient } from '../_types';
 import { getType, ActionType } from 'typesafe-actions';
 import * as EditorActions from './actions';
 import * as mutations from './mutations';
 
 export type EditorReducer = {
   gradients: Gradient[],
-  presets: Preset[],
   error: string | null,
 };
 
@@ -13,7 +12,6 @@ export type EditorAction = ActionType<typeof EditorActions>;
 
 const initialState: EditorReducer = {
   gradients: [],
-  presets: [],
   error: null,
 };
 

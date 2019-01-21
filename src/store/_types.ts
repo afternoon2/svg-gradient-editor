@@ -51,9 +51,3 @@ export type Gradient = {
   colors: InputColor[],
   output: OutputColor[],
 };
-
-export type Preset = {
-  id: string,
-  name: string,
-  content: Gradient[],
-};

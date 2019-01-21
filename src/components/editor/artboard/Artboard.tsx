@@ -12,18 +12,20 @@ const ArtboardSVG = styled.svg`
 `;
 
 const Artboard = () => {
+  
   const svg = React.useRef(null);
   const download = () => {
     if (svg) {
       // @ts-ignore
       const content: string = svg.current.outerHTML;
-      const file: Blob = new Blob([content], {
+      const file = new Blob([content], {
         type: 'text/plain;charset=utf-8',
       });
       // @ts-ignore
       saveAs(file, 'gradient.svg');
     }
   };
+
   return (
     <React.Fragment>
       <ArtboardSVG ref={svg}>
