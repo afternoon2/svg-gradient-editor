@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../styles/styledComponents';
+import { mediaMixin } from '../../styles/mixins';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SIWrapper = styled.a`
@@ -10,6 +11,15 @@ const SIWrapper = styled.a`
   text-decoration: none;
   color: ${props => props.theme.colors.text};
   mix-blend-mode: difference;
+  ${props => mediaMixin(props.theme, {
+    sm: `
+      right: .5em;
+      bottom: calc(280px + 0.5em);
+    `,
+    md: `
+      bottom: .5em;
+    `,
+  })}
   &:hover {
     cursor: pointer;
   }
