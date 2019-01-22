@@ -1,5 +1,11 @@
 import { createAction } from 'typesafe-actions';
 import * as payloads from './_payloads';
+import { Gradient } from '../_types';
+
+export const loadGradients = createAction(
+  '@editor/LOAD_GRADIENTS', (resolve) =>
+    (gradients: Gradient[]) => resolve(gradients)
+);
 
 export const addGradient = createAction(
   '@editor/ADD_GRADIENT', (resolve) =>

@@ -1,5 +1,5 @@
 import nanoid from 'nanoid';
-import { Gradient, Preset } from '../store/_types';
+import { Preset } from '../store/_types';
 
 export const loadPresets = (): Preset[] => {
   const itemsInStorage: string[] = Object.values(localStorage);

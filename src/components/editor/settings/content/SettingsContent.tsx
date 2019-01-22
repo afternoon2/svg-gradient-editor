@@ -36,6 +36,8 @@ class SettingsContentComponent extends React.Component<SettingsContentComponentP
     }
     return false;
   }
+
+
 }
 
 const mapStateToProps = (state: any) => ({

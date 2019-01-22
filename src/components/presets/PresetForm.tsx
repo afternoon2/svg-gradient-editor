@@ -27,7 +27,6 @@ export const PresetFormComponent = (props: PresetFormComponentProps) => {
   const typeHandler = (event: React.ChangeEvent) => {
     const newName: string = (event.target as HTMLInputElement).value;
     setPresetName(newName);
-    console.log(isDuplicatedName(newName));
     if (isDuplicatedName(newName)) {
       setError(true);
     } else {

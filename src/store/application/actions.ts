@@ -6,7 +6,7 @@ export const setTheme = createAction('@application/SET_THEME', (resolve) => {
 
 export const selectPreset = createAction(
   '@application/SELECT_PRESET', (resolve) =>
-    (selectedPreset: number) => resolve(selectedPreset)
+    (selectedPreset: string) => resolve(selectedPreset)
 );
 
 export const openModal = createAction(

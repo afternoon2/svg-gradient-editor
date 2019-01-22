@@ -3,6 +3,17 @@ import { EditorReducer } from './reducer';
 import { gradient } from '../../utils/gradient';
 import * as helpers from './helpers';
 import * as payloads from './_payloads';
+import { Gradient } from '../_types';
+
+export const loadGradients = (state: EditorReducer, payload: Gradient[]): EditorReducer =>
+  update(
+    state,
+    {
+      gradients: {
+        $set: payload,
+      },
+    },
+  );
 
 export const addGradient = (state: EditorReducer, payload: string): EditorReducer =>
   update(

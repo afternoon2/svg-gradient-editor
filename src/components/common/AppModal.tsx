@@ -19,12 +19,10 @@ const AppModalWrapper = styled.div`
   ${props => mediaMixin(props.theme, {
     sm: `
       width: 80%;
-      height: 65vh;
       left: 10%;
     `,
     md: `
       width: 500px;
-      height: 50vh;
       left: calc(50% - 250px);
     `,
   })}

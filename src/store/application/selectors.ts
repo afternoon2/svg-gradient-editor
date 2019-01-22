@@ -5,3 +5,6 @@ export const modal = (state: any): boolean =>
 
 export const presetList = (state: any): Preset[] =>
   state.application.presets;
+
+export const selectedPreset = (state: any): string =>
+  state.application.selectedPreset;

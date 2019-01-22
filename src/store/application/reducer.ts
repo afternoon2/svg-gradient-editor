@@ -6,7 +6,7 @@ import { loadPresets } from '../../utils/presets';
 export type ApplicationReducer = {
   theme: 'dark' | 'light',
   presets: Preset[],
-  selectedPreset: number | null,
+  selectedPreset: string | undefined,
   modal: boolean,
 };
 
@@ -15,7 +15,7 @@ export type ApplicationAction = ActionType<typeof appActions>;
 export const initialState: ApplicationReducer = {
   theme: 'dark',
   presets: loadPresets(),
-  selectedPreset: null,
+  selectedPreset: undefined,
   modal: false,
 };
 
