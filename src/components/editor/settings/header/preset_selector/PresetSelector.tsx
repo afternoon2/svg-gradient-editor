@@ -20,7 +20,7 @@ const PresetSelectorComponent = (props: PresetSelectorComponentProps) => {
     <FormSelect
       label="Preset"
       options={mapPresets(presets)}
-      value={selected}
+      value={selected || 'default'}
       onChange={(event: React.ChangeEvent) => selectPreset(
         (event.target as HTMLSelectElement).value)
       }

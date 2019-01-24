@@ -2,15 +2,15 @@ import { createAction } from 'typesafe-actions';
 import * as payloads from './_payloads';
 import { Gradient } from '../_types';
 
-export const loadGradients = createAction(
-  '@editor/LOAD_GRADIENTS', (resolve) =>
-    (gradients: Gradient[]) => resolve(gradients)
-);
-
 export const addGradient = createAction(
   '@editor/ADD_GRADIENT', (resolve) =>
     (id: string) => resolve(id)
   );
+
+export const addPredefinedGradient = createAction(
+  '@editor/ADD_PREDEFINED_GRADIENT', (resolve) =>
+    (payload: Gradient) => resolve(payload)
+);
 
 export const deleteGradient = createAction(
   '@editor/DELETE_GRADIENT', (resolve) =>

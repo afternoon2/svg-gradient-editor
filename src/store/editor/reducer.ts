@@ -22,6 +22,8 @@ export const editor = (
   switch (action.type) {
     case getType(EditorActions.addGradient):
       return mutations.addGradient(state, action.payload);
+    case getType(EditorActions.addPredefinedGradient):
+      return mutations.addPredefinedGradient(state, action.payload);
     case getType(EditorActions.deleteGradient):
       return mutations.deleteGradient(state, action.payload);
     case getType(EditorActions.addColor):
@@ -48,8 +50,6 @@ export const editor = (
       return mutations.computeChromaColors(state, action.payload);
     case getType(EditorActions.deleteAllGradients):
       return mutations.deleteAllGradients(state);
-    case getType(EditorActions.loadGradients):
-      return mutations.loadGradients(state, action.payload);
     default:
       return state;
   }

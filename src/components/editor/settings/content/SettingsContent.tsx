@@ -8,7 +8,7 @@ type SettingsContentComponentProps = {
   idList: string[],
 };
 
-class SettingsContentComponent extends React.Component<SettingsContentComponentProps> {
+class SettingsContentComponent extends React.PureComponent<SettingsContentComponentProps> {
   public render(): React.ReactNode {
     return (
       <SContent>
@@ -29,15 +29,6 @@ class SettingsContentComponent extends React.Component<SettingsContentComponentP
         />
       ));
   }
-
-  public shouldComponentUpdate(nextProps: SettingsContentComponentProps, nextState: any) {
-    if (nextProps.idList.length !== this.props.idList.length) {
-      return true;
-    }
-    return false;
-  }
-
-
 }
 
 const mapStateToProps = (state: any) => ({
@@ -47,6 +38,4 @@ const mapStateToProps = (state: any) => ({
 export const SettingsContent = connect(
   mapStateToProps,
   null,
-  null,
-  { pure: false },
 )(SettingsContentComponent);

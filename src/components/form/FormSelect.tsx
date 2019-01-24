@@ -56,7 +56,6 @@ export const FormSelect = (props: FormSelectProps) => {
       <FSelect
         value={value}
         onChange={onChange}
-        defaultValue={placeholder ? 'default' : undefined}
         disabled={disabled}
       >
         {

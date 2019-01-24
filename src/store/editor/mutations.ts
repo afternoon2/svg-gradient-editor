@@ -5,22 +5,22 @@ import * as helpers from './helpers';
 import * as payloads from './_payloads';
 import { Gradient } from '../_types';
 
-export const loadGradients = (state: EditorReducer, payload: Gradient[]): EditorReducer =>
-  update(
-    state,
-    {
-      gradients: {
-        $set: payload,
-      },
-    },
-  );
-
 export const addGradient = (state: EditorReducer, payload: string): EditorReducer =>
   update(
     state,
     {
       gradients: {
         $push: [helpers.createGradient(payload)],
+      },
+    },
+  );
+
+export const addPredefinedGradient = (state: EditorReducer, payload: Gradient): EditorReducer =>
+  update(
+    state,
+    {
+      gradients: {
+        $push: [payload],
       },
     },
   );
