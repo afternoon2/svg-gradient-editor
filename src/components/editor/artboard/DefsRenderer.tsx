@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import nanoid from 'nanoid';
 import { gradients } from '../../../store/editor/selectors';
 import { Gradient, OutputColor, InputColor, RadialGradientAttributes } from '../../../store/_types';
+import { FiltersRenderer } from './FiltersRenderer';
 
 const SVGGradient = (props: { gradient: Gradient }): JSX.Element => {
   const renderStops = () => {
@@ -74,6 +75,7 @@ const DefsRendererComponent = (props: DefsRendererProps) => {
           gradient={gradient}
         />
       ))}
+      <FiltersRenderer />
     </defs>
   );
 };

@@ -4,6 +4,7 @@ import { gradient } from '../../utils/gradient';
 import * as helpers from './helpers';
 import * as payloads from './_payloads';
 import { Gradient } from '../_types';
+import { BlendMode } from 'csstype';
 
 export const addGradient = (state: EditorReducer, payload: string): EditorReducer =>
   update(
@@ -232,6 +233,16 @@ export const deleteAllGradients = (state: EditorReducer): EditorReducer =>
     {
       gradients: {
         $set: [],
+      },
+    },
+  );
+
+export const setBlendMode = (state: EditorReducer, payload: BlendMode): EditorReducer =>
+  update(
+    state,
+    {
+      blendMode: {
+        $set: payload,
       },
     },
   );

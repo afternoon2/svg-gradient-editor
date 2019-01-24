@@ -14,6 +14,7 @@ import * as appSelectors from '../../../../store/application/selectors';
 import { gradientsAmount } from '../../../../store/editor/selectors';
 import { PresetForm } from '../../../presets/PresetForm';
 import { PresetSelector } from './preset_selector/PresetSelector';
+import { BlendModeSelector } from './blend_mode_selector/BlendModeSelector';
 
 export type SettingsHeaderComponentProps = {
   addGradient: (id: string) => void,
@@ -95,6 +96,9 @@ class SettingsHeaderComponent extends React.PureComponent<SettingsHeaderComponen
         </FormRow>
         <FormRow>
           <PresetSelector />
+        </FormRow>
+        <FormRow>
+          <BlendModeSelector />
         </FormRow>
       </SHeader>
     );

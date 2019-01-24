@@ -1,6 +1,6 @@
 import { createAction } from 'typesafe-actions';
 import * as payloads from './_payloads';
-import { Gradient } from '../_types';
+import { Gradient, BlendMode } from '../_types';
 
 export const addGradient = createAction(
   '@editor/ADD_GRADIENT', (resolve) =>
@@ -75,4 +75,8 @@ export const computeChromaColors = createAction(
 export const deleteAllGradients = createAction(
   '@editor/DELETE_ALL_GRADIENTS', (resolve) =>
     () => resolve(), 
+);
+export const setBlendMode = createAction(
+  '@editor/SET_BLEND_MODE', (resolve) =>
+    (payload: BlendMode) => resolve(payload)
 );

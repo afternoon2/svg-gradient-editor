@@ -9,7 +9,7 @@ export type FiguresRendererProps = {
 
 const FiguresRendererComponent = (props: FiguresRendererProps): JSX.Element => {
   return (
-    <g>
+    <g filter="url(#blendMode)">
       {
         props.gradients.map(
           (gradient: string) => {

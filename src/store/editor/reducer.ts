@@ -1,18 +1,18 @@
-import { Gradient } from '../_types';
+import { Gradient, BlendMode } from '../_types';
 import { getType, ActionType } from 'typesafe-actions';
 import * as EditorActions from './actions';
 import * as mutations from './mutations';
 
 export type EditorReducer = {
   gradients: Gradient[],
-  error: string | null,
+  blendMode: BlendMode,
 };
 
 export type EditorAction = ActionType<typeof EditorActions>;
 
 const initialState: EditorReducer = {
   gradients: [],
-  error: null,
+  blendMode: 'normal',
 };
 
 export const editor = (
@@ -50,6 +50,8 @@ export const editor = (
       return mutations.computeChromaColors(state, action.payload);
     case getType(EditorActions.deleteAllGradients):
       return mutations.deleteAllGradients(state);
+    case getType(EditorActions.setBlendMode):
+      return mutations.setBlendMode(state, action.payload);
     default:
       return state;
   }

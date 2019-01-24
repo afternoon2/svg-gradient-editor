@@ -1,4 +1,4 @@
-import { Gradient, InputColor, LinearGradientAttributes, RadialGradientAttributes, ChromaAttributes } from '../_types';
+import { Gradient, InputColor, LinearGradientAttributes, RadialGradientAttributes, ChromaAttributes, BlendMode } from '../_types';
 
 export const gradients = (state: any): Gradient[] =>
   state.editor.gradients;
@@ -45,3 +45,6 @@ export const attributesOf = (state: any, id: string): LinearGradientAttributes |
 
 export const chromaAttributesOf = (state: any, id: string): ChromaAttributes =>
   fromGradients(state, id).chroma;
+
+export const blendMode = (state: any): BlendMode =>
+  state.editor.blendMode;
