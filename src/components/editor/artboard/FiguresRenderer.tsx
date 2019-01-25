@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { idList } from '../../../store/editor/selectors';
+import { idList, localBlendModes, localBlendModesIds } from '../../../store/editor/selectors';
+import { BlendMode } from '../../../store/_types';
 import nanoid from 'nanoid';
 
 export type FiguresRendererProps = {
   gradients: string[],
+  blendModeIds: string[],
 };
 
 const FiguresRendererComponent = (props: FiguresRendererProps): JSX.Element => {
@@ -23,6 +25,7 @@ const FiguresRendererComponent = (props: FiguresRendererProps): JSX.Element => {
                 width="100%"
                 height="100%"
                 fill={`url(#${gradient})`}
+                filter={`url(#${props.blendModeIds[props.gradients.indexOf(gradient)]})`}
               />
             )
           },
@@ -34,9 +37,10 @@ const FiguresRendererComponent = (props: FiguresRendererProps): JSX.Element => {
 
 const mapStateToProps = (state: any) => ({
   gradients: idList(state),
+  blendModeIds: localBlendModesIds(state),
 });
 
 export const FiguresRenderer = connect(
   mapStateToProps,
   null,
-)(FiguresRendererComponent);
+)(FiguresRendererComponent as React.ComponentType);

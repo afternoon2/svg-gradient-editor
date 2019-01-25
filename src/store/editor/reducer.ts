@@ -50,8 +50,10 @@ export const editor = (
       return mutations.computeChromaColors(state, action.payload);
     case getType(EditorActions.deleteAllGradients):
       return mutations.deleteAllGradients(state);
-    case getType(EditorActions.setBlendMode):
-      return mutations.setBlendMode(state, action.payload);
+    case getType(EditorActions.setGlobalBlendMode):
+      return mutations.setGlobalBlendMode(state, action.payload);
+    case getType(EditorActions.setLocalBlendMode):
+      return mutations.setLocalBlendMode(state, action.payload);
     default:
       return state;
   }

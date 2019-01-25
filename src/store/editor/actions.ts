@@ -76,7 +76,12 @@ export const deleteAllGradients = createAction(
   '@editor/DELETE_ALL_GRADIENTS', (resolve) =>
     () => resolve(), 
 );
-export const setBlendMode = createAction(
-  '@editor/SET_BLEND_MODE', (resolve) =>
+export const setGlobalBlendMode = createAction(
+  '@editor/SET_GLOBAL_BLEND_MODE', (resolve) =>
     (payload: BlendMode) => resolve(payload)
+);
+
+export const setLocalBlendMode = createAction(
+  '@editor/SET_LOCAL_BLEND_MODE', (resolve) =>
+    (payload: payloads.LocalBlendModePayload) => resolve(payload)
 );

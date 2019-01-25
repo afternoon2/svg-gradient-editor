@@ -3,6 +3,7 @@ import {
   RadialGradientAttributes,
   ColorMode,
   ColorInterpolation,
+  BlendMode,
 } from "../_types";
 
 export type ColorPayload = {
@@ -33,4 +34,9 @@ export type ChromaEditionPayload = {
   id: string,
   attribute: 'interpolation' | 'mode' | 'lightnessCorrection' | 'samples',
   value: ColorInterpolation | (ColorMode) | boolean | number,
+};
+
+export type LocalBlendModePayload = {
+  id: string,
+  blendMode: BlendMode,
 };

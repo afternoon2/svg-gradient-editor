@@ -4,11 +4,11 @@ import { Dispatch, bindActionCreators } from 'redux';
 import { BlendMode } from '../../../../../store/_types';
 import { FormSelect } from '../../../../form/FormSelect';
 import { blendMode } from '../../../../../store/editor/selectors';
-import { setBlendMode } from '../../../../../store/editor/actions';
+import { setGlobalBlendMode } from '../../../../../store/editor/actions';
 
 export type BlendModeSelectorComponentProps = {
   blendMode: BlendMode,
-  setBlendMode: (mode: BlendMode) => void,
+  setGlobalBlendMode: (mode: BlendMode) => void,
 };
 
 const BlendModeSelectorComponent = (props: BlendModeSelectorComponentProps) => {
@@ -30,13 +30,13 @@ const BlendModeSelectorComponent = (props: BlendModeSelectorComponentProps) => {
     'color',
     'luminosity'
   ]);
-  const { blendMode, setBlendMode } = props;
+  const { blendMode, setGlobalBlendMode } = props;
   return (
     <FormSelect
       label="Global blend mode"
       options={modes}
       value={blendMode}
-      onChange={(event: React.ChangeEvent) => setBlendMode(
+      onChange={(event: React.ChangeEvent) => setGlobalBlendMode(
         (event.target as HTMLSelectElement).value as BlendMode)
       }
       placeholder="Select preset"
@@ -49,7 +49,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
-  setBlendMode,
+  setGlobalBlendMode,
 }, dispatch);
 
 export const BlendModeSelector = connect(

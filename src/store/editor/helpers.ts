@@ -1,9 +1,14 @@
+import nanoid from 'nanoid';
 import { Gradient, InputColor } from "../_types";
 import { EditorReducer } from "./reducer";
 
 export const createGradient = (id: string): Gradient => ({
   id,
   type: 'linear',
+  blendMode: {
+    id: nanoid(),
+    mode: 'normal',
+  },
   focalPoints: false,
   useChroma: false,
   attributes: {

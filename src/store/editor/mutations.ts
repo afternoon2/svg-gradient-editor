@@ -237,7 +237,7 @@ export const deleteAllGradients = (state: EditorReducer): EditorReducer =>
     },
   );
 
-export const setBlendMode = (state: EditorReducer, payload: BlendMode): EditorReducer =>
+export const setGlobalBlendMode = (state: EditorReducer, payload: BlendMode): EditorReducer =>
   update(
     state,
     {
@@ -246,3 +246,24 @@ export const setBlendMode = (state: EditorReducer, payload: BlendMode): EditorRe
       },
     },
   );
+
+export const setLocalBlendMode = (
+  state: EditorReducer,
+  payload: payloads.LocalBlendModePayload
+): EditorReducer => {
+  const targetIndex = helpers.getGradientIndex(state, payload.id);
+  return update(
+    state,
+    {
+      gradients: {
+        [targetIndex]: {
+          blendMode: {
+            mode: {
+              $set: payload.blendMode,
+            },
+          },
+        },
+      },
+    },
+  );
+};

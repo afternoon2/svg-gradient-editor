@@ -4,6 +4,7 @@ import { typeofGradient } from '../../../../../../store/editor/selectors';
 import { FormFieldset } from '../../../../../form/FormFieldset';
 import { GradientType } from './type/GradientType';
 import { FocalPoints } from './focal_points/FocalPoints';
+import { BlendModeSelector } from './blend_mode/BlendModeSelector';
 
 type PropertiesComponentProps = {
   id: string,
@@ -15,6 +16,7 @@ const PropertiesComponent = (props: PropertiesComponentProps) => {
   return (
     <FormFieldset legend="Properties">
       <GradientType id={id} />
+      <BlendModeSelector id={id} />
       {
         type === 'radial'
         ? <FocalPoints id={id} />

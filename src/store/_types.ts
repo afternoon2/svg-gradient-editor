@@ -44,6 +44,7 @@ export type OutputColor = {
 export type Gradient = {
   id: string,
   type: 'linear' | 'radial',
+  blendMode: BlendModeObject,
   focalPoints: boolean,
   useChroma: boolean,
   attributes: LinearGradientAttributes | RadialGradientAttributes,
@@ -55,6 +56,11 @@ export type Gradient = {
 export type Preset = {
   name: string,
   value: Gradient[],
+};
+
+export type BlendModeObject = {
+  id: string,
+  mode: BlendMode,
 };
 
 export type BlendMode =

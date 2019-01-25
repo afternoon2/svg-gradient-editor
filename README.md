@@ -12,3 +12,8 @@ Create
 Save as:
 - a preset object in local storage
 - a svg file on your computer
+
+## Installation and starting in local environment
+
+- `yarn install`
+- `yarn start`
