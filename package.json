@@ -38,7 +38,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "commit": "git cz"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -50,6 +51,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@types/chroma-js": "^1.4.1",
     "@types/file-saver": "^2.0.0",
     "@types/history": "^4.7.2",
@@ -60,6 +63,19 @@
     "@types/react-redux": "^6.0.10",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^4.1.2",
+    "commitlint-config-gitmoji": "^1.0.1",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.1.0",
     "typesafe-actions": "^2.0.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
