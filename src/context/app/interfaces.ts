@@ -1,7 +1,9 @@
 import { Dispatch } from 'react';
 
+export type AppThemeType = 'dark' | 'light';
+
 export interface AppState {
-  theme: 'dark' | 'light';
+  theme: AppThemeType;
 }
 
 export interface AppAction {
