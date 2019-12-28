@@ -2,8 +2,6 @@
 
 Create, save and download SVG gradients
 
-![screen](./demo/demo.gif)
-
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 Create
