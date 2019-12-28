@@ -1,9 +1,5 @@
 import * as React from 'react';
 
-const App = () => (
-  <div>
-    Work in progress
-  </div>
-);
+const App: React.FC = () => <div>Work in progress</div>;
 
 export { App };

@@ -31,10 +31,9 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "commit": "git cz"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "commit": "git cz",
+    "lint": "eslint -c .eslintrc.js src/**/*.{ts,tsx}",
+    "lint:fix": "eslint -c .eslintrc.js src/**/*.{ts,tsx} --fix"
   },
   "browserslist": [
     ">0.2%",
@@ -51,8 +50,13 @@
     "@types/react-color": "^3.0.1",
     "@types/react-numeric-input": "^2.2.3",
     "@types/styled-components": "^4.4.1",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
     "cz-conventional-changelog": "^3.0.2",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
+    "prettier": "^1.19.1",
     "typesafe-actions": "^5.1.0"
   },
   "config": {
@@ -62,6 +66,7 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "yarn lint:fix",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
