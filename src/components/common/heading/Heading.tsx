@@ -17,8 +17,9 @@ const hS: { [key: string]: number } = {
 };
 
 const headingStyles = (theme: AppTheme, headingLevel: number): string => `
-  color: ${theme.textPrimary};
+  color: ${theme.colors.textPrimary};
   font-size: ${modularScale(hS[headingLevel])};
+  font-family: ${theme.font};
 `;
 
 const Heading1 = styled.h1`
