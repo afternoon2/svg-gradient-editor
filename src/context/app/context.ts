@@ -2,7 +2,7 @@ import { AppContextValue, AppState } from './interfaces';
 import { createContext } from 'react';
 
 export const appInitialState: AppState = {
-  theme: 'light',
+  theme: 'dark',
 };
 
 export default createContext<AppContextValue>({
