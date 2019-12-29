@@ -1,6 +1,5 @@
+import { FigureShape } from './types';
 import { Dispatch } from 'react';
-
-export type FigureShape = 'rect' | 'circle' | 'ellipse' | 'polygon';
 
 export interface FigureRectAttributes {
   x: number;
@@ -28,25 +27,26 @@ export interface Figure {
   attributes: FigureRectAttributes | FigureCircleAttributes | FigureEllipseAttributes;
   filter?: string;
   gradients: string[];
-  id: string;
+  readonly id: string;
   shape: FigureShape;
 }
 
-export interface FigureRegistry {
+export interface FiguresState {
   [key: string]: Figure;
 }
 
-export interface FigureBarState {
-  shape: FigureShape;
-  figures: FigureRegistry;
+export interface FigureMovePayload {
+  id: string;
+  newIndex: number;
+  oldIndex: number;
+};
+
+export interface FiguresAction {
+  type: 'ADD_FIGURE' | 'REMOVE_FIGURE' | 'MOVE_FIGURE';
+  payload: string | Figure | FigureMovePayload;
 }
 
-export interface FigureBarAction {
-  type: 'SET_SHAPE' | 'SET_FIGURES';
-  payload: FigureShape | FigureRegistry;
-}
-
-export interface FigureBarContextValue {
-  state: FigureBarState;
-  dispatch: Dispatch<FigureBarAction>;
+export interface FiguresContextValue {
+  state: FiguresState;
+  dispatch: Dispatch<FiguresAction>;
 }
