@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text If it matches the snapshot 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  font-family: ",
+          [Function],
+          ";
+  font-size: ",
+          [Function],
+          ";
+  font-weight: ",
+          [Function],
+          ";
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+",
+        ],
+      },
+      "displayName": "styled.span",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "span",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+  size="small"
+>
+  Lorem non adipisicing amet exercitation ipsum id occaecat dolore occaecat.
+</StyledComponent>
+`;

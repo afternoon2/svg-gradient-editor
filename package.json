@@ -62,6 +62,7 @@
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
+    "jest-styled-components": "^6.3.4",
     "prettier": "^1.19.1",
     "typesafe-actions": "^5.1.0"
   },
