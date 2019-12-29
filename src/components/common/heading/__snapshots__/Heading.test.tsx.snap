@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading If it matches snapshot with invalid level prop 1`] = `
+<styled.h1>
+  Duis reprehenderit amet
+</styled.h1>
+`;
+
+exports[`Heading If it matches snapshot with valid level prop 1`] = `
+<styled.h3>
+  Duis reprehenderit amet
+</styled.h3>
+`;

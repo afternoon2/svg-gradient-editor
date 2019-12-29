@@ -14,6 +14,8 @@ module.exports = {
     }
   },
   rules: {
+    '@typescript-eslint/ban-ts-ignore': 0,
+    '@typescript-eslint/no-explicit-any': 0,
   },
   settings: {
     react: {
