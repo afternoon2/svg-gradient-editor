@@ -6,7 +6,8 @@ exports[`IconRadio If it matches the snapshot 1`] = `
 >
   <FontAwesomeIcon
     border={false}
-    className="icon"
+    className=""
+    color=""
     fixedWidth={false}
     flip={null}
     icon={
@@ -39,7 +40,7 @@ exports[`IconRadio If it matches the snapshot 1`] = `
     checked={false}
     id="id"
     name="name"
-    onChange={[MockFunction]}
+    onChange={[Function]}
     type="radio"
     value="icon-radio"
   />
