@@ -5,7 +5,8 @@ import Container from 'components/common/container';
 import GlobalStyle from 'components/theme/globalStyle';
 import FiguresState from 'components/states/figures';
 import ToolbarState from 'components/states/toolbar';
-import Toolbar from 'components/smart/toolbar/Toolbar';
+import Toolbar from 'components/smart/toolbar';
+import Figures from 'components/smart/figures';
 
 const App: React.FC = () => (
   <AppState>
@@ -15,6 +16,7 @@ const App: React.FC = () => (
           <GlobalStyle />
           <Container>
             <Toolbar />
+            <Figures />
           </Container>
         </FiguresState>
       </ToolbarState>

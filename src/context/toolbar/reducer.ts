@@ -3,8 +3,8 @@ import * as mutations from './mutations';
 import { ToolType, ToolName } from './types';
 
 export const initialToolbarState: ToolbarState = {
-  selectedToolType: 'shape',
-  selectedToolName: 'rect',
+  selectedToolType: 'move',
+  selectedToolName: 'select',
 };
 
 const toolbarReducer = (state: ToolbarState, { type, payload }: ToolbarAction): ToolbarState => {

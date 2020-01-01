@@ -20,6 +20,7 @@ const headingStyles = (theme: AppTheme, headingLevel: number): string => `
   color: ${theme.colors.textPrimary};
   font-size: ${modularScale(hS[headingLevel])};
   font-family: ${theme.font};
+  font-weight: ${theme.weight.bold};
 `;
 
 const Heading1 = styled.h1`
