@@ -6,10 +6,11 @@ import IconRadio from 'components/common/icon-radio';
 import { StyledNav, StyledTools } from './Toolbar.styled';
 import { ToolName } from 'context/toolbar/types';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
+import Separator from 'components/common/separator';
 
 const Toolbar: React.FC = () => {
   const FORM_NAME = 'selectedTool';
-  const RADIO_SIZE: SizeProp = '2x';
+  const RADIO_SIZE: SizeProp = 'lg';
   const {
     state: { selectedToolName },
     dispatch,
@@ -42,6 +43,7 @@ const Toolbar: React.FC = () => {
           value="select"
           onChange={handleChange}
         />
+        <Separator width="1px" height="30px" />
         <IconRadio
           checked={localSelectedName === 'rect'}
           icon={faSquare}
