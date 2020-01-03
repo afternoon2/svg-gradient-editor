@@ -31,7 +31,7 @@ const themes: ThemesRepository = {
     },
     font,
     weight,
-  }
+  },
 };
 
 export default themes;

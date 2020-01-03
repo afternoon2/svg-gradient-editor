@@ -1,5 +1,5 @@
 import { setLightness } from 'polished';
-import styled from '../../theme/styledComponents';
+import styled from 'styled';
 
 const Container = styled.div`
   position: relative;

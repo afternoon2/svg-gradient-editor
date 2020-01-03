@@ -1,8 +1,8 @@
 import * as React from 'react';
 import AppState from 'components/states/app';
-import Theme from 'components/theme';
+import Theme from 'components/common/theme';
 import Container from 'components/common/container';
-import GlobalStyle from 'components/theme/globalStyle';
+import GlobalStyle from 'components/common/global_style';
 import FiguresState from 'components/states/figures';
 import ToolbarState from 'components/states/toolbar';
 import Toolbar from 'components/smart/toolbar';

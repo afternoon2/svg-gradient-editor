@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from '../../theme/styledComponents';
+import styled from 'styled';
 import { modularScale } from 'polished';
-import { AppTheme } from 'components/theme/interfaces';
+import { AppTheme } from 'themes';
 
 interface Props {
   level: number;

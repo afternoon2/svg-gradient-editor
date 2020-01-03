@@ -1,4 +1,4 @@
-import styled from '../../theme/styledComponents';
+import styled from 'styled';
 import { rgba } from 'polished';
 
 interface Props {

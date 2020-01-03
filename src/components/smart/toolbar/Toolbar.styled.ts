@@ -1,4 +1,4 @@
-import styled from 'components/theme/styledComponents';
+import styled from 'styled';
 
 export const StyledNav = styled.nav`
   width: 100%;

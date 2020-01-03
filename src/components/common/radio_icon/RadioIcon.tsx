@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
-import styled, { ThemeContext } from '../../theme/styledComponents';
+import styled, { ThemeContext } from 'styled';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const StyledLabel = styled.label`
