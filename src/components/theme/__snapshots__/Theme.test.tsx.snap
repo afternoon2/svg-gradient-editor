@@ -5,12 +5,12 @@ exports[`Theme if it matches the snapshot 1`] = `
   theme={
     Object {
       "colors": Object {
-        "background": "#0f0e17",
-        "primary": "#ff8906",
-        "secondary": "#f25f4c",
-        "tertiary": "#e53170",
+        "background": "#16161a",
+        "primary": "#7f5af0",
+        "secondary": "#72757e",
+        "tertiary": "#2cb67d",
         "textPrimary": "#fffffe",
-        "textSecondary": "#a7a9be",
+        "textSecondary": "#94a1b2",
       },
       "font": "Rubik",
       "weight": Object {

@@ -14,7 +14,6 @@ const StyledLabel = styled.label`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: 120ms all ease-in-out;
 `;
 
 const StyledRadio = styled.input.attrs((): { [key: string]: string | Function | boolean } => ({
@@ -35,7 +34,7 @@ interface Props {
   value: string;
 }
 
-const IconButton: React.FC<Props> = ({ checked, onChange, icon, id, size, name, value }) => {
+const RadioIcon: React.FC<Props> = ({ checked, onChange, icon, id, size, name, value }) => {
   const theme = useContext(ThemeContext);
   const handleChange = React.useCallback(() => onChange(value), [onChange, value]);
   const [color, setColor] = React.useState<string>('');
@@ -50,4 +49,4 @@ const IconButton: React.FC<Props> = ({ checked, onChange, icon, id, size, name, 
   );
 };
 
-export default IconButton;
+export default RadioIcon;

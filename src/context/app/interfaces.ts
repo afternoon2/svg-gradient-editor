@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 
-export type AppThemeType = 'dark' | 'light';
+export type AppThemeType = string;
 
 export interface AppState {
   theme: AppThemeType;
@@ -8,7 +8,7 @@ export interface AppState {
 
 export interface AppAction {
   type: 'SET_THEME';
-  payload: 'dark' | 'light';
+  payload: string;
 }
 
 export interface AppContextValue {

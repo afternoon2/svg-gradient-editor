@@ -2,7 +2,7 @@ import React from 'react';
 import { faMousePointer } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faCircle } from '@fortawesome/free-regular-svg-icons';
 import ToolbarContext from '../../../context/toolbar/context';
-import IconRadio from 'components/common/icon-radio';
+import RadioIcon from 'components/common/radio_icon';
 import { StyledNav, StyledTools } from './Toolbar.styled';
 import { ToolName } from 'context/toolbar/types';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
@@ -34,7 +34,7 @@ const Toolbar: React.FC = () => {
   return (
     <StyledNav>
       <StyledTools>
-        <IconRadio
+        <RadioIcon
           checked={localSelectedName === 'select'}
           icon={faMousePointer}
           id="select_tool"
@@ -44,7 +44,7 @@ const Toolbar: React.FC = () => {
           onChange={handleChange}
         />
         <Separator width="1px" height="30px" />
-        <IconRadio
+        <RadioIcon
           checked={localSelectedName === 'rect'}
           icon={faSquare}
           id="rect_tool"
@@ -53,7 +53,7 @@ const Toolbar: React.FC = () => {
           value="rect"
           onChange={handleChange}
         />
-        <IconRadio
+        <RadioIcon
           checked={localSelectedName === 'circle'}
           icon={faCircle}
           id="circle_tool"

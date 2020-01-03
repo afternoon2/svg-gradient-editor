@@ -22,5 +22,5 @@ export interface AppTheme {
 export interface ThemesRepository {
   [key: string]: AppTheme;
   dark: AppTheme;
-  light: AppTheme;
+  gray: AppTheme;
 }

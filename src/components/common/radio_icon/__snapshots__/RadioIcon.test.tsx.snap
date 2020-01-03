@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IconRadio If it matches the snapshot 1`] = `
+exports[`RadioIcon If it matches the snapshot 1`] = `
 <styled.label
   htmlFor="id"
 >

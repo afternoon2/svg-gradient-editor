@@ -20,18 +20,18 @@ const themes: ThemesRepository = {
     font,
     weight,
   },
-  light: {
+  gray: {
     colors: {
-      background: '#fffffe',
-      primary: '#6246ea',
-      secondary: '#d1d1e9',
-      tertiary: '#e45858',
-      textPrimary: '#2b2c34',
-      textSecondary: '#2b2c34',
+      background: '#16161a',
+      primary: '#7f5af0',
+      secondary: '#72757e',
+      tertiary: '#2cb67d',
+      textPrimary: '#fffffe',
+      textSecondary: '#94a1b2',
     },
     font,
     weight,
-  },
+  }
 };
 
 export default themes;
