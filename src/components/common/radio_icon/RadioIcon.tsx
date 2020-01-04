@@ -14,12 +14,17 @@ interface Props {
   value: string;
 }
 
-const RadioIcon: React.FC<Props> = ({ checked, onChange, icon, id, size, name, value }) => {
+const RadioIcon: React.FC<Props> = ({
+  checked, onChange, icon, id, size, name, value,
+}) => {
   const theme = useContext(ThemeContext);
   const handleChange = React.useCallback(() => onChange(value), [onChange, value]);
   const [color, setColor] = React.useState<string>('');
 
-  React.useEffect(() => setColor(checked ? theme.colors.primary : theme.colors.textPrimary), [checked, theme]);
+  React.useEffect(
+    () => setColor(checked ? theme.colors.primary : theme.colors.textPrimary),
+    [checked, theme],
+  );
 
   return (
     <StyledLabel htmlFor={id}>

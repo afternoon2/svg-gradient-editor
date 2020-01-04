@@ -2,9 +2,9 @@ import React from 'react';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
-import { StyledTools } from '../Toolbar.styled';
 import Tooltip from 'components/common/tooltip';
 import LinkIcon from 'components/common/link_icon';
+import { StyledTools } from '../Toolbar.styled';
 import { version } from '../../../../../package.json';
 
 interface Props {

@@ -8,12 +8,12 @@ interface Props {
 }
 
 const hS: { [key: string]: number } = {
-  '1': 4,
-  '2': 3,
-  '3': 2,
-  '4': 1,
-  '5': 0.75,
-  '6': 0.5,
+  1: 4,
+  2: 3,
+  3: 2,
+  4: 1,
+  5: 0.75,
+  6: 0.5,
 };
 
 const headingStyles = (theme: AppTheme, headingLevel: number): string => `

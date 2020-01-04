@@ -1,5 +1,4 @@
 import * as styledComponents from 'styled-components';
-import { ThemedStyledComponentsModule } from 'styled-components';
 import { AppTheme } from 'themes';
 
 const {
@@ -9,8 +8,10 @@ const {
   keyframes,
   ThemeProvider,
   ThemeContext,
-} = styledComponents as ThemedStyledComponentsModule<AppTheme>;
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<AppTheme>;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider, ThemeContext };
+export {
+  css, createGlobalStyle, keyframes, ThemeProvider, ThemeContext,
+};
 
 export default styled;

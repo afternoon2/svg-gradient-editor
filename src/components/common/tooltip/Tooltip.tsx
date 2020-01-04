@@ -9,7 +9,9 @@ interface Props {
   distance?: number;
 }
 
-const Tooltip: React.FC<Props> = ({ children, content, direction, distance = 0 }) => {
+const Tooltip: React.FC<Props> = ({
+  children, content, direction, distance = 0,
+}) => {
   const id: string = nanoid();
 
   const [hidden, setHidden] = React.useState<boolean>(true);
@@ -20,7 +22,7 @@ const Tooltip: React.FC<Props> = ({ children, content, direction, distance = 0 }
   return (
     <StyledWrapper onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {children}
-      <span aria-describedby={id}></span>
+      <span aria-describedby={id} />
       {!hidden && (
         <StyledContent id={id} direction={direction} distance={distance}>
           {content}

@@ -21,7 +21,9 @@ const StyledLink = styled.a`
   background-color: transparent;
 `;
 
-const LinkIcon: React.FC<Props> = ({ icon, onClick, href, size }) => {
+const LinkIcon: React.FC<Props> = ({
+  icon, onClick, href, size,
+}) => {
   const theme = useContext(ThemeContext);
   const [color, setColor] = React.useState<string>('');
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import Separator from '.';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import Separator from '.';
 
 describe('Separator', () => {
   test('Separator with default direction', () => {

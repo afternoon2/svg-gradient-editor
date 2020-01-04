@@ -1,13 +1,13 @@
 import React from 'react';
 import { ToolName } from 'context/toolbar/types';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
-import { StyledTools } from '../Toolbar.styled';
 import Tooltip from 'components/common/tooltip';
 import RadioIcon from 'components/common/radio_icon';
 import { faMousePointer } from '@fortawesome/free-solid-svg-icons';
 import { faCircle, faSquare } from '@fortawesome/free-regular-svg-icons';
 import Separator from 'components/common/separator';
 import ToolbarContext from 'context/toolbar/context';
+import { StyledTools } from '../Toolbar.styled';
 
 interface Props {
   iconSize: SizeProp;

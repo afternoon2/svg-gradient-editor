@@ -1,7 +1,7 @@
-import { appInitialState } from '../../../context/app/context';
-import AppContext from '../../../context/app/context';
-import appReducer from '../../../context/app/reducer';
 import React, { useReducer } from 'react';
+import AppContext, { appInitialState } from '../../../context/app/context';
+
+import appReducer from '../../../context/app/reducer';
 
 const AppState: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, appInitialState);

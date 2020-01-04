@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyledContainer } from './Settings.styled';
 import Heading from 'components/common/heading';
+import { StyledContainer } from './Settings.styled';
 
 const Settings: React.FC = () => (
   <StyledContainer>

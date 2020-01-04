@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyledContainer } from './Figures.styled';
 import Heading from 'components/common/heading';
+import { StyledContainer } from './Figures.styled';
 
 const Figures: React.FC = () => (
   <StyledContainer>

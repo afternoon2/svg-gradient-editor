@@ -31,4 +31,4 @@ const App: React.FC = () => (
   </AppState>
 );
 
-export { App };
+export default App;

@@ -1,7 +1,7 @@
 import React from 'react';
-import AppContext from '../../../context/app/context';
 import { ThemeProvider } from 'styled';
 import themes from 'themes';
+import AppContext from '../../../context/app/context';
 
 const Theme: React.FC = ({ children }) => {
   const {
