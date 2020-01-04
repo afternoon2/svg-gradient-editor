@@ -5,8 +5,8 @@ import Container from 'components/common/container';
 import GlobalStyle from 'components/common/global_style';
 import FiguresState from 'components/states/figures';
 import ToolbarState from 'components/states/toolbar';
-import Toolbar from 'components/smart/toolbar';
-import Figures from 'components/smart/figures';
+import Toolbar from 'components/compound/toolbar';
+import Figures from 'components/compound/figures';
 
 const App: React.FC = () => (
   <AppState>
