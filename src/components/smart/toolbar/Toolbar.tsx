@@ -3,10 +3,11 @@ import { faMousePointer } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faCircle } from '@fortawesome/free-regular-svg-icons';
 import ToolbarContext from '../../../context/toolbar/context';
 import RadioIcon from 'components/common/radio_icon';
-import { StyledNav, StyledTools } from './Toolbar.styled';
+import { StyledTools } from './Toolbar.styled';
 import { ToolName } from 'context/toolbar/types';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import Separator from 'components/common/separator';
+import Header from 'components/common/header';
 
 const Toolbar: React.FC = () => {
   const FORM_NAME = 'selectedTool';
@@ -32,7 +33,7 @@ const Toolbar: React.FC = () => {
   );
 
   return (
-    <StyledNav>
+    <Header>
       <StyledTools>
         <RadioIcon
           checked={localSelectedName === 'select'}
@@ -63,7 +64,7 @@ const Toolbar: React.FC = () => {
           onChange={handleChange}
         />
       </StyledTools>
-    </StyledNav>
+    </Header>
   );
 };
 
