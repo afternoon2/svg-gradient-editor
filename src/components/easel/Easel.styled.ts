@@ -10,3 +10,10 @@ export const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const StyledCanvasContainer = styled.div`
+  width: inherit;
+  height: inherit;
+  overflow: auto;
+  position: relative;
+`;

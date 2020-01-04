@@ -2,6 +2,7 @@
 This document contains development notes for next iteration of the SVG Gradient Editor.
 ## Requirements
 Version 2.0 should offer extended set of features such as:
+- Ability to edit parent `svg` properties such as `width`, `height`, `viewBox` etc. using both mouse-based and input-based ways
 - Ability to put gradients on separate figures (rectangles, ellipses and closed paths)
 - Ability to apply different blend modes between those layers
 - Ability to add, remove and edit them by drag and drop, not only by clicking on the toolbar

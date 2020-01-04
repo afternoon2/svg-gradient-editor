@@ -74,7 +74,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:fix",
+      "pre-commit": "yarn lint:fix && yarn test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
