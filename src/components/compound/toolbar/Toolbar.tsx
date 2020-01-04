@@ -1,5 +1,5 @@
 import React from 'react';
-import { faMousePointer } from '@fortawesome/free-solid-svg-icons';
+import { faMousePointer, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
@@ -10,6 +10,7 @@ import { ToolName } from 'context/toolbar/types';
 import Separator from 'components/common/separator';
 import Tooltip from 'components/common/tooltip';
 import LinkIcon from 'components/common/link_icon';
+import { version } from '../../../../package.json';
 
 const Toolbar: React.FC = () => {
   const FORM_NAME = 'selectedTool';
@@ -73,6 +74,9 @@ const Toolbar: React.FC = () => {
         </Tooltip>
       </StyledTools>
       <StyledTools>
+        <Tooltip direction="bottom" content={`Version ${version}`}>
+          <LinkIcon icon={faInfoCircle} size={RADIO_SIZE} href="" />
+        </Tooltip>
         <Tooltip direction="bottom" content="Tweet about us">
           <LinkIcon icon={faTwitter} size={RADIO_SIZE} href="" />
         </Tooltip>
