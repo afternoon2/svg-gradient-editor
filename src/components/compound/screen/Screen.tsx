@@ -11,8 +11,6 @@ const StyledContainer = styled.main`
   background-color: ${(props): string => setLightness(0.2, props.theme.colors.background)};
 `;
 
-const Screen: React.FC = () => (
-  <StyledContainer />
-);
+const Screen: React.FC = () => <StyledContainer />;
 
 export default Screen;

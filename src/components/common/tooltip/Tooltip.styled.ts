@@ -1,7 +1,7 @@
 import styled, { css } from 'styled';
 import { FlattenSimpleInterpolation } from 'styled-components';
 import { Direction } from './types';
-import { setLightness } from 'polished';
+import { setLightness, modularScale } from 'polished';
 
 export const StyledWrapper = styled.div`
   display: inherit;
@@ -23,6 +23,9 @@ export const StyledContent = styled.p<StyledContentProps>`
          padding: 10px 15px;
          font-family: ${(props): string => props.theme.font};
          font-size: 12px;
+         min-width: 50px;
+         text-align: center;
+         line-height: ${modularScale(1)};
          ${(props): FlattenSimpleInterpolation | string => {
            switch (props.direction) {
              case 'top':

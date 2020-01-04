@@ -18,9 +18,9 @@ const Tooltip: React.FC<Props> = ({ children, content, direction, distance = 0 }
   const onMouseLeave = React.useCallback(() => setHidden(true), []);
 
   return (
-    <StyledWrapper data-tooltip onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <StyledWrapper onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {children}
-      <span data-tooltip-trigger aria-describedby={id}></span>
+      <span aria-describedby={id}></span>
       {!hidden && (
         <StyledContent id={id} direction={direction} distance={distance}>
           {content}

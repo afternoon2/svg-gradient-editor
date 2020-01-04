@@ -1,14 +1,16 @@
 import React from 'react';
 import { faMousePointer } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faCircle } from '@fortawesome/free-regular-svg-icons';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import ToolbarContext from '../../../context/toolbar/context';
 import RadioIcon from 'components/common/radio_icon';
 import { StyledTools } from './Toolbar.styled';
 import { ToolName } from 'context/toolbar/types';
-import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import Separator from 'components/common/separator';
 import Header from 'components/common/header';
 import Tooltip from 'components/common/tooltip';
+import LinkIcon from 'components/common/link_icon';
 
 const Toolbar: React.FC = () => {
   const FORM_NAME = 'selectedTool';
@@ -34,7 +36,7 @@ const Toolbar: React.FC = () => {
   );
 
   return (
-    <Header>
+    <Header style={{ justifyContent: 'space-between' }}>
       <StyledTools>
         <Tooltip direction="bottom" content="Select">
           <RadioIcon
@@ -69,6 +71,14 @@ const Toolbar: React.FC = () => {
             value="circle"
             onChange={handleChange}
           />
+        </Tooltip>
+      </StyledTools>
+      <StyledTools>
+        <Tooltip direction="bottom" content="Tweet about us">
+          <LinkIcon icon={faTwitter} size={RADIO_SIZE} href="" />
+        </Tooltip>
+        <Tooltip direction="bottom" content="See the code">
+          <LinkIcon icon={faGithub} size={RADIO_SIZE} href="https://github.com/afternoon2/svg-gradient-editor" />
         </Tooltip>
       </StyledTools>
     </Header>

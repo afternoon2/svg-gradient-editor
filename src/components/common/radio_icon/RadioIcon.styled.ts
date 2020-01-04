@@ -7,7 +7,6 @@ export const StyledLabel = styled.label`
   outline: none;
   border: none;
   background-color: transparent;
-  border-radius: 6px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
