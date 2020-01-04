@@ -4,13 +4,13 @@ import { setLightness } from 'polished';
 export const StyledContainer = styled.div`
   position: absolute;
   top: 60px;
-  left: 0;
-  width: 250px;
-  height: calc(100vh - 60px);
+  left: calc(100% - 204px);
+  width: 204px;
+  height: calc(100% - 60px);
   background-color: ${(props): string => setLightness(0.14, props.theme.colors.background)};
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 5px 20px;
+  padding: 0 20px;
   overflow: hidden;
 `;

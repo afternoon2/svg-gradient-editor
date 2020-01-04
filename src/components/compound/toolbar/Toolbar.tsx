@@ -5,10 +5,9 @@ import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import ToolbarContext from '../../../context/toolbar/context';
 import RadioIcon from 'components/common/radio_icon';
-import { StyledTools } from './Toolbar.styled';
+import { StyledTools, StyledHeader } from './Toolbar.styled';
 import { ToolName } from 'context/toolbar/types';
 import Separator from 'components/common/separator';
-import Header from 'components/common/header';
 import Tooltip from 'components/common/tooltip';
 import LinkIcon from 'components/common/link_icon';
 
@@ -36,7 +35,7 @@ const Toolbar: React.FC = () => {
   );
 
   return (
-    <Header style={{ justifyContent: 'space-between' }}>
+    <StyledHeader>
       <StyledTools>
         <Tooltip direction="bottom" content="Select">
           <RadioIcon
@@ -81,7 +80,7 @@ const Toolbar: React.FC = () => {
           <LinkIcon icon={faGithub} size={RADIO_SIZE} href="https://github.com/afternoon2/svg-gradient-editor" />
         </Tooltip>
       </StyledTools>
-    </Header>
+    </StyledHeader>
   );
 };
 

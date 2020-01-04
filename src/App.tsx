@@ -8,6 +8,7 @@ import ToolbarState from 'components/states/toolbar';
 import Toolbar from 'components/compound/toolbar';
 import Figures from 'components/compound/figures';
 import Screen from 'components/compound/screen';
+import Settings from 'components/compound/settings';
 
 const App: React.FC = () => (
   <AppState>
@@ -19,6 +20,7 @@ const App: React.FC = () => (
             <Toolbar />
             <Figures />
             <Screen />
+            <Settings />
           </Container>
         </FiguresState>
       </ToolbarState>
