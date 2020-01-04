@@ -8,6 +8,7 @@ import { ToolName } from 'context/toolbar/types';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import Separator from 'components/common/separator';
 import Header from 'components/common/header';
+import Tooltip from 'components/common/tooltip';
 
 const Toolbar: React.FC = () => {
   const FORM_NAME = 'selectedTool';
@@ -35,34 +36,40 @@ const Toolbar: React.FC = () => {
   return (
     <Header>
       <StyledTools>
-        <RadioIcon
-          checked={localSelectedName === 'select'}
-          icon={faMousePointer}
-          id="select_tool"
-          name={FORM_NAME}
-          size={RADIO_SIZE}
-          value="select"
-          onChange={handleChange}
-        />
+        <Tooltip direction="bottom" content="Select">
+          <RadioIcon
+            checked={localSelectedName === 'select'}
+            icon={faMousePointer}
+            id="select_tool"
+            name={FORM_NAME}
+            size={RADIO_SIZE}
+            value="select"
+            onChange={handleChange}
+          />
+        </Tooltip>
         <Separator width="1px" height="30px" />
-        <RadioIcon
-          checked={localSelectedName === 'rect'}
-          icon={faSquare}
-          id="rect_tool"
-          name={FORM_NAME}
-          size={RADIO_SIZE}
-          value="rect"
-          onChange={handleChange}
-        />
-        <RadioIcon
-          checked={localSelectedName === 'circle'}
-          icon={faCircle}
-          id="circle_tool"
-          name={FORM_NAME}
-          size={RADIO_SIZE}
-          value="circle"
-          onChange={handleChange}
-        />
+        <Tooltip direction="bottom" content="Rectangle">
+          <RadioIcon
+            checked={localSelectedName === 'rect'}
+            icon={faSquare}
+            id="rect_tool"
+            name={FORM_NAME}
+            size={RADIO_SIZE}
+            value="rect"
+            onChange={handleChange}
+          />
+        </Tooltip>
+        <Tooltip direction="bottom" content="Circle">
+          <RadioIcon
+            checked={localSelectedName === 'circle'}
+            icon={faCircle}
+            id="circle_tool"
+            name={FORM_NAME}
+            size={RADIO_SIZE}
+            value="circle"
+            onChange={handleChange}
+          />
+        </Tooltip>
       </StyledTools>
     </Header>
   );

@@ -1,28 +1,8 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
-import styled, { ThemeContext } from 'styled';
+import { ThemeContext } from 'styled';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-
-const StyledLabel = styled.label`
-  box-sizing: border-box;
-  padding: 10px;
-  margin: 0;
-  outline: none;
-  border: none;
-  background-color: transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-`;
-
-const StyledRadio = styled.input.attrs((): { [key: string]: string | Function | boolean } => ({
-  type: 'radio',
-}))`
-  position: absolute;
-  top: 300%;
-  left: 2000px;
-`;
+import { StyledLabel, StyledRadio } from './RadioIcon.styled';
 
 interface Props {
   checked: boolean;
@@ -43,8 +23,8 @@ const RadioIcon: React.FC<Props> = ({ checked, onChange, icon, id, size, name, v
 
   return (
     <StyledLabel htmlFor={id}>
-      <FontAwesomeIcon icon={icon} size={size} color={color} />
       <StyledRadio type="radio" checked={checked} id={id} name={name} onChange={handleChange} value={value} />
+      <FontAwesomeIcon icon={icon} size={size} color={color} />
     </StyledLabel>
   );
 };

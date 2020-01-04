@@ -4,6 +4,14 @@ exports[`RadioIcon If it matches the snapshot 1`] = `
 <styled.label
   htmlFor="id"
 >
+  <styled.input
+    checked={false}
+    id="id"
+    name="name"
+    onChange={[Function]}
+    type="radio"
+    value="icon-radio"
+  />
   <FontAwesomeIcon
     border={false}
     className=""
@@ -35,14 +43,6 @@ exports[`RadioIcon If it matches the snapshot 1`] = `
     symbol={false}
     title=""
     transform={null}
-  />
-  <styled.input
-    checked={false}
-    id="id"
-    name="name"
-    onChange={[Function]}
-    type="radio"
-    value="icon-radio"
   />
 </styled.label>
 `;
