@@ -13,7 +13,13 @@ const Canvas: React.FC = () => {
   const { state: viewBox } = useContext(ViewBoxContext);
 
   return (
-    <svg x={x} y={y} width={width} height={height} viewBox={`${Object.values(viewBox)}`}>
+    <svg
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      viewBox={`${Object.values(viewBox)}`}
+    >
       <SvgBackground />
       <SvgDrawing />
     </svg>

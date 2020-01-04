@@ -26,6 +26,7 @@ module.exports = {
     'import/extensions': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-plusplus': 0,
+    'react/jsx-max-props-per-line': 1
   },
   settings: {
     react: {
@@ -47,7 +48,6 @@ module.exports = {
       files: ['**/*.tsx'],
       rules: {
         'react/prop-types': 'off',
-        'react/jsx-max-props-per-line': 1
       }
     }
   ]
