@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled';
 import { setLightness } from 'polished';
+import Rulers from 'components/rulers';
+import Easel from 'components/easel';
 
 const StyledContainer = styled.main`
   position: absolute;
@@ -11,6 +13,14 @@ const StyledContainer = styled.main`
   background-color: ${(props): string => setLightness(0.2, props.theme.colors.background)};
 `;
 
-const Screen: React.FC = () => <StyledContainer />;
+const Screen: React.FC = () => {
+  return (
+    <StyledContainer>
+      <Rulers>
+        <Easel />
+      </Rulers>
+    </StyledContainer>
+  );
+};
 
 export default Screen;
