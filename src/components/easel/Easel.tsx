@@ -1,13 +1,11 @@
 import React from 'react';
-import { StyledContainer, StyledCanvasContainer } from './Easel.styled';
+import { StyledContainer } from './Easel.styled';
 import Canvas from 'components/canvas';
 
 const Easel: React.FC = () => {
   return (
     <StyledContainer>
-      <StyledCanvasContainer>
-        <Canvas />
-      </StyledCanvasContainer>
+      <Canvas />
     </StyledContainer>
   );
 };

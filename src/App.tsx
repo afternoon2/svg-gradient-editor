@@ -9,19 +9,22 @@ import Toolbar from 'components/compound/toolbar';
 import Figures from 'components/compound/figures';
 import Screen from 'components/compound/screen';
 import Settings from 'components/compound/settings';
+import SvgState from 'components/states/svg';
 
 const App: React.FC = () => (
   <AppState>
     <Theme>
       <ToolbarState>
         <FiguresState>
-          <GlobalStyle />
-          <Container>
-            <Toolbar />
-            <Figures />
-            <Screen />
-            <Settings />
-          </Container>
+          <SvgState>
+            <GlobalStyle />
+            <Container>
+              <Toolbar />
+              <Figures />
+              <Screen />
+              <Settings />
+            </Container>
+          </SvgState>
         </FiguresState>
       </ToolbarState>
     </Theme>

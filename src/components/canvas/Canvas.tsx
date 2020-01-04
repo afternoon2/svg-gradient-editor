@@ -5,7 +5,7 @@ import SvgDrawing from './drawing';
 
 const Canvas: React.FC = () => {
   return (
-    <SvgBoard>
+    <SvgBoard viewBox="0 0 1260 768">
       <SvgBackground />
       <SvgDrawing />
     </SvgBoard>

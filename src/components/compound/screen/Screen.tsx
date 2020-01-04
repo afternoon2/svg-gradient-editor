@@ -6,9 +6,8 @@ import { StyledContainer } from './Screen.styled';
 const Screen: React.FC = () => {
   return (
     <StyledContainer>
-      <Rulers>
-        <Easel />
-      </Rulers>
+      <Rulers />
+      <Easel />
     </StyledContainer>
   );
 };
