@@ -1,5 +1,5 @@
-import { Dispatch } from "react";
-import { ToolType, ToolName } from "./types";
+import { Dispatch } from 'react';
+import { ToolType, ToolName } from './types';
 
 export interface Tool {
   type: ToolType;

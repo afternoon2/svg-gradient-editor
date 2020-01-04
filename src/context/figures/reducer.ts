@@ -1,4 +1,4 @@
-import { FiguresState, FiguresAction, Figure, FigureMovePayload } from "./interfaces";
+import { FiguresState, FiguresAction, Figure, FigureMovePayload } from './interfaces';
 import * as mutations from './mutations';
 
 export const figuresInitialState: FiguresState = {};

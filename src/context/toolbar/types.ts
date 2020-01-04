@@ -1,4 +1,4 @@
-import { FigureShape } from "context/figures/types";
+import { FigureShape } from 'context/figures/types';
 
 export type ToolType = 'shape' | 'move';
 

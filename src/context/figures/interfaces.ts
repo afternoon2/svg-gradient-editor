@@ -39,7 +39,7 @@ export interface FigureMovePayload {
   id: string;
   newIndex: number;
   oldIndex: number;
-};
+}
 
 export interface FiguresAction {
   type: 'ADD_FIGURE' | 'REMOVE_FIGURE' | 'MOVE_FIGURE';

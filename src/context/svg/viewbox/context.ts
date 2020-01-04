@@ -1,5 +1,5 @@
-import { Dispatch, createContext } from "react";
-import { SvgProps, SvgAction } from "../interfaces";
+import { Dispatch, createContext } from 'react';
+import { SvgProps, SvgAction } from '../interfaces';
 
 export const initialViewBoxState: SvgProps = {
   x: 0,

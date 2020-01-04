@@ -1,5 +1,5 @@
-import { FiguresContextValue } from "./interfaces";
-import { createContext } from "react";
+import { FiguresContextValue } from './interfaces';
+import { createContext } from 'react';
 
 const FiguresContext = createContext<FiguresContextValue>({
   state: {},

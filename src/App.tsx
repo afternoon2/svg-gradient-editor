@@ -13,10 +13,10 @@ import SvgState from 'components/states/svg';
 
 const App: React.FC = () => (
   <AppState>
-    <Theme>
-      <ToolbarState>
-        <FiguresState>
-          <SvgState>
+    <ToolbarState>
+      <FiguresState>
+        <SvgState>
+          <Theme>
             <GlobalStyle />
             <Container>
               <Toolbar />
@@ -24,10 +24,10 @@ const App: React.FC = () => (
               <Screen />
               <Settings />
             </Container>
-          </SvgState>
-        </FiguresState>
-      </ToolbarState>
-    </Theme>
+          </Theme>
+        </SvgState>
+      </FiguresState>
+    </ToolbarState>
   </AppState>
 );
 
