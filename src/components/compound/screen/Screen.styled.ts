@@ -8,4 +8,5 @@ export const StyledContainer = styled.main`
   width: calc(100% - 250px - 204px);
   height: calc(100% - 60px);
   background-color: ${(props): string => setLightness(0.2, props.theme.colors.background)};
+  overflow: auto;
 `;

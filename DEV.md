@@ -44,3 +44,30 @@ The flow of creation should be following:
 Given following constraints, there might be a few areas where creation (or usage) of external dependencies will be needed.
 - **Drawing, resizing and editing in SVG** - check if there are any react libraries that allow to do that. If yes, and if they provide enough functionality, use them, if not, consider a creation of a new one
 - **Settings panel creation or layers panel creation** - samve as above
+
+## Design Notes
+
+Drawing canvas should consist of one SVG node containing subnodes built from two kinds of layers - one that doesn't accept any pointer events (Presentational layer), and the other one that does accept them (Editorial Layer). This strategy should be applied from the very top of the SVG element tree.
+
+```html
+<svg
+  className="svg"
+  xmlns="http://www.w3.org/2000/svg"
+  width={width}
+  height={height}
+  viewBox={`${Object.values(viewBox)}`}
+>
+  <!-- background group, not possible to delete it, but possible to resize -->
+  <g className="svg__root">
+    <!-- Background layer -->
+    <g className="svg__background">
+      <g className="pointerEventsNone">
+        <rect x={0} y={0} width={width} height={height} fill={backgroundFill} />
+      </g>
+      <g className="pointerEventsAll">
+        <rect x={0} y={0} width={width} height={height} />
+      </g>
+    </g>
+  </g>
+</svg>
+```

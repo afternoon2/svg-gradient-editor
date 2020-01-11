@@ -1,13 +1,6 @@
 import React from 'react';
-import Rulers from 'components/rulers';
-import Easel from 'components/easel';
 import { StyledContainer } from './Screen.styled';
 
-const Screen: React.FC = () => (
-  <StyledContainer>
-    <Rulers />
-    <Easel />
-  </StyledContainer>
-);
+const Screen: React.FC = () => <StyledContainer />;
 
 export default Screen;
