@@ -12,8 +12,8 @@ const StyledEasel = styled.div<EaselProps>`
   box-sizing: border-box;
   width: ${(props): string => props.width ? props.width : '100%'};
   height: ${(props): string => props.height ? props.height : '100%'};
-  min-width: 800px;
-  min-height: 600px;
+  min-width: 1200px;
+  min-height: 768px;
   position: relative;
   display: flex;
   align-items: center;
