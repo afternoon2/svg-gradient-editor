@@ -106,21 +106,25 @@ exports[`Easel if it matches the snapshot 1`] = `
             <Artboard>
               <svg
                 height="100%"
+                id="artboard"
                 version="1.1"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
               >
-                <View>
+                <View
+                  artboardHeight={0}
+                  artboardWidth={0}
+                >
                   <svg
                     height={600}
                     version="1.1"
                     viewBox="0 0 800 600"
                     width={800}
-                    x="15%"
+                    x={-400}
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    y="15%"
+                    y={-300}
                   >
                     <Head>
                       <g>
@@ -238,21 +242,25 @@ exports[`Easel if it matches the snapshot with default settings 1`] = `
             <Artboard>
               <svg
                 height="100%"
+                id="artboard"
                 version="1.1"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
               >
-                <View>
+                <View
+                  artboardHeight={0}
+                  artboardWidth={0}
+                >
                   <svg
                     height={600}
                     version="1.1"
                     viewBox="0 0 800 600"
                     width={800}
-                    x="15%"
+                    x={-400}
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    y="15%"
+                    y={-300}
                   >
                     <Head>
                       <g>
