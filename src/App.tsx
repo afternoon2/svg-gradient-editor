@@ -5,6 +5,7 @@ import Aside from "@/components/aside";
 import { Separator } from "@/components/ui/separator";
 import PresetSelect from "./components/preset-select";
 import { GlobalBlendModeSelect } from "./components/blend-mode-select";
+import AddDelete from "./components/add-delete";
 
 function App() {
   return (
@@ -14,12 +15,20 @@ function App() {
           <main className="flex flex-col"></main>
           <Aside>
             <Aside.Header />
-            <Separator />
+            <Aside.Row>
+              <Separator />
+            </Aside.Row>
             <Aside.Row>
               <PresetSelect />
             </Aside.Row>
             <Aside.Row>
               <GlobalBlendModeSelect />
+            </Aside.Row>
+            <Aside.Row>
+              <Separator />
+            </Aside.Row>
+            <Aside.Row>
+              <AddDelete />
             </Aside.Row>
           </Aside>
         </Container>

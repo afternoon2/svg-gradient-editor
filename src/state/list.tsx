@@ -20,6 +20,7 @@ export type State = {
 export type Action =
   | { type: "ADD_GRADIENT"; payload: Gradient }
   | { type: "DELETE_GRADIENT"; payload: { id: string } }
+  | { type: "DELETE_ALL_GRADIENTS" }
   | { type: "SET_GLOBAL_BLEND_MODE"; payload: { blendMode: BlendMode } }
   | { type: "ADD_PRESET"; payload: Preset }
   | { type: "DELETE_PRESET"; payload: { id: string } }
@@ -47,6 +48,10 @@ const reducer = (state: State = initialState, action: Action): State =>
       gradients: state.gradients.filter(
         (gradient) => gradient.id !== action.payload.id
       ),
+    }))
+    .with([P._, { type: "DELETE_ALL_GRADIENTS" }], ([state]) => ({
+      ...state,
+      gradients: [],
     }))
     .with([P._, { type: "ADD_PRESET" }], ([state, action]) => {
       savePreset(action.payload);
