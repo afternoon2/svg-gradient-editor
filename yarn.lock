@@ -733,6 +733,11 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
+"@types/chroma-js@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-2.4.4.tgz#254dddff54568ff8e5d0dcdb071871a458fdfd31"
+  integrity sha512-/DTccpHTaKomqussrn+ciEvfW4k6NAHzNzs/sts1TCqg333qNxOhy8TNIoQCmbGG3Tl8KdEhkGAssb1n3mTXiQ==
+
 "@types/estree@1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.5.tgz#a6ce3e556e00fd9895dd872dd172ad0d4bd687f4"
@@ -1003,6 +1008,11 @@ chokidar@^3.5.3:
     readdirp "~3.6.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+chroma-js@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-3.0.0.tgz#c19b3b728352bb02b8906c60d7c7d223d3d9b721"
+  integrity sha512-ZFn4qxtZTvRJ7XatOLgaHGJYN10LoS6T0EMsu7IVayFG5+b6Yw8wCGQL5qLgo4B+wrRZ9niCrozOQ4a584bvaA==
 
 class-variance-authority@^0.7.0:
   version "0.7.0"
@@ -1889,6 +1899,11 @@ ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
+
+ts-pattern@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/ts-pattern/-/ts-pattern-5.3.1.tgz#ec098665841b1e6a7f7cb2c01bb270b79a2e2858"
+  integrity sha512-1RUMKa8jYQdNfmnK4jyzBK3/PS/tnjcZ1CW0v1vWDeYe5RBklc/nquw03MEoB66hVBm4BnlCfmOqDVxHyT1DpA==
 
 tslib@^2.0.0, tslib@^2.1.0:
   version "2.6.3"

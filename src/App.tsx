@@ -1,15 +1,18 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "./components/mode-toggle";
+import ListContextProvider from "./state/list";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-        <div className="hidden border-r bg-muted/40 md:block">
-          <ModeToggle />
+      <ListContextProvider>
+        <div className="grid min-h-screen w-full grid-cols-[1fr_220px] md:grid-cols-[1fr_220px] lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_450px]">
+          <main className="flex flex-col"></main>
+          <aside className="hidden border-r bg-muted/40 md:block">
+            <ModeToggle />
+          </aside>
         </div>
-        <div className="flex flex-col"></div>
-      </div>
+      </ListContextProvider>
     </ThemeProvider>
   );
 }
