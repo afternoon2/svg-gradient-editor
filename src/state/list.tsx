@@ -1,5 +1,5 @@
 import { match, P } from "ts-pattern";
-import { BlendMode, Gradient } from "./types";
+import { BlendMode, Gradient, Preset } from "./types";
 import {
   createContext,
   Dispatch,
@@ -8,20 +8,28 @@ import {
   useContext,
   useReducer,
 } from "react";
+import { deletePreset, loadPresets, savePreset } from "@/lib/preset";
 
 export type State = {
   globalBlendMode: BlendMode;
   gradients: Gradient[];
+  presets: Preset[];
+  selectedPreset: string | null;
 };
 
 export type Action =
   | { type: "ADD_GRADIENT"; payload: Gradient }
   | { type: "DELETE_GRADIENT"; payload: { id: string } }
-  | { type: "SET_GLOBAL_BLEND_MODE"; payload: { blendMode: BlendMode } };
+  | { type: "SET_GLOBAL_BLEND_MODE"; payload: { blendMode: BlendMode } }
+  | { type: "ADD_PRESET"; payload: Preset }
+  | { type: "DELETE_PRESET"; payload: { id: string } }
+  | { type: "SELECT_PRESET"; payload: { id: string | null } };
 
 const initialState: State = {
   globalBlendMode: "normal",
   gradients: [],
+  presets: loadPresets(),
+  selectedPreset: null,
 };
 
 const reducer = (state: State = initialState, action: Action): State =>
@@ -39,6 +47,24 @@ const reducer = (state: State = initialState, action: Action): State =>
       gradients: state.gradients.filter(
         (gradient) => gradient.id !== action.payload.id
       ),
+    }))
+    .with([P._, { type: "ADD_PRESET" }], ([state, action]) => {
+      savePreset(action.payload);
+      return {
+        ...state,
+        presets: loadPresets(),
+      };
+    })
+    .with([P._, { type: "DELETE_PRESET" }], ([state, action]) => {
+      deletePreset(action.payload.id);
+      return {
+        ...state,
+        presets: loadPresets(),
+      };
+    })
+    .with([P._, { type: "SELECT_PRESET" }], ([state, action]) => ({
+      ...state,
+      selectedPreset: action.payload.id,
     }))
     .otherwise(() => state);
 

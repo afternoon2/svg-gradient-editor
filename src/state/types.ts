@@ -59,24 +59,28 @@ export type BlendModeObject = {
 };
 
 export type Preset = {
+  id: string;
   name: string;
   value: Gradient[];
 };
 
-export type BlendMode =
-  | "normal"
-  | "multiply"
-  | "screen"
-  | "overlay"
-  | "darken"
-  | "lighten"
-  | "color-dodge"
-  | "color-burn"
-  | "hard-light"
-  | "soft-light"
-  | "difference"
-  | "exclusion"
-  | "hue"
-  | "saturation"
-  | "color"
-  | "luminosity";
+export const BLEND_MODES = [
+  "normal",
+  "color",
+  "color-burn",
+  "color-dodge",
+  "darken",
+  "difference",
+  "exclusion",
+  "hard-light",
+  "hue",
+  "lighten",
+  "luminosity",
+  "multiply",
+  "overlay",
+  "saturation",
+  "screen",
+  "soft-light",
+] as const;
+
+export type BlendMode = (typeof BLEND_MODES)[number];
