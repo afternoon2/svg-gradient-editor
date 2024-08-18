@@ -5,6 +5,7 @@
   "homepage": "https://afternoon2.github.io/svg-gradient-editor",
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "chroma-js": "^3.0.0",
     "class-variance-authority": "^0.7.0",
