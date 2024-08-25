@@ -1,10 +1,10 @@
 import { FC } from "react";
 import Aside from "./aside";
 import PresetSelect from "./preset-select";
-import { Separator } from "./ui/separator";
+import { Separator } from "@/components/ui/separator";
 import { GlobalBlendModeSelect } from "./blend-mode-select";
 import AddDelete from "./add-delete";
-import GradientList from "./app/gradient-list";
+import GradientList from "@/components/app/gradient-list";
 
 const SettingsPanel: FC = () => (
   <Aside>

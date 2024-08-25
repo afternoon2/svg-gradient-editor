@@ -8,7 +8,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { useListContext } from "@/state/list";
-import { Label } from "./ui/label";
+import { Label } from "@/components/ui/label";
 
 const BlendModeSelect: FC<{
   blendMode: BlendMode;

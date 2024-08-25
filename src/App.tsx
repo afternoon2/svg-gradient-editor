@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import ListContextProvider from "./state/list";
-import Container from "@/components/container";
-import SettingsPanel from "./components/settings-panel";
+import Container from "@/components/app/container";
+import SettingsPanel from "@/components/app/settings-panel";
 
 function App() {
   return (

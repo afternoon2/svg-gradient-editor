@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { CircleAlert, Plus, Save } from "lucide-react";
 import { useListContext } from "@/state/list";
 import { createEmptyGradientObject } from "@/lib/gradient";

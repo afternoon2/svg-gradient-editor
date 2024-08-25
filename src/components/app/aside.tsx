@@ -1,6 +1,6 @@
 import { SparklesIcon } from "lucide-react";
 import { FC, PropsWithChildren } from "react";
-import { TypographyH4 } from "./ui/typography-h4";
+import { TypographyH4 } from "@/components/ui/typography-h4";
 import { ModeToggle } from "./mode-toggle";
 
 const ROW_CLASSNAMES = "w-full pb-2 flex items-center justify-between";

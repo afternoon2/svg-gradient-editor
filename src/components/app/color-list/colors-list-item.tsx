@@ -10,6 +10,12 @@ import ColorValue from "./color-value";
 import ColorPicker from "./color-picker";
 import { Edit } from "lucide-react";
 import DeleteButton from "@/components/ui/delete-button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
+import { TooltipTrigger } from "@radix-ui/react-tooltip";
 
 const ColorsListItem: FC<{
   color: InputColor;
@@ -48,14 +54,21 @@ const ColorsListItem: FC<{
         </PopoverContent>
       </Popover>
       <ColorValue color={color} colorSpace={colorSpace} />
-      <Popover>
-        <PopoverTrigger asChild>
-          <Edit className="mx-3 w-4 h-4" />
-        </PopoverTrigger>
-        <PopoverContent>
-          <ColorPicker value={color.color} onChange={onChange} />
-        </PopoverContent>
-      </Popover>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Edit className="mx-3 w-4 h-4" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <ColorPicker value={color.color} onChange={onChange} />
+              </PopoverContent>
+            </Popover>
+          </TooltipTrigger>
+          <TooltipContent>Edit color</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <DeleteButton
         onClick={() => {
           dispatch({

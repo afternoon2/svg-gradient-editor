@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FC } from "react";
-import { Label } from "./ui/label";
+import { Label } from "@/components/ui/label";
 
 const PresetSelect: FC = () => {
   const { state, dispatch } = useListContext();
