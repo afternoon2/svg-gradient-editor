@@ -27,7 +27,7 @@ export type ChromaAttributes = {
 
 export type InputColor = {
   id: string;
-  color: number[];
+  color: [number, number, number, number] /* rgba */;
 };
 
 export type OutputColor = {
@@ -38,6 +38,7 @@ export type OutputColor = {
 type CommonGradientProperties = {
   id: string;
   blendMode: BlendModeObject;
+  colorSpace: ColorSpace;
   chroma?: ChromaAttributes;
   colors: InputColor[];
   output: OutputColor[];
@@ -63,6 +64,10 @@ export type Preset = {
   name: string;
   value: Gradient[];
 };
+
+export const COLOR_SPACES = ["rgba", "hex", "hsva", "hsla"] as const;
+
+export type ColorSpace = (typeof COLOR_SPACES)[number];
 
 export const BLEND_MODES = [
   "normal",

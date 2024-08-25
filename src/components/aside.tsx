@@ -5,13 +5,16 @@ import { ModeToggle } from "./mode-toggle";
 
 const ROW_CLASSNAMES = "w-full pb-2 flex items-center justify-between";
 
-const Header: FC = () => (
-  <header className={ROW_CLASSNAMES}>
-    <div className="flex items-center">
-      <SparklesIcon className="h-6 w-6" />
-      <TypographyH4 className="pl-2">SVG Gradient Editor</TypographyH4>
+const Header: FC<PropsWithChildren> = ({ children }) => (
+  <header className="w-full pb-2 flex flex-col">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center">
+        <SparklesIcon className="h-6 w-6" />
+        <TypographyH4 className="pl-2">SVG Gradient Editor</TypographyH4>
+      </div>
+      <ModeToggle />
     </div>
-    <ModeToggle />
+    {children}
   </header>
 );
 
@@ -20,10 +23,10 @@ const Row: FC<PropsWithChildren> = ({ children }) => (
 );
 
 const Aside: FC<PropsWithChildren> & {
-  Header: FC;
+  Header: FC<PropsWithChildren>;
   Row: FC<PropsWithChildren>;
 } = ({ children }) => (
-  <aside className="hidden border-r bg-muted/40 md:block px-4 py-4">
+  <aside className="bg-muted/40 px-4 py-4 relative h-full flex flex-col overflow-hidden">
     {children}
   </aside>
 );

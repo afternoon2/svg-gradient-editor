@@ -1,10 +1,20 @@
 import { Gradient } from "@/state/types";
+import chroma from "chroma-js";
 import { nanoid } from "nanoid";
 
 export const createEmptyGradientObject = (): Gradient => ({
   id: nanoid(16),
   type: "linear",
-  colors: [],
+  colors: [
+    {
+      id: nanoid(16),
+      color: chroma.random().rgba(),
+    },
+    {
+      id: nanoid(16),
+      color: chroma.random().rgba(),
+    },
+  ],
   output: [],
   attributes: {
     x1: 0,
@@ -16,4 +26,5 @@ export const createEmptyGradientObject = (): Gradient => ({
     id: nanoid(16),
     mode: "normal",
   },
+  colorSpace: "rgba",
 });
