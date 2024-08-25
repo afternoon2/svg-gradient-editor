@@ -13,6 +13,7 @@ import { nanoid } from "nanoid";
 import { FC, useCallback, useState } from "react";
 import ColorsListItem from "./colors-list-item";
 import ColorSpaceSwitch from "./color-space-switch";
+import DeleteButton from "@/components/ui/delete-button";
 
 const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const [colorSpace, setColorSpace] = useState<ColorSpace>("rgba");
@@ -55,30 +56,18 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant="link"
-                  size="sm"
-                  onClick={() => {
-                    dispatch({
-                      type: "DELETE_ALL_COLORS",
-                      payload: {
-                        gradientId: gradient.id,
-                      },
-                    });
-                  }}
-                  disabled={gradient.colors.length === 0}
-                >
-                  <Trash className="stroke-red-600 w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Delete all colors</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <DeleteButton
+            onClick={() => {
+              dispatch({
+                type: "DELETE_ALL_COLORS",
+                payload: {
+                  gradientId: gradient.id,
+                },
+              });
+            }}
+            tooltipText="Delete all colors"
+            disabled={gradient.colors.length === 0}
+          />
         </div>
         <ColorSpaceSwitch colorSpace={colorSpace} onChange={setColorSpace} />
       </div>

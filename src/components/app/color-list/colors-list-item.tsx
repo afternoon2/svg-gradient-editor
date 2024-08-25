@@ -8,14 +8,8 @@ import {
 import { FC, useCallback } from "react";
 import ColorValue from "./color-value";
 import ColorPicker from "./color-picker";
-import { Edit, Trash } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Edit } from "lucide-react";
+import DeleteButton from "@/components/ui/delete-button";
 
 const ColorsListItem: FC<{
   color: InputColor;
@@ -62,28 +56,18 @@ const ColorsListItem: FC<{
           <ColorPicker value={color.color} onChange={onChange} />
         </PopoverContent>
       </Popover>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>
-            <Button
-              size="sm"
-              variant="link"
-              onClick={() => {
-                dispatch({
-                  type: "DELETE_COLOR",
-                  payload: {
-                    colorId: color.id,
-                    gradientId,
-                  },
-                });
-              }}
-            >
-              <Trash className="w-4 h-4 stroke-red-600" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Delete color</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <DeleteButton
+        onClick={() => {
+          dispatch({
+            type: "DELETE_COLOR",
+            payload: {
+              colorId: color.id,
+              gradientId,
+            },
+          });
+        }}
+        tooltipText="Delete color"
+      />
     </li>
   );
 };

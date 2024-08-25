@@ -9,15 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import ColorList from "../color-list";
-import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
 import { useListContext } from "@/state/list";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import DeleteButton from "@/components/ui/delete-button";
 
 const GradientItem: FC<{
   gradient: Gradient;
@@ -29,24 +22,15 @@ const GradientItem: FC<{
       <CardHeader>
         <CardTitle className="text-base flex items-center justify-between w-100">
           Gradient {index + 1}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant="link"
-                  onClick={() => {
-                    dispatch({
-                      type: "DELETE_GRADIENT",
-                      payload: { id: gradient.id },
-                    });
-                  }}
-                >
-                  <Trash className="stroke-red-600 w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Delete gradient</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <DeleteButton
+            onClick={() => {
+              dispatch({
+                type: "DELETE_GRADIENT",
+                payload: { id: gradient.id },
+              });
+            }}
+            tooltipText="Delete gradient"
+          />
         </CardTitle>
       </CardHeader>
       <CardDescription></CardDescription>
