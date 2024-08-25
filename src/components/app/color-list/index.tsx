@@ -47,7 +47,7 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
                   onClick={addColor}
                   className="pl-2"
                 >
-                  <PlusIcon />
+                  <PlusIcon className="w-4 h-4" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -71,7 +71,7 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
                   }}
                   disabled={gradient.colors.length === 0}
                 >
-                  <Trash className="stroke-red-600" />
+                  <Trash className="stroke-red-600 w-4 h-4" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
