@@ -1,5 +1,6 @@
 import {
   Gradient,
+  InputColor,
   LinearGradientAttributes,
   RadialGradientAttributes,
 } from "@/state/types";
@@ -12,11 +13,11 @@ export const createEmptyGradientObject = (): Gradient => ({
   colors: [
     {
       id: nanoid(16),
-      color: chroma.random().rgba(),
+      color: randomChromaColor(),
     },
     {
       id: nanoid(16),
-      color: chroma.random().rgba(),
+      color: randomChromaColor(),
     },
   ],
   output: [],
@@ -44,3 +45,6 @@ export const getDefaultRadialGradientAttributes =
     fx: 0,
     fy: 0,
   });
+
+export const randomChromaColor = (): InputColor["color"] =>
+  chroma.random().alpha(0.5).rgba();

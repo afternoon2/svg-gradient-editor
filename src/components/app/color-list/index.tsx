@@ -7,14 +7,14 @@ import {
 } from "@/components/ui/tooltip";
 import { useListContext } from "@/state/list";
 import { ColorSpace, Gradient } from "@/state/types";
-import chroma from "chroma-js";
-import { PlusIcon, Trash } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { nanoid } from "nanoid";
 import { FC, useCallback, useState } from "react";
 import ColorsListItem from "./colors-list-item";
 import ColorSpaceSwitch from "./color-space-switch";
 import DeleteButton from "@/components/ui/delete-button";
 import GradientSection from "../gradient-section";
+import { randomChromaColor } from "@/lib/gradient";
 
 const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const [colorSpace, setColorSpace] = useState<ColorSpace>("rgba");
@@ -29,7 +29,7 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
         gradientId: id,
         color: {
           id: nanoid(),
-          color: chroma.random().rgba(),
+          color: randomChromaColor(),
         },
       },
     });
