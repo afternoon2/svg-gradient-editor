@@ -20,12 +20,7 @@ export const createEmptyGradientObject = (): Gradient => ({
     },
   ],
   output: [],
-  attributes: {
-    x1: 0,
-    y1: 0,
-    x2: 100,
-    y2: 100,
-  },
+  attributes: getDefaultLinearGradientAttributes(),
   blendMode: {
     id: nanoid(16),
     mode: "normal",
@@ -37,15 +32,15 @@ export const getDefaultLinearGradientAttributes =
   (): LinearGradientAttributes => ({
     x1: 0,
     y1: 0,
-    x2: 100,
-    y2: 100,
+    x2: 1,
+    y2: 0,
   });
 
 export const getDefaultRadialGradientAttributes =
   (): RadialGradientAttributes => ({
-    cx: 0,
-    cy: 0,
-    r: 100,
+    cx: 0.5,
+    cy: 0.5,
+    r: 1,
     fx: 0,
     fy: 0,
   });

@@ -8,8 +8,7 @@ const Figures: FC = () => {
   } = useListContext();
   return (
     <g filter={`url(#${GLOBAL_BLEND_MODE_ID})`}>
-      {gradients.map(({ id }, index, arr) => {
-        const blendModeId = arr[index].blendMode.id;
+      {gradients.map(({ id, blendMode }) => {
         return (
           <rect
             key={id}
@@ -19,7 +18,7 @@ const Figures: FC = () => {
             width={artboardSize[0]}
             height={artboardSize[1]}
             fill={`url(#${id})`}
-            filter={`url(#${blendModeId})`}
+            filter={`url(#${blendMode.id})`}
           />
         );
       })}
