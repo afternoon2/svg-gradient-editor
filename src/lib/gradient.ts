@@ -1,4 +1,8 @@
-import { Gradient } from "@/state/types";
+import {
+  Gradient,
+  LinearGradientAttributes,
+  RadialGradientAttributes,
+} from "@/state/types";
 import chroma from "chroma-js";
 import { nanoid } from "nanoid";
 
@@ -28,3 +32,20 @@ export const createEmptyGradientObject = (): Gradient => ({
   },
   colorSpace: "rgba",
 });
+
+export const getDefaultLinearGradientAttributes =
+  (): LinearGradientAttributes => ({
+    x1: 0,
+    y1: 0,
+    x2: 100,
+    y2: 100,
+  });
+
+export const getDefaultRadialGradientAttributes =
+  (): RadialGradientAttributes => ({
+    cx: 0,
+    cy: 0,
+    r: 100,
+    fx: 0,
+    fy: 0,
+  });

@@ -9,6 +9,10 @@ import {
   useReducer,
 } from "react";
 import { deletePreset, loadPresets, savePreset } from "@/lib/preset";
+import {
+  getDefaultLinearGradientAttributes,
+  getDefaultRadialGradientAttributes,
+} from "@/lib/gradient";
 
 export type State = {
   globalBlendMode: BlendMode;
@@ -26,6 +30,10 @@ export type Action =
   | { type: "UPDATE_COLOR"; payload: { color: InputColor; gradientId: string } }
   | { type: "DELETE_COLOR"; payload: { colorId: string; gradientId: string } }
   | { type: "DELETE_ALL_COLORS"; payload: { gradientId: string } }
+  | {
+      type: "SET_GRADIENT_TYPE";
+      payload: { gradientId: string; gradientType: Gradient["type"] };
+    }
   | { type: "SET_GLOBAL_BLEND_MODE"; payload: { blendMode: BlendMode } }
   | { type: "ADD_PRESET"; payload: Preset }
   | { type: "DELETE_PRESET"; payload: { id: string } }
@@ -135,6 +143,22 @@ const reducer = (state: State = initialState, action: Action): State =>
     .with([P._, { type: "SET_ARTBOARD_SIZE" }], ([state, action]) => ({
       ...state,
       artboardSize: action.payload.size,
+    }))
+    .with([P._, { type: "SET_GRADIENT_TYPE" }], ([state, action]) => ({
+      ...state,
+      gradients: state.gradients.map((gradient) => {
+        if (gradient.id === action.payload.gradientId) {
+          return {
+            ...gradient,
+            type: action.payload.gradientType,
+            attributes:
+              action.payload.gradientType === "linear"
+                ? getDefaultLinearGradientAttributes()
+                : getDefaultRadialGradientAttributes(),
+          } as Gradient;
+        }
+        return gradient;
+      }),
     }))
     .otherwise(() => state);
 

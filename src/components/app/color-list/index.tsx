@@ -14,6 +14,7 @@ import { FC, useCallback, useState } from "react";
 import ColorsListItem from "./colors-list-item";
 import ColorSpaceSwitch from "./color-space-switch";
 import DeleteButton from "@/components/ui/delete-button";
+import GradientSection from "../gradient-section";
 
 const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const [colorSpace, setColorSpace] = useState<ColorSpace>("rgba");
@@ -35,8 +36,7 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
   }, [dispatch, id]);
 
   return (
-    <fieldset className="flex flex-col gap-6 rounded-lg border p-4">
-      <legend className="-ml-1 px-1 text-sm">Colors</legend>
+    <GradientSection title="Colors">
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
           <TooltipProvider>
@@ -81,7 +81,7 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
           />
         ))}
       </ul>
-    </fieldset>
+    </GradientSection>
   );
 };
 

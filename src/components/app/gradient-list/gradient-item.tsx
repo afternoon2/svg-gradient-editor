@@ -1,5 +1,5 @@
 import { Gradient } from "@/state/types";
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import {
   Card,
   CardContent,
@@ -8,17 +8,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ColorList from "../color-list";
 import { useListContext } from "@/state/list";
 import DeleteButton from "@/components/ui/delete-button";
 
-const GradientItem: FC<{
-  gradient: Gradient;
-  index: number;
-}> = ({ gradient, index }) => {
+const GradientItem: FC<
+  PropsWithChildren<{
+    gradient: Gradient;
+    index: number;
+  }>
+> = ({ gradient, index, children }) => {
   const { dispatch } = useListContext();
   return (
-    <Card>
+    <Card className="mb-4">
       <CardHeader>
         <CardTitle className="text-base flex items-center justify-between w-100">
           Gradient {index + 1}
@@ -34,9 +35,7 @@ const GradientItem: FC<{
         </CardTitle>
       </CardHeader>
       <CardDescription></CardDescription>
-      <CardContent>
-        <ColorList gradient={gradient} />
-      </CardContent>
+      <CardContent>{children}</CardContent>
       <CardFooter></CardFooter>
     </Card>
   );
