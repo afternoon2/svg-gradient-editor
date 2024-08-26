@@ -7,8 +7,9 @@ import {
   Select,
   SelectItem,
 } from "@/components/ui/select";
-import { useListContext } from "@/state/list";
 import { Label } from "@/components/ui/label";
+import { useAtom } from "jotai";
+import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
 
 const BlendModeSelect: FC<{
   blendMode: BlendMode;
@@ -37,13 +38,13 @@ const BlendModeSelect: FC<{
 );
 
 export const GlobalBlendModeSelect: FC = () => {
-  const { state, dispatch } = useListContext();
+  const [blendMode, setBlendMode] = useAtom(globalBlendModeAtom);
 
   return (
     <BlendModeSelect
-      blendMode={state.globalBlendMode}
+      blendMode={blendMode}
       onChange={(blendMode: BlendMode) => {
-        dispatch({ type: "SET_GLOBAL_BLEND_MODE", payload: { blendMode } });
+        setBlendMode(blendMode);
       }}
     />
   );

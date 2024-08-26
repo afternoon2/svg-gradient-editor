@@ -1,4 +1,3 @@
-import { useListContext } from "@/state/list";
 import {
   Select,
   SelectContent,
@@ -8,21 +7,24 @@ import {
 } from "@/components/ui/select";
 import { FC } from "react";
 import { Label } from "@/components/ui/label";
+import { useAtom, useAtomValue } from "jotai";
+import { presetsAtom, selectedPresetAtom } from "@/state/presets.state";
 
 const PresetSelect: FC = () => {
-  const { state, dispatch } = useListContext();
+  const presets = useAtomValue(presetsAtom);
+  const [selectedPreset, setSelectedPreset] = useAtom(selectedPresetAtom);
 
-  const hasPresets = state.presets.length > 0;
+  const hasPresets = presets.length > 0;
 
   return (
     <div className="flex w-full items-center">
       <Label className="mr-2">Selected preset:</Label>
       <Select
-        disabled={state.presets.length === 0}
+        disabled={presets.length === 0}
         onValueChange={(presetId: string) => {
-          dispatch({ type: "SELECT_PRESET", payload: { id: presetId } });
+          setSelectedPreset(presetId);
         }}
-        value={state.selectedPreset ?? undefined}
+        value={selectedPreset}
       >
         <SelectTrigger className="w-[180px]">
           <SelectValue
@@ -30,7 +32,7 @@ const PresetSelect: FC = () => {
           />
         </SelectTrigger>
         <SelectContent>
-          {state.presets.map((preset) => (
+          {presets.map((preset) => (
             <SelectItem key={preset.id} value={preset.name}>
               {preset.name}
             </SelectItem>

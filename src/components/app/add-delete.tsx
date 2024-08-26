@@ -1,30 +1,20 @@
 import { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleAlert, Plus, Save } from "lucide-react";
-import { useListContext } from "@/state/list";
-import { createEmptyGradientObject } from "@/lib/gradient";
+import { useGradientList } from "@/state/gradients.state";
 
 const AddDelete: FC = () => {
-  const { state, dispatch } = useListContext();
+  const { gradientIds, addGradient, deleteAllGradients } = useGradientList();
 
   return (
     <div className="w-full flex items-center">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => {
-          dispatch({
-            type: "ADD_GRADIENT",
-            payload: createEmptyGradientObject(),
-          });
-        }}
-      >
+      <Button variant="outline" size="sm" onClick={addGradient}>
         Add gradient <Plus className="w-4 h-4 ml-2" />
       </Button>
       <Button
         variant="outline"
         size="sm"
-        disabled={state.gradients.length === 0}
+        disabled={gradientIds.length === 0}
         className="ml-2"
       >
         Save <Save className="w-4 h-4 ml-2" />
@@ -32,11 +22,9 @@ const AddDelete: FC = () => {
       <Button
         variant="outline"
         size="sm"
-        onClick={() => {
-          dispatch({ type: "DELETE_ALL_GRADIENTS" });
-        }}
+        onClick={deleteAllGradients}
         className="ml-2"
-        disabled={state.gradients.length === 0}
+        disabled={gradientIds.length === 0}
       >
         Delete all gradients
         <CircleAlert className="w-4 h-4 ml-2" />

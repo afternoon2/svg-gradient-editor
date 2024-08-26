@@ -1,7 +1,6 @@
 import { Gradient } from "@/state/types";
 import { FC } from "react";
 import GradientSection from "../gradient-section";
-import { useListContext } from "@/state/list";
 import { Select } from "@radix-ui/react-select";
 import {
   SelectContent,
@@ -9,22 +8,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSingleGradient } from "@/state/gradients.state";
+import {
+  getDefaultLinearGradientAttributes,
+  getDefaultRadialGradientAttributes,
+} from "@/lib/gradient";
 
 const OPTIONS: Gradient["type"][] = ["linear", "radial"];
 
-const GradientTypeSection: FC<{ gradient: Gradient }> = ({ gradient }) => {
-  const { dispatch } = useListContext();
+const GradientTypeSection: FC<{ gradientId: string }> = ({ gradientId }) => {
+  const [gradient, setGradient] = useSingleGradient(gradientId);
   return (
     <GradientSection title="Type">
       <Select
         onValueChange={(gradientType: string) => {
-          dispatch({
-            type: "SET_GRADIENT_TYPE",
-            payload: {
-              gradientId: gradient.id,
-              gradientType: gradientType as Gradient["type"],
-            },
-          });
+          setGradient(
+            (prev) =>
+              ({
+                ...prev,
+                type: gradientType as Gradient["type"],
+                attributes:
+                  gradientType === "linear"
+                    ? getDefaultLinearGradientAttributes()
+                    : getDefaultRadialGradientAttributes(),
+              } as Gradient)
+          );
         }}
         value={gradient.type}
       >

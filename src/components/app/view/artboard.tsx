@@ -1,10 +1,10 @@
-import { useListContext } from "@/state/list";
+import { useAtomValue } from "jotai";
 import { FC, PropsWithChildren } from "react";
+import { artboardSizeAtom } from "@/state/artboard.state";
 
 const Artboard: FC<PropsWithChildren> = ({ children }) => {
-  const {
-    state: { artboardSize },
-  } = useListContext();
+  const artboardSize = useAtomValue(artboardSizeAtom);
+
   return (
     <svg
       width={artboardSize[0]}

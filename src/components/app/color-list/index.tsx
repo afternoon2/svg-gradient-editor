@@ -5,8 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useListContext } from "@/state/list";
-import { ColorSpace, Gradient } from "@/state/types";
+import { ColorSpace } from "@/state/types";
 import { PlusIcon } from "lucide-react";
 import { nanoid } from "nanoid";
 import { FC, useCallback, useState } from "react";
@@ -15,25 +14,26 @@ import ColorSpaceSwitch from "./color-space-switch";
 import DeleteButton from "@/components/ui/delete-button";
 import GradientSection from "../gradient-section";
 import { randomChromaColor } from "@/lib/gradient";
+import { useSingleGradient } from "@/state/gradients.state";
 
-const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
+const ColorList: FC<{ gradientId: string }> = ({ gradientId }) => {
+  const [gradient, setGradient] = useSingleGradient(gradientId);
   const [colorSpace, setColorSpace] = useState<ColorSpace>("rgba");
-  const { dispatch } = useListContext();
 
   const { id } = gradient;
 
   const addColor = useCallback(() => {
-    dispatch({
-      type: "ADD_COLOR",
-      payload: {
-        gradientId: id,
-        color: {
+    setGradient((prev) => ({
+      ...prev,
+      colors: [
+        ...prev.colors,
+        {
           id: nanoid(),
           color: randomChromaColor(),
         },
-      },
-    });
-  }, [dispatch, id]);
+      ],
+    }));
+  }, [setGradient, id]);
 
   return (
     <GradientSection title="Colors">
@@ -58,12 +58,10 @@ const ColorList: FC<{ gradient: Gradient }> = ({ gradient }) => {
           </TooltipProvider>
           <DeleteButton
             onClick={() => {
-              dispatch({
-                type: "DELETE_ALL_COLORS",
-                payload: {
-                  gradientId: gradient.id,
-                },
-              });
+              setGradient((prev) => ({
+                ...prev,
+                colors: [],
+              }));
             }}
             tooltipText="Delete all colors"
             disabled={gradient.colors.length === 0}

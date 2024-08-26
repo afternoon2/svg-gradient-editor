@@ -1,4 +1,3 @@
-import { useListContext } from "@/state/list";
 import { ColorSpace, InputColor } from "@/state/types";
 import {
   Popover,
@@ -16,28 +15,31 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
+import { useSingleGradient } from "@/state/gradients.state";
 
 const ColorsListItem: FC<{
   color: InputColor;
   gradientId: string;
   colorSpace: ColorSpace;
 }> = ({ color, gradientId, colorSpace }) => {
-  const { dispatch } = useListContext();
+  const [_, setGradient] = useSingleGradient(gradientId);
 
   const onChange = useCallback(
     (newColor: InputColor["color"]) => {
-      dispatch({
-        type: "UPDATE_COLOR",
-        payload: {
-          gradientId,
-          color: {
-            id: color.id,
-            color: newColor,
-          },
-        },
-      });
+      setGradient((prev) => ({
+        ...prev,
+        colors: prev.colors.map((current) => {
+          if (color.id === current.id) {
+            return {
+              ...current,
+              color: newColor,
+            };
+          }
+          return current;
+        }),
+      }));
     },
-    [dispatch, gradientId]
+    [setGradient, gradientId]
   );
 
   return (
@@ -71,13 +73,10 @@ const ColorsListItem: FC<{
       </TooltipProvider>
       <DeleteButton
         onClick={() => {
-          dispatch({
-            type: "DELETE_COLOR",
-            payload: {
-              colorId: color.id,
-              gradientId,
-            },
-          });
+          setGradient((prev) => ({
+            ...prev,
+            colors: prev.colors.filter((c) => c.id !== color.id),
+          }));
         }}
         tooltipText="Delete color"
       />

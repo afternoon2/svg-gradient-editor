@@ -7,8 +7,8 @@ import {
 import chroma from "chroma-js";
 import { nanoid } from "nanoid";
 
-export const createEmptyGradientObject = (): Gradient => ({
-  id: nanoid(16),
+export const createEmptyGradientObject = (id?: string): Gradient => ({
+  id: id ?? nanoid(16),
   type: "linear",
   colors: [
     {
