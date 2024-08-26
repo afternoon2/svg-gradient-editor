@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ListContextProvider from "./state/list";
 import Container from "@/components/app/container";
 import SettingsPanel from "@/components/app/settings-panel";
+import View from "./components/app/view";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <ListContextProvider>
         <Container>
           <SettingsPanel />
-          <main className="flex flex-col h-full"></main>
+          <View />
         </Container>
       </ListContextProvider>
     </ThemeProvider>

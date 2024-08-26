@@ -1,5 +1,5 @@
 import { match, P } from "ts-pattern";
-import { BlendMode, ColorSpace, Gradient, InputColor, Preset } from "./types";
+import { BlendMode, Gradient, InputColor, Preset } from "./types";
 import {
   createContext,
   Dispatch,
@@ -12,6 +12,7 @@ import { deletePreset, loadPresets, savePreset } from "@/lib/preset";
 
 export type State = {
   globalBlendMode: BlendMode;
+  artboardSize: [number, number];
   gradients: Gradient[];
   presets: Preset[];
   selectedPreset: string | null;
@@ -28,9 +29,11 @@ export type Action =
   | { type: "SET_GLOBAL_BLEND_MODE"; payload: { blendMode: BlendMode } }
   | { type: "ADD_PRESET"; payload: Preset }
   | { type: "DELETE_PRESET"; payload: { id: string } }
-  | { type: "SELECT_PRESET"; payload: { id: string | null } };
+  | { type: "SELECT_PRESET"; payload: { id: string | null } }
+  | { type: "SET_ARTBOARD_SIZE"; payload: { size: [number, number] } };
 
 const initialState: State = {
+  artboardSize: [800, 800],
   globalBlendMode: "normal",
   gradients: [],
   presets: loadPresets(),
@@ -128,6 +131,10 @@ const reducer = (state: State = initialState, action: Action): State =>
         }
         return gradient;
       }),
+    }))
+    .with([P._, { type: "SET_ARTBOARD_SIZE" }], ([state, action]) => ({
+      ...state,
+      artboardSize: action.payload.size,
     }))
     .otherwise(() => state);
 

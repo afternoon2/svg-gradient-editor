@@ -31,6 +31,7 @@ export type InputColor = {
 };
 
 export type OutputColor = {
+  id: string;
   color: number[];
   offset: number;
 };
@@ -44,15 +45,18 @@ type CommonGradientProperties = {
   output: OutputColor[];
 };
 
-export type Gradient = (
-  | { type: "linear"; attributes: LinearGradientAttributes }
-  | {
-      type: "radial";
-      attributes: RadialGradientAttributes;
-      focalPoints: boolean;
-    }
-) &
-  CommonGradientProperties;
+export type LinearGradient = {
+  type: "linear";
+  attributes: LinearGradientAttributes;
+} & CommonGradientProperties;
+
+export type RadialGradient = {
+  type: "radial";
+  attributes: RadialGradientAttributes;
+  focalPoints: boolean;
+} & CommonGradientProperties;
+
+export type Gradient = LinearGradient | RadialGradient;
 
 export type BlendModeObject = {
   id: string;
