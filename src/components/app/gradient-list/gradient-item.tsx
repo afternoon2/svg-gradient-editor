@@ -7,7 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import DeleteButton from "@/components/ui/delete-button";
+import GenericButton from "@/components/ui/generic-button";
+import { Trash } from "lucide-react";
 
 const GradientItem: FC<
   PropsWithChildren<{
@@ -20,7 +21,9 @@ const GradientItem: FC<
       <CardHeader>
         <CardTitle className="text-base flex items-center justify-between w-100">
           Gradient {index + 1}
-          <DeleteButton onClick={onDelete} tooltipText="Delete gradient" />
+          <GenericButton onClick={onDelete} tooltipText="Delete gradient">
+            <Trash className="w-3 h-3" />
+          </GenericButton>
         </CardTitle>
       </CardHeader>
       <CardDescription></CardDescription>

@@ -8,7 +8,7 @@ import { FC, useCallback } from "react";
 import ColorValue from "./color-value";
 import ColorPicker from "./color-picker";
 import { Edit } from "lucide-react";
-import DeleteButton from "@/components/ui/delete-button";
+import GenericButton from "@/components/ui/generic-button";
 import {
   Tooltip,
   TooltipContent,
@@ -71,7 +71,7 @@ const ColorsListItem: FC<{
           <TooltipContent>Edit color</TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      <DeleteButton
+      <GenericButton
         onClick={() => {
           setGradient((prev) => ({
             ...prev,

@@ -11,7 +11,7 @@ import { nanoid } from "nanoid";
 import { FC, useCallback, useState } from "react";
 import ColorsListItem from "./colors-list-item";
 import ColorSpaceSwitch from "./color-space-switch";
-import DeleteButton from "@/components/ui/delete-button";
+import GenericButton from "@/components/ui/generic-button";
 import GradientSection from "../gradient-section";
 import { randomChromaColor } from "@/lib/gradient";
 import { useSingleGradient } from "@/state/gradients.state";
@@ -56,14 +56,14 @@ const ColorList: FC<{ gradientId: string }> = ({ gradientId }) => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <DeleteButton
+          <GenericButton
             onClick={() => {
               setGradient((prev) => ({
                 ...prev,
                 colors: [],
               }));
             }}
-            tooltipText="Delete all colors"
+            title="Delete all colors"
             disabled={gradient.colors.length === 0}
           />
         </div>

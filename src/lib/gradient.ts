@@ -10,7 +10,6 @@ import { nanoid } from "nanoid";
 export const createEmptyGradientObject = (id?: string): Gradient => ({
   id: id ?? nanoid(16),
   type: "linear",
-  name: "Unnamed gradient",
   colors: [
     {
       id: nanoid(16),

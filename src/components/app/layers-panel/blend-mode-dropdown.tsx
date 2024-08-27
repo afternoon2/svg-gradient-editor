@@ -29,9 +29,7 @@ const BlendModeDropdown: FC = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <Button size="icon" variant="secondary">
-                <BlendIcon className="w-3 h-3" />
-              </Button>
+              <BlendIcon className="w-3 h-3" />
             </TooltipTrigger>
             <TooltipContent>Selected blend mode: {blendMode}</TooltipContent>
           </Tooltip>
