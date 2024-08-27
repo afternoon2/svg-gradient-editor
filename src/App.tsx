@@ -1,5 +1,4 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import SettingsPanel from "@/components/app/settings-panel";
 import View from "./components/app/view";
 import Artboard from "./components/app/view/artboard";
 import Defs from "./components/app/view/defs";
@@ -12,7 +11,6 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Provider>
-        <SettingsPanel />
         <View>
           <LayersPanel />
           <SizeControls />

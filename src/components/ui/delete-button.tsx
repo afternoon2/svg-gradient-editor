@@ -17,8 +17,13 @@ const DeleteButton: FC<{
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
-          <Button variant="link" onClick={onClick} disabled={disabled}>
-            <Trash className="w-4 h-4" />
+          <Button
+            variant="link"
+            size="icon"
+            onClick={onClick}
+            disabled={disabled}
+          >
+            <Trash className="w-3 h-3" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>{tooltipText}</TooltipContent>

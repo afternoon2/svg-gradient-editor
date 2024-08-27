@@ -16,14 +16,14 @@ const BlendModeSelect: FC<{
   onChange: (newBlendMode: BlendMode) => void;
 }> = ({ blendMode, onChange }) => (
   <div className="flex w-flex items-center">
-    <Label className="mr-2">Global blend mode:</Label>
+    <Label className="mr-2 text-xs">Global blend mode:</Label>
     <Select
       onValueChange={(value: string) => {
         onChange(value as BlendMode);
       }}
       value={blendMode}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[110px] p-1 h-auto text-xs">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
