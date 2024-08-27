@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 
 const View: FC<PropsWithChildren> = ({ children }) => (
-  <main className="flex flex-col h-full items-center justify-center relative">
+  <main className="w-full h-screen max-h-full relative flex items-center justify-center">
     {children}
   </main>
 );
