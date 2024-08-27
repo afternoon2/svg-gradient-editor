@@ -11,7 +11,9 @@ import {
 
 const CommandButtons: FC = () => {
   const { addGradient, deleteAllGradients, gradientIds } = useGradientList();
+
   const noGradients = gradientIds.length <= 0;
+
   return (
     <div className="w-full flex items-center justify-between">
       <TooltipProvider>

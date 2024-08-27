@@ -11,7 +11,7 @@ const GradientRect: FC<{
   const [gradient, _] = useSingleGradient(gradientId);
   return (
     <rect
-      id={gradientId}
+      id={`figure-${gradientId}`}
       x={0}
       y={0}
       width={artboardSize[0]}
@@ -29,7 +29,7 @@ const Figures: FC = () => {
   return (
     <g filter={`url(#${GLOBAL_BLEND_MODE_ID})`}>
       {gradientIds.map((id) => (
-        <GradientRect gradientId={id} artboardSize={artboardSize} />
+        <GradientRect key={id} gradientId={id} artboardSize={artboardSize} />
       ))}
     </g>
   );

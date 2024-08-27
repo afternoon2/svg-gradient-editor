@@ -38,6 +38,7 @@ export type OutputColor = {
 
 type CommonGradientProperties = {
   id: string;
+  name: string;
   blendMode: BlendModeObject;
   colorSpace: ColorSpace;
   chroma?: ChromaAttributes;

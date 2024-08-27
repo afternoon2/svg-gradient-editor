@@ -1,4 +1,4 @@
-import { atom, useAtom } from "jotai";
+import { atom, useAtom, useSetAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { createEmptyGradientObject } from "../lib/gradient";
 import { useCallback } from "react";
@@ -11,8 +11,11 @@ const gradientListFamily = atomFamily(
   (a, b) => a === b
 );
 
+export const selectedGradientIdAtom = atom<string | undefined>();
+
 export const useGradientList = () => {
   const [ids, setIds] = useAtom(gradientIdsAtom);
+  const setSelectedId = useSetAtom(selectedGradientIdAtom);
 
   const addGradient = useCallback(() => {
     const id = nanoid();
@@ -24,6 +27,7 @@ export const useGradientList = () => {
     (id: string) => {
       setIds((prev) => prev.filter((value) => value !== id));
       gradientListFamily.remove(id);
+      setSelectedId(undefined);
     },
     [setIds]
   );
@@ -31,6 +35,7 @@ export const useGradientList = () => {
   const deleteAllGradients = useCallback(() => {
     ids.forEach((id) => gradientListFamily.remove(id));
     setIds([]);
+    setSelectedId(undefined);
   }, [setIds]);
 
   return {

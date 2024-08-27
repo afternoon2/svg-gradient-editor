@@ -42,8 +42,8 @@ const Defs: FC = () => {
       <filter id={GLOBAL_BLEND_MODE_ID}>
         <feBlend in="sourceGraphic" in2="FillPaint" mode={globalBlendMode} />
       </filter>
-      {gradientIds.map((gradientIds) => (
-        <GradientDef gradientId={gradientIds} />
+      {gradientIds.map((gradientId) => (
+        <GradientDef key={gradientId} gradientId={gradientId} />
       ))}
     </defs>
   );
