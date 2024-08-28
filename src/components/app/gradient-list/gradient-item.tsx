@@ -21,7 +21,7 @@ const GradientItem: FC<
       <CardHeader>
         <CardTitle className="text-base flex items-center justify-between w-100">
           Gradient {index + 1}
-          <GenericButton onClick={onDelete} tooltipText="Delete gradient">
+          <GenericButton onClick={onDelete} title="Delete gradient">
             <Trash className="w-3 h-3" />
           </GenericButton>
         </CardTitle>

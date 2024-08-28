@@ -6,6 +6,7 @@ import Figures from "./components/app/view/figures";
 import SizeControls from "./components/app/view/size-controls";
 import { Provider } from "jotai";
 import LayersPanel from "./components/app/layers-panel";
+import SelectionPanel from "./components/app/selection-panel";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Provider>
         <View>
           <LayersPanel />
+          <SelectionPanel />
           <SizeControls />
           <Artboard>
             <Defs />
