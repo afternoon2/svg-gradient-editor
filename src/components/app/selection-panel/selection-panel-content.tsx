@@ -12,6 +12,7 @@ import ColorItem from "./color-item";
 import CommandButtons from "./command-buttons";
 import BlendModeSelect from "./blend-mode-select";
 import ColorSpaceSelect from "./color-space-switch";
+import ChromaSwitch from "./chroma-switch";
 
 const SelectionPanelContent: FC<{ gradientId: string }> = ({ gradientId }) => {
   const [gradient, setGradient] = useSingleGradient(gradientId);
@@ -40,7 +41,7 @@ const SelectionPanelContent: FC<{ gradientId: string }> = ({ gradientId }) => {
   return (
     <Panel
       title={gradient.name ?? "Selected gradient"}
-      className="left-3 top-[700px] z-10"
+      className="right-3 top-3 z-10"
     >
       <ColorSpaceSelect />
       <GradientTypeSelect
@@ -54,6 +55,7 @@ const SelectionPanelContent: FC<{ gradientId: string }> = ({ gradientId }) => {
           <ColorItem key={color.id} gradientId={gradient.id} color={color} />
         ))}
       </ColorsList>
+      <ChromaSwitch />
     </Panel>
   );
 };

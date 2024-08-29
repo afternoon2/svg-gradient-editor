@@ -20,6 +20,13 @@ export const createEmptyGradientObject = (id?: string): Gradient => ({
       color: randomChromaColor(),
     },
   ],
+  useChroma: false,
+  chromaAttributes: {
+    lightnessCorrection: false,
+    colorSpace: "rgb",
+    samples: 10,
+    interpolation: "linear",
+  },
   output: [],
   attributes: getDefaultLinearGradientAttributes(),
   blendMode: {

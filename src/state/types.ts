@@ -41,7 +41,8 @@ type CommonGradientProperties = {
   name?: string;
   blendMode: BlendModeObject;
   colorSpace: ColorSpace;
-  chroma?: ChromaAttributes;
+  chromaAttributes: ChromaAttributes;
+  useChroma?: boolean;
   colors: InputColor[];
   output: OutputColor[];
 };
