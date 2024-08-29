@@ -25,10 +25,7 @@ const ColorValue: FC<{ color: InputColor; colorSpace: ColorSpace }> = ({
         const output = chroma.rgb(...color.color);
         return {
           type: "hsla",
-          value: [
-            ...output.hsl().map(round),
-            output.alpha(),
-          ] as InputColor["color"],
+          value: [...output.hsl().map(round)] as InputColor["color"],
         };
       }
       case "hsva": {
@@ -51,7 +48,7 @@ const ColorValue: FC<{ color: InputColor; colorSpace: ColorSpace }> = ({
   }, [color, colorSpace]);
 
   return (
-    <p className="text-right text-xs font-mono w-100 pl-2 w-3/5">
+    <p className="text-right text-xs w-100 pl-2 w-3/5">
       {convertedColor.type === "hex"
         ? convertedColor.value
         : convertedColor.value.join(", ")}
