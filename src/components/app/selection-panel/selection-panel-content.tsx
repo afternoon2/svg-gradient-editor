@@ -9,9 +9,9 @@ import {
 import { Gradient } from "@/state/types";
 import ColorsList from "./colors-list";
 import ColorItem from "./color-item";
-import ColorSpaceSwitch from "./color-space-switch";
 import CommandButtons from "./command-buttons";
 import BlendModeSelect from "./blend-mode-select";
+import ColorSpaceSelect from "./color-space-switch";
 
 const SelectionPanelContent: FC<{ gradientId: string }> = ({ gradientId }) => {
   const [gradient, setGradient] = useSingleGradient(gradientId);
@@ -42,7 +42,7 @@ const SelectionPanelContent: FC<{ gradientId: string }> = ({ gradientId }) => {
       title={gradient.name ?? "Selected gradient"}
       className="left-3 top-[700px] z-10"
     >
-      <ColorSpaceSwitch />
+      <ColorSpaceSelect />
       <GradientTypeSelect
         gradientType={gradient.type}
         setGradientType={setGradientType}

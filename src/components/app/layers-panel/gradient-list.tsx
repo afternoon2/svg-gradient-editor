@@ -14,7 +14,7 @@ const GradientList: FC = () => {
   );
 
   return (
-    <ul className="w-full flex flex-col overflow-y-auto max-h-[500px] pt-1">
+    <ul className="w-full flex flex-col overflow-y-auto max-h-[300px] pt-1">
       {gradientIds.map((gradientId, index) => (
         <GradientItem
           key={gradientId}

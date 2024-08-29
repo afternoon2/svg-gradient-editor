@@ -11,7 +11,7 @@ import { FC } from "react";
 import { globalColorSpaceAtom } from "@/state/globalColorSpace.state";
 import { Label } from "@/components/ui/label";
 
-const ColorSpaceSwitch: FC = () => {
+const ColorSpaceSelect: FC = () => {
   const [colorSpace, setColorSpace] = useAtom(globalColorSpaceAtom);
   return (
     <div className="w-full flex items-center pb-1">
@@ -37,4 +37,4 @@ const ColorSpaceSwitch: FC = () => {
   );
 };
 
-export default ColorSpaceSwitch;
+export default ColorSpaceSelect;
