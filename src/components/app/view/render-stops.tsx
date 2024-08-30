@@ -2,7 +2,7 @@ import { Gradient, OutputColor } from "@/state/types";
 import { FC } from "react";
 
 const RenderStops: FC<{ gradient: Gradient }> = ({ gradient }) => {
-  if (gradient.chroma) {
+  if (gradient.useChroma) {
     return (
       <>
         {gradient.output.map((color: OutputColor) => (

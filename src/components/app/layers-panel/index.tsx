@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Panel from "../panel";
 import CommandButtons from "./command-buttons";
-import { GlobalBlendModeSelect } from "../blend-mode-select";
+import { GlobalBlendModeSelect } from "./blend-mode-select";
 import GradientList from "./gradient-list";
 import { ModeToggle } from "../mode-toggle";
 

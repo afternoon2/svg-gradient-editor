@@ -16,7 +16,7 @@ const GradientTypeSelect: FC<{
   setGradientType: (gradient: Gradient["type"]) => void;
 }> = ({ gradientType, setGradientType }) => {
   return (
-    <div className="w-full flex items-center pb-1">
+    <div className="w-full flex items-center py-2">
       <Label className="text-xs mr-3 w-1/3">Gradient type:</Label>
       <Select onValueChange={setGradientType} value={gradientType}>
         <SelectTrigger className="w-[110px] p-1 text-xs">
