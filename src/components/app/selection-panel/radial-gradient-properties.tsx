@@ -2,6 +2,7 @@ import { useSingleGradient } from "@/state/gradients.state";
 import { Gradient, RadialGradient } from "@/state/types";
 import { FC } from "react";
 import SliderRow from "@/components/app/slider-row";
+import SwitchRow from "../switch-row";
 
 const isRadialGradient = (gradient: Gradient): gradient is RadialGradient =>
   gradient.type === "radial";
@@ -31,7 +32,7 @@ const RadialGradientProperties: FC<{ gradientId: string }> = ({
           }}
         />
         <SliderRow
-          title="cx"
+          title="cy"
           min={0}
           max={1}
           step={0.01}
@@ -62,6 +63,52 @@ const RadialGradientProperties: FC<{ gradientId: string }> = ({
             });
           }}
         />
+        <SwitchRow
+          label="Focal points"
+          checked={gradient.focalPoints}
+          onChange={(value) => {
+            setGradient((prev) => ({
+              ...prev,
+              focalPoints: value,
+            }));
+          }}
+        />
+        {gradient.focalPoints && (
+          <>
+            <SliderRow
+              title="fx"
+              min={-1}
+              max={1}
+              step={0.01}
+              value={[gradient.attributes.fx ?? 0.5]}
+              onValueChange={(newValue) => {
+                setGradient({
+                  ...gradient,
+                  attributes: {
+                    ...gradient.attributes,
+                    fx: newValue[0],
+                  },
+                });
+              }}
+            />
+            <SliderRow
+              title="fy"
+              min={-1}
+              max={1}
+              step={0.01}
+              value={[gradient.attributes.fy ?? 0.5]}
+              onValueChange={(newValue) => {
+                setGradient({
+                  ...gradient,
+                  attributes: {
+                    ...gradient.attributes,
+                    fy: newValue[0],
+                  },
+                });
+              }}
+            />
+          </>
+        )}
       </div>
     );
   }
