@@ -7,25 +7,38 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Gradient } from "@/state/types";
-import { FC } from "react";
+import { useAtom } from "jotai";
+import { FC, useContext } from "react";
+import { gradientTypeAtomFamily } from "@/state/gradients.store";
+import { SelectionPanelContext } from "./context";
 
 const OPTIONS: Gradient["type"][] = ["linear", "radial"];
 
-const GradientTypeSelect: FC<{
-  gradientType: Gradient["type"];
-  setGradientType: (gradient: Gradient["type"]) => void;
-}> = ({ gradientType, setGradientType }) => {
+const GradientTypeSelect: FC = () => {
+  const { gradientId } = useContext(SelectionPanelContext);
+  const [gradientType, setGradientType] = useAtom(
+    gradientTypeAtomFamily(gradientId)
+  );
+
   return (
     <div className="w-full flex items-center py-2">
       <Label className="text-xs mr-3 w-1/3">Gradient type:</Label>
-      <Select onValueChange={setGradientType} value={gradientType}>
+      <Select
+        onValueChange={(value) => {
+          setGradientType({
+            id: gradientId,
+            type: value as Gradient["type"],
+          });
+        }}
+        value={gradientType.type}
+      >
         <SelectTrigger className="w-[110px] p-1 text-xs">
           <SelectValue placeholder="Select gradient type" />
         </SelectTrigger>
         <SelectContent>
-          {OPTIONS.map((gradientType) => (
-            <SelectItem key={gradientType} value={gradientType}>
-              {gradientType}
+          {OPTIONS.map((gType) => (
+            <SelectItem key={gType} value={gType}>
+              {gType}
             </SelectItem>
           ))}
         </SelectContent>

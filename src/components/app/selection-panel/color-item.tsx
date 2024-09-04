@@ -1,6 +1,5 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useContext } from "react";
 import { InputColor } from "@/state/types";
-import { useSingleGradient } from "@/state/gradients.state";
 import {
   Popover,
   PopoverContent,
@@ -15,33 +14,32 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Edit, Trash } from "lucide-react";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { globalColorSpaceAtom } from "@/state/globalColorSpace.state";
 import GenericButton from "@/components/ui/generic-button";
+import {
+  gradientColorFamily,
+  gradientColorIdsFamily,
+} from "../../../state/gradients.store";
+import { SelectionPanelContext } from "./context";
 
-const ColorItem: FC<{
-  gradientId: string;
-  color: InputColor;
-}> = ({ gradientId, color }) => {
-  const [_, setGradient] = useSingleGradient(gradientId);
+const ColorItem: FC<{ colorId: string }> = ({ colorId }) => {
+  const { gradientId } = useContext(SelectionPanelContext);
+  const setColorIds = useSetAtom(gradientColorIdsFamily(gradientId));
+  const [colorAtomValue, setColorAtomValue] = useAtom(
+    gradientColorFamily(colorId)
+  );
+
   const globalColorSpace = useAtomValue(globalColorSpaceAtom);
 
   const onChange = useCallback(
     (newColor: InputColor["color"]) => {
-      setGradient((prev) => ({
+      setColorAtomValue((prev) => ({
         ...prev,
-        colors: prev.colors.map((current) => {
-          if (color.id === current.id) {
-            return {
-              ...current,
-              color: newColor,
-            };
-          }
-          return current;
-        }),
+        color: newColor,
       }));
     },
-    [setGradient, gradientId]
+    [setColorAtomValue]
   );
 
   return (
@@ -50,14 +48,16 @@ const ColorItem: FC<{
         <PopoverTrigger asChild>
           <div
             className="w-8 h-8 rounded cursor-pointer"
-            style={{ backgroundColor: `rgba(${color.color.join(",")}` }}
+            style={{
+              backgroundColor: `rgba(${colorAtomValue.color.join(",")}`,
+            }}
           />
         </PopoverTrigger>
         <PopoverContent>
-          <ColorPicker value={color.color} onChange={onChange} />
+          <ColorPicker value={colorAtomValue.color} onChange={onChange} />
         </PopoverContent>
       </Popover>
-      <ColorValue color={color} colorSpace={globalColorSpace} />
+      <ColorValue color={colorAtomValue} colorSpace={globalColorSpace} />
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
@@ -66,7 +66,7 @@ const ColorItem: FC<{
                 <Edit className="mx-3 w-3 h-3" />
               </PopoverTrigger>
               <PopoverContent>
-                <ColorPicker value={color.color} onChange={onChange} />
+                <ColorPicker value={colorAtomValue.color} onChange={onChange} />
               </PopoverContent>
             </Popover>
           </TooltipTrigger>
@@ -76,9 +76,9 @@ const ColorItem: FC<{
       <GenericButton
         title="Delete color"
         onClick={() => {
-          setGradient((prev) => ({
+          setColorIds((prev) => ({
             ...prev,
-            colors: prev.colors.filter((c) => c.id !== color.id),
+            colorIds: prev.colorIds.filter((cId) => cId !== colorAtomValue.id),
           }));
         }}
       >

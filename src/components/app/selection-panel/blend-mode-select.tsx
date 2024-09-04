@@ -6,25 +6,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BLEND_MODES, BlendMode } from "@/state/types";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Label } from "@/components/ui/label";
-import { useSingleGradient } from "@/state/gradients.state";
+import { SelectionPanelContext } from "./context";
+import { useAtom } from "jotai";
+import { gradientBlendModeFamily } from "../../../state/gradients.store";
 
-const BlendModeSelect: FC<{ gradientId: string }> = ({ gradientId }) => {
-  const [gradient, setGradient] = useSingleGradient(gradientId);
+const BlendModeSelect: FC = () => {
+  const { gradientId } = useContext(SelectionPanelContext);
+  const [blendModeAtom, setBlendModeAtom] = useAtom(
+    gradientBlendModeFamily(gradientId)
+  );
 
   return (
     <div className="w-full flex items-center pb-1">
       <Label className="text-xs mr-3 w-1/3">Blend mode:</Label>
       <Select
-        value={gradient.blendMode.mode}
+        value={blendModeAtom.blendMode}
         onValueChange={(value: string) => {
-          setGradient((prev) => ({
+          setBlendModeAtom((prev) => ({
             ...prev,
-            blendMode: {
-              ...prev.blendMode,
-              mode: value as BlendMode,
-            },
+            blendMode: value as BlendMode,
           }));
         }}
       >

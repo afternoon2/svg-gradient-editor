@@ -1,34 +1,32 @@
-import { FC, useCallback } from "react";
-import { useSingleGradient } from "@/state/gradients.state";
+import { FC, useCallback, useContext } from "react";
 import GenericButton from "@/components/ui/generic-button";
-import { randomChromaColor } from "../../../lib/gradient";
 import { nanoid } from "nanoid";
 import { PlusIcon, Trash } from "lucide-react";
+import { SelectionPanelContext } from "./context";
+import { useAtom } from "jotai";
+import { gradientColorIdsFamily } from "@/state/gradients.store";
 
-const CommandButtons: FC<{ gradientId: string }> = ({ gradientId }) => {
-  const [gradient, setGradient] = useSingleGradient(gradientId);
+const CommandButtons: FC = () => {
+  const { gradientId } = useContext(SelectionPanelContext);
+  const [colorIdsAtom, setColorIdsAtom] = useAtom(
+    gradientColorIdsFamily(gradientId)
+  );
 
-  const noColors = gradient.colors.length <= 0;
+  const noColors = colorIdsAtom.colorIds.length <= 0;
 
   const addColor = useCallback(() => {
-    setGradient((prev) => ({
+    setColorIdsAtom((prev) => ({
       ...prev,
-      colors: [
-        ...prev.colors,
-        {
-          id: nanoid(),
-          color: randomChromaColor(),
-        },
-      ],
+      colorIds: [...prev.colorIds, nanoid()],
     }));
-  }, [setGradient]);
+  }, [setColorIdsAtom]);
 
   const deleteAllColors = useCallback(() => {
-    setGradient((prev) => ({
+    setColorIdsAtom((prev) => ({
       ...prev,
-      colors: [],
+      colorIds: [],
     }));
-  }, [setGradient]);
+  }, [setColorIdsAtom]);
 
   return (
     <div className="w-full flex items-center justify-between">

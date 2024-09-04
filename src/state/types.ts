@@ -13,6 +13,7 @@ export type RadialGradientAttributes = {
   r: number;
   fx: number;
   fy: number;
+  withFocalPoints?: boolean;
   spreadMethod?: "pad" | "repeat" | "reflect";
 };
 
