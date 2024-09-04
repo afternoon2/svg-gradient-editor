@@ -8,10 +8,13 @@ import {
   RadialGradientAttributes,
 } from "./types";
 import { randomChromaColor } from "@/lib/gradient";
+import { nanoid } from "nanoid";
 
 type FamilyValueOf<T extends Record<string, unknown>> = { id: string } & T;
 
 export const gradientIdsAtom = atom<string[]>([]);
+
+export const selectedGradientIdAtom = atom<string | undefined>();
 
 export const gradientTypeAtomFamily = atomFamily((id: string) =>
   atom<FamilyValueOf<{ type: Gradient["type"] }>>({ id, type: "linear" })
@@ -43,7 +46,10 @@ export const radialGradientAttributesFamily = atomFamily((id: string) =>
 );
 
 export const gradientColorIdsFamily = atomFamily((id: string) =>
-  atom<FamilyValueOf<{ colorIds: string[] }>>({ id, colorIds: [] })
+  atom<FamilyValueOf<{ colorIds: string[] }>>({
+    id,
+    colorIds: [nanoid(), nanoid()],
+  })
 );
 
 export const chromaUsageFamily = atomFamily((id: string) =>

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { useGradientList } from "@/state/gradients.state";
 import { PlusIcon, Save, Trash } from "lucide-react";
 import GenericButton from "@/components/ui/generic-button";
+import { useGradientList } from "@/state/useGradientList";
 
 const CommandButtons: FC = () => {
   const { addGradient, deleteAllGradients, gradientIds } = useGradientList();

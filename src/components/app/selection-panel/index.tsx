@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAtomValue } from "jotai";
-import { selectedGradientIdAtom } from "@/state/gradients.state";
+import { selectedGradientIdAtom } from "@/state/gradients.store";
 import SelectionPanelContent from "./selection-panel-content";
 import { SelectionPanelContext } from "./context";
 

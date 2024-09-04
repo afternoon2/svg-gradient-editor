@@ -6,29 +6,31 @@ import { GLOBAL_BLEND_MODE_ID } from "./consts";
 import { useAtomValue } from "jotai";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
 import {
+  gradientBlendModeFamily,
+  gradientTypeAtomFamily,
   gradientIdsAtom,
-  useSingleGradient,
-} from "../../../state/gradients.state";
+} from "@/state/gradients.store";
 
 const GradientDef: FC<{ gradientId: string }> = ({ gradientId }) => {
-  const [gradient, _] = useSingleGradient(gradientId);
+  const gradientTypeAtom = useAtomValue(gradientTypeAtomFamily(gradientId));
+  const blendMode = useAtomValue(gradientBlendModeFamily(gradientId));
 
-  const stops = <RenderStops gradient={gradient} />;
+  const stops = <RenderStops gradientId={gradientId} />;
 
   return (
-    <Fragment key={gradient.id}>
-      {gradient.type === "linear" && (
-        <LinearGradientElement gradient={gradient}>
+    <Fragment key={gradientId}>
+      {gradientTypeAtom.type === "linear" && (
+        <LinearGradientElement gradientId={gradientId}>
           {stops}
         </LinearGradientElement>
       )}
-      {gradient.type === "radial" && (
-        <RadialGradientElement gradient={gradient}>
+      {gradientTypeAtom.type === "radial" && (
+        <RadialGradientElement gradientId={gradientId}>
           {stops}
         </RadialGradientElement>
       )}
-      <filter id={gradient.blendMode.id}>
-        <feBlend in="FillPaint" mode={gradient.blendMode.mode} />
+      <filter id={`${gradientId}-blend-mode`}>
+        <feBlend in="FillPaint" mode={blendMode.blendMode} />
       </filter>
     </Fragment>
   );

@@ -1,16 +1,21 @@
-import { LinearGradient } from "@/state/types";
+import { linearGradientAttributesFamily } from "@/state/gradients.store";
+import { useAtomValue } from "jotai";
 import { FC, PropsWithChildren } from "react";
 
-const LinearGradientElement: FC<
-  PropsWithChildren<{ gradient: LinearGradient }>
-> = ({ gradient, children }) => (
-  <linearGradient
-    gradientUnits="objectBoundingBox"
-    id={gradient.id}
-    {...gradient.attributes}
-  >
-    {children}
-  </linearGradient>
-);
+const LinearGradientElement: FC<PropsWithChildren<{ gradientId: string }>> = ({
+  gradientId,
+  children,
+}) => {
+  const gradient = useAtomValue(linearGradientAttributesFamily(gradientId));
+  return (
+    <linearGradient
+      gradientUnits="objectBoundingBox"
+      id={gradient.id}
+      {...gradient.attrs}
+    >
+      {children}
+    </linearGradient>
+  );
+};
 
 export default LinearGradientElement;

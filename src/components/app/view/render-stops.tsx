@@ -1,29 +1,52 @@
-import { Gradient, OutputColor } from "@/state/types";
+import {
+  chromaUsageFamily,
+  gradientColorFamily,
+  gradientColorIdsFamily,
+} from "@/state/gradients.store";
+import { useAtomValue } from "jotai";
 import { FC } from "react";
 
-const RenderStops: FC<{ gradient: Gradient }> = ({ gradient }) => {
-  if (gradient.useChroma) {
+const RenderStop: FC<{
+  colorId: string;
+  colorsCount: number;
+  index: number;
+}> = ({ colorId, colorsCount, index }) => {
+  const { color } = useAtomValue(gradientColorFamily(colorId));
+
+  return (
+    <stop
+      stopColor={`rgba(${color.join(", ")})`}
+      offset={`${index * (100 / colorsCount)}%`}
+    />
+  );
+};
+
+const RenderStops: FC<{ gradientId: string }> = ({ gradientId }) => {
+  const chromaUsageAtom = useAtomValue(chromaUsageFamily(gradientId));
+  const colorIdsAtom = useAtomValue(gradientColorIdsFamily(gradientId));
+
+  if (chromaUsageAtom.value) {
     return (
       <>
-        {gradient.output.map((color: OutputColor) => (
+        {/* TODO: move to separate atom family */}
+        {/* {gradient.output.map((color: OutputColor) => (
           <stop
             key={color.id}
             offset={`${color.offset}%`}
             stopColor={`rgba(${color.color.join(",")})`}
           />
-        ))}
+        ))} */}
       </>
     );
   }
   return (
     <>
-      {gradient.colors.map((color) => (
-        <stop
-          key={color.id}
-          stopColor={`rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]})`}
-          offset={`${
-            gradient.colors.indexOf(color) * (100 / gradient.colors.length)
-          }%`}
+      {colorIdsAtom.colorIds.map((colorId, index, arr) => (
+        <RenderStop
+          key={colorId}
+          colorId={colorId}
+          colorsCount={arr.length}
+          index={index}
         />
       ))}
     </>

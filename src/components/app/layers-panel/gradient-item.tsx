@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren } from "react";
 import GenericButton from "@/components/ui/generic-button";
-import { useSingleGradient } from "@/state/gradients.state";
 import { Trash } from "lucide-react";
+import { useAtomValue } from "jotai";
+import { gradientAliasFamily } from "@/state/gradients.store";
 
 const GradientItem: FC<
   PropsWithChildren<{
@@ -12,7 +13,7 @@ const GradientItem: FC<
     index: number;
   }>
 > = ({ onDelete, id, selected, index, onSelect }) => {
-  const [gradient] = useSingleGradient(id);
+  const aliasAtom = useAtomValue(gradientAliasFamily(id));
 
   return (
     <li
@@ -35,7 +36,7 @@ const GradientItem: FC<
           checked={selected}
         />
         <span className="inline-flex w-2/3 h-full text-ellipsis overflow-hidden">
-          {gradient.name ?? `Gradient ${index + 1}`}
+          {aliasAtom.alias ?? `Gradient ${index + 1}`}
         </span>
         <GenericButton onClick={onDelete} title="Delete gradient">
           <Trash className="w-3 h-3 stroke-red-500" />

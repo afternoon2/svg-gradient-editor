@@ -1,11 +1,9 @@
 import { FC } from "react";
-import {
-  selectedGradientIdAtom,
-  useGradientList,
-} from "@/state/gradients.state";
+import { selectedGradientIdAtom } from "@/state/gradients.store";
 
 import { useAtom } from "jotai";
 import GradientItem from "./gradient-item";
+import { useGradientList } from "@/state/useGradientList";
 
 const GradientList: FC = () => {
   const { gradientIds, deleteGradient } = useGradientList();
