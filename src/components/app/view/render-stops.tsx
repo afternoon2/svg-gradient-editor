@@ -11,12 +11,12 @@ const RenderStop: FC<{
   colorsCount: number;
   index: number;
 }> = ({ colorId, colorsCount, index }) => {
-  const { value } = useAtomValue(gradientColorFamily(colorId));
+  const { value, offset } = useAtomValue(gradientColorFamily(colorId));
 
   return (
     <stop
       stopColor={`rgba(${value.join(", ")})`}
-      offset={`${index * (100 / colorsCount)}%`}
+      offset={`${offset ?? index * (100 / colorsCount)}%`}
     />
   );
 };
