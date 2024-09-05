@@ -2,7 +2,7 @@ import {
   chromaUsageFamily,
   gradientColorFamily,
   gradientColorIdsFamily,
-} from "@/state/gradients.store";
+} from "@/state/gradients.state";
 import { useAtomValue } from "jotai";
 import { FC } from "react";
 
@@ -11,11 +11,11 @@ const RenderStop: FC<{
   colorsCount: number;
   index: number;
 }> = ({ colorId, colorsCount, index }) => {
-  const { color } = useAtomValue(gradientColorFamily(colorId));
+  const { value } = useAtomValue(gradientColorFamily(colorId));
 
   return (
     <stop
-      stopColor={`rgba(${color.join(", ")})`}
+      stopColor={`rgba(${value.join(", ")})`}
       offset={`${index * (100 / colorsCount)}%`}
     />
   );

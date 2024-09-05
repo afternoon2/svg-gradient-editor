@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import { SelectionPanelContext } from "./context";
 import { useAtomValue } from "jotai";
-import { gradientColorIdsFamily } from "@/state/gradients.store";
+import { gradientColorIdsFamily } from "@/state/gradients.state";
 import ColorItem from "./color-item";
 
 const ColorsList: FC = () => {

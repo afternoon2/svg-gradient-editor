@@ -6,7 +6,7 @@ import {
   gradientTypeAtomFamily,
   linearGradientAttributesFamily,
   radialGradientAttributesFamily,
-} from "@/state/gradients.store";
+} from "@/state/gradients.state";
 import SwitchRow from "../switch-row";
 
 const LinearGradientProperties: FC = () => {

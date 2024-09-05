@@ -26,9 +26,12 @@ export type ChromaAttributes = {
   samples: number;
 };
 
-export type InputColor = {
+export type GradientType = "linear" | "radial";
+
+export type AppColor = {
   id: string;
-  color: [number, number, number, number] /* rgba */;
+  value: [number, number, number, number];
+  offset?: number;
 };
 
 export type OutputColor = {
@@ -36,30 +39,6 @@ export type OutputColor = {
   color: number[];
   offset: number;
 };
-
-type CommonGradientProperties = {
-  id: string;
-  name?: string;
-  blendMode: BlendModeObject;
-  colorSpace: ColorSpace;
-  chromaAttributes: ChromaAttributes;
-  useChroma?: boolean;
-  colors: InputColor[];
-  output: OutputColor[];
-};
-
-export type LinearGradient = {
-  type: "linear";
-  attributes: LinearGradientAttributes;
-} & CommonGradientProperties;
-
-export type RadialGradient = {
-  type: "radial";
-  attributes: RadialGradientAttributes;
-  focalPoints: boolean;
-} & CommonGradientProperties;
-
-export type Gradient = LinearGradient | RadialGradient;
 
 export type BlendModeObject = {
   id: string;
@@ -69,7 +48,6 @@ export type BlendModeObject = {
 export type Preset = {
   id: string;
   name: string;
-  value: Gradient[];
 };
 
 export const COLOR_SPACES = ["rgba", "hex", "hsva", "hsla"] as const;

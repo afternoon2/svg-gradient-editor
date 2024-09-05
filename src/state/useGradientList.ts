@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { gradientIdsAtom, selectedGradientIdAtom } from "./gradients.store";
+import { gradientIdsAtom, selectedGradientIdAtom } from "./gradients.state";
 import { useCallback } from "react";
 import { nanoid } from "nanoid";
 

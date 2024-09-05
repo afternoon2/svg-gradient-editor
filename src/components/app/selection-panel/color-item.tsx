@@ -1,5 +1,5 @@
 import { FC, useCallback, useContext } from "react";
-import { InputColor } from "@/state/types";
+import { AppColor } from "@/state/types";
 import {
   Popover,
   PopoverContent,
@@ -20,7 +20,7 @@ import GenericButton from "@/components/ui/generic-button";
 import {
   gradientColorFamily,
   gradientColorIdsFamily,
-} from "../../../state/gradients.store";
+} from "../../../state/gradients.state";
 import { SelectionPanelContext } from "./context";
 
 const ColorItem: FC<{ colorId: string }> = ({ colorId }) => {
@@ -33,10 +33,10 @@ const ColorItem: FC<{ colorId: string }> = ({ colorId }) => {
   const globalColorSpace = useAtomValue(globalColorSpaceAtom);
 
   const onChange = useCallback(
-    (newColor: InputColor["color"]) => {
+    (newColor: AppColor["value"]) => {
       setColorAtomValue((prev) => ({
         ...prev,
-        color: newColor,
+        value: newColor,
       }));
     },
     [setColorAtomValue]
@@ -49,12 +49,12 @@ const ColorItem: FC<{ colorId: string }> = ({ colorId }) => {
           <div
             className="w-8 h-8 rounded cursor-pointer"
             style={{
-              backgroundColor: `rgba(${colorAtomValue.color.join(",")}`,
+              backgroundColor: `rgba(${colorAtomValue.value.join(",")}`,
             }}
           />
         </PopoverTrigger>
         <PopoverContent>
-          <ColorPicker value={colorAtomValue.color} onChange={onChange} />
+          <ColorPicker value={colorAtomValue.value} onChange={onChange} />
         </PopoverContent>
       </Popover>
       <ColorValue color={colorAtomValue} colorSpace={globalColorSpace} />
@@ -66,7 +66,7 @@ const ColorItem: FC<{ colorId: string }> = ({ colorId }) => {
                 <Edit className="mx-3 w-3 h-3" />
               </PopoverTrigger>
               <PopoverContent>
-                <ColorPicker value={colorAtomValue.color} onChange={onChange} />
+                <ColorPicker value={colorAtomValue.value} onChange={onChange} />
               </PopoverContent>
             </Popover>
           </TooltipTrigger>

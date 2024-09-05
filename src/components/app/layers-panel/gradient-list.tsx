@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { selectedGradientIdAtom } from "@/state/gradients.store";
+import { selectedGradientIdAtom } from "@/state/gradients.state";
 
 import { useAtom } from "jotai";
 import GradientItem from "./gradient-item";

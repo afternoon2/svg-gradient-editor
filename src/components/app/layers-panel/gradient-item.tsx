@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import GenericButton from "@/components/ui/generic-button";
 import { Trash } from "lucide-react";
 import { useAtomValue } from "jotai";
-import { gradientAliasFamily } from "@/state/gradients.store";
+import { gradientAliasFamily } from "@/state/gradients.state";
 
 const GradientItem: FC<
   PropsWithChildren<{

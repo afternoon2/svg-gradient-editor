@@ -10,7 +10,7 @@ import { FC, useContext } from "react";
 import { Label } from "@/components/ui/label";
 import { SelectionPanelContext } from "./context";
 import { useAtom } from "jotai";
-import { gradientBlendModeFamily } from "../../../state/gradients.store";
+import { gradientBlendModeFamily } from "../../../state/gradients.state";
 
 const BlendModeSelect: FC = () => {
   const { gradientId } = useContext(SelectionPanelContext);

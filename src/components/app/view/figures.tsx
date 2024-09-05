@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { GLOBAL_BLEND_MODE_ID } from "./consts";
-import { gradientIdsAtom } from "@/state/gradients.store";
+import { gradientIdsAtom } from "@/state/gradients.state";
 import { useAtomValue } from "jotai";
 import { artboardSizeAtom } from "@/state/artboard.state";
 

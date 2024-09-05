@@ -9,7 +9,7 @@ import {
   gradientBlendModeFamily,
   gradientTypeAtomFamily,
   gradientIdsAtom,
-} from "@/state/gradients.store";
+} from "@/state/gradients.state";
 
 const GradientDef: FC<{ gradientId: string }> = ({ gradientId }) => {
   const gradientTypeAtom = useAtomValue(gradientTypeAtomFamily(gradientId));

@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import SwitchRow from "../switch-row";
 import { useAtom } from "jotai";
-import { chromaUsageFamily } from "@/state/gradients.store";
+import { chromaUsageFamily } from "@/state/gradients.state";
 import { SelectionPanelContext } from "./context";
 
 const ChromaSwitch: FC = () => {

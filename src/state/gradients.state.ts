@@ -1,27 +1,36 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import {
+  AppColor,
   BlendMode,
   ChromaAttributes,
-  Gradient,
+  GradientType,
   LinearGradientAttributes,
   RadialGradientAttributes,
 } from "./types";
 import { randomChromaColor } from "@/lib/gradient";
 import { nanoid } from "nanoid";
 
-type FamilyValueOf<T extends Record<string, unknown>> = { id: string } & T;
+type FamilyValueOf<T extends Record<string, unknown>> = {
+  id: string;
+} & T;
 
 export const gradientIdsAtom = atom<string[]>([]);
 
 export const selectedGradientIdAtom = atom<string | undefined>();
 
 export const gradientTypeAtomFamily = atomFamily((id: string) =>
-  atom<FamilyValueOf<{ type: Gradient["type"] }>>({ id, type: "linear" })
+  atom<FamilyValueOf<{ type: GradientType }>>({
+    id,
+    type: "linear",
+  })
 );
 
 export const gradientAliasFamily = atomFamily((id: string) =>
-  atom<FamilyValueOf<{ alias?: string }>>({ id })
+  atom<FamilyValueOf<{ alias?: string }>>({
+    id,
+    alias: undefined,
+  })
 );
 
 export const linearGradientAttributesFamily = atomFamily((id: string) =>
@@ -73,8 +82,8 @@ export const gradientBlendModeFamily = atomFamily((id: string) =>
 );
 
 export const gradientColorFamily = atomFamily((colorId: string) =>
-  atom<FamilyValueOf<{ color: [number, number, number, number] }>>({
+  atom<FamilyValueOf<AppColor>>({
     id: colorId,
-    color: randomChromaColor(),
+    value: randomChromaColor(),
   })
 );

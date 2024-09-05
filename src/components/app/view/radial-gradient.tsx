@@ -1,4 +1,4 @@
-import { radialGradientAttributesFamily } from "@/state/gradients.store";
+import { radialGradientAttributesFamily } from "@/state/gradients.state";
 
 import { useAtomValue } from "jotai";
 import { FC, PropsWithChildren } from "react";

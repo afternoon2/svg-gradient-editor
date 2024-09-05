@@ -9,7 +9,7 @@ import ChromaSwitch from "./chroma-switch";
 import { Separator } from "@/components/ui/separator";
 import FieldsetLegend from "@/components/app/fieldset-legend";
 import { useAtomValue } from "jotai";
-import { gradientAliasFamily } from "../../../state/gradients.store";
+import { gradientAliasFamily } from "../../../state/gradients.state";
 import GradientProperties from "./gradient-properties";
 
 const SelectionPanelContent: FC<{ gradientId: string }> = ({ gradientId }) => {

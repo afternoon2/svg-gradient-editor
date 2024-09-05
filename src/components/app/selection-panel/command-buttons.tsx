@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { PlusIcon, Trash } from "lucide-react";
 import { SelectionPanelContext } from "./context";
 import { useAtom } from "jotai";
-import { gradientColorIdsFamily } from "@/state/gradients.store";
+import { gradientColorIdsFamily } from "@/state/gradients.state";
 
 const CommandButtons: FC = () => {
   const { gradientId } = useContext(SelectionPanelContext);

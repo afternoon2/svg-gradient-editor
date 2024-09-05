@@ -1,16 +1,16 @@
-import { ColorSpace, InputColor } from "@/state/types";
+import { AppColor, ColorSpace } from "@/state/types";
 import chroma from "chroma-js";
 import { FC, useMemo } from "react";
 
 type Output =
-  | { type: "rgba"; value: InputColor["color"] }
-  | { type: "hsva"; value: InputColor["color"] }
-  | { type: "hsla"; value: InputColor["color"] }
+  | { type: "rgba"; value: AppColor["value"] }
+  | { type: "hsva"; value: AppColor["value"] }
+  | { type: "hsla"; value: AppColor["value"] }
   | { type: "hex"; value: string };
 
 const round = (v: number): number => parseFloat(v.toFixed(2));
 
-const ColorValue: FC<{ color: InputColor; colorSpace: ColorSpace }> = ({
+const ColorValue: FC<{ color: AppColor; colorSpace: ColorSpace }> = ({
   color,
   colorSpace,
 }) => {
@@ -19,30 +19,30 @@ const ColorValue: FC<{ color: InputColor; colorSpace: ColorSpace }> = ({
       case "hex":
         return {
           type: "hex",
-          value: chroma.rgb(...color.color).hex(),
+          value: chroma.rgb(...color.value).hex(),
         };
       case "hsla": {
-        const output = chroma.rgb(...color.color);
+        const output = chroma.rgb(...color.value);
         return {
           type: "hsla",
-          value: [...output.hsl().map(round)] as InputColor["color"],
+          value: [...output.hsl().map(round)] as AppColor["value"],
         };
       }
       case "hsva": {
-        const output = chroma.rgb(...color.color);
+        const output = chroma.rgb(...color.value);
         return {
           type: "hsva",
           value: [
             ...output.hsv().map(round),
             output.alpha(),
-          ] as InputColor["color"],
+          ] as AppColor["value"],
         };
       }
       case "rgba":
       default:
         return {
           type: "rgba",
-          value: color.color,
+          value: color.value,
         };
     }
   }, [color, colorSpace]);

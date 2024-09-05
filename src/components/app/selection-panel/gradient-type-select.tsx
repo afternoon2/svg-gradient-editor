@@ -9,7 +9,7 @@ import {
 import { Gradient } from "@/state/types";
 import { useAtom } from "jotai";
 import { FC, useContext } from "react";
-import { gradientTypeAtomFamily } from "@/state/gradients.store";
+import { gradientTypeAtomFamily } from "@/state/gradients.state";
 import { SelectionPanelContext } from "./context";
 
 const OPTIONS: Gradient["type"][] = ["linear", "radial"];
@@ -25,10 +25,10 @@ const GradientTypeSelect: FC = () => {
       <Label className="text-xs mr-3 w-1/3">Gradient type:</Label>
       <Select
         onValueChange={(value) => {
-          setGradientType({
-            id: gradientId,
+          setGradientType((prev) => ({
+            ...prev,
             type: value as Gradient["type"],
-          });
+          }));
         }}
         value={gradientType.type}
       >
