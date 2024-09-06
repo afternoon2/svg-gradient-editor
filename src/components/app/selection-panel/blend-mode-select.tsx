@@ -6,28 +6,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BLEND_MODES, BlendMode } from "@/state/types";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { Label } from "@/components/ui/label";
-import { SelectionPanelContext } from "./context";
-import { useAtom } from "jotai";
-import { gradientBlendModeFamily } from "../../../state/gradients.state";
+import { useAtomValue, useSetAtom } from "jotai";
+import {
+  gradientStateReducerAtom,
+  selectedGradientAtom,
+} from "@/state/gradient.store";
 
 const BlendModeSelect: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const [blendModeAtom, setBlendModeAtom] = useAtom(
-    gradientBlendModeFamily(gradientId)
-  );
+  const dispatch = useSetAtom(gradientStateReducerAtom);
+  const selectedGradient = useAtomValue(selectedGradientAtom);
 
   return (
     <div className="w-full flex items-center pb-1">
       <Label className="text-xs mr-3 w-1/3">Blend mode:</Label>
       <Select
-        value={blendModeAtom.blendMode}
+        value={selectedGradient?.blendMode ?? "normal"}
         onValueChange={(value: string) => {
-          setBlendModeAtom((prev) => ({
-            ...prev,
-            blendMode: value as BlendMode,
-          }));
+          dispatch({
+            type: "SET_BLEND_MODE",
+            payload: {
+              id: selectedGradient?.id as string,
+              blendMode: value as BlendMode,
+            },
+          });
         }}
       >
         <SelectTrigger className="w-[110px] p-1 text-xs">

@@ -1,4 +1,8 @@
-import { ChromaAttributes, Gradient, OutputColor } from "@/state/types";
+import {
+  ChromaAttributes,
+  GradientWorkerInput,
+  OutputColor,
+} from "@/state/types";
 import chroma from "chroma-js";
 import { nanoid } from "nanoid";
 
@@ -19,15 +23,15 @@ export const bezierScale: ScaleFnCreator = (attrs, colors) =>
 const createBase = (samples: number, scale: chroma.Scale<chroma.Color>) =>
   new Array(samples).fill(null).map((_, i) => scale(i / samples));
 
-export const createChromaColor = (gradient: Gradient): OutputColor[] => {
-  const colorStrings = gradient.colors.map((c) => `rgba(${c.color.join(",")})`);
+export const getWorkerOutput = (input: GradientWorkerInput): OutputColor[] => {
+  const colorStrings = input.colors.map((c) => `rgba(${c.value.join(",")})`);
   const scaleFnCreator =
-    gradient.chromaAttributes.interpolation === "linear"
+    input.chromaAttributes.interpolation === "linear"
       ? linearScale
       : bezierScale;
-  const scaleFn = scaleFnCreator(gradient.chromaAttributes, colorStrings);
+  const scaleFn = scaleFnCreator(input.chromaAttributes, colorStrings);
 
-  return createBase(gradient.chromaAttributes.samples, scaleFn).map(
+  return createBase(input.chromaAttributes.samples, scaleFn).map(
     (chromaColor, index, arr) => {
       return {
         id: nanoid(),

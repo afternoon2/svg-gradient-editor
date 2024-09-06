@@ -6,31 +6,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Gradient } from "@/state/types";
-import { useAtom } from "jotai";
-import { FC, useContext } from "react";
-import { gradientTypeAtomFamily } from "@/state/gradients.state";
-import { SelectionPanelContext } from "./context";
+import { GradientType } from "@/state/types";
+import { useSetAtom } from "jotai";
+import { FC } from "react";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
 
-const OPTIONS: Gradient["type"][] = ["linear", "radial"];
+const OPTIONS: GradientType[] = ["linear", "radial"];
 
-const GradientTypeSelect: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const [gradientType, setGradientType] = useAtom(
-    gradientTypeAtomFamily(gradientId)
-  );
+const GradientTypeSelect: FC<{ type: GradientType; gradientId: string }> = ({
+  type,
+  gradientId,
+}) => {
+  const dispatch = useSetAtom(gradientStateReducerAtom);
 
   return (
     <div className="w-full flex items-center py-2">
       <Label className="text-xs mr-3 w-1/3">Gradient type:</Label>
       <Select
         onValueChange={(value) => {
-          setGradientType((prev) => ({
-            ...prev,
-            type: value as Gradient["type"],
-          }));
+          dispatch({
+            type: "SET_GRADIENT_TYPE",
+            payload: {
+              id: gradientId,
+              type: value as GradientType,
+            },
+          });
         }}
-        value={gradientType.type}
+        value={type}
       >
         <SelectTrigger className="w-[110px] p-1 text-xs">
           <SelectValue placeholder="Select gradient type" />

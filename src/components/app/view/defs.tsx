@@ -1,51 +1,51 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import RenderStops from "./render-stops";
 import LinearGradientElement from "./linear-gradient";
 import RadialGradientElement from "./radial-gradient";
 import { GLOBAL_BLEND_MODE_ID } from "./consts";
 import { useAtomValue } from "jotai";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
-import {
-  gradientBlendModeFamily,
-  gradientTypeAtomFamily,
-  gradientIdsAtom,
-} from "@/state/gradients.state";
+import { Gradient, gradientStateReducerAtom } from "@/state/gradient.store";
 
-const GradientDef: FC<{ gradientId: string }> = ({ gradientId }) => {
-  const gradientTypeAtom = useAtomValue(gradientTypeAtomFamily(gradientId));
-  const blendMode = useAtomValue(gradientBlendModeFamily(gradientId));
-
-  const stops = <RenderStops gradientId={gradientId} />;
+const GradientDef: FC<{ gradient: Gradient }> = ({ gradient }) => {
+  const stops = <RenderStops gradient={gradient} />;
 
   return (
-    <Fragment key={gradientId}>
-      {gradientTypeAtom.type === "linear" && (
-        <LinearGradientElement gradientId={gradientId}>
+    <>
+      {gradient.type === "linear" && (
+        <LinearGradientElement
+          gradientId={gradient.id}
+          attrs={gradient.linearAttributes}
+        >
           {stops}
         </LinearGradientElement>
       )}
-      {gradientTypeAtom.type === "radial" && (
-        <RadialGradientElement gradientId={gradientId}>
+      {gradient.type === "radial" && (
+        <RadialGradientElement
+          gradientId={gradient.id}
+          attrs={gradient.radialAttributes}
+        >
           {stops}
         </RadialGradientElement>
       )}
-      <filter id={`${gradientId}-blend-mode`}>
-        <feBlend in="FillPaint" mode={blendMode.blendMode} />
+      <filter id={`${gradient.id}-blend-mode`}>
+        <feBlend in="FillPaint" mode={gradient.blendMode} />
       </filter>
-    </Fragment>
+    </>
   );
 };
 
 const Defs: FC = () => {
   const globalBlendMode = useAtomValue(globalBlendModeAtom);
-  const gradientIds = useAtomValue(gradientIdsAtom);
+  const state = useAtomValue(gradientStateReducerAtom);
+
   return (
     <defs>
       <filter id={GLOBAL_BLEND_MODE_ID}>
         <feBlend in="sourceGraphic" in2="FillPaint" mode={globalBlendMode} />
       </filter>
-      {gradientIds.map((gradientId) => (
-        <GradientDef key={gradientId} gradientId={gradientId} />
+      {state.gradients.map((gradient) => (
+        <GradientDef key={gradient.id} gradient={gradient} />
       ))}
     </defs>
   );

@@ -1,20 +1,23 @@
 import { FC } from "react";
 import { useAtomValue } from "jotai";
-import { selectedGradientIdAtom } from "@/state/gradients.state";
+import { Gradient, gradientStateReducerAtom } from "@/state/gradient.store";
 import SelectionPanelContent from "./selection-panel-content";
-import { SelectionPanelContext } from "./context";
 
 const SelectionPanel: FC = () => {
-  const selectedGradientId = useAtomValue(selectedGradientIdAtom);
+  const state = useAtomValue(gradientStateReducerAtom);
 
-  if (!selectedGradientId) {
+  if (!state.selectedGradientId) {
     return null;
   }
 
   return (
-    <SelectionPanelContext.Provider value={{ gradientId: selectedGradientId }}>
-      <SelectionPanelContent gradientId={selectedGradientId} />;
-    </SelectionPanelContext.Provider>
+    <SelectionPanelContent
+      gradient={
+        state.gradients.find(
+          (g) => g.id === state.selectedGradientId
+        ) as Gradient
+      }
+    />
   );
 };
 

@@ -1,12 +1,23 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { PlusIcon, Save, Trash } from "lucide-react";
 import GenericButton from "@/components/ui/generic-button";
-import { useGradientList } from "@/state/useGradientList";
+import {
+  gradientStateReducerAtom,
+  randomGradient,
+} from "@/state/gradient.store";
+import { useAtom } from "jotai";
 
 const CommandButtons: FC = () => {
-  const { addGradient, deleteAllGradients, gradientIds } = useGradientList();
+  const [state, dispatch] = useAtom(gradientStateReducerAtom);
 
-  const noGradients = gradientIds.length <= 0;
+  const noGradients = state.gradients.length <= 0;
+
+  const addGradient = useCallback(() => {
+    dispatch({
+      type: "ADD_GRADIENT",
+      payload: { gradient: randomGradient() },
+    });
+  }, [dispatch]);
 
   return (
     <div className="w-full flex items-center justify-between">
@@ -23,7 +34,9 @@ const CommandButtons: FC = () => {
         </GenericButton>
       </div>
       <GenericButton
-        onClick={deleteAllGradients}
+        onClick={() => {
+          dispatch({ type: "REMOVE_ALL_GRADIENTS" });
+        }}
         disabled={noGradients}
         title={noGradients ? "No gradients to delete" : "Delete all gradients"}
       >

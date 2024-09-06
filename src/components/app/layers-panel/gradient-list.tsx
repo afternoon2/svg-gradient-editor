@@ -1,28 +1,32 @@
 import { FC } from "react";
-import { selectedGradientIdAtom } from "@/state/gradients.state";
 
 import { useAtom } from "jotai";
 import GradientItem from "./gradient-item";
-import { useGradientList } from "@/state/useGradientList";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
 
 const GradientList: FC = () => {
-  const { gradientIds, deleteGradient } = useGradientList();
-  const [selectedGradientId, setSelectedGradientId] = useAtom(
-    selectedGradientIdAtom
-  );
+  const [state, dispatch] = useAtom(gradientStateReducerAtom);
 
   return (
     <ul className="w-full flex flex-col overflow-y-auto max-h-[300px] pt-1">
-      {gradientIds.map((gradientId, index) => (
+      {state.gradients.map((gradient, index) => (
         <GradientItem
-          key={gradientId}
-          id={gradientId}
-          selected={gradientId === selectedGradientId}
-          index={index}
+          key={gradient.id}
+          gradient={gradient}
           onDelete={() => {
-            deleteGradient(gradientId);
+            dispatch({
+              type: "REMOVE_GRADIENT",
+              payload: { id: gradient.id },
+            });
           }}
-          onSelect={setSelectedGradientId}
+          onSelect={(id: string) => {
+            dispatch({
+              type: "SELECT_GRADIENT",
+              payload: { id },
+            });
+          }}
+          selected={gradient.id === state.selectedGradientId}
+          index={index}
         />
       ))}
     </ul>

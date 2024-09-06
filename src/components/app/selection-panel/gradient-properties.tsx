@@ -1,19 +1,18 @@
-import { FC, useContext } from "react";
+import { FC, PropsWithChildren } from "react";
 import SliderRow from "@/components/app/slider-row";
-import { SelectionPanelContext } from "./context";
-import { useAtom, useAtomValue } from "jotai";
-import {
-  gradientTypeAtomFamily,
-  linearGradientAttributesFamily,
-  radialGradientAttributesFamily,
-} from "@/state/gradients.state";
+import { useSetAtom } from "jotai";
 import SwitchRow from "../switch-row";
+import {
+  LinearGradientAttributes,
+  RadialGradientAttributes,
+} from "@/state/types";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
 
-const LinearGradientProperties: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const [properties, setProperties] = useAtom(
-    linearGradientAttributesFamily(gradientId)
-  );
+export const LinearGradientProperties: FC<{
+  gradientId: string;
+  attrs: LinearGradientAttributes;
+}> = ({ gradientId, attrs }) => {
+  const dispatch = useSetAtom(gradientStateReducerAtom);
 
   return (
     <>
@@ -22,15 +21,18 @@ const LinearGradientProperties: FC = () => {
         min={-1}
         max={1}
         step={0.01}
-        value={[properties.attrs.x1]}
+        value={[attrs.x1]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              x1: newValues[0],
+          dispatch({
+            type: "SET_LINEAR_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                x1: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
       <SliderRow
@@ -38,15 +40,18 @@ const LinearGradientProperties: FC = () => {
         min={-1}
         max={1}
         step={0.01}
-        value={[properties.attrs.y1]}
+        value={[attrs.y1]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              y1: newValues[0],
+          dispatch({
+            type: "SET_LINEAR_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                y1: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
       <SliderRow
@@ -54,15 +59,18 @@ const LinearGradientProperties: FC = () => {
         min={-1}
         max={1}
         step={0.01}
-        value={[properties.attrs.x2]}
+        value={[attrs.x2]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              x2: newValues[0],
+          dispatch({
+            type: "SET_LINEAR_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                x2: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
       <SliderRow
@@ -70,26 +78,30 @@ const LinearGradientProperties: FC = () => {
         min={-1}
         max={1}
         step={0.01}
-        value={[properties.attrs.y2]}
+        value={[attrs.y2]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              y2: newValues[0],
+          dispatch({
+            type: "SET_LINEAR_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                y2: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
     </>
   );
 };
 
-const RadialGradientProperties: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const [properties, setProperties] = useAtom(
-    radialGradientAttributesFamily(gradientId)
-  );
+export const RadialGradientProperties: FC<{
+  gradientId: string;
+  attrs: RadialGradientAttributes;
+}> = ({ gradientId, attrs }) => {
+  const dispatch = useSetAtom(gradientStateReducerAtom);
+
   return (
     <>
       <SliderRow
@@ -97,15 +109,18 @@ const RadialGradientProperties: FC = () => {
         min={0}
         max={1}
         step={0.01}
-        value={[properties.attrs.cx]}
+        value={[attrs.cx]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              cx: newValues[0],
+          dispatch({
+            type: "SET_RADIAL_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                cx: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
       <SliderRow
@@ -113,15 +128,18 @@ const RadialGradientProperties: FC = () => {
         min={0}
         max={1}
         step={0.01}
-        value={[properties.attrs.cy]}
+        value={[attrs.cy]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              cy: newValues[0],
+          dispatch({
+            type: "SET_RADIAL_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                cy: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
       <SliderRow
@@ -129,46 +147,55 @@ const RadialGradientProperties: FC = () => {
         min={0}
         max={10}
         step={0.01}
-        value={[properties.attrs.r]}
+        value={[attrs.r]}
         onValueChange={(newValues) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              r: newValues[0],
+          dispatch({
+            type: "SET_RADIAL_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                r: newValues[0],
+              },
             },
-          }));
+          });
         }}
       />
       <SwitchRow
         label="Focal points"
-        checked={properties.attrs.withFocalPoints === true}
+        checked={attrs.withFocalPoints === true}
         onChange={(withFocalPoints) => {
-          setProperties((prev) => ({
-            ...prev,
-            attrs: {
-              ...prev.attrs,
-              withFocalPoints,
+          dispatch({
+            type: "SET_RADIAL_GRADIENT_ATTRS",
+            payload: {
+              id: gradientId,
+              attrs: {
+                ...attrs,
+                withFocalPoints,
+              },
             },
-          }));
+          });
         }}
       />
-      {properties.attrs.withFocalPoints && (
+      {attrs.withFocalPoints && (
         <>
           <SliderRow
             title="fx"
             min={-1}
             max={1}
             step={0.01}
-            value={[properties.attrs.fx ?? 0.5]}
-            onValueChange={(newValue) => {
-              setProperties((prev) => ({
-                ...prev,
-                attrs: {
-                  ...prev.attrs,
-                  fx: newValue[0],
+            value={[attrs.fx ?? 0.5]}
+            onValueChange={(newValues) => {
+              dispatch({
+                type: "SET_RADIAL_GRADIENT_ATTRS",
+                payload: {
+                  id: gradientId,
+                  attrs: {
+                    ...attrs,
+                    fx: newValues[0],
+                  },
                 },
-              }));
+              });
             }}
           />
           <SliderRow
@@ -176,15 +203,18 @@ const RadialGradientProperties: FC = () => {
             min={-1}
             max={1}
             step={0.01}
-            value={[properties.attrs.fy ?? 0.5]}
-            onValueChange={(newValue) => {
-              setProperties((prev) => ({
-                ...prev,
-                attrs: {
-                  ...prev.attrs,
-                  fy: newValue[0],
+            value={[attrs.fy ?? 0.5]}
+            onValueChange={(newValues) => {
+              dispatch({
+                type: "SET_RADIAL_GRADIENT_ATTRS",
+                payload: {
+                  id: gradientId,
+                  attrs: {
+                    ...attrs,
+                    fy: newValues[0],
+                  },
                 },
-              }));
+              });
             }}
           />
         </>
@@ -193,18 +223,8 @@ const RadialGradientProperties: FC = () => {
   );
 };
 
-const GradientProperties: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const gradientTypeAtomValue = useAtomValue(
-    gradientTypeAtomFamily(gradientId)
-  );
-
-  return (
-    <div className="w-full flex flex-col py-2">
-      {gradientTypeAtomValue.type === "linear" && <LinearGradientProperties />}
-      {gradientTypeAtomValue.type === "radial" && <RadialGradientProperties />}
-    </div>
-  );
-};
+const GradientProperties: FC<PropsWithChildren> = ({ children }) => (
+  <div className="w-full flex flex-col py-2">{children}</div>
+);
 
 export default GradientProperties;

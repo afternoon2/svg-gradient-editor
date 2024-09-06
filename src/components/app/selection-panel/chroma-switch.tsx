@@ -1,25 +1,11 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import SwitchRow from "../switch-row";
-import { useAtom } from "jotai";
-import { chromaUsageFamily } from "@/state/gradients.state";
-import { SelectionPanelContext } from "./context";
 
-const ChromaSwitch: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const [chromaUsage, setChromaUsage] = useAtom(chromaUsageFamily(gradientId));
-
-  return (
-    <SwitchRow
-      label="Use chroma"
-      checked={chromaUsage.value}
-      onChange={(checked) => {
-        setChromaUsage((prev) => ({
-          ...prev,
-          value: checked,
-        }));
-      }}
-    />
-  );
+const ChromaSwitch: FC<{
+  value: boolean;
+  onChange: (value: boolean) => void;
+}> = ({ value, onChange }) => {
+  return <SwitchRow label="Use chroma" checked={value} onChange={onChange} />;
 };
 
 export default ChromaSwitch;

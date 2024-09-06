@@ -1,23 +1,20 @@
-import { radialGradientAttributesFamily } from "@/state/gradients.state";
+import { RadialGradientAttributes } from "@/state/types";
 
-import { useAtomValue } from "jotai";
 import { FC, PropsWithChildren } from "react";
 
-const RadialGradientElement: FC<PropsWithChildren<{ gradientId: string }>> = ({
-  gradientId,
-  children,
-}) => {
-  const gradient = useAtomValue(radialGradientAttributesFamily(gradientId));
-  const { cx, cy, r, fx, fy, spreadMethod } = gradient.attrs;
+const RadialGradientElement: FC<
+  PropsWithChildren<{ gradientId: string; attrs: RadialGradientAttributes }>
+> = ({ gradientId, attrs, children }) => {
+  const { cx, cy, r, fx, fy, spreadMethod } = attrs;
   return (
     <radialGradient
       gradientUnits="objectBoundingBox"
-      id={gradient.id}
+      id={gradientId}
       cx={cx}
       cy={cy}
       r={r}
-      fx={gradient.attrs.withFocalPoints ? fx : undefined}
-      fy={gradient.attrs.withFocalPoints ? fy : undefined}
+      fx={attrs.withFocalPoints ? fx : undefined}
+      fy={attrs.withFocalPoints ? fy : undefined}
       spreadMethod={spreadMethod}
     >
       {children}

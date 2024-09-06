@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleAlert, Plus, Save } from "lucide-react";
-import { useGradientList } from "@/state/useGradientList";
+import { useGradientList } from "@/hooks/useGradientList";
 
 const AddDelete: FC = () => {
   const { gradientIds, addGradient, deleteAllGradients } = useGradientList();

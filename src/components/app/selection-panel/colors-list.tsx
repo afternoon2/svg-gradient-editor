@@ -1,20 +1,9 @@
-import { FC, useContext } from "react";
-import { SelectionPanelContext } from "./context";
-import { useAtomValue } from "jotai";
-import { gradientColorIdsFamily } from "@/state/gradients.state";
-import ColorItem from "./color-item";
+import { FC, PropsWithChildren } from "react";
 
-const ColorsList: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const colorIdsAtom = useAtomValue(gradientColorIdsFamily(gradientId));
-
-  console.log(colorIdsAtom);
-
+const ColorsList: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ul className="w-full flex flex-col max-h-[200px] overflow-y-auto pt-2">
-      {colorIdsAtom.colorIds.map((colorId) => (
-        <ColorItem key={colorId} colorId={colorId} />
-      ))}
+      {children}
     </ul>
   );
 };

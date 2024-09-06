@@ -1,18 +1,13 @@
-import {
-  chromaUsageFamily,
-  gradientColorFamily,
-  gradientColorIdsFamily,
-} from "@/state/gradients.state";
-import { useAtomValue } from "jotai";
+import { Gradient } from "@/state/gradient.store";
+import { AppColor } from "@/state/types";
 import { FC } from "react";
 
 const RenderStop: FC<{
-  colorId: string;
+  color: AppColor;
   colorsCount: number;
   index: number;
-}> = ({ colorId, colorsCount, index }) => {
-  const { value, offset } = useAtomValue(gradientColorFamily(colorId));
-
+}> = ({ color, colorsCount, index }) => {
+  const { value, offset } = color;
   return (
     <stop
       stopColor={`rgba(${value.join(", ")})`}
@@ -21,11 +16,8 @@ const RenderStop: FC<{
   );
 };
 
-const RenderStops: FC<{ gradientId: string }> = ({ gradientId }) => {
-  const chromaUsageAtom = useAtomValue(chromaUsageFamily(gradientId));
-  const colorIdsAtom = useAtomValue(gradientColorIdsFamily(gradientId));
-
-  if (chromaUsageAtom.value) {
+const RenderStops: FC<{ gradient: Gradient }> = ({ gradient }) => {
+  if (gradient.useChroma) {
     return (
       <>
         {/* TODO: move to separate atom family */}
@@ -41,10 +33,10 @@ const RenderStops: FC<{ gradientId: string }> = ({ gradientId }) => {
   }
   return (
     <>
-      {colorIdsAtom.colorIds.map((colorId, index, arr) => (
+      {gradient.input.map((color, index, arr) => (
         <RenderStop
-          key={colorId}
-          colorId={colorId}
+          key={color.id}
+          color={color}
           colorsCount={arr.length}
           index={index}
         />

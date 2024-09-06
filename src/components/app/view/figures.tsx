@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { GLOBAL_BLEND_MODE_ID } from "./consts";
-import { gradientIdsAtom } from "@/state/gradients.state";
 import { useAtomValue } from "jotai";
 import { artboardSizeAtom } from "@/state/artboard.state";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
 
 const GradientRect: FC<{
   gradientId: string;
@@ -22,12 +22,12 @@ const GradientRect: FC<{
 };
 
 const Figures: FC = () => {
-  const gradientIds = useAtomValue(gradientIdsAtom);
+  const state = useAtomValue(gradientStateReducerAtom);
   const artboardSize = useAtomValue(artboardSizeAtom);
 
   return (
     <g filter={`url(#${GLOBAL_BLEND_MODE_ID})`}>
-      {gradientIds.map((id) => (
+      {state.gradients.map(({ id }) => (
         <GradientRect key={id} gradientId={id} artboardSize={artboardSize} />
       ))}
     </g>

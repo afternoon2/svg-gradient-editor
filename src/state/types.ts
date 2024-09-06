@@ -74,3 +74,9 @@ export const BLEND_MODES = [
 ] as const;
 
 export type BlendMode = (typeof BLEND_MODES)[number];
+
+export type GradientWorkerInput = {
+  id: string;
+  colors: AppColor[];
+  chromaAttributes: ChromaAttributes;
+};

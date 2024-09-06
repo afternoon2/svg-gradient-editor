@@ -1,32 +1,36 @@
-import { FC, useCallback, useContext } from "react";
+import { FC, useCallback } from "react";
 import GenericButton from "@/components/ui/generic-button";
-import { nanoid } from "nanoid";
 import { PlusIcon, Trash } from "lucide-react";
-import { SelectionPanelContext } from "./context";
-import { useAtom } from "jotai";
-import { gradientColorIdsFamily } from "@/state/gradients.state";
+import { useSetAtom } from "jotai";
+import { AppColor } from "@/state/types";
+import { gradientStateReducerAtom, randomColor } from "@/state/gradient.store";
 
-const CommandButtons: FC = () => {
-  const { gradientId } = useContext(SelectionPanelContext);
-  const [colorIdsAtom, setColorIdsAtom] = useAtom(
-    gradientColorIdsFamily(gradientId)
-  );
+const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({
+  gradientId,
+  colors,
+}) => {
+  const dispatch = useSetAtom(gradientStateReducerAtom);
 
-  const noColors = colorIdsAtom.colorIds.length <= 0;
+  const noColors = colors.length <= 0;
 
   const addColor = useCallback(() => {
-    setColorIdsAtom((prev) => ({
-      ...prev,
-      colorIds: [...prev.colorIds, nanoid()],
-    }));
-  }, [setColorIdsAtom]);
+    dispatch({
+      type: "ADD_COLOR",
+      payload: {
+        color: randomColor(),
+        gradientId,
+      },
+    });
+  }, [dispatch, gradientId]);
 
   const deleteAllColors = useCallback(() => {
-    setColorIdsAtom((prev) => ({
-      ...prev,
-      colorIds: [],
-    }));
-  }, [setColorIdsAtom]);
+    dispatch({
+      type: "REMOVE_ALL_COLORS",
+      payload: {
+        gradientId,
+      },
+    });
+  }, [dispatch, gradientId]);
 
   return (
     <div className="w-full flex items-center justify-between">
