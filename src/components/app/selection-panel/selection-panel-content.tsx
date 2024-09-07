@@ -13,8 +13,9 @@ import GradientProperties, {
   LinearGradientProperties,
   RadialGradientProperties,
 } from "./gradient-properties";
-import { Gradient, gradientStateReducerAtom } from "@/state/gradient.store";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
 import ColorItem from "./color-item";
+import { Gradient } from "@/state/types";
 
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -52,18 +53,20 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
           )}
         </GradientProperties>
       </FieldsetLegend>
-      <ChromaSwitch
-        value={gradient.useChroma}
-        onChange={(value) => {
-          dispatch({
-            type: "SET_CHROMA_USAGE",
-            payload: {
-              id: gradient.id,
-              useChroma: value,
-            },
-          });
-        }}
-      />
+      <FieldsetLegend title="Advanced settings">
+        <ChromaSwitch
+          value={gradient.useChroma}
+          onChange={(value) => {
+            dispatch({
+              type: "SET_CHROMA_USAGE",
+              payload: {
+                id: gradient.id,
+                useChroma: value,
+              },
+            });
+          }}
+        />
+      </FieldsetLegend>
     </Panel>
   );
 };

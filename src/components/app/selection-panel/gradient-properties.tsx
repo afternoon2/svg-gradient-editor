@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from "react";
 import SliderRow from "@/components/app/slider-row";
 import { useSetAtom } from "jotai";
-import SwitchRow from "../switch-row";
 import {
   LinearGradientAttributes,
   RadialGradientAttributes,
 } from "@/state/types";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import CheckboxRow from "../checkbox-row";
 
 export const LinearGradientProperties: FC<{
   gradientId: string;
@@ -161,7 +161,7 @@ export const RadialGradientProperties: FC<{
           });
         }}
       />
-      <SwitchRow
+      <CheckboxRow
         label="Focal points"
         checked={attrs.withFocalPoints === true}
         onChange={(withFocalPoints) => {
@@ -176,6 +176,7 @@ export const RadialGradientProperties: FC<{
             },
           });
         }}
+        id={`${gradientId}-focal-points`}
       />
       {attrs.withFocalPoints && (
         <>

@@ -1,5 +1,4 @@
 import { FC, useCallback } from "react";
-import SwitchRow from "../switch-row";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   gradientStateReducerAtom,
@@ -7,6 +6,7 @@ import {
 } from "@/state/gradient.store";
 import { useGradientWorker } from "@/components/worker/worker.hooks";
 import { GradientWorkerOutput } from "@/state/types";
+import CheckboxRow from "../checkbox-row";
 
 const ChromaSwitch: FC<{
   value: boolean;
@@ -46,7 +46,12 @@ const ChromaSwitch: FC<{
   );
 
   return (
-    <SwitchRow label="Use chroma" checked={value} onChange={handleChange} />
+    <CheckboxRow
+      label="Use chroma"
+      checked={value}
+      onChange={handleChange}
+      id={`${gradient?.id}-chroma`}
+    />
   );
 };
 
