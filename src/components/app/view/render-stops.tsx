@@ -20,14 +20,13 @@ const RenderStops: FC<{ gradient: Gradient }> = ({ gradient }) => {
   if (gradient.useChroma) {
     return (
       <>
-        {/* TODO: move to separate atom family */}
-        {/* {gradient.output.map((color: OutputColor) => (
+        {gradient.output.map((color: AppColor) => (
           <stop
             key={color.id}
             offset={`${color.offset}%`}
-            stopColor={`rgba(${color.color.join(",")})`}
+            stopColor={`rgba(${color.value.join(",")})`}
           />
-        ))} */}
+        ))}
       </>
     );
   }

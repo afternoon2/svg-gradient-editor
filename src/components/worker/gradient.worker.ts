@@ -1,11 +1,11 @@
 import { getWorkerOutput } from "@/lib/chroma";
 import { GradientWorkerInput } from "@/state/types";
 
-onmessage = (event: MessageEvent<{ input: GradientWorkerInput }>) => {
+onmessage = (event: MessageEvent<GradientWorkerInput>) => {
   try {
-    const colors = getWorkerOutput(event.data.input);
+    const colors = getWorkerOutput(event.data);
     postMessage({
-      id: event.data.input.id,
+      id: event.data.id,
       colors,
     });
   } catch (err) {

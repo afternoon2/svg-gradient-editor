@@ -34,12 +34,6 @@ export type AppColor = {
   offset?: number;
 };
 
-export type OutputColor = {
-  id: string;
-  color: number[];
-  offset: number;
-};
-
 export type BlendModeObject = {
   id: string;
   mode: BlendMode;
@@ -80,3 +74,5 @@ export type GradientWorkerInput = {
   colors: AppColor[];
   chromaAttributes: ChromaAttributes;
 };
+
+export type GradientWorkerOutput = Pick<GradientWorkerInput, "id" | "colors">;
