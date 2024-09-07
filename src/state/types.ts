@@ -76,3 +76,16 @@ export type GradientWorkerInput = {
 };
 
 export type GradientWorkerOutput = Pick<GradientWorkerInput, "id" | "colors">;
+
+export type Gradient = {
+  id: string;
+  alias: string | null;
+  useChroma: boolean;
+  chromaAttributes: ChromaAttributes;
+  input: AppColor[];
+  output: AppColor[];
+  blendMode: BlendMode;
+  type: GradientType;
+  linearAttributes: LinearGradientAttributes;
+  radialAttributes: RadialGradientAttributes;
+};

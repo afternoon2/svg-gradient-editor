@@ -3,7 +3,7 @@ import { match } from "ts-pattern";
 import {
   AppColor,
   BlendMode,
-  ChromaAttributes,
+  Gradient,
   GradientType,
   LinearGradientAttributes,
   RadialGradientAttributes,
@@ -47,19 +47,6 @@ export const randomGradient = (id?: string): Gradient => ({
   input: [randomColor(), randomColor()],
   output: [],
 });
-
-export type Gradient = {
-  id: string;
-  alias: string | null;
-  useChroma: boolean;
-  chromaAttributes: ChromaAttributes;
-  input: AppColor[];
-  output: AppColor[];
-  blendMode: BlendMode;
-  type: GradientType;
-  linearAttributes: LinearGradientAttributes;
-  radialAttributes: RadialGradientAttributes;
-};
 
 export type GradientState = {
   selectedGradientId: string | null;

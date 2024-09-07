@@ -62,6 +62,7 @@ export const useGradientWorkerInit = () => {
     loadWorker();
 
     return () => {
+      workerState?.terminate();
       setWorkerState(null);
     };
   }, [setWorkerState]);
