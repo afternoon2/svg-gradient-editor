@@ -16,6 +16,7 @@ import GradientProperties, {
 import { gradientStateReducerAtom } from "@/state/gradient.store";
 import ColorItem from "./color-item";
 import { Gradient } from "@/state/types";
+import SpreadMethodSelect from "./spread-method-select";
 
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -23,7 +24,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   return (
     <Panel
       title={gradient.alias ?? "Selected gradient"}
-      className="right-3 top-3 z-10"
+      className="left-3 top-[500px] z-10"
     >
       <ColorSpaceSelect />
       <BlendModeSelect />
@@ -51,6 +52,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
               attrs={gradient.radialAttributes}
             />
           )}
+          <SpreadMethodSelect />
         </GradientProperties>
       </FieldsetLegend>
       <FieldsetLegend title="Advanced settings">

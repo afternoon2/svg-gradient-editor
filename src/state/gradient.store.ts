@@ -33,6 +33,7 @@ export const randomGradient = (id?: string): Gradient => ({
     y1: 0,
     x2: 1,
     y2: 0,
+    spreadMethod: "pad",
   },
   radialAttributes: {
     cx: 0.5,

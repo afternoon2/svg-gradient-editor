@@ -1,10 +1,13 @@
 import { InterpolationMode } from "chroma-js";
 
+export type SpreadMethod = "pad" | "repeat" | "reflect";
+
 export type LinearGradientAttributes = {
   x1: number;
   y1: number;
   x2: number;
   y2: number;
+  spreadMethod: SpreadMethod;
 };
 
 export type RadialGradientAttributes = {
@@ -14,7 +17,7 @@ export type RadialGradientAttributes = {
   fx: number;
   fy: number;
   withFocalPoints?: boolean;
-  spreadMethod?: "pad" | "repeat" | "reflect";
+  spreadMethod: SpreadMethod;
 };
 
 export type GradientInterpolationMode = "linear" | "bezier";

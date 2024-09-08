@@ -7,6 +7,7 @@ import {
 } from "@/state/types";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
 import CheckboxRow from "../checkbox-row";
+import SpreadMethodSelect from "./spread-method-select";
 
 export const LinearGradientProperties: FC<{
   gradientId: string;
