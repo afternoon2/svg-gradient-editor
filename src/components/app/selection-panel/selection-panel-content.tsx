@@ -20,7 +20,7 @@ import ChromaListener from "./chroma-listener";
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   return (
     <Panel
-      title={gradient.alias ?? "Selected gradient"}
+      title={gradient.alias || "Selected gradient"}
       className="top-3 right-3 z-10"
     >
       <ColorSpaceSelect />
