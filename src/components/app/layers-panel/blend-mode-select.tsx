@@ -1,51 +1,23 @@
 import { BLEND_MODES, BlendMode } from "@/state/types";
 import { FC } from "react";
-import {
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  Select,
-  SelectItem,
-} from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
 import { useAtom } from "jotai";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
-
-const BlendModeSelect: FC<{
-  blendMode: BlendMode;
-  onChange: (newBlendMode: BlendMode) => void;
-}> = ({ blendMode, onChange }) => (
-  <div className="flex w-flex items-center">
-    <Label className="mr-2 text-xs">Global blend mode:</Label>
-    <Select
-      onValueChange={(value: string) => {
-        onChange(value as BlendMode);
-      }}
-      value={blendMode}
-    >
-      <SelectTrigger className="w-[110px] p-1 h-auto text-xs">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        {BLEND_MODES.map((mode) => (
-          <SelectItem key={mode} value={mode}>
-            {mode}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  </div>
-);
+import SelectRow from "../select-row";
 
 export const GlobalBlendModeSelect: FC = () => {
   const [blendMode, setBlendMode] = useAtom(globalBlendModeAtom);
 
   return (
-    <BlendModeSelect
-      blendMode={blendMode}
-      onChange={(blendMode: BlendMode) => {
+    <SelectRow<BlendMode>
+      value={blendMode}
+      onValueChange={(blendMode: BlendMode) => {
         setBlendMode(blendMode);
       }}
+      options={BLEND_MODES.map((blendMode) => ({
+        id: blendMode,
+        value: blendMode,
+      }))}
+      label="Global blend mode"
     />
   );
 };

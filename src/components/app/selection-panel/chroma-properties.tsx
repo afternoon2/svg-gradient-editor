@@ -6,6 +6,8 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { FC } from "react";
 import ChromaSwitch from "./chroma-switch";
 import SliderRow from "@/components/app/slider-row";
+import SelectRow from "@/components/app/select-row";
+import { GradientInterpolationMode } from "@/state/types";
 
 const ChromaProperties: FC = () => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -43,6 +45,26 @@ const ChromaProperties: FC = () => {
                   attrs: {
                     ...gradient.chromaAttributes,
                     samples: values[0],
+                  },
+                },
+              });
+            }}
+          />
+          <SelectRow<GradientInterpolationMode>
+            label="Interpolation"
+            options={[
+              { id: "linear", value: "linear" },
+              { id: "bezier", value: "bezier" },
+            ]}
+            value="linear"
+            onValueChange={(value) => {
+              dispatch({
+                type: "SET_CHROMA_ATTRS",
+                payload: {
+                  gradientId: gradient.id,
+                  attrs: {
+                    ...gradient.chromaAttributes,
+                    interpolation: value as GradientInterpolationMode,
                   },
                 },
               });

@@ -12,7 +12,7 @@ const SliderRow: FC<
   }
 > = ({ min, max, step, onValueChange, value, title }) => (
   <div className="w-full flex items-center mb-2">
-    <Label className="text-xs font-mono mr-1 w-[40px]">{title}</Label>
+    <Label className="text-xs mr-1 w-[40px]">{title}</Label>
     <Input
       type="number"
       className="w-[80px] h-[20px] mx-2 p-3 text-xs"

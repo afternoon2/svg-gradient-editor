@@ -1,15 +1,8 @@
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { GradientType } from "@/state/types";
 import { useSetAtom } from "jotai";
 import { FC } from "react";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import SelectRow from "../select-row";
 
 const OPTIONS: GradientType[] = ["linear", "radial"];
 
@@ -21,8 +14,10 @@ const GradientTypeSelect: FC<{ type: GradientType; gradientId: string }> = ({
 
   return (
     <div className="w-full flex items-center py-2">
-      <Label className="text-xs mr-3 w-1/3">Gradient type:</Label>
-      <Select
+      <SelectRow<GradientType>
+        label="Gradient type"
+        value={type}
+        placeholder="Select gradient type"
         onValueChange={(value) => {
           dispatch({
             type: "SET_GRADIENT_TYPE",
@@ -32,19 +27,11 @@ const GradientTypeSelect: FC<{ type: GradientType; gradientId: string }> = ({
             },
           });
         }}
-        value={type}
-      >
-        <SelectTrigger className="w-[110px] p-1 text-xs">
-          <SelectValue placeholder="Select gradient type" />
-        </SelectTrigger>
-        <SelectContent>
-          {OPTIONS.map((gType) => (
-            <SelectItem key={gType} value={gType}>
-              {gType}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        options={OPTIONS.map((opt) => ({
+          id: opt,
+          value: opt,
+        }))}
+      />
     </div>
   );
 };
