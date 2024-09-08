@@ -313,3 +313,8 @@ export const selectedGradientAtom = selectAtom(
         ) as Gradient) ?? null
       : null
 );
+
+export const gradientsLengthAtom = selectAtom(
+  gradientStateReducerAtom,
+  (state) => state.gradients.length
+);

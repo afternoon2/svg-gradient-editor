@@ -13,6 +13,7 @@ type Props<T extends string> = {
   options: { id: string; value: T }[];
   value: T;
   label: string;
+  children?: ReactNode;
 } & Pick<SelectProps, "disabled" | "onValueChange"> &
   Pick<SelectValueProps, "placeholder">;
 
@@ -22,6 +23,7 @@ function SelectRow<T extends string>({
   label,
   disabled,
   placeholder,
+  children,
   onValueChange,
 }: Props<T>): ReactNode {
   return (
@@ -39,6 +41,7 @@ function SelectRow<T extends string>({
           ))}
         </SelectContent>
       </Select>
+      {children}
     </div>
   );
 }

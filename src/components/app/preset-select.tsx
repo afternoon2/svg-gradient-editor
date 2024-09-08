@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { presetsAtom, selectedPresetAtom } from "@/state/presets.state";
 import SelectRow from "./select-row";
 
-const PresetSelect: FC = () => {
+const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
   const presets = useAtomValue(presetsAtom);
   const [selectedPreset, setSelectedPreset] = useAtom(selectedPresetAtom);
 
@@ -20,7 +20,9 @@ const PresetSelect: FC = () => {
         id: preset.id,
         value: preset.name,
       }))}
-    />
+    >
+      {children}
+    </SelectRow>
   );
 };
 

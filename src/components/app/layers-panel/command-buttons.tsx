@@ -21,18 +21,9 @@ const CommandButtons: FC = () => {
 
   return (
     <div className="w-full flex items-center justify-between">
-      <div className="flex items-center">
-        <GenericButton onClick={addGradient} title="Add gradient">
-          <PlusIcon className="w-3 h-3" />
-        </GenericButton>
-        <GenericButton
-          disabled={noGradients}
-          onClick={addGradient}
-          title={noGradients ? "Nothing to save" : "Save gradients"}
-        >
-          <Save className="w-3 h-3" />
-        </GenericButton>
-      </div>
+      <GenericButton onClick={addGradient} title="Add gradient">
+        <PlusIcon className="w-3 h-3" />
+      </GenericButton>
       <GenericButton
         onClick={() => {
           dispatch({ type: "REMOVE_ALL_GRADIENTS" });

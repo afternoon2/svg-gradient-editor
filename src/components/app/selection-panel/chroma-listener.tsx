@@ -25,7 +25,6 @@ const ChromaListener: FC = () => {
 
   const onMessage = useCallback(
     (output: GradientWorkerOutput) => {
-      console.log(output);
       dispatch({
         type: "SET_OUTPUT_COLORS",
         payload: {
