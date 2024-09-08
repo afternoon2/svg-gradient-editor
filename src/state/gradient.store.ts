@@ -3,6 +3,7 @@ import { match } from "ts-pattern";
 import {
   AppColor,
   BlendMode,
+  ChromaAttributes,
   Gradient,
   GradientType,
   LinearGradientAttributes,
@@ -103,6 +104,13 @@ export type GradientAction =
       payload: {
         gradientId: string;
         alias: string | null;
+      };
+    }
+  | {
+      type: "SET_CHROMA_ATTRS";
+      payload: {
+        gradientId: string;
+        attrs: ChromaAttributes;
       };
     };
 
@@ -267,6 +275,18 @@ const gradientReducer = (
           return {
             ...g,
             alias: action.payload.alias,
+          };
+        }
+        return g;
+      }),
+    }))
+    .with({ type: "SET_CHROMA_ATTRS" }, (action) => ({
+      ...state,
+      gradients: state.gradients.map((g) => {
+        if (g.id === action.payload.gradientId) {
+          return {
+            ...g,
+            chromaAttributes: action.payload.attrs,
           };
         }
         return g;

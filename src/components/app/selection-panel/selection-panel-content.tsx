@@ -5,22 +5,18 @@ import ColorsList from "./colors-list";
 import CommandButtons from "./command-buttons";
 import BlendModeSelect from "./blend-mode-select";
 import ColorSpaceSelect from "./color-space-switch";
-import ChromaSwitch from "./chroma-switch";
 import { Separator } from "@/components/ui/separator";
 import FieldsetLegend from "@/components/app/fieldset-legend";
-import { useSetAtom } from "jotai";
 import GradientProperties, {
   LinearGradientProperties,
   RadialGradientProperties,
 } from "./gradient-properties";
-import { gradientStateReducerAtom } from "@/state/gradient.store";
 import ColorItem from "./color-item";
 import { Gradient } from "@/state/types";
 import SpreadMethodSelect from "./spread-method-select";
+import ChromaProperties from "./chroma-properties";
 
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
-  const dispatch = useSetAtom(gradientStateReducerAtom);
-
   return (
     <Panel
       title={gradient.alias ?? "Selected gradient"}
@@ -56,18 +52,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
         </GradientProperties>
       </FieldsetLegend>
       <FieldsetLegend title="Advanced settings">
-        <ChromaSwitch
-          value={gradient.useChroma}
-          onChange={(value) => {
-            dispatch({
-              type: "SET_CHROMA_USAGE",
-              payload: {
-                id: gradient.id,
-                useChroma: value,
-              },
-            });
-          }}
-        />
+        <ChromaProperties />
       </FieldsetLegend>
     </Panel>
   );
