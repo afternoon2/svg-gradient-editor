@@ -48,6 +48,18 @@ export type Preset = {
 };
 
 export const COLOR_SPACES = ["rgba", "hex", "hsva", "hsla"] as const;
+export const INTERPOLATION_MODES = [
+  "rgb",
+  "hsl",
+  "hsv",
+  "hsi",
+  "lab",
+  "oklab",
+  "lch",
+  "oklch",
+  "hcl",
+  "lrgb",
+] as const;
 
 export type ColorSpace = (typeof COLOR_SPACES)[number];
 

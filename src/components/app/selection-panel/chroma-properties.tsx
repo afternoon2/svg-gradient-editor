@@ -7,7 +7,9 @@ import { FC } from "react";
 import ChromaSwitch from "./chroma-switch";
 import SliderRow from "@/components/app/slider-row";
 import SelectRow from "@/components/app/select-row";
-import { GradientInterpolationMode } from "@/state/types";
+import { GradientInterpolationMode, INTERPOLATION_MODES } from "@/state/types";
+import CheckboxRow from "../checkbox-row";
+import { InterpolationMode } from "chroma-js";
 
 const ChromaProperties: FC = () => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -56,7 +58,7 @@ const ChromaProperties: FC = () => {
               { id: "linear", value: "linear" },
               { id: "bezier", value: "bezier" },
             ]}
-            value="linear"
+            value={gradient.chromaAttributes.interpolation}
             onValueChange={(value) => {
               dispatch({
                 type: "SET_CHROMA_ATTRS",
@@ -65,6 +67,44 @@ const ChromaProperties: FC = () => {
                   attrs: {
                     ...gradient.chromaAttributes,
                     interpolation: value as GradientInterpolationMode,
+                  },
+                },
+              });
+            }}
+          />
+          {gradient.chromaAttributes.interpolation === "linear" && (
+            <SelectRow<InterpolationMode>
+              label="Mode"
+              value="rgb"
+              onValueChange={(value) => {
+                dispatch({
+                  type: "SET_CHROMA_ATTRS",
+                  payload: {
+                    gradientId: gradient.id,
+                    attrs: {
+                      ...gradient.chromaAttributes,
+                      colorSpace: value as InterpolationMode,
+                    },
+                  },
+                });
+              }}
+              options={INTERPOLATION_MODES.map((mode) => ({
+                id: mode,
+                value: mode,
+              }))}
+            />
+          )}
+          <CheckboxRow
+            label="Lightness corection"
+            checked={gradient.chromaAttributes.lightnessCorrection}
+            onChange={(value) => {
+              dispatch({
+                type: "SET_CHROMA_ATTRS",
+                payload: {
+                  gradientId: gradient.id,
+                  attrs: {
+                    ...gradient.chromaAttributes,
+                    lightnessCorrection: value,
                   },
                 },
               });

@@ -13,7 +13,7 @@ const CheckboxRow: FC<{
       className="text-xs w-full inline-flex items-center cursor-pointer"
       htmlFor={id}
     >
-      <span className="w-1/3 inline-flex mr-6">{label}:</span>
+      <span className="w-1/3 inline-flex mr-2">{label}:</span>
       <Checkbox
         checked={checked}
         onCheckedChange={onChange}
