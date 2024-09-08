@@ -2,16 +2,17 @@
 
 Create, save and download SVG gradients
 
-![screen](./demo/demo.gif)
+![screen](./demo/screenshot_v2.png)
 
 Create
+
 - using native web features
 - and/or using awesome Gregor Aisch's [chroma.js](https://github.com/gka/chroma.js) library
-- by applying blend modes
 
 Save as:
+
 - a preset object in local storage
-- a svg file on your computer
+- or download svg file on your computer
 
 ## Installation and starting in local environment
 
