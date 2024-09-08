@@ -1,12 +1,10 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { FC, PropsWithChildren, useEffect, useRef } from "react";
 import { artboardPresentAtom, artboardSizeAtom } from "@/state/artboard.state";
-import { themeAtom } from "@/state/theme.state";
 
 const Artboard: FC<PropsWithChildren> = ({ children }) => {
   const svgRef = useRef(null);
   const artboardSize = useAtomValue(artboardSizeAtom);
-  const theme = useAtomValue(themeAtom);
   const setArtboardPresent = useSetAtom(artboardPresentAtom);
 
   useEffect(() => {
