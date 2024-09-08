@@ -4,7 +4,6 @@ import {
 } from "@/state/gradient.store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { FC } from "react";
-import ChromaSwitch from "./chroma-switch";
 import SliderRow from "@/components/app/slider-row";
 import SelectRow from "@/components/app/select-row";
 import { GradientInterpolationMode, INTERPOLATION_MODES } from "@/state/types";
@@ -19,8 +18,9 @@ const ChromaProperties: FC = () => {
 
   return (
     <>
-      <ChromaSwitch
-        value={gradient.useChroma}
+      <CheckboxRow
+        label="Use chroma.js"
+        checked={gradient.useChroma}
         onChange={(value) => {
           dispatch({
             type: "SET_CHROMA_USAGE",
@@ -75,7 +75,7 @@ const ChromaProperties: FC = () => {
           {gradient.chromaAttributes.interpolation === "linear" && (
             <SelectRow<InterpolationMode>
               label="Mode"
-              value="rgb"
+              value={gradient.chromaAttributes.colorSpace}
               onValueChange={(value) => {
                 dispatch({
                   type: "SET_CHROMA_ATTRS",

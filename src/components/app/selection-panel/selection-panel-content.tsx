@@ -15,6 +15,7 @@ import ColorItem from "./color-item";
 import { Gradient } from "@/state/types";
 import SpreadMethodSelect from "./spread-method-select";
 import ChromaProperties from "./chroma-properties";
+import ChromaListener from "./chroma-listener";
 
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   return (
@@ -54,6 +55,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
       <FieldsetLegend title="Advanced settings">
         <ChromaProperties />
       </FieldsetLegend>
+      <ChromaListener />
     </Panel>
   );
 };
