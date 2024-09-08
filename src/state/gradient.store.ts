@@ -7,17 +7,20 @@ import {
   Gradient,
   GradientType,
   LinearGradientAttributes,
-  Preset,
   RadialGradientAttributes,
 } from "./types";
 import { atomWithReducer, selectAtom } from "jotai/utils";
 import { nanoid } from "nanoid";
 import chroma from "chroma-js";
 
-export const randomColor = (): AppColor => ({
-  id: nanoid(),
-  value: chroma.random().alpha(0.5).rgba(),
-});
+export const randomColor = (): AppColor => {
+  const color = chroma.random().alpha(0.5);
+  return {
+    id: nanoid(),
+    value: color.rgba(),
+    css: color.css(),
+  };
+};
 
 export const randomGradient = (id?: string): Gradient => ({
   id: id ?? nanoid(),

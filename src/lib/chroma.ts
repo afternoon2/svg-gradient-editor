@@ -20,7 +20,7 @@ const createBase = (samples: number, scale: chroma.Scale<chroma.Color>) =>
   new Array(samples).fill(null).map((_, i) => scale(i / samples));
 
 export const getWorkerOutput = (input: GradientWorkerInput): AppColor[] => {
-  const colorStrings = input.colors.map((c) => `rgba(${c.value.join(",")})`);
+  const colorStrings = input.colors.map((c) => c.css);
   const scaleFnCreator =
     input.chromaAttributes.interpolation === "linear"
       ? linearScale
@@ -33,6 +33,7 @@ export const getWorkerOutput = (input: GradientWorkerInput): AppColor[] => {
         id: nanoid(),
         value: chromaColor.rgba(),
         offset: (index / arr.length) * 100,
+        css: chromaColor.css(),
       };
     }
   );

@@ -18,6 +18,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { globalColorSpaceAtom } from "@/state/globalColorSpace.state";
 import GenericButton from "@/components/ui/generic-button";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import chroma from "chroma-js";
 
 const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
   color,
@@ -36,6 +37,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
           color: {
             ...color,
             value: newColor,
+            css: chroma(newColor).css(),
           },
         },
       });
@@ -50,7 +52,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
           <div
             className="w-8 h-8 rounded cursor-pointer"
             style={{
-              backgroundColor: `rgba(${color.value.join(",")}`,
+              backgroundColor: color.css,
             }}
           />
         </PopoverTrigger>

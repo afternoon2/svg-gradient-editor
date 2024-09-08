@@ -34,6 +34,7 @@ export type GradientType = "linear" | "radial";
 export type AppColor = {
   id: string;
   value: [number, number, number, number];
+  css: string;
   offset?: number;
 };
 

@@ -1,5 +1,4 @@
-import { Gradient } from "@/state/gradient.store";
-import { AppColor } from "@/state/types";
+import { AppColor, Gradient } from "@/state/types";
 import { FC } from "react";
 
 const RenderStop: FC<{
@@ -7,10 +6,10 @@ const RenderStop: FC<{
   colorsCount: number;
   index: number;
 }> = ({ color, colorsCount, index }) => {
-  const { value, offset } = color;
+  const { css, offset } = color;
   return (
     <stop
-      stopColor={`rgba(${value.join(", ")})`}
+      stopColor={css}
       offset={`${offset ?? index * (100 / colorsCount)}%`}
     />
   );
@@ -24,7 +23,7 @@ const RenderStops: FC<{ gradient: Gradient }> = ({ gradient }) => {
           <stop
             key={color.id}
             offset={`${color.offset}%`}
-            stopColor={`rgba(${color.value.join(",")})`}
+            stopColor={color.css}
           />
         ))}
       </>

@@ -1,10 +1,10 @@
-import { InputColor } from "@/state/types";
+import { AppColor } from "@/state/types";
 import { FC, useState } from "react";
 import { SketchPicker } from "react-color";
 
 const ColorPicker: FC<{
-  value: InputColor["color"];
-  onChange: (newColor: InputColor["color"]) => void;
+  value: AppColor["value"];
+  onChange: (newColor: AppColor["value"]) => void;
 }> = ({ value, onChange }) => {
   const [currentColor, setCurrentColor] = useState(value);
 
