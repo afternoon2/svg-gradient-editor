@@ -20,6 +20,8 @@ import GenericButton from "@/components/ui/generic-button";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
 import chroma from "chroma-js";
 
+const POPOVER_CLASSNAMES = "p-0 flex items-center justify-center max-w-[220px]";
+
 const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
   color,
   gradientId,
@@ -56,7 +58,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
             }}
           />
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent className={POPOVER_CLASSNAMES}>
           <ColorPicker value={color.value} onChange={onChange} />
         </PopoverContent>
       </Popover>
@@ -68,7 +70,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
               <PopoverTrigger asChild>
                 <Edit className="mx-3 w-3 h-3" />
               </PopoverTrigger>
-              <PopoverContent>
+              <PopoverContent className={POPOVER_CLASSNAMES}>
                 <ColorPicker value={color.value} onChange={onChange} />
               </PopoverContent>
             </Popover>

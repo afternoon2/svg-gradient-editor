@@ -1,4 +1,6 @@
+import { themeAtom } from "@/state/theme.state";
 import { AppColor } from "@/state/types";
+import { useAtomValue } from "jotai";
 import { FC, useState } from "react";
 import { SketchPicker } from "react-color";
 
@@ -7,9 +9,22 @@ const ColorPicker: FC<{
   onChange: (newColor: AppColor["value"]) => void;
 }> = ({ value, onChange }) => {
   const [currentColor, setCurrentColor] = useState(value);
+  const theme = useAtomValue(themeAtom);
 
   return (
     <SketchPicker
+      styles={{
+        default: {
+          picker: {
+            backgroundColor: theme === "dark" ? "var(--background)" : "",
+            color: "black",
+            boxShadow: "none",
+          },
+          color: {
+            color: "black",
+          },
+        },
+      }}
       color={{
         r: currentColor[0],
         g: currentColor[1],
