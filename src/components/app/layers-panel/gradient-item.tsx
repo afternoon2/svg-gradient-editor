@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 import GenericButton from "@/components/ui/generic-button";
 import { Trash } from "lucide-react";
-import { Gradient } from "@/state/gradient.store";
+import { Gradient } from "@/state/types";
 
 const GradientItem: FC<
   PropsWithChildren<{
@@ -15,7 +15,9 @@ const GradientItem: FC<
   return (
     <li
       className={`w-full flex flex-col mb-1 border-b-2 border-b-solid transition-all box-border ${
-        selected ? "border-blue-500" : "border-transparent"
+        selected
+          ? "border-accent-foreground border-b-[1px]"
+          : "border-transparent"
       }`}
     >
       <label

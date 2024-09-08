@@ -5,7 +5,8 @@ import RadialGradientElement from "./radial-gradient";
 import { GLOBAL_BLEND_MODE_ID } from "./consts";
 import { useAtomValue } from "jotai";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
-import { Gradient, gradientStateReducerAtom } from "@/state/gradient.store";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
+import { Gradient } from "@/state/types";
 
 const GradientDef: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const stops = <RenderStops gradient={gradient} />;

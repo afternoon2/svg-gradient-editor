@@ -21,7 +21,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   return (
     <Panel
       title={gradient.alias ?? "Selected gradient"}
-      className="left-3 top-[500px] z-10"
+      className="top-3 right-3 z-10"
     >
       <ColorSpaceSelect />
       <BlendModeSelect />
