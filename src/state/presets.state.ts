@@ -1,9 +1,9 @@
 import { atomWithStorage } from "jotai/utils";
 import { Preset } from "./types";
 
-export const presetsAtom = atomWithStorage<Preset[]>("preset", []);
+export const presetsAtom = atomWithStorage<Preset[]>("presets", []);
 
-export const selectedPresetAtom = atomWithStorage<string | undefined>(
+export const selectedPresetIdAtom = atomWithStorage<string | undefined>(
   "selectedPreset",
   undefined
 );

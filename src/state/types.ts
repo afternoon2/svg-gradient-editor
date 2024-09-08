@@ -45,6 +45,10 @@ export type BlendModeObject = {
 export type Preset = {
   id: string;
   name: string;
+  value: {
+    globalBlendMode: BlendMode;
+    gradients: Gradient[];
+  };
 };
 
 export const COLOR_SPACES = ["rgba", "hex", "hsva", "hsla"] as const;

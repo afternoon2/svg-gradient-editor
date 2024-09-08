@@ -1,18 +1,23 @@
 import { FC, useCallback } from "react";
-import { PlusIcon, Save, Trash } from "lucide-react";
+import { PlusIcon, Trash } from "lucide-react";
 import GenericButton from "@/components/ui/generic-button";
 import {
   gradientStateReducerAtom,
   randomGradient,
 } from "@/state/gradient.store";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
+import { selectedPresetIdAtom } from "@/state/presets.state";
 
 const CommandButtons: FC = () => {
   const [state, dispatch] = useAtom(gradientStateReducerAtom);
+  const setSelectedPresetId = useSetAtom(selectedPresetIdAtom);
 
   const noGradients = state.gradients.length <= 0;
 
   const addGradient = useCallback(() => {
+    if (state.gradients.length === 0) {
+      setSelectedPresetId(undefined);
+    }
     dispatch({
       type: "ADD_GRADIENT",
       payload: { gradient: randomGradient() },

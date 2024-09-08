@@ -17,11 +17,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import { gradientsLengthAtom } from "@/state/gradient.store";
+import {
+  gradientsLengthAtom,
+  gradientStateReducerAtom,
+} from "@/state/gradient.store";
+import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
 
 const PresetSection: FC = () => {
   const setPresets = useSetAtom(presetsAtom);
   const gradientsLength = useAtomValue(gradientsLengthAtom);
+  const globalBlendMode = useAtomValue(globalBlendModeAtom);
+  const state = useAtomValue(gradientStateReducerAtom);
   const [name, setName] = useState<string>("");
 
   return (
@@ -65,7 +71,17 @@ const PresetSection: FC = () => {
                       size="sm"
                       disabled={name.length <= 2}
                       onClick={() => {
-                        setPresets((prev) => [...prev, { id: nanoid(), name }]);
+                        setPresets((prev) => [
+                          ...prev,
+                          {
+                            id: nanoid(),
+                            name,
+                            value: {
+                              gradients: state.gradients,
+                              globalBlendMode: globalBlendMode,
+                            },
+                          },
+                        ]);
                       }}
                     >
                       Save

@@ -7,6 +7,7 @@ import {
   Gradient,
   GradientType,
   LinearGradientAttributes,
+  Preset,
   RadialGradientAttributes,
 } from "./types";
 import { atomWithReducer, selectAtom } from "jotai/utils";
@@ -64,6 +65,7 @@ export type GradientAction =
   | { type: "ADD_GRADIENT"; payload: { gradient: Gradient } }
   | { type: "REMOVE_GRADIENT"; payload: { id: string } }
   | { type: "REMOVE_ALL_GRADIENTS" }
+  | { type: "LOAD_GRADIENTS_FROM_STORAGE"; payload: { gradients: Gradient[] } }
   | { type: "SELECT_GRADIENT"; payload: { id: string | null } }
   | { type: "SET_GRADIENT_TYPE"; payload: { id: string; type: GradientType } }
   | {
@@ -291,6 +293,11 @@ const gradientReducer = (
         }
         return g;
       }),
+    }))
+    .with({ type: "LOAD_GRADIENTS_FROM_STORAGE" }, (action) => ({
+      ...state,
+      gradients: action.payload.gradients,
+      selectedGradientId: null,
     }))
     .otherwise(() => state);
 
