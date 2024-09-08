@@ -5,6 +5,7 @@ import jotaiDebugLabel from "jotai/babel/plugin-debug-label";
 import jotaiReactRefresh from "jotai/babel/plugin-react-refresh";
 
 export default defineConfig({
+  base: "/svg-gradient-editor",
   plugins: [
     react({ babel: { plugins: [jotaiDebugLabel, jotaiReactRefresh] } }),
   ],
