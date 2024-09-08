@@ -1,49 +1,31 @@
-import * as React from 'react';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faChevronLeft,
-  faList,
-  faPaintRoller,
-  faCaretDown,
-  faCaretUp,
-  faPlus,
-  faSearch,
-  faTrash,
-  faEdit,
-  faCode,
-  faSave,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
-import { StoreThemeProvider } from './components/layout/StoreThemeProvider';
-import { Editor } from './views/editor/Editor';
-import { GlobalStyles } from './components/layout/GlobalStyles';
-import { ThemeSwitch } from './components/layout/ThemeSwitch';
+import View from "@/components/app/view";
+import Artboard from "@/components/app/view/artboard";
+import Defs from "@/components/app/view/defs";
+import Figures from "@/components/app/view/figures";
+import SizeControls from "@/components/app/view/size-controls";
+import { Provider } from "jotai";
+import LayersPanel from "./components/app/layers-panel";
+import SelectionPanel from "./components/app/selection-panel";
+import { DevTools } from "jotai-devtools";
+import "jotai-devtools/styles.css";
+import ThemeListener from "@/components/app/theme-listener";
 
-library.add(faChevronLeft);
-library.add(faList);
-library.add(faPaintRoller);
-library.add(faCaretDown);
-library.add(faCaretUp);
-library.add(faPlus);
-library.add(faSearch);
-library.add(faTrash);
-library.add(faEdit);
-library.add(faCode);
-library.add(faSave);
-library.add(faTimes);
+function App() {
+  return (
+    <Provider>
+      <DevTools />
+      <View>
+        <LayersPanel />
+        <SelectionPanel />
+        <SizeControls />
+        <Artboard>
+          <Defs />
+          <Figures />
+        </Artboard>
+      </View>
+      <ThemeListener />
+    </Provider>
+  );
+}
 
-const App = () => (
-  <Provider store={store}>
-    <StoreThemeProvider>
-        <React.Fragment>
-          <Editor />
-          <ThemeSwitch />
-          <GlobalStyles />
-        </React.Fragment>
-    </StoreThemeProvider>
-  </Provider>
-);
-
-export { App };
+export default App;
