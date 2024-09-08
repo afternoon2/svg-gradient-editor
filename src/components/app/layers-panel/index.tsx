@@ -6,6 +6,7 @@ import GradientList from "./gradient-list";
 import { ModeToggle } from "../mode-toggle";
 import PresetSection from "./preset-section";
 import DownloadSection from "./download-section";
+import RepoLink from "./repo-link";
 
 const LayersPanel: FC = () => {
   return (
@@ -13,7 +14,8 @@ const LayersPanel: FC = () => {
       title="Gradients"
       className="top-3 left-3 z-10"
       extraContent={
-        <div className="flex items-center w-[80px]">
+        <div className="flex items-center">
+          <RepoLink />
           <DownloadSection />
           <ModeToggle />
         </div>

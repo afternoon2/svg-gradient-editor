@@ -34,9 +34,13 @@ const PresetSection: FC = () => {
     <PresetSelect>
       <div className="w-1/6 flex items-center justify-end mx-1">
         <Dialog>
-          <DialogTrigger title="Save preset" disabled={gradientsLength === 0}>
+          <DialogTrigger
+            disabled={gradientsLength === 0}
+            title="Save preset"
+            aria-label="Save preset"
+          >
             <Save
-              className={`w-3 h-3 ${
+              className={`w-4 h-4 ${
                 gradientsLength === 0
                   ? "stroke-gray-400 cursor-not-allowed"
                   : ""
