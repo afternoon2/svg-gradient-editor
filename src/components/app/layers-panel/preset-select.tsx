@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useEffect, useMemo } from "react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { presetsAtom, selectedPresetIdAtom } from "@/state/presets.state";
-import SelectRow from "./select-row";
+import SelectRow from "../select-row";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
 import { Preset } from "@/state/types";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
@@ -24,8 +24,6 @@ const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (!!selectedPreset) {
-      console.log(selectedPreset);
-      console.log("Preset selected");
       setGlobalBlendMode(selectedPreset.value.globalBlendMode);
       dispatch({
         type: "LOAD_GRADIENTS_FROM_STORAGE",

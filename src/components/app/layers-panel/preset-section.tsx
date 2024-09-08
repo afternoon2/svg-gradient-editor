@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import PresetSelect from "../preset-select";
+import PresetSelect from "./preset-select";
 import { Save } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";

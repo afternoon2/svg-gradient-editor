@@ -36,6 +36,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
       <Separator className="mb-2" />
       <FieldsetLegend title="Properties">
         <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
+        <SpreadMethodSelect />
         <GradientProperties>
           {gradient.type === "linear" && (
             <LinearGradientProperties
@@ -49,7 +50,6 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
               attrs={gradient.radialAttributes}
             />
           )}
-          <SpreadMethodSelect />
         </GradientProperties>
       </FieldsetLegend>
       <FieldsetLegend title="Advanced settings">
