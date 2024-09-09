@@ -1,8 +1,8 @@
-import { BLEND_MODES, BlendMode } from "@/state/types";
-import { FC } from "react";
-import { useAtom } from "jotai";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
-import SelectRow from "../select-row";
+import { BLEND_MODES, BlendMode } from "@/state/types";
+import SelectRow from "@/components/app/select-row";
+import { useAtom } from "jotai";
+import { FC } from "react";
 
 export const GlobalBlendModeSelect: FC = () => {
   const [blendMode, setBlendMode] = useAtom(globalBlendModeAtom);

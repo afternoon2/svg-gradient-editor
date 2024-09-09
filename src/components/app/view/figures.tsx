@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { GLOBAL_BLEND_MODE_ID } from "./consts";
-import { useAtomValue } from "jotai";
-import { artboardSizeAtom } from "@/state/artboard.state";
+import { GLOBAL_BLEND_MODE_ID } from "@/components/app/view/consts";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import { artboardSizeAtom } from "@/state/artboard.state";
+import { useAtomValue } from "jotai";
+import { FC } from "react";
 
 const GradientRect: FC<{
   gradientId: string;

@@ -1,12 +1,12 @@
-import { FC } from "react";
-import RenderStops from "./render-stops";
-import LinearGradientElement from "./linear-gradient";
-import RadialGradientElement from "./radial-gradient";
-import { GLOBAL_BLEND_MODE_ID } from "./consts";
-import { useAtomValue } from "jotai";
+import LinearGradientElement from "@/components/app/view/linear-gradient";
+import RadialGradientElement from "@/components/app/view/radial-gradient";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
+import { GLOBAL_BLEND_MODE_ID } from "@/components/app/view/consts";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import RenderStops from "@/components/app/view/render-stops";
 import { Gradient } from "@/state/types";
+import { useAtomValue } from "jotai";
+import { FC } from "react";
 
 const GradientDef: FC<{ gradient: Gradient }> = ({ gradient }) => {
   const stops = <RenderStops gradient={gradient} />;

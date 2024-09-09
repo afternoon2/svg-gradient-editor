@@ -1,12 +1,12 @@
-import { FC, PropsWithChildren } from "react";
-import SliderRow from "@/components/app/slider-row";
-import { useSetAtom } from "jotai";
 import {
   LinearGradientAttributes,
   RadialGradientAttributes,
 } from "@/state/types";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
-import CheckboxRow from "../checkbox-row";
+import CheckboxRow from "@/components/app/checkbox-row";
+import SliderRow from "@/components/app/slider-row";
+import { FC, PropsWithChildren } from "react";
+import { useSetAtom } from "jotai";
 
 export const LinearGradientProperties: FC<{
   gradientId: string;

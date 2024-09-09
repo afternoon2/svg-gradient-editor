@@ -2,13 +2,13 @@ import {
   gradientStateReducerAtom,
   selectedGradientAtom,
 } from "@/state/gradient.store";
-import { useAtomValue, useSetAtom } from "jotai";
-import { FC } from "react";
+import { GradientInterpolationMode, INTERPOLATION_MODES } from "@/state/types";
+import CheckboxRow from "@/components/app/checkbox-row";
 import SliderRow from "@/components/app/slider-row";
 import SelectRow from "@/components/app/select-row";
-import { GradientInterpolationMode, INTERPOLATION_MODES } from "@/state/types";
-import CheckboxRow from "../checkbox-row";
+import { useAtomValue, useSetAtom } from "jotai";
 import { InterpolationMode } from "chroma-js";
+import { FC } from "react";
 
 const ChromaProperties: FC = () => {
   const dispatch = useSetAtom(gradientStateReducerAtom);

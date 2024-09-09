@@ -1,10 +1,10 @@
 import { AppColor, ChromaAttributes, GradientWorkerInput } from "@/state/types";
-import chroma from "chroma-js";
 import { nanoid } from "nanoid";
+import chroma from "chroma-js";
 
 type ScaleFnCreator = (
   attrs: ChromaAttributes,
-  colors: string[]
+  colors: string[],
 ) => chroma.Scale<chroma.Color>;
 
 export const linearScale: ScaleFnCreator = (attrs, colors) =>
@@ -35,6 +35,6 @@ export const getWorkerOutput = (input: GradientWorkerInput): AppColor[] => {
         offset: (index / arr.length) * 100,
         css: chromaColor.css(),
       };
-    }
+    },
   );
 };

@@ -1,6 +1,6 @@
 import { AppColor, ColorSpace } from "@/state/types";
-import chroma from "chroma-js";
 import { FC, useMemo } from "react";
+import chroma from "chroma-js";
 
 type Output =
   | { type: "rgba"; value: AppColor["value"] }

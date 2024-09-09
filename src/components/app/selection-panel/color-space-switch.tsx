@@ -1,8 +1,8 @@
+import { globalColorSpaceAtom } from "@/state/globalColorSpace.state";
 import { COLOR_SPACES, ColorSpace } from "@/state/types";
+import SelectRow from "@/components/app/select-row";
 import { useAtom } from "jotai";
 import { FC } from "react";
-import { globalColorSpaceAtom } from "@/state/globalColorSpace.state";
-import SelectRow from "../select-row";
 
 const ColorSpaceSelect: FC = () => {
   const [colorSpace, setColorSpace] = useAtom(globalColorSpaceAtom);

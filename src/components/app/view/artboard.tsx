@@ -1,6 +1,6 @@
-import { useAtomValue, useSetAtom } from "jotai";
-import { FC, PropsWithChildren, useEffect, useRef } from "react";
 import { artboardPresentAtom, artboardSizeAtom } from "@/state/artboard.state";
+import { FC, PropsWithChildren, useEffect, useRef } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
 
 const Artboard: FC<PropsWithChildren> = ({ children }) => {
   const svgRef = useRef(null);

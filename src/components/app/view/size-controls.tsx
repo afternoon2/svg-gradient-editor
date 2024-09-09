@@ -1,8 +1,8 @@
 import { Input } from "@/components/ui/input";
 
+import { artboardSizeAtom } from "@/state/artboard.state";
 import { useAtom } from "jotai";
 import { FC } from "react";
-import { artboardSizeAtom } from "@/state/artboard.state";
 
 const SizeControls: FC = () => {
   const [artboardSize, setArtboardSize] = useAtom(artboardSizeAtom);

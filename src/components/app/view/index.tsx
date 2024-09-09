@@ -1,6 +1,6 @@
-import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useGradientWorkerInit } from "@/components/worker/worker.hooks";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Label } from "@/components/ui/label";
 
 import { FC, PropsWithChildren } from "react";
 

@@ -1,21 +1,21 @@
-import { FC } from "react";
-import Panel from "../panel";
-import GradientTypeSelect from "./gradient-type-select";
-import ColorsList from "./colors-list";
-import CommandButtons from "./command-buttons";
-import BlendModeSelect from "./blend-mode-select";
-import ColorSpaceSelect from "./color-space-switch";
-import { Separator } from "@/components/ui/separator";
-import FieldsetLegend from "@/components/app/fieldset-legend";
 import GradientProperties, {
   LinearGradientProperties,
   RadialGradientProperties,
-} from "./gradient-properties";
-import ColorItem from "./color-item";
+} from "@/components/app/selection-panel/gradient-properties";
+import SpreadMethodSelect from "@/components/app/selection-panel/spread-method-select";
+import ColorSpaceSelect from "@/components/app/selection-panel/color-space-switch";
+import ChromaProperties from "@/components/app/selection-panel/chroma-properties";
+import BlendModeSelect from "@/components/app/selection-panel/blend-mode-select";
+import CommandButtons from "@/components/app/selection-panel/command-buttons";
+import ChromaListener from "@/components/app/selection-panel/chroma-listener";
+import ColorsList from "@/components/app/selection-panel/colors-list";
+import ColorItem from "@/components/app/selection-panel/color-item";
+import FieldsetLegend from "@/components/app/fieldset-legend";
+import GradientTypeSelect from "./gradient-type-select";
+import { Separator } from "@/components/ui/separator";
+import Panel from "@/components/app/panel";
 import { Gradient } from "@/state/types";
-import SpreadMethodSelect from "./spread-method-select";
-import ChromaProperties from "./chroma-properties";
-import ChromaListener from "./chroma-listener";
+import { FC } from "react";
 
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
   return (

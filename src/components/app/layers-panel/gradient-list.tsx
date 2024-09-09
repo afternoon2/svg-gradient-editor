@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { useAtom } from "jotai";
-import GradientItem from "./gradient-item";
+import GradientItem from "@/components/app/layers-panel/gradient-item";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import { useAtom } from "jotai";
 
 const GradientList: FC = () => {
   const [state, dispatch] = useAtom(gradientStateReducerAtom);

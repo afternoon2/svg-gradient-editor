@@ -1,9 +1,9 @@
-import { FC, useCallback } from "react";
+import { gradientStateReducerAtom, randomColor } from "@/state/gradient.store";
 import GenericButton from "@/components/ui/generic-button";
 import { PlusIcon, Trash } from "lucide-react";
-import { useSetAtom } from "jotai";
 import { AppColor } from "@/state/types";
-import { gradientStateReducerAtom, randomColor } from "@/state/gradient.store";
+import { FC, useCallback } from "react";
+import { useSetAtom } from "jotai";
 
 const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({
   gradientId,

@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { FC } from "react";
 
 const CheckboxRow: FC<{
   checked: boolean;

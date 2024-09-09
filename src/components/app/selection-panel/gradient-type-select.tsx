@@ -1,8 +1,8 @@
+import { gradientStateReducerAtom } from "@/state/gradient.store";
+import SelectRow from "@/components/app/select-row";
 import { GradientType } from "@/state/types";
 import { useSetAtom } from "jotai";
 import { FC } from "react";
-import { gradientStateReducerAtom } from "@/state/gradient.store";
-import SelectRow from "../select-row";
 
 const OPTIONS: GradientType[] = ["linear", "radial"];
 

@@ -1,12 +1,12 @@
-import { FC } from "react";
-import Panel from "../panel";
-import CommandButtons from "./command-buttons";
+import DownloadSection from "@/components/app/layers-panel/download-section";
+import CommandButtons from "@/components/app/layers-panel/command-buttons";
+import PresetSection from "@/components/app/layers-panel/preset-section";
+import GradientList from "@/components/app/layers-panel/gradient-list";
+import RepoLink from "@/components/app/layers-panel/repo-link";
 import { GlobalBlendModeSelect } from "./blend-mode-select";
-import GradientList from "./gradient-list";
-import { ModeToggle } from "../mode-toggle";
-import PresetSection from "./preset-section";
-import DownloadSection from "./download-section";
-import RepoLink from "./repo-link";
+import { ModeToggle } from "@/components/app/mode-toggle";
+import Panel from "@/components/app/panel";
+import { FC } from "react";
 
 const LayersPanel: FC = () => {
   return (
