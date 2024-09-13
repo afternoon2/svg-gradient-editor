@@ -8,6 +8,7 @@ const OutputSpectrum: FC<{ colors: AppColor[] }> = ({ colors }) => {
       <div className="w-full flex h-7">
         {colors.map((color) => (
           <div
+            key={color.id}
             className="h-full"
             style={{ backgroundColor: color.css, width: `${width}%` }}
           />

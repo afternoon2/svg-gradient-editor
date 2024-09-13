@@ -20,6 +20,7 @@ const ChromaListener: FC = () => {
       colorSpace,
       lightnessCorrection,
       samples,
+      alpha,
     },
   } = gradient;
 
@@ -48,6 +49,7 @@ const ChromaListener: FC = () => {
           colorSpace,
           lightnessCorrection,
           samples,
+          alpha,
         },
       });
     }
@@ -58,6 +60,7 @@ const ChromaListener: FC = () => {
     colorSpace,
     lightnessCorrection,
     samples,
+    alpha,
   ]);
 
   return null;

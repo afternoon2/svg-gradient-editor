@@ -32,6 +32,7 @@ export const randomGradient = (id?: string): Gradient => ({
     colorSpace: "rgb",
     samples: 10,
     interpolation: "linear",
+    alpha: 0.5,
   },
   linearAttributes: {
     x1: 0,

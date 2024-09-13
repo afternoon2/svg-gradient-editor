@@ -16,8 +16,12 @@ export const linearScale: ScaleFnCreator = (attrs, colors) =>
 export const bezierScale: ScaleFnCreator = (attrs, colors) =>
   chroma.bezier(colors).scale().correctLightness(attrs.lightnessCorrection);
 
-const createBase = (samples: number, scale: chroma.Scale<chroma.Color>) =>
-  new Array(samples).fill(null).map((_, i) => scale(i / samples));
+const createBase = (
+  samples: number,
+  scale: chroma.Scale<chroma.Color>,
+  alpha: number,
+) =>
+  new Array(samples).fill(null).map((_, i) => scale(i / samples).alpha(alpha));
 
 export const getWorkerOutput = (input: GradientWorkerInput): AppColor[] => {
   const colorStrings = input.colors.map((c) => c.css);
@@ -27,14 +31,16 @@ export const getWorkerOutput = (input: GradientWorkerInput): AppColor[] => {
       : bezierScale;
   const scaleFn = scaleFnCreator(input.chromaAttributes, colorStrings);
 
-  return createBase(input.chromaAttributes.samples, scaleFn).map(
-    (chromaColor, index, arr) => {
-      return {
-        id: nanoid(),
-        value: chromaColor.rgba(),
-        offset: (index / arr.length) * 100,
-        css: chromaColor.css(),
-      };
-    },
-  );
+  return createBase(
+    input.chromaAttributes.samples,
+    scaleFn,
+    input.chromaAttributes.alpha,
+  ).map((chromaColor, index, arr) => {
+    return {
+      id: nanoid(),
+      value: chromaColor.rgba(),
+      offset: (index / arr.length) * 100,
+      css: chromaColor.css(),
+    };
+  });
 };

@@ -27,6 +27,7 @@ export type ChromaAttributes = {
   interpolation: GradientInterpolationMode;
   lightnessCorrection: boolean;
   samples: number;
+  alpha: number;
 };
 
 export type GradientType = "linear" | "radial";

@@ -54,6 +54,25 @@ const ChromaProperties: FC = () => {
             }}
           />
           <OutputSpectrum colors={gradient.output} />
+          <SliderRow
+            title="Alpha"
+            min={0.01}
+            max={1.0}
+            step={0.01}
+            value={[gradient.chromaAttributes.alpha]}
+            onValueChange={(values) => {
+              dispatch({
+                type: "SET_CHROMA_ATTRS",
+                payload: {
+                  gradientId: gradient.id,
+                  attrs: {
+                    ...gradient.chromaAttributes,
+                    alpha: values[0],
+                  },
+                },
+              });
+            }}
+          />
           <SelectRow<GradientInterpolationMode>
             label="Interpolation"
             options={[
