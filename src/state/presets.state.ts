@@ -5,5 +5,5 @@ export const presetsAtom = atomWithStorage<Preset[]>("presets", []);
 
 export const selectedPresetIdAtom = atomWithStorage<string | undefined>(
   "selectedPreset",
-  undefined
+  undefined,
 );

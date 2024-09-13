@@ -1,11 +1,11 @@
-import { BLEND_MODES, BlendMode } from "@/state/types";
-import { FC } from "react";
-import { useAtomValue, useSetAtom } from "jotai";
 import {
   gradientStateReducerAtom,
   selectedGradientAtom,
 } from "@/state/gradient.store";
+import { BLEND_MODES, BlendMode } from "@/state/types";
 import SelectRow from "@/components/app/select-row";
+import { useAtomValue, useSetAtom } from "jotai";
+import { FC } from "react";
 
 const BlendModeSelect: FC = () => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -27,6 +27,7 @@ const BlendModeSelect: FC = () => {
       options={BLEND_MODES.map((blendMode) => ({
         id: blendMode,
         value: blendMode,
+        label: blendMode,
       }))}
     />
   );

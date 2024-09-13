@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from "react";
 import GenericButton from "@/components/ui/generic-button";
-import { Trash } from "lucide-react";
+import { FC, PropsWithChildren } from "react";
 import { Gradient } from "@/state/types";
+import { Trash } from "lucide-react";
 
 const GradientItem: FC<
   PropsWithChildren<{

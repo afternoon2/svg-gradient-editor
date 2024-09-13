@@ -1,12 +1,12 @@
-import { FC, useCallback } from "react";
-import { PlusIcon, Trash } from "lucide-react";
-import GenericButton from "@/components/ui/generic-button";
 import {
   gradientStateReducerAtom,
   randomGradient,
 } from "@/state/gradient.store";
-import { useAtom, useSetAtom } from "jotai";
 import { selectedPresetIdAtom } from "@/state/presets.state";
+import GenericButton from "@/components/ui/generic-button";
+import { PlusIcon, Trash } from "lucide-react";
+import { useAtom, useSetAtom } from "jotai";
+import { FC, useCallback } from "react";
 
 const CommandButtons: FC = () => {
   const [state, dispatch] = useAtom(gradientStateReducerAtom);

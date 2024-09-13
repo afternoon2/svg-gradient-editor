@@ -1,23 +1,23 @@
-import { FC, useCallback } from "react";
-import { AppColor } from "@/state/types";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import ColorPicker from "./color-picker";
-import ColorValue from "./color-value";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Edit, Trash } from "lucide-react";
-import { useAtomValue, useSetAtom } from "jotai";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import ColorPicker from "@/components/app/selection-panel/color-picker";
+import ColorValue from "@/components/app/selection-panel/color-value";
 import { globalColorSpaceAtom } from "@/state/globalColorSpace.state";
-import GenericButton from "@/components/ui/generic-button";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
+import GenericButton from "@/components/ui/generic-button";
+import { useAtomValue, useSetAtom } from "jotai";
+import { Edit, Trash } from "lucide-react";
+import { AppColor } from "@/state/types";
+import { FC, useCallback } from "react";
 import chroma from "chroma-js";
 
 const POPOVER_CLASSNAMES = "p-0 flex items-center justify-center max-w-[220px]";
@@ -44,7 +44,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
         },
       });
     },
-    [dispatch, color]
+    [dispatch, color],
   );
 
   return (

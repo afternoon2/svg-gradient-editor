@@ -1,11 +1,11 @@
-import { useGradientWorker } from "@/components/worker/worker.hooks";
 import {
   gradientStateReducerAtom,
   selectedGradientAtom,
 } from "@/state/gradient.store";
+import { useGradientWorker } from "@/components/worker/worker.hooks";
 import { Gradient, GradientWorkerOutput } from "@/state/types";
-import { useAtomValue, useSetAtom } from "jotai";
 import { FC, useCallback, useEffect } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
 
 const ChromaListener: FC = () => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -20,6 +20,7 @@ const ChromaListener: FC = () => {
       colorSpace,
       lightnessCorrection,
       samples,
+      alpha,
     },
   } = gradient;
 
@@ -33,7 +34,7 @@ const ChromaListener: FC = () => {
         },
       });
     },
-    [dispatch]
+    [dispatch],
   );
 
   const { postMessage } = useGradientWorker(onMessage);
@@ -48,6 +49,7 @@ const ChromaListener: FC = () => {
           colorSpace,
           lightnessCorrection,
           samples,
+          alpha,
         },
       });
     }
@@ -58,6 +60,7 @@ const ChromaListener: FC = () => {
     colorSpace,
     lightnessCorrection,
     samples,
+    alpha,
   ]);
 
   return null;

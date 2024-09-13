@@ -1,8 +1,8 @@
 import { Moon, Sun } from "lucide-react";
 
-import { useSetAtom } from "jotai";
+import { Button } from "@/components/ui/button";
 import { themeAtom } from "@/state/theme.state";
-import { Button } from "../ui/button";
+import { useSetAtom } from "jotai";
 
 export function ModeToggle() {
   const setTheme = useSetAtom(themeAtom);

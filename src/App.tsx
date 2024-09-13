@@ -1,14 +1,15 @@
-import View from "@/components/app/view";
-import Artboard from "@/components/app/view/artboard";
-import Defs from "@/components/app/view/defs";
-import Figures from "@/components/app/view/figures";
 import SizeControls from "@/components/app/view/size-controls";
-import { Provider } from "jotai";
-import LayersPanel from "./components/app/layers-panel";
-import SelectionPanel from "./components/app/selection-panel";
-import { DevTools } from "jotai-devtools";
-import "jotai-devtools/styles.css";
+import SelectionPanel from "@/components/app/selection-panel";
 import ThemeListener from "@/components/app/theme-listener";
+import LayersPanel from "@/components/app/layers-panel";
+import Artboard from "@/components/app/view/artboard";
+import Figures from "@/components/app/view/figures";
+import Defs from "@/components/app/view/defs";
+import { DevTools } from "jotai-devtools";
+import View from "@/components/app/view";
+import { Provider } from "jotai";
+
+import "jotai-devtools/styles.css";
 
 function App() {
   return (

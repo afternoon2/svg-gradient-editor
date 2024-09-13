@@ -1,10 +1,10 @@
+import { presetsAtom, selectedPresetIdAtom } from "@/state/presets.state";
+import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
+import { gradientStateReducerAtom } from "@/state/gradient.store";
 import { FC, PropsWithChildren, useEffect, useMemo } from "react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { presetsAtom, selectedPresetIdAtom } from "@/state/presets.state";
-import SelectRow from "../select-row";
-import { gradientStateReducerAtom } from "@/state/gradient.store";
+import SelectRow from "@/components/app/select-row";
 import { Preset } from "@/state/types";
-import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
 
 const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
@@ -19,7 +19,7 @@ const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
       selectedPresetId
         ? (presets.find((p) => p.id === selectedPresetId) as Preset)
         : undefined,
-    [selectedPresetId, presets]
+    [selectedPresetId, presets],
   );
 
   useEffect(() => {
@@ -41,7 +41,8 @@ const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
       placeholder={hasPresets ? "Select preset" : "No presets saved"}
       options={presets.map((preset) => ({
         id: preset.id,
-        value: preset.name,
+        value: preset.id,
+        label: preset.name
       }))}
     >
       {children}

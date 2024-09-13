@@ -1,12 +1,3 @@
-import { FC, useState } from "react";
-import PresetSelect from "./preset-select";
-import { Save } from "lucide-react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { useAtomValue, useSetAtom } from "jotai";
-import { presetsAtom } from "@/state/presets.state";
-import { Button } from "@/components/ui/button";
-import { nanoid } from "nanoid";
 import {
   Dialog,
   DialogClose,
@@ -15,13 +6,22 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTrigger,
+  DialogTitle,
 } from "@/components/ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import {
   gradientsLengthAtom,
   gradientStateReducerAtom,
 } from "@/state/gradient.store";
+import PresetSelect from "@/components/app/layers-panel/preset-select";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
+import { presetsAtom } from "@/state/presets.state";
+import { useAtomValue, useSetAtom } from "jotai";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { FC, useState } from "react";
+import { Save } from "lucide-react";
+import { nanoid } from "nanoid";
 
 const PresetSection: FC = () => {
   const setPresets = useSetAtom(presetsAtom);

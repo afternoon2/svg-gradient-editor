@@ -7,9 +7,9 @@ import {
   RadialGradientAttributes,
   SpreadMethod,
 } from "@/state/types";
+import SelectRow from "@/components/app/select-row";
 import { useAtomValue, useSetAtom } from "jotai";
 import { FC, useMemo } from "react";
-import SelectRow from "../select-row";
 
 const SPREAD_METHODS: RadialGradientAttributes["spreadMethod"][] = [
   "pad",
@@ -28,14 +28,14 @@ const SpreadMethodSelect: FC = () => {
       isRadial
         ? selectedGradient.radialAttributes.spreadMethod
         : selectedGradient.linearAttributes.spreadMethod,
-    [selectedGradient]
+    [selectedGradient],
   );
 
   return (
     <SelectRow<SpreadMethod>
       label="Spread method"
       value={currentValue}
-      options={SPREAD_METHODS.map((m) => ({ id: m, value: m }))}
+      options={SPREAD_METHODS.map((m) => ({ id: m, value: m, label: m }))}
       onValueChange={(value: string) => {
         if (isRadial) {
           dispatch({

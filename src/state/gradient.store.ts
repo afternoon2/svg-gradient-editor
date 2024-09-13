@@ -32,6 +32,7 @@ export const randomGradient = (id?: string): Gradient => ({
     colorSpace: "rgb",
     samples: 10,
     interpolation: "linear",
+    alpha: 0.5,
   },
   linearAttributes: {
     x1: 0,
@@ -121,7 +122,7 @@ export type GradientAction =
 
 const gradientReducer = (
   state: GradientState,
-  action: GradientAction
+  action: GradientAction,
 ): GradientState =>
   match<GradientAction>(action)
     .with({ type: "ADD_GRADIENT" }, (action) => ({
@@ -240,7 +241,7 @@ const gradientReducer = (
           return {
             ...g,
             input: g.input.filter(
-              (color) => color.id !== action.payload.colorId
+              (color) => color.id !== action.payload.colorId,
             ),
           };
         }
@@ -306,25 +307,25 @@ const gradientReducer = (
 
 export const gradientStateReducerAtom = atomWithReducer(
   initialState,
-  gradientReducer
+  gradientReducer,
 );
 
 export const selectedGradientIdAtom = selectAtom(
   gradientStateReducerAtom,
-  (state) => state.selectedGradientId
+  (state) => state.selectedGradientId,
 );
 
 export const selectedGradientAtom = selectAtom(
   gradientStateReducerAtom,
   (state) =>
     state.selectedGradientId
-      ? (state.gradients.find(
-          (g) => g.id === state.selectedGradientId
-        ) as Gradient) ?? null
-      : null
+      ? ((state.gradients.find(
+          (g) => g.id === state.selectedGradientId,
+        ) as Gradient) ?? null)
+      : null,
 );
 
 export const gradientsLengthAtom = selectAtom(
   gradientStateReducerAtom,
-  (state) => state.gradients.length
+  (state) => state.gradients.length,
 );

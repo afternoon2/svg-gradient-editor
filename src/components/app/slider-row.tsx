@@ -1,8 +1,8 @@
 import { SliderProps } from "@radix-ui/react-slider";
-import { FC } from "react";
+import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
+import { FC } from "react";
 
 const SliderRow: FC<
   Required<

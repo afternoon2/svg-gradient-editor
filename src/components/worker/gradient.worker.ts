@@ -1,5 +1,5 @@
-import { getWorkerOutput } from "@/lib/chroma";
 import { GradientWorkerInput } from "@/state/types";
+import { getWorkerOutput } from "@/lib/chroma";
 
 onmessage = (event: MessageEvent<GradientWorkerInput>) => {
   try {

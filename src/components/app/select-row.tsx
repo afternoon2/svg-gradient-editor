@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -8,9 +6,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SelectProps, SelectValueProps } from "@radix-ui/react-select";
+import { Label } from "@/components/ui/label";
+import { ReactNode } from "react";
 
 type Props<T extends string> = {
-  options: { id: string; value: T }[];
+  options: { id: string; value: T, label: string; }[];
   value: T;
   label: string;
   children?: ReactNode;
@@ -36,7 +36,7 @@ function SelectRow<T extends string>({
         <SelectContent>
           {options.map((option) => (
             <SelectItem key={option.id} value={option.value}>
-              {option.value}
+              {option.label}
             </SelectItem>
           ))}
         </SelectContent>

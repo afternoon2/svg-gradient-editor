@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { useAtomValue } from "jotai";
+import SelectionPanelContent from "@/components/app/selection-panel/selection-panel-content";
 import { selectedGradientAtom } from "@/state/gradient.store";
-import SelectionPanelContent from "./selection-panel-content";
+import { useAtomValue } from "jotai";
+import { FC } from "react";
 
 const SelectionPanel: FC = () => {
   const selectedGradient = useAtomValue(selectedGradientAtom);

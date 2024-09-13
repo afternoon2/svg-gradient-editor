@@ -1,6 +1,6 @@
 import { themeAtom } from "@/state/theme.state";
-import { useAtomValue } from "jotai";
 import { FC, useEffect } from "react";
+import { useAtomValue } from "jotai";
 
 const ThemeListener: FC = () => {
   const theme = useAtomValue(themeAtom);

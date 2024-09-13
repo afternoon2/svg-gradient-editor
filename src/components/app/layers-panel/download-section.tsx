@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -11,8 +10,9 @@ import {
 } from "@/components/ui/dialog";
 import { artboardPresentAtom } from "@/state/artboard.state";
 import { gradientsLengthAtom } from "@/state/gradient.store";
-import { useAtomValue } from "jotai";
+import { Button } from "@/components/ui/button";
 import { ImageDown } from "lucide-react";
+import { useAtomValue } from "jotai";
 import { FC } from "react";
 
 export const SVG_QUALIFIED_NAME = "svg";
@@ -24,12 +24,12 @@ const getURIComponentString = (el: HTMLElement): string => {
   const doctype = document.implementation.createDocumentType(
     SVG_QUALIFIED_NAME,
     SVG_PUBLIC_ID,
-    SVG_SYSTEM_ID
+    SVG_SYSTEM_ID,
   );
   const doc = document.implementation.createDocument(
     SVG_NAMESPACE,
     SVG_QUALIFIED_NAME,
-    doctype
+    doctype,
   );
   doc.replaceChild(el.cloneNode(true), doc.documentElement);
   const svgData = new XMLSerializer().serializeToString(doc);
@@ -74,7 +74,7 @@ const DownloadSection: FC = () => {
               onClick={() => {
                 download(
                   "gradient",
-                  document.getElementById("artboard") as HTMLElement
+                  document.getElementById("artboard") as HTMLElement,
                 );
               }}
             >

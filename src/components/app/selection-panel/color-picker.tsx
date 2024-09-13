@@ -1,8 +1,8 @@
 import { themeAtom } from "@/state/theme.state";
+import { SketchPicker } from "react-color";
 import { AppColor } from "@/state/types";
 import { useAtomValue } from "jotai";
 import { FC, useState } from "react";
-import { SketchPicker } from "react-color";
 
 const ColorPicker: FC<{
   value: AppColor["value"];
