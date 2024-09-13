@@ -76,8 +76,8 @@ const ChromaProperties: FC = () => {
           <SelectRow<GradientInterpolationMode>
             label="Interpolation"
             options={[
-              { id: "linear", value: "linear" },
-              { id: "bezier", value: "bezier" },
+              { id: "linear", value: "linear", label: "linear"},
+              { id: "bezier", value: "bezier", label: "bezier"},
             ]}
             value={gradient.chromaAttributes.interpolation}
             onValueChange={(value) => {
@@ -112,6 +112,7 @@ const ChromaProperties: FC = () => {
               options={INTERPOLATION_MODES.map((mode) => ({
                 id: mode,
                 value: mode,
+                label: mode
               }))}
             />
           )}

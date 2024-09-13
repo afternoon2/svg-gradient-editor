@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { ReactNode } from "react";
 
 type Props<T extends string> = {
-  options: { id: string; value: T }[];
+  options: { id: string; value: T, label: string; }[];
   value: T;
   label: string;
   children?: ReactNode;
@@ -36,7 +36,7 @@ function SelectRow<T extends string>({
         <SelectContent>
           {options.map((option) => (
             <SelectItem key={option.id} value={option.value}>
-              {option.value}
+              {option.label}
             </SelectItem>
           ))}
         </SelectContent>

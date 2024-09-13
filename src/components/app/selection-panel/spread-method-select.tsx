@@ -35,7 +35,7 @@ const SpreadMethodSelect: FC = () => {
     <SelectRow<SpreadMethod>
       label="Spread method"
       value={currentValue}
-      options={SPREAD_METHODS.map((m) => ({ id: m, value: m }))}
+      options={SPREAD_METHODS.map((m) => ({ id: m, value: m, label: m }))}
       onValueChange={(value: string) => {
         if (isRadial) {
           dispatch({

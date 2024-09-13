@@ -41,7 +41,8 @@ const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
       placeholder={hasPresets ? "Select preset" : "No presets saved"}
       options={presets.map((preset) => ({
         id: preset.id,
-        value: preset.name,
+        value: preset.id,
+        label: preset.name
       }))}
     >
       {children}

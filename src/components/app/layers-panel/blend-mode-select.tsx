@@ -16,6 +16,7 @@ export const GlobalBlendModeSelect: FC = () => {
       options={BLEND_MODES.map((blendMode) => ({
         id: blendMode,
         value: blendMode,
+        label: blendMode
       }))}
       label="Global blend mode"
     />

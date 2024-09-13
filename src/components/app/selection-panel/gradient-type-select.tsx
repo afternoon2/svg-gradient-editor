@@ -30,6 +30,7 @@ const GradientTypeSelect: FC<{ type: GradientType; gradientId: string }> = ({
         options={OPTIONS.map((opt) => ({
           id: opt,
           value: opt,
+          label: opt,
         }))}
       />
     </div>

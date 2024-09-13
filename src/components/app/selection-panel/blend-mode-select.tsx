@@ -27,6 +27,7 @@ const BlendModeSelect: FC = () => {
       options={BLEND_MODES.map((blendMode) => ({
         id: blendMode,
         value: blendMode,
+        label: blendMode,
       }))}
     />
   );
