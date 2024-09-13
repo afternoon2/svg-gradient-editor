@@ -7,6 +7,7 @@ import CheckboxRow from "@/components/app/checkbox-row";
 import SliderRow from "@/components/app/slider-row";
 import SelectRow from "@/components/app/select-row";
 import { useAtomValue, useSetAtom } from "jotai";
+import OutputSpectrum from "./output-spectrum";
 import { InterpolationMode } from "chroma-js";
 import { FC } from "react";
 
@@ -52,6 +53,7 @@ const ChromaProperties: FC = () => {
               });
             }}
           />
+          <OutputSpectrum colors={gradient.output} />
           <SelectRow<GradientInterpolationMode>
             label="Interpolation"
             options={[
