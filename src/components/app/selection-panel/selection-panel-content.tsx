@@ -1,4 +1,4 @@
-import GradientProperties, {
+import {
   LinearGradientProperties,
   RadialGradientProperties,
 } from "@/components/app/selection-panel/gradient-properties";
@@ -13,8 +13,11 @@ import ColorItem from "@/components/app/selection-panel/color-item";
 import FieldsetLegend from "@/components/app/fieldset-legend";
 import GradientTypeSelect from "./gradient-type-select";
 import { Separator } from "@/components/ui/separator";
+import ShapeProperties from "./shape-properties";
 import Panel from "@/components/app/panel";
+import ShapeSelect from "./shape-select";
 import { Gradient } from "@/state/types";
+import Properties from "./properties";
 import { FC } from "react";
 
 const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
@@ -37,7 +40,7 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
       <FieldsetLegend title="Properties">
         <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
         <SpreadMethodSelect />
-        <GradientProperties>
+        <Properties>
           {gradient.type === "linear" && (
             <LinearGradientProperties
               gradientId={gradient.id}
@@ -50,7 +53,11 @@ const SelectionPanelContent: FC<{ gradient: Gradient }> = ({ gradient }) => {
               attrs={gradient.radialAttributes}
             />
           )}
-        </GradientProperties>
+        </Properties>
+        <ShapeSelect />
+        <Properties>
+          <ShapeProperties />
+        </Properties>
       </FieldsetLegend>
       <FieldsetLegend title="Advanced settings">
         <ChromaProperties />

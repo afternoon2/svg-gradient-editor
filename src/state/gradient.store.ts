@@ -4,10 +4,14 @@ import {
   AppColor,
   BlendMode,
   ChromaAttributes,
+  CircleData,
+  EllipseData,
   Gradient,
   GradientType,
   LinearGradientAttributes,
   RadialGradientAttributes,
+  RectData,
+  ShapeType,
 } from "./types";
 import { atomWithReducer, selectAtom } from "jotai/utils";
 import { nanoid } from "nanoid";
@@ -22,7 +26,10 @@ export const randomColor = (): AppColor => {
   };
 };
 
-export const randomGradient = (id?: string): Gradient => ({
+export const randomGradient = (
+  artboardSize: [number, number],
+  id?: string,
+): Gradient => ({
   id: id ?? nanoid(),
   type: "linear",
   alias: null,
@@ -53,6 +60,24 @@ export const randomGradient = (id?: string): Gradient => ({
   blendMode: "normal",
   input: [randomColor(), randomColor()],
   output: [],
+  shape: "rect",
+  rectData: {
+    x: 0,
+    y: 0,
+    width: artboardSize[0],
+    height: artboardSize[1],
+  },
+  circleData: {
+    cx: artboardSize[0] / 2,
+    cy: artboardSize[1] / 2,
+    r: artboardSize[0] / 2,
+  },
+  ellipseData: {
+    cx: artboardSize[0] / 2,
+    cy: artboardSize[1] / 2,
+    rx: artboardSize[0] / 2,
+    ry: artboardSize[0] / 2,
+  },
 });
 
 export type GradientState = {
@@ -118,6 +143,22 @@ export type GradientAction =
         gradientId: string;
         attrs: ChromaAttributes;
       };
+    }
+  | {
+      type: "SET_SHAPE";
+      payload: {
+        gradientId: string;
+        shape: ShapeType;
+      };
+    }
+  | { type: "SET_RECT_DATA"; payload: { gradientId: string; data: RectData } }
+  | {
+      type: "SET_CIRCLE_DATA";
+      payload: { gradientId: string; data: CircleData };
+    }
+  | {
+      type: "SET_ELLIPSE_DATA";
+      payload: { gradientId: string; data: EllipseData };
     };
 
 const gradientReducer = (
@@ -302,6 +343,63 @@ const gradientReducer = (
       ...state,
       gradients: action.payload.gradients,
       selectedGradientId: null,
+    }))
+    .with({ type: "SET_SHAPE" }, (action) => ({
+      ...state,
+      gradients: state.gradients.map((g) => {
+        if (g.id === action.payload.gradientId) {
+          return {
+            ...g,
+            shape: action.payload.shape,
+          };
+        }
+        return g;
+      }),
+    }))
+    .with({ type: "SET_RECT_DATA" }, (action) => ({
+      ...state,
+      gradients: state.gradients.map((g) => {
+        if (g.id === action.payload.gradientId) {
+          return {
+            ...g,
+            rectData: {
+              ...g.rectData,
+              ...action.payload.data,
+            },
+          };
+        }
+        return g;
+      }),
+    }))
+    .with({ type: "SET_CIRCLE_DATA" }, (action) => ({
+      ...state,
+      gradients: state.gradients.map((g) => {
+        if (g.id === action.payload.gradientId) {
+          return {
+            ...g,
+            circleData: {
+              ...g.circleData,
+              ...action.payload.data,
+            },
+          };
+        }
+        return g;
+      }),
+    }))
+    .with({ type: "SET_ELLIPSE_DATA" }, (action) => ({
+      ...state,
+      gradients: state.gradients.map((g) => {
+        if (g.id === action.payload.gradientId) {
+          return {
+            ...g,
+            ellipseData: {
+              ...g.ellipseData,
+              ...action.payload.data,
+            },
+          };
+        }
+        return g;
+      }),
     }))
     .otherwise(() => state);
 

@@ -5,8 +5,8 @@ import {
 import { gradientStateReducerAtom } from "@/state/gradient.store";
 import CheckboxRow from "@/components/app/checkbox-row";
 import SliderRow from "@/components/app/slider-row";
-import { FC, PropsWithChildren } from "react";
 import { useSetAtom } from "jotai";
+import { FC } from "react";
 
 export const LinearGradientProperties: FC<{
   gradientId: string;
@@ -223,9 +223,3 @@ export const RadialGradientProperties: FC<{
     </>
   );
 };
-
-const GradientProperties: FC<PropsWithChildren> = ({ children }) => (
-  <div className="w-full flex flex-col py-2">{children}</div>
-);
-
-export default GradientProperties;
