@@ -1,6 +1,7 @@
 import { InterpolationMode } from "chroma-js";
 
-export type SpreadMethod = "pad" | "repeat" | "reflect";
+export const SPREAD_METHODS = ["pad", "repeat", "reflect"] as const;
+export type SpreadMethod = (typeof SPREAD_METHODS)[number];
 
 export type LinearGradientAttributes = {
   x1: number;
