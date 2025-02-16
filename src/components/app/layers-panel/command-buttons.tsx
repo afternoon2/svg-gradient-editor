@@ -4,13 +4,15 @@ import {
 } from "@/state/gradient.store";
 import { selectedPresetIdAtom } from "@/state/presets.state";
 import GenericButton from "@/components/ui/generic-button";
+import { artboardSizeAtom } from "@/state/artboard.state";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { PlusIcon, Trash } from "lucide-react";
-import { useAtom, useSetAtom } from "jotai";
 import { FC, useCallback } from "react";
 
 const CommandButtons: FC = () => {
   const [state, dispatch] = useAtom(gradientStateReducerAtom);
   const setSelectedPresetId = useSetAtom(selectedPresetIdAtom);
+  const artboardSize = useAtomValue(artboardSizeAtom);
 
   const noGradients = state.gradients.length <= 0;
 
@@ -20,9 +22,9 @@ const CommandButtons: FC = () => {
     }
     dispatch({
       type: "ADD_GRADIENT",
-      payload: { gradient: randomGradient() },
+      payload: { gradient: randomGradient(artboardSize) },
     });
-  }, [dispatch]);
+  }, [dispatch, artboardSize]);
 
   return (
     <div className="w-full flex items-center justify-between">

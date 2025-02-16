@@ -99,6 +99,24 @@ export type GradientWorkerInput = {
 
 export type GradientWorkerOutput = Pick<GradientWorkerInput, "id" | "colors">;
 
+export const SHAPES = ["rect", "circle", "ellipse"] as const;
+
+export type RectData = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+export type CircleData = { cx: number; cy: number; r: number };
+export type EllipseData = {
+  cx: number;
+  cy: number;
+  rx: number;
+  ry: number;
+};
+
+export type ShapeType = (typeof SHAPES)[number];
+
 export type Gradient = {
   id: string;
   alias: string | null;
@@ -110,4 +128,8 @@ export type Gradient = {
   type: GradientType;
   linearAttributes: LinearGradientAttributes;
   radialAttributes: RadialGradientAttributes;
+  shape: ShapeType;
+  rectData: RectData;
+  circleData: CircleData;
+  ellipseData: EllipseData;
 };
