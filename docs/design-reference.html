@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool Atelier + Gradient Accents — SVG Gradient Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Source Serif 4', serif;
+    background: #e8e4dd;
+    color: #24231f;
+    padding: 40px;
+  }
+  h1 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 48px;
+  }
+  h2 {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 20px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  /* ── Swatch display ── */
+  .swatch-row { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+  .swatch-group { display: flex; flex-direction: column; align-items: center; }
+  .swatch {
+    width: 52px; height: 52px; border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .swatch:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  /* Dark theme swatches: light glow instead of dark shadow */
+  .theme-card-dark .swatch {
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 1px 3px rgba(255,255,255,0.04);
+  }
+  .theme-card-dark .swatch:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(255,255,255,0.12);
+  }
+  .swatch-label { font-size: 9px; font-weight: 500; letter-spacing: 0.5px; margin-top: 5px; text-align: center; opacity: 0.55; }
+  .swatch-hex { font-size: 8px; text-align: center; opacity: 0.35; font-family: monospace; }
+
+  /* ── Theme cards ── */
+  .theme-row { display: flex; gap: 24px; margin-bottom: 16px; }
+  .theme-card {
+    flex: 1; border-radius: 14px; padding: 28px; border: 2px solid;
+  }
+  .theme-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2px; margin-bottom: 20px; opacity: 0.5;
+  }
+
+  /* ── UI Mock ── */
+  .ui-mock {
+    border-radius: 10px; padding: 20px; margin-top: 16px; border: 2px solid;
+  }
+  .mock-sidebar {
+    display: flex; gap: 0; border-radius: 10px; overflow: hidden;
+  }
+  .mock-panel-left { width: 220px; padding: 16px; flex-shrink: 0; }
+  .mock-artboard-area { flex: 1; padding: 16px; display: flex; align-items: center; justify-content: center; }
+  .mock-artboard {
+    width: 100%; aspect-ratio: 16/10; border-radius: 6px; border: 2px solid;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500; opacity: 0.4;
+  }
+
+  .mock-heading { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+
+  .mock-tabs {
+    display: flex; gap: 0; margin-bottom: 14px; border-radius: 6px; overflow: hidden;
+  }
+  .mock-tab {
+    flex: 1; text-align: center; padding: 7px 0; font-size: 12px; font-weight: 600;
+    position: relative; cursor: pointer;
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+  .mock-tab:hover:not(.active) {
+    background-color: rgba(0,0,0,0.04);
+  }
+  .mock-tab.active::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  }
+
+  .mock-separator { height: 2px; margin: 14px 0; border-radius: 1px; }
+  .mock-separator.gradient-sep-light {
+    background: linear-gradient(90deg, #d4627a, #c87a4e, #7aab98, #6a8ec4);
+  }
+  .mock-separator.gradient-sep-dark {
+    background: linear-gradient(90deg, #e07a92, #d4945a, #7aab98, #7a9ed4);
+  }
+
+  .mock-item {
+    padding: 8px 12px; border-radius: 6px; margin-bottom: 5px;
+    font-size: 13px; font-weight: 500;
+    transition: background-color 150ms ease, border-color 150ms ease;
+    cursor: pointer;
+  }
+  .mock-item:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  .mock-label { font-size: 11px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .mock-value { font-size: 13px; font-weight: 400; margin-bottom: 12px; }
+
+  .mock-btn {
+    display: inline-block; padding: 9px 18px; border-radius: 7px;
+    font-size: 13px; font-weight: 600; font-family: 'Source Serif 4', serif;
+    border: none; cursor: pointer;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .mock-btn.gradient-btn-light {
+    background: linear-gradient(135deg, #5c7a6e, #6a8ec4);
+    color: #f0ede8;
+  }
+  .mock-btn.gradient-btn-light:hover {
+    background: linear-gradient(135deg, #6a8ec4, #5c7a6e);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+  .mock-btn.gradient-btn-dark {
+    background: linear-gradient(135deg, #7aab98, #7a9ed4);
+    color: #1a1d1f;
+  }
+  .mock-btn.gradient-btn-dark:hover {
+    background: linear-gradient(135deg, #7a9ed4, #7aab98);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  .mock-btn.outline:hover {
+    background-color: rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+  }
+  .mock-btn.gradient-btn-light {
+    background: linear-gradient(135deg, #5c7a6e, #6a8ec4);
+    color: #f0ede8;
+  }
+  .mock-btn.gradient-btn-dark {
+    background: linear-gradient(135deg, #7aab98, #7a9ed4);
+    color: #1a1d1f;
+  }
+  .mock-btn.outline {
+    background: transparent; border: 2px solid;
+  }
+
+  .mock-slider-track {
+    height: 4px; border-radius: 2px; margin: 8px 0 14px 0; position: relative;
+  }
+  .mock-slider-track.gradient-track-light {
+    background: linear-gradient(90deg, #d4627a, #c87a4e 40%, #5c7a6e);
+  }
+  .mock-slider-track.gradient-track-dark {
+    background: linear-gradient(90deg, #e07a92, #d4945a 40%, #7aab98);
+  }
+  .mock-slider-thumb {
+    width: 14px; height: 14px; border-radius: 50%; position: absolute;
+    top: -5px; left: 40%; border: 2px solid;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .mock-slider-track:hover .mock-slider-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+
+  .gradient-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+  }
+  .gradient-badge-light {
+    background: linear-gradient(135deg, rgba(92,122,110,0.15), rgba(106,142,196,0.15));
+    color: #5c7a6e;
+  }
+  .gradient-badge-dark {
+    background: linear-gradient(135deg, rgba(122,171,152,0.2), rgba(122,158,212,0.2));
+    color: #7aab98;
+  }
+
+  .description {
+    font-size: 14px; line-height: 1.6; color: #6e6a62;
+    max-width: 680px; margin-bottom: 24px;
+  }
+
+  /* ── Gradient accent showcase ── */
+  .accent-showcase {
+    display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .accent-item {
+    border-radius: 10px; padding: 16px 20px; min-width: 140px;
+  }
+  .accent-item-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 4px; opacity: 0.6;
+  }
+  .accent-item-value { font-size: 14px; font-weight: 500; }
+
+  .accent-item {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .accent-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+
+  /* ── Transition reference ── */
+  .transition-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px;
+  }
+  .transition-table th {
+    text-align: left; padding: 10px 14px;
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    border-bottom: 2px solid;
+  }
+  .transition-table td {
+    padding: 10px 14px; border-bottom: 1px solid;
+  }
+  .transition-table code {
+    font-family: monospace; font-size: 12px;
+    padding: 2px 6px; border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Cool Atelier + Gradient Accents — Source Serif 4</h1>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- GRADIENT ACCENT ELEMENTS -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Gradient Accent Elements</h2>
+  <p class="description">
+    The neutral ecru/graphite base stays calm. Gradients appear as accent stripes, active states, button fills, slider tracks, and separator lines — bringing life without overwhelming the workspace. Since users are creating gradients, the UI subtly mirrors their craft.
+  </p>
+
+  <div class="accent-showcase">
+    <div class="accent-item" style="background: linear-gradient(135deg, #5c7a6e, #6a8ec4); color: #f0ede8;">
+      <div class="accent-item-label">Primary Button</div>
+      <div class="accent-item-value">Sage → Sky</div>
+    </div>
+    <div class="accent-item" style="background: linear-gradient(135deg, #d4627a, #c87a4e); color: #f0ede8;">
+      <div class="accent-item-label">Active / Selected</div>
+      <div class="accent-item-value">Rose → Copper</div>
+    </div>
+    <div class="accent-item" style="background: linear-gradient(90deg, #d4627a, #c87a4e, #5c7a6e, #6a8ec4); color: #f0ede8;">
+      <div class="accent-item-label">Separator / Track</div>
+      <div class="accent-item-value">Full Spectrum</div>
+    </div>
+    <div class="accent-item" style="background: linear-gradient(135deg, rgba(92,122,110,0.12), rgba(106,142,196,0.12)); color: #5c7a6e; border: 1px solid rgba(92,122,110,0.2);">
+      <div class="accent-item-label">Badge / Subtle</div>
+      <div class="accent-item-value">Tinted Glass</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- LIGHT THEME FULL MOCK -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Light Theme — Full UI Mock</h2>
+  <div class="theme-card" style="background: #f0ede8; border-color: #c2bdb5; color: #24231f;">
+
+    <!-- Swatches -->
+    <div class="swatch-row">
+      <div class="swatch-group"><div class="swatch" style="background: #f0ede8;"></div><div class="swatch-label" style="color:#24231f">Background</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #e6e2db;"></div><div class="swatch-label" style="color:#24231f">Surface</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #dad5cc;"></div><div class="swatch-label" style="color:#24231f">Muted</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #c2bdb5;"></div><div class="swatch-label" style="color:#24231f">Border</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #24231f;"></div><div class="swatch-label" style="color:#24231f">Text</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #6e6a62;"></div><div class="swatch-label" style="color:#24231f">Secondary</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: linear-gradient(135deg, #5c7a6e, #6a8ec4);"></div><div class="swatch-label" style="color:#24231f">Accent 1</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: linear-gradient(135deg, #d4627a, #c87a4e);"></div><div class="swatch-label" style="color:#24231f">Accent 2</div></div>
+    </div>
+
+    <!-- UI Mock: sidebar layout -->
+    <div class="ui-mock" style="border-color: #c2bdb5; background: #f0ede8; padding: 0; overflow: hidden;">
+      <div class="mock-sidebar">
+        <!-- Left panel -->
+        <div class="mock-panel-left" style="background: #e6e2db; border-right: 2px solid #c2bdb5;">
+          <!-- Tabs with gradient active indicator -->
+          <div class="mock-tabs" style="background: #dad5cc;">
+            <div class="mock-tab active" style="background: #e6e2db; color: #24231f;">
+              Layers
+              <span style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5c7a6e,#6a8ec4);border-radius:0 0 0 0;"></span>
+            </div>
+            <div class="mock-tab" style="color: #6e6a62;">Properties</div>
+          </div>
+
+          <div class="mock-heading" style="color: #24231f; font-size: 14px;">Gradient Layers</div>
+
+          <!-- Selected item with gradient left border -->
+          <div class="mock-item" style="background: #f0ede8; color: #24231f; border: 1px solid #c2bdb5; border-left: 3px solid; border-image: linear-gradient(180deg, #d4627a, #c87a4e) 1;">
+            Sunset Warm
+            <span class="gradient-badge gradient-badge-light" style="float:right;">Linear</span>
+          </div>
+          <div class="mock-item" style="background: transparent; color: #24231f; border: 1px solid transparent;">
+            Ocean Deep
+          </div>
+          <div class="mock-item" style="background: transparent; color: #24231f; border: 1px solid transparent;">
+            Forest Mist
+          </div>
+
+          <div class="mock-separator gradient-sep-light"></div>
+
+          <div class="mock-label" style="color: #6e6a62;">Blend Mode</div>
+          <div class="mock-value" style="color: #24231f;">Normal</div>
+
+          <div class="mock-label" style="color: #6e6a62;">Color Spectrum</div>
+          <div class="mock-slider-track gradient-track-light">
+            <div class="mock-slider-thumb" style="background: #f0ede8; border-color: #24231f;"></div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <div class="mock-btn gradient-btn-light">Download SVG</div>
+            <div class="mock-btn outline" style="color: #24231f; border-color: #c2bdb5;">Add</div>
+          </div>
+        </div>
+
+        <!-- Artboard area -->
+        <div class="mock-artboard-area" style="background: #f0ede8;">
+          <div class="mock-artboard" style="border-color: #c2bdb5; background: white;">
+            SVG Artboard
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DARK THEME FULL MOCK -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Dark Theme — Full UI Mock</h2>
+  <div class="theme-card theme-card-dark" style="background: #1a1d1f; border-color: #353a3d; color: #d8dce0;">
+
+    <!-- Swatches -->
+    <div class="swatch-row">
+      <div class="swatch-group"><div class="swatch" style="background: #1a1d1f; border-color:#353a3d;"></div><div class="swatch-label" style="color:#d8dce0">Background</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #252a2d; border-color:#353a3d;"></div><div class="swatch-label" style="color:#d8dce0">Surface</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #353a3d; border-color:#454b4f;"></div><div class="swatch-label" style="color:#d8dce0">Muted</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #454b4f; border-color:#555b60;"></div><div class="swatch-label" style="color:#d8dce0">Border</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #d8dce0;"></div><div class="swatch-label" style="color:#d8dce0">Text</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: #8a9096;"></div><div class="swatch-label" style="color:#d8dce0">Secondary</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: linear-gradient(135deg, #7aab98, #7a9ed4);"></div><div class="swatch-label" style="color:#d8dce0">Accent 1</div></div>
+      <div class="swatch-group"><div class="swatch" style="background: linear-gradient(135deg, #e07a92, #d4945a);"></div><div class="swatch-label" style="color:#d8dce0">Accent 2</div></div>
+    </div>
+
+    <!-- UI Mock: sidebar layout -->
+    <div class="ui-mock" style="border-color: #353a3d; background: #1a1d1f; padding: 0; overflow: hidden;">
+      <div class="mock-sidebar">
+        <!-- Left panel -->
+        <div class="mock-panel-left" style="background: #252a2d; border-right: 2px solid #353a3d;">
+          <!-- Tabs with gradient active indicator -->
+          <div class="mock-tabs" style="background: #1a1d1f;">
+            <div class="mock-tab active" style="background: #252a2d; color: #d8dce0;">
+              Layers
+              <span style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7aab98,#7a9ed4);"></span>
+            </div>
+            <div class="mock-tab" style="color: #8a9096;">Properties</div>
+          </div>
+
+          <div class="mock-heading" style="color: #d8dce0; font-size: 14px;">Gradient Layers</div>
+
+          <!-- Selected item with gradient left border -->
+          <div class="mock-item" style="background: #353a3d; color: #d8dce0; border-left: 3px solid; border-image: linear-gradient(180deg, #e07a92, #d4945a) 1;">
+            Sunset Warm
+            <span class="gradient-badge gradient-badge-dark" style="float:right;">Linear</span>
+          </div>
+          <div class="mock-item" style="background: transparent; color: #d8dce0;">
+            Ocean Deep
+          </div>
+          <div class="mock-item" style="background: transparent; color: #d8dce0;">
+            Forest Mist
+          </div>
+
+          <div class="mock-separator gradient-sep-dark"></div>
+
+          <div class="mock-label" style="color: #8a9096;">Blend Mode</div>
+          <div class="mock-value" style="color: #d8dce0;">Normal</div>
+
+          <div class="mock-label" style="color: #8a9096;">Color Spectrum</div>
+          <div class="mock-slider-track gradient-track-dark">
+            <div class="mock-slider-thumb" style="background: #252a2d; border-color: #d8dce0;"></div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <div class="mock-btn gradient-btn-dark">Download SVG</div>
+            <div class="mock-btn outline" style="color: #d8dce0; border-color: #454b4f;">Add</div>
+          </div>
+        </div>
+
+        <!-- Artboard area -->
+        <div class="mock-artboard-area" style="background: #1a1d1f;">
+          <div class="mock-artboard" style="border-color: #353a3d; background: #0f1112; color: #8a9096;">
+            SVG Artboard
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- GRADIENT USAGE GUIDE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Where Gradients Appear</h2>
+  <div style="background: #e6e2db; border: 2px solid #c2bdb5; border-radius: 14px; padding: 28px; color: #24231f;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div>
+        <div class="mock-label" style="color: #6e6a62; margin-bottom: 8px;">Active tab indicator</div>
+        <div style="background: #dad5cc; border-radius: 6px; padding: 10px; text-align: center; position: relative; font-size: 13px; font-weight: 600;">
+          Layers
+          <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5c7a6e,#6a8ec4);border-radius:0 0 6px 6px;"></div>
+        </div>
+      </div>
+      <div>
+        <div class="mock-label" style="color: #6e6a62; margin-bottom: 8px;">Selected item border</div>
+        <div style="background: #f0ede8; border: 1px solid #c2bdb5; border-left: 3px solid; border-image: linear-gradient(180deg, #d4627a, #c87a4e) 1; border-radius: 0 6px 6px 0; padding: 10px; font-size: 13px; font-weight: 500;">
+          Sunset Warm
+        </div>
+      </div>
+      <div>
+        <div class="mock-label" style="color: #6e6a62; margin-bottom: 8px;">Primary button</div>
+        <div class="mock-btn gradient-btn-light" style="text-align: center; display: block;">Download SVG</div>
+      </div>
+      <div>
+        <div class="mock-label" style="color: #6e6a62; margin-bottom: 8px;">Section separator</div>
+        <div style="padding-top: 14px;">
+          <div style="height: 2px; background: linear-gradient(90deg, #d4627a, #c87a4e, #5c7a6e, #6a8ec4); border-radius: 1px;"></div>
+        </div>
+      </div>
+      <div>
+        <div class="mock-label" style="color: #6e6a62; margin-bottom: 8px;">Slider track</div>
+        <div style="padding-top: 8px; position: relative;">
+          <div style="height: 4px; background: linear-gradient(90deg, #d4627a, #c87a4e 40%, #5c7a6e); border-radius: 2px;"></div>
+          <div style="width: 14px; height: 14px; border-radius: 50%; background: #f0ede8; border: 2px solid #24231f; position: absolute; top: 3px; left: 40%;"></div>
+        </div>
+      </div>
+      <div>
+        <div class="mock-label" style="color: #6e6a62; margin-bottom: 8px;">Type badge</div>
+        <div>
+          <span class="gradient-badge gradient-badge-light">Linear</span>
+          <span class="gradient-badge" style="background: linear-gradient(135deg, rgba(212,98,122,0.12), rgba(200,122,78,0.12)); color: #d4627a; margin-left: 6px;">Radial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TRANSITIONS REFERENCE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Transition Specifications</h2>
+  <div style="background: #e6e2db; border: 2px solid #c2bdb5; border-radius: 14px; padding: 28px; color: #24231f;">
+    <p class="description" style="margin-bottom: 20px;">
+      All transitions use <code style="font-family:monospace;font-size:13px;background:#dad5cc;padding:2px 6px;border-radius:3px;">200ms cubic-bezier(0.4, 0, 0.2, 1)</code> — Material Design's standard easing curve. Starts fast, decelerates smoothly. No entrance animations, no delays.
+    </p>
+    <table class="transition-table">
+      <thead>
+        <tr>
+          <th style="border-color: #c2bdb5; color: #6e6a62;">Element</th>
+          <th style="border-color: #c2bdb5; color: #6e6a62;">Property</th>
+          <th style="border-color: #c2bdb5; color: #6e6a62;">Trigger</th>
+          <th style="border-color: #c2bdb5; color: #6e6a62;">Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border-color: #dad5cc;">Gradient buttons</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">background-position</code></td>
+          <td style="border-color: #dad5cc;">Hover</td>
+          <td style="border-color: #dad5cc;">Gradient inverts + smooth 1px lift with shadow. Uses <code style="background:#dad5cc;">will-change: transform</code> for GPU acceleration.</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">Outline buttons</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">background-color</code></td>
+          <td style="border-color: #dad5cc;">Hover</td>
+          <td style="border-color: #dad5cc;">Subtle background tint (4% black overlay)</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">List items</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">background-color</code></td>
+          <td style="border-color: #dad5cc;">Hover</td>
+          <td style="border-color: #dad5cc;">Subtle background tint (4% black overlay)</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">Tabs</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">color, background-color</code></td>
+          <td style="border-color: #dad5cc;">Hover</td>
+          <td style="border-color: #dad5cc;">Background tint on inactive tabs</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">Slider thumb</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">transform, box-shadow</code></td>
+          <td style="border-color: #dad5cc;">Hover (track)</td>
+          <td style="border-color: #dad5cc;">Scale up to 1.2x with subtle shadow</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">Swatches / cards</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">transform, box-shadow</code></td>
+          <td style="border-color: #dad5cc;">Hover</td>
+          <td style="border-color: #dad5cc;">1px lift. Light theme: dark shadow. Dark theme: light glow (<code style="background:#dad5cc;">rgba(255,255,255,0.12)</code>)</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">Selection border</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">border-color, opacity</code></td>
+          <td style="border-color: #dad5cc;">State change</td>
+          <td style="border-color: #dad5cc;">Gradient border fades in smoothly</td>
+        </tr>
+        <tr>
+          <td style="border-color: #dad5cc;">Theme toggle</td>
+          <td style="border-color: #dad5cc;"><code style="background:#dad5cc;">color, background-color, border-color</code></td>
+          <td style="border-color: #dad5cc;">Toggle</td>
+          <td style="border-color: #dad5cc;">All themed properties transition together (applied globally via <code style="background:#dad5cc;">* { transition: color, background-color, border-color 150ms ease }</code>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
