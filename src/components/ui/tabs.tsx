@@ -30,7 +30,7 @@ const TabsTrigger = forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "relative flex-1 py-2.5 text-sm font-semibold text-muted-foreground transition-colors",
+      "relative flex-1 py-3 text-base font-semibold text-muted-foreground transition-colors",
       "hover:bg-accent/50",
       "data-[state=active]:text-foreground",
       "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:rounded-t-sm",

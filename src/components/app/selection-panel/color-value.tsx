@@ -48,7 +48,7 @@ const ColorValue: FC<{ color: AppColor; colorSpace: ColorSpace }> = ({
   }, [color, colorSpace]);
 
   return (
-    <p className="text-right text-xs w-100 pl-2 w-3/5">
+    <p className="text-right text-sm pl-2 flex-1 min-w-0 truncate font-mono">
       {convertedColor.type === "hex"
         ? convertedColor.value
         : convertedColor.value.join(", ")}

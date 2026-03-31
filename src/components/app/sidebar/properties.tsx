@@ -16,7 +16,6 @@ import ShapeSelect from "@/components/app/selection-panel/shape-select";
 import Properties from "@/components/app/selection-panel/properties";
 import FieldsetLegend from "@/components/app/fieldset-legend";
 import { selectedGradientAtom } from "@/state/gradient.store";
-import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { useAtomValue } from "jotai";
 import { FC } from "react";
@@ -26,14 +25,14 @@ const SidebarProperties: FC = () => {
 
   if (!gradient) {
     return (
-      <Label className="text-muted-foreground text-sm">
+      <Label className="text-foreground/50 text-sm">
         Select a gradient to edit its properties
       </Label>
     );
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div key={gradient.id} className="flex flex-col gap-4 animate-fade-in">
       <ColorSpaceSelect />
       <BlendModeSelect />
       <FieldsetLegend title="Colors">
@@ -44,8 +43,7 @@ const SidebarProperties: FC = () => {
           ))}
         </ColorsList>
       </FieldsetLegend>
-      <Separator variant="gradient" />
-      <FieldsetLegend title="Properties">
+      <FieldsetLegend title="Gradient">
         <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
         <SpreadMethodSelect />
         <Properties>

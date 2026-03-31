@@ -1,13 +1,3 @@
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { artboardPresentAtom } from "@/state/artboard.state";
 import { gradientsLengthAtom } from "@/state/gradient.store";
 import { Button } from "@/components/ui/button";
@@ -33,7 +23,7 @@ const getURIComponentString = (el: HTMLElement): string => {
   );
   doc.replaceChild(el.cloneNode(true), doc.documentElement);
   const svgData = new XMLSerializer().serializeToString(doc);
-  return encodeURIComponent(svgData.replace(/></g, ">\n\r<"));
+  return encodeURIComponent(svgData.replace(/>/g, ">\n\r<"));
 };
 
 export const download = (name: string, svg: HTMLElement) => {
@@ -51,40 +41,24 @@ const DownloadSection: FC = () => {
   const svgPresent = useAtomValue(artboardPresentAtom);
   const gradientsLength = useAtomValue(gradientsLengthAtom);
 
+  const disabled = !svgPresent || gradientsLength === 0;
+
   return (
-    <Dialog>
-      <DialogTrigger>
-        <ImageDown className="w-3 h-3" />
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Download SVG</DialogTitle>
-          <DialogDescription>
-            {gradientsLength > 0
-              ? "Download your composition as SVG file"
-              : "Create gradients to download SVG file"}
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button
-              disabled={!svgPresent || gradientsLength === 0}
-              variant="default"
-              size="sm"
-              onClick={() => {
-                download(
-                  "gradient",
-                  document.getElementById("artboard") as HTMLElement,
-                );
-              }}
-            >
-              <span className="mr-2">Download</span>
-              <ImageDown className="w-3 h-3" />
-            </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <Button
+      disabled={disabled}
+      variant="gradient"
+      size="default"
+      className="w-full"
+      onClick={() => {
+        download(
+          "gradient",
+          document.getElementById("artboard") as HTMLElement,
+        );
+      }}
+    >
+      <ImageDown className="w-4 h-4 mr-2" />
+      Download SVG
+    </Button>
   );
 };
 

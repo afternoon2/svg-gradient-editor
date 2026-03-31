@@ -17,7 +17,7 @@ const GradientItem: FC<
       className={`w-full flex flex-col mb-1 transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] box-border rounded-r-md hover:bg-accent/20 ${
         selected
           ? "border-l-[3px] [border-image:var(--accent-gradient-2)_1] bg-accent/30"
-          : "border-l-[3px] border-l-transparent"
+          : "border-l-[3px] border-l-border/45"
       }`}
     >
       <label
@@ -38,7 +38,7 @@ const GradientItem: FC<
           {gradient.alias ?? `Gradient ${index + 1}`}
         </span>
         <GenericButton onClick={onDelete} title="Delete gradient">
-          <Trash className="w-3 h-3 stroke-red-500" />
+          <Trash className="w-4 h-4 stroke-red-500" />
         </GenericButton>
       </label>
     </li>

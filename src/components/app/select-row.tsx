@@ -27,21 +27,25 @@ function SelectRow<T extends string>({
   onValueChange,
 }: Props<T>): ReactNode {
   return (
-    <div className="flex w-full items-center mb-1">
-      <Label className="text-xs mr-3 w-1/3">{label}</Label>
-      <Select disabled={disabled} onValueChange={onValueChange} value={value}>
-        <SelectTrigger className="w-[110px] p-1 text-xs">
-          <SelectValue placeholder={placeholder} />
-        </SelectTrigger>
-        <SelectContent>
-          {options.map((option) => (
-            <SelectItem key={option.id} value={option.value}>
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      {children}
+    <div className="flex w-full items-center justify-between py-1.5">
+      <Label className="text-sm font-medium text-foreground">
+        {label}
+      </Label>
+      <div className="flex items-center gap-1">
+        <Select disabled={disabled} onValueChange={onValueChange} value={value}>
+          <SelectTrigger className="w-[120px] h-9 px-3 text-sm">
+            <SelectValue placeholder={placeholder} />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((option) => (
+              <SelectItem key={option.id} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {children}
+      </div>
     </div>
   );
 }

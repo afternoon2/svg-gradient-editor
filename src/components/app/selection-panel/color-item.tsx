@@ -48,11 +48,11 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
   );
 
   return (
-    <li className="w-full flex items-center pb-2 px-0 mx-0 justify-between">
+    <li className="w-full flex items-center pb-2 px-0 mx-0 justify-between overflow-hidden min-w-0">
       <Popover>
         <PopoverTrigger asChild>
           <div
-            className="w-8 h-8 rounded cursor-pointer"
+            className="w-9 h-9 rounded-lg cursor-pointer shrink-0 border border-border"
             style={{
               backgroundColor: color.css,
             }}
@@ -68,7 +68,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
           <TooltipTrigger>
             <Popover>
               <PopoverTrigger asChild>
-                <Edit className="mx-3 w-3 h-3" />
+                <Edit className="mx-2 w-4 h-4 shrink-0" />
               </PopoverTrigger>
               <PopoverContent className={POPOVER_CLASSNAMES}>
                 <ColorPicker value={color.value} onChange={onChange} />
@@ -90,7 +90,7 @@ const ColorItem: FC<{ color: AppColor; gradientId: string }> = ({
           });
         }}
       >
-        <Trash className="w-3 h-3 stroke-red-600" />
+        <Trash className="w-4 h-4 shrink-0 stroke-red-600" />
       </GenericButton>
     </li>
   );

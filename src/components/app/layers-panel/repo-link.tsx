@@ -15,7 +15,7 @@ const RepoLink: FC = () => (
     >
       {/* Icon from: https://simpleicons.org/?q=github */}
       <svg
-        className={`w-4 h-4 transition-colors dark:fill-slate-50`}
+        className="w-4 h-4 fill-foreground"
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
