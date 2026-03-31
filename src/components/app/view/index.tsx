@@ -8,7 +8,7 @@ const View: FC<PropsWithChildren> = ({ children }) => {
   const workerInitialized = useGradientWorkerInit();
 
   return (
-    <main className="w-full h-screen max-h-full flex">
+    <main className="w-full h-screen max-h-full grid grid-cols-[400px_1fr]">
       {workerInitialized ? (
         children
       ) : (

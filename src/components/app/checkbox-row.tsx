@@ -11,17 +11,10 @@ const CheckboxRow: FC<{
 
   return (
     <div className="w-full flex items-center justify-between py-1.5">
-      <Label
-        className="text-sm font-medium text-foreground cursor-pointer"
-        htmlFor={id}
-      >
+      <Label className="text-sm font-medium text-foreground cursor-pointer" htmlFor={id}>
         {label}
       </Label>
-      <Checkbox
-        checked={checked}
-        onCheckedChange={onChange}
-        id={id}
-      />
+      <Checkbox checked={checked} onCheckedChange={onChange} id={id} />
     </div>
   );
 };

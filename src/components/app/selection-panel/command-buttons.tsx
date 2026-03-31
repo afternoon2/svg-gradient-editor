@@ -5,10 +5,7 @@ import { AppColor } from "@/state/types";
 import { FC, useCallback } from "react";
 import { useSetAtom } from "jotai";
 
-const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({
-  gradientId,
-  colors,
-}) => {
+const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({ gradientId, colors }) => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
 
   const noColors = colors.length <= 0;
@@ -34,12 +31,7 @@ const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({
 
   return (
     <div className="w-full flex items-center gap-2">
-      <Button
-        onClick={addColor}
-        variant="outline"
-        size="sm"
-        className="flex-1"
-      >
+      <Button onClick={addColor} variant="outline" size="sm" className="flex-1">
         <PlusIcon className="w-4 h-4 mr-1" />
         Add Color
       </Button>

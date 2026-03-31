@@ -13,7 +13,7 @@ import { FC } from "react";
 
 const Sidebar: FC = () => {
   return (
-    <aside className="w-100 shrink-0 h-screen bg-card border-r-2 border-border flex flex-col overflow-hidden">
+    <aside className="bg-card border-r-2 border-border flex flex-col overflow-hidden">
       <header className="px-4 pt-4 pb-3 flex items-center justify-between">
         <h1 className="text-lg font-bold">SVG Gradient Editor</h1>
         <div className="flex items-center gap-1">

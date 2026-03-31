@@ -2,12 +2,7 @@ import { Button } from "@/components/ui/button";
 import { FC } from "react";
 
 const RepoLink: FC = () => (
-  <Button
-    asChild
-    size="icon"
-    variant="link"
-    title="See the code repository on GitHub"
-  >
+  <Button asChild size="icon" variant="link" title="See the code repository on GitHub">
     <a
       href="https://github.com/afternoon2/svg-gradient-editor"
       target="_blank"

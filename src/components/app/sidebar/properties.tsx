@@ -27,9 +27,7 @@ const SidebarProperties: FC = () => {
 
   if (!gradient) {
     return (
-      <Label className="text-foreground/50 text-sm">
-        Select a gradient to edit its properties
-      </Label>
+      <Label className="text-foreground/50 text-sm">Select a gradient to edit its properties</Label>
     );
   }
 
@@ -50,7 +48,7 @@ const SidebarProperties: FC = () => {
 
         <Separator variant="gradient" />
 
-        <FieldsetLegend title="Colors" >
+        <FieldsetLegend title="Colors">
           <CommandButtons gradientId={gradient.id} colors={gradient.input} />
           <ColorsList>
             {gradient.input.map((color) => (
@@ -59,7 +57,7 @@ const SidebarProperties: FC = () => {
           </ColorsList>
         </FieldsetLegend>
 
-        <FieldsetLegend title="Shape & Type" >
+        <FieldsetLegend title="Shape & Type">
           <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
           <SpreadMethodSelect />
           <Properties>
@@ -82,7 +80,7 @@ const SidebarProperties: FC = () => {
           </Properties>
         </FieldsetLegend>
 
-        <FieldsetLegend title="Advanced settings" >
+        <FieldsetLegend title="Advanced settings">
           <ChromaProperties />
         </FieldsetLegend>
       </div>

@@ -39,18 +39,30 @@
 }
 
 @keyframes accordion-down {
-  from { height: 0; }
-  to { height: var(--radix-accordion-content-height); }
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
 }
 
 @keyframes accordion-up {
-  from { height: var(--radix-accordion-content-height); }
-  to { height: 0; }
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 :root {
@@ -83,8 +95,16 @@
   --accent-gradient-2-hover: linear-gradient(180deg, #c87a4e, #d4627a);
   --accent-gradient-full: linear-gradient(90deg, #d4627a, #c87a4e, #5c7a6e, #6a8ec4);
   --accent-gradient-track: linear-gradient(90deg, #d4627a, #c87a4e 40%, #5c7a6e);
-  --badge-gradient-linear: linear-gradient(135deg, rgba(92,122,110,0.15), rgba(106,142,196,0.15));
-  --badge-gradient-radial: linear-gradient(135deg, rgba(212,98,122,0.12), rgba(200,122,78,0.12));
+  --badge-gradient-linear: linear-gradient(
+    135deg,
+    rgba(92, 122, 110, 0.15),
+    rgba(106, 142, 196, 0.15)
+  );
+  --badge-gradient-radial: linear-gradient(
+    135deg,
+    rgba(212, 98, 122, 0.12),
+    rgba(200, 122, 78, 0.12)
+  );
   --badge-color-linear: #5c7a6e;
   --badge-color-radial: #d4627a;
 }
@@ -116,8 +136,16 @@
   --accent-gradient-1-hover: linear-gradient(135deg, #7a9ed4, #7aab98);
   --accent-gradient-2: linear-gradient(180deg, #e07a92, #d4945a);
   --accent-gradient-track: linear-gradient(90deg, #e07a92, #d4945a 40%, #7aab98);
-  --badge-gradient-linear: linear-gradient(135deg, rgba(122,171,152,0.2), rgba(122,158,212,0.2));
-  --badge-gradient-radial: linear-gradient(135deg, rgba(224,122,146,0.2), rgba(212,148,90,0.2));
+  --badge-gradient-linear: linear-gradient(
+    135deg,
+    rgba(122, 171, 152, 0.2),
+    rgba(122, 158, 212, 0.2)
+  );
+  --badge-gradient-radial: linear-gradient(
+    135deg,
+    rgba(224, 122, 146, 0.2),
+    rgba(212, 148, 90, 0.2)
+  );
   --badge-color-linear: #7aab98;
   --badge-color-radial: #e07a92;
   --accent-gradient-2-hover: linear-gradient(180deg, #d4945a, #e07a92);

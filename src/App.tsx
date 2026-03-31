@@ -16,12 +16,14 @@ function App() {
       <DevTools />
       <View>
         <Sidebar />
-        <div className="flex-1 h-screen relative flex items-center justify-center">
-          <SizeControls />
-          <Artboard>
-            <Defs />
-            <Figures />
-          </Artboard>
+        <div className="relative bg-muted p-4">
+          <div className="relative h-full flex items-center justify-center bg-background rounded-xl p-4">
+            <SizeControls />
+            <Artboard>
+              <Defs />
+              <Figures />
+            </Artboard>
+          </div>
         </div>
       </View>
       <ThemeListener />

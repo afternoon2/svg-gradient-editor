@@ -5,9 +5,7 @@ import { Input } from "@/components/ui/input";
 import { FC } from "react";
 
 const SliderRow: FC<
-  Required<
-    Pick<SliderProps, "min" | "max" | "step" | "onValueChange" | "value">
-  > & {
+  Required<Pick<SliderProps, "min" | "max" | "step" | "onValueChange" | "value">> & {
     title: string;
   }
 > = ({ min, max, step, onValueChange, value, title }) => (
@@ -26,13 +24,7 @@ const SliderRow: FC<
         }}
       />
     </div>
-    <Slider
-      min={min}
-      max={max}
-      step={step}
-      value={value}
-      onValueChange={onValueChange}
-    />
+    <Slider min={min} max={max} step={step} value={value} onValueChange={onValueChange} />
   </div>
 );
 

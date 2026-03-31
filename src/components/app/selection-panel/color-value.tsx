@@ -10,10 +10,7 @@ type Output =
 
 const round = (v: number): number => parseFloat(v.toFixed(2));
 
-const ColorValue: FC<{ color: AppColor; colorSpace: ColorSpace }> = ({
-  color,
-  colorSpace,
-}) => {
+const ColorValue: FC<{ color: AppColor; colorSpace: ColorSpace }> = ({ color, colorSpace }) => {
   const convertedColor: Output = useMemo(() => {
     switch (colorSpace) {
       case "hex":
@@ -32,10 +29,7 @@ const ColorValue: FC<{ color: AppColor; colorSpace: ColorSpace }> = ({
         const output = chroma.rgb(...color.value);
         return {
           type: "hsva",
-          value: [
-            ...output.hsv().map(round),
-            output.alpha(),
-          ] as AppColor["value"],
+          value: [...output.hsv().map(round), output.alpha()] as AppColor["value"],
         };
       }
       case "rgba":
@@ -49,9 +43,7 @@ const ColorValue: FC<{ color: AppColor; colorSpace: ColorSpace }> = ({
 
   return (
     <p className="text-right text-sm pl-2 flex-1 min-w-0 truncate font-mono">
-      {convertedColor.type === "hex"
-        ? convertedColor.value
-        : convertedColor.value.join(", ")}
+      {convertedColor.type === "hex" ? convertedColor.value : convertedColor.value.join(", ")}
     </p>
   );
 };

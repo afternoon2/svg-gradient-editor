@@ -16,7 +16,7 @@ const ColorSpaceSelect: FC = () => {
       options={COLOR_SPACES.map((space) => ({
         id: space,
         value: space,
-        label: space
+        label: space,
       }))}
     />
   );

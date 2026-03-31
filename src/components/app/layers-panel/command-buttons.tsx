@@ -1,7 +1,4 @@
-import {
-  gradientStateReducerAtom,
-  randomGradient,
-} from "@/state/gradient.store";
+import { gradientStateReducerAtom, randomGradient } from "@/state/gradient.store";
 import { selectedPresetIdAtom } from "@/state/presets.state";
 import { artboardSizeAtom } from "@/state/artboard.state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -28,12 +25,7 @@ const CommandButtons: FC = () => {
 
   return (
     <div className="w-full flex items-center gap-2">
-      <Button
-        onClick={addGradient}
-        variant="outline"
-        size="sm"
-        className="flex-1"
-      >
+      <Button onClick={addGradient} variant="outline" size="sm" className="flex-1">
         <PlusIcon className="w-4 h-4 mr-1" />
         Add Gradient
       </Button>

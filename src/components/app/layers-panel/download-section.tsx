@@ -16,11 +16,7 @@ const getURIComponentString = (el: HTMLElement): string => {
     SVG_PUBLIC_ID,
     SVG_SYSTEM_ID,
   );
-  const doc = document.implementation.createDocument(
-    SVG_NAMESPACE,
-    SVG_QUALIFIED_NAME,
-    doctype,
-  );
+  const doc = document.implementation.createDocument(SVG_NAMESPACE, SVG_QUALIFIED_NAME, doctype);
   doc.replaceChild(el.cloneNode(true), doc.documentElement);
   const svgData = new XMLSerializer().serializeToString(doc);
   return encodeURIComponent(svgData.replace(/></g, ">\n\r<"));
@@ -50,10 +46,7 @@ const DownloadSection: FC = () => {
       size="default"
       className="w-full"
       onClick={() => {
-        download(
-          "gradient",
-          document.getElementById("artboard") as HTMLElement,
-        );
+        download("gradient", document.getElementById("artboard") as HTMLElement);
       }}
     >
       <ImageDown className="w-4 h-4 mr-2" />

@@ -10,28 +10,28 @@ const GradientList: FC = () => {
 
   return (
     <ScrollArea className="max-h-[300px]">
-    <ul className="w-full flex flex-col pt-1">
-      {state.gradients.map((gradient, index) => (
-        <GradientItem
-          key={gradient.id}
-          gradient={gradient}
-          onDelete={() => {
-            dispatch({
-              type: "REMOVE_GRADIENT",
-              payload: { id: gradient.id },
-            });
-          }}
-          onSelect={(id: string) => {
-            dispatch({
-              type: "SELECT_GRADIENT",
-              payload: { id },
-            });
-          }}
-          selected={gradient.id === state.selectedGradientId}
-          index={index}
-        />
-      ))}
-    </ul>
+      <ul className="w-full flex flex-col pt-1">
+        {state.gradients.map((gradient, index) => (
+          <GradientItem
+            key={gradient.id}
+            gradient={gradient}
+            onDelete={() => {
+              dispatch({
+                type: "REMOVE_GRADIENT",
+                payload: { id: gradient.id },
+              });
+            }}
+            onSelect={(id: string) => {
+              dispatch({
+                type: "SELECT_GRADIENT",
+                payload: { id },
+              });
+            }}
+            selected={gradient.id === state.selectedGradientId}
+            index={index}
+          />
+        ))}
+      </ul>
     </ScrollArea>
   );
 };

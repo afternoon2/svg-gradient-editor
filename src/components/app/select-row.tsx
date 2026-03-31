@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { ReactNode } from "react";
 
 type Props<T extends string> = {
-  options: { id: string; value: T, label: string; }[];
+  options: { id: string; value: T; label: string }[];
   value: T;
   label: string;
   children?: ReactNode;
@@ -28,9 +28,7 @@ function SelectRow<T extends string>({
 }: Props<T>): ReactNode {
   return (
     <div className="flex w-full items-center justify-between py-1.5">
-      <Label className="text-sm font-medium text-foreground">
-        {label}
-      </Label>
+      <Label className="text-sm font-medium text-foreground">{label}</Label>
       <div className="flex items-center gap-1">
         <Select disabled={disabled} onValueChange={onValueChange} value={value}>
           <SelectTrigger className="w-[120px] h-9 px-3 text-sm">

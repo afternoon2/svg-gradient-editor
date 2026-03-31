@@ -1,7 +1,4 @@
-import {
-  gradientStateReducerAtom,
-  selectedGradientAtom,
-} from "@/state/gradient.store";
+import { gradientStateReducerAtom, selectedGradientAtom } from "@/state/gradient.store";
 import { artboardSizeAtom } from "@/state/artboard.state";
 import { useAtomValue, useSetAtom } from "jotai";
 import SliderRow from "../slider-row";

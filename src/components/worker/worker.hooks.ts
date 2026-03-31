@@ -1,8 +1,4 @@
-import {
-  AppColor,
-  GradientWorkerInput,
-  GradientWorkerOutput,
-} from "@/state/types";
+import { AppColor, GradientWorkerInput, GradientWorkerOutput } from "@/state/types";
 import GradientWorker from "@/components/worker/gradient.worker?worker";
 import { atom, useAtom, useAtomValue } from "jotai";
 import { useCallback, useEffect } from "react";
@@ -17,9 +13,7 @@ export type GradientWorkerState =
 
 export const gradientWorkerStateAtom = atom<Worker | null>(null);
 
-export const useGradientWorker = (
-  callback: (output: GradientWorkerOutput) => void,
-) => {
+export const useGradientWorker = (callback: (output: GradientWorkerOutput) => void) => {
   const worker = useAtomValue(gradientWorkerStateAtom);
 
   const postMessage = useCallback(
@@ -35,9 +29,7 @@ export const useGradientWorker = (
 
   useEffect(() => {
     if (worker) {
-      worker.onmessage = (
-        event: MessageEvent<{ id: string; colors: AppColor[] }>,
-      ) => {
+      worker.onmessage = (event: MessageEvent<{ id: string; colors: AppColor[] }>) => {
         callback(event.data);
       };
     }

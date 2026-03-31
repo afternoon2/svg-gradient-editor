@@ -5,11 +5,7 @@ const LinearGradientElement: FC<
   PropsWithChildren<{ attrs: LinearGradientAttributes; gradientId: string }>
 > = ({ attrs, gradientId, children }) => {
   return (
-    <linearGradient
-      gradientUnits="objectBoundingBox"
-      id={gradientId}
-      {...attrs}
-    >
+    <linearGradient gradientUnits="objectBoundingBox" id={gradientId} {...attrs}>
       {children}
     </linearGradient>
   );
