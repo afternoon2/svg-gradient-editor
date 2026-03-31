@@ -112,6 +112,17 @@
   border-color: hsl(var(--border));
 }
 
+/* Global theme transition — smooth light/dark toggle */
+*,
+*::before,
+*::after {
+  transition:
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));

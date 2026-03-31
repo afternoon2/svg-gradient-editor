@@ -14,7 +14,7 @@ const GradientItem: FC<
 > = ({ onDelete, gradient, selected, index, onSelect }) => {
   return (
     <li
-      className={`w-full flex flex-col mb-1 transition-all box-border rounded-r-md ${
+      className={`w-full flex flex-col mb-1 transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] box-border rounded-r-md hover:bg-accent/20 ${
         selected
           ? "border-l-[3px] [border-image:var(--accent-gradient-2)_1] bg-accent/30"
           : "border-l-[3px] border-l-transparent"
