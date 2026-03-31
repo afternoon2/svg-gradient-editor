@@ -14,23 +14,20 @@ import {
   ShapeType,
 } from "./types";
 import { atomWithReducer, selectAtom } from "jotai/utils";
-import { nanoid } from "nanoid";
+
 import chroma from "chroma-js";
 
 export const randomColor = (): AppColor => {
   const color = chroma.random().alpha(0.5);
   return {
-    id: nanoid(),
+    id: crypto.randomUUID(),
     value: color.rgba(),
     css: color.css(),
   };
 };
 
-export const randomGradient = (
-  artboardSize: [number, number],
-  id?: string,
-): Gradient => ({
-  id: id ?? nanoid(),
+export const randomGradient = (artboardSize: [number, number], id?: string): Gradient => ({
+  id: id ?? crypto.randomUUID(),
   type: "linear",
   alias: null,
   useChroma: false,
@@ -161,10 +158,7 @@ export type GradientAction =
       payload: { gradientId: string; data: EllipseData };
     };
 
-const gradientReducer = (
-  state: GradientState,
-  action: GradientAction,
-): GradientState =>
+const gradientReducer = (state: GradientState, action: GradientAction): GradientState =>
   match<GradientAction>(action)
     .with({ type: "ADD_GRADIENT" }, (action) => ({
       selectedGradientId: action.payload.gradient.id,
@@ -281,9 +275,7 @@ const gradientReducer = (
         if (g.id === action.payload.gradientId) {
           return {
             ...g,
-            input: g.input.filter(
-              (color) => color.id !== action.payload.colorId,
-            ),
+            input: g.input.filter((color) => color.id !== action.payload.colorId),
           };
         }
         return g;
@@ -403,27 +395,26 @@ const gradientReducer = (
     }))
     .otherwise(() => state);
 
-export const gradientStateReducerAtom = atomWithReducer(
-  initialState,
-  gradientReducer,
-);
+export const gradientStateReducerAtom = atomWithReducer(initialState, gradientReducer);
 
 export const selectedGradientIdAtom = selectAtom(
   gradientStateReducerAtom,
   (state) => state.selectedGradientId,
 );
 
-export const selectedGradientAtom = selectAtom(
-  gradientStateReducerAtom,
-  (state) =>
-    state.selectedGradientId
-      ? ((state.gradients.find(
-          (g) => g.id === state.selectedGradientId,
-        ) as Gradient) ?? null)
-      : null,
+export const selectedGradientAtom = selectAtom(gradientStateReducerAtom, (state) =>
+  state.selectedGradientId
+    ? ((state.gradients.find((g) => g.id === state.selectedGradientId) as Gradient) ?? null)
+    : null,
 );
 
 export const gradientsLengthAtom = selectAtom(
   gradientStateReducerAtom,
   (state) => state.gradients.length,
+);
+
+export const selectedGradientIndexAtom = selectAtom(gradientStateReducerAtom, (state) =>
+  state.selectedGradientId
+    ? state.gradients.findIndex((g) => g.id === state.selectedGradientId) + 1
+    : 0,
 );

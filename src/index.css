@@ -1,69 +1,175 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("@/assets/fonts/SourceSerif4Variable-Roman.ttf.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --animate-accordion-down: accordion-down 200ms ease-out;
+  --animate-accordion-up: accordion-up 200ms ease-out;
+  --animate-fade-in: fade-in 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
   }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+  to {
+    height: var(--radix-accordion-content-height);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
   }
-  body {
-    @apply bg-background text-foreground;
+  to {
+    height: 0;
   }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+:root {
+  /* Cool Atelier — Light */
+  --background: 38 21.1% 92.5%;
+  --foreground: 48 7.5% 13.1%;
+  --card: 38 18% 88%;
+  --card-foreground: 48 7.5% 13.1%;
+  --popover: 38 18% 88%;
+  --popover-foreground: 48 7.5% 13.1%;
+  --primary: 48 7.5% 13.1%;
+  --primary-foreground: 38 21.1% 92.5%;
+  --secondary: 39 15.9% 82.7%;
+  --secondary-foreground: 48 7.5% 13.1%;
+  --muted: 39 15.9% 82.7%;
+  --muted-foreground: 40 5.8% 40.8%;
+  --accent: 39 15.9% 82.7%;
+  --accent-foreground: 48 7.5% 13.1%;
+  --destructive: 347 57% 60.8%;
+  --destructive-foreground: 38 21.1% 92.5%;
+  --border: 37 9.6% 73.5%;
+  --input: 37 9.6% 73.5%;
+  --ring: 156 14% 42%;
+  --radius: 0.5rem;
+
+  /* Gradient accents */
+  --accent-gradient-1: linear-gradient(135deg, #5c7a6e, #6a8ec4);
+  --accent-gradient-1-hover: linear-gradient(135deg, #6a8ec4, #5c7a6e);
+  --accent-gradient-2: linear-gradient(180deg, #d4627a, #c87a4e);
+  --accent-gradient-2-hover: linear-gradient(180deg, #c87a4e, #d4627a);
+  --accent-gradient-full: linear-gradient(90deg, #d4627a, #c87a4e, #5c7a6e, #6a8ec4);
+  --accent-gradient-track: linear-gradient(90deg, #d4627a, #c87a4e 40%, #5c7a6e);
+  --badge-gradient-linear: linear-gradient(
+    135deg,
+    rgba(92, 122, 110, 0.15),
+    rgba(106, 142, 196, 0.15)
+  );
+  --badge-gradient-radial: linear-gradient(
+    135deg,
+    rgba(212, 98, 122, 0.12),
+    rgba(200, 122, 78, 0.12)
+  );
+  --badge-color-linear: #5c7a6e;
+  --badge-color-radial: #d4627a;
+}
+
+.dark {
+  /* Cool Atelier — Dark */
+  --background: 204 8.8% 11.2%;
+  --foreground: 210 11.4% 86.3%;
+  --card: 203 9.8% 16.1%;
+  --card-foreground: 210 11.4% 86.3%;
+  --popover: 203 9.8% 16.1%;
+  --popover-foreground: 210 11.4% 86.3%;
+  --primary: 210 11.4% 86.3%;
+  --primary-foreground: 204 8.8% 11.2%;
+  --secondary: 203 7% 22.4%;
+  --secondary-foreground: 210 11.4% 86.3%;
+  --muted: 203 7% 22.4%;
+  --muted-foreground: 210 5.4% 56.5%;
+  --accent: 203 7% 22.4%;
+  --accent-foreground: 210 11.4% 86.3%;
+  --destructive: 346 62.2% 67.8%;
+  --destructive-foreground: 204 8.8% 11.2%;
+  --border: 204 6.8% 29%;
+  --input: 204 6.8% 29%;
+  --ring: 157 22.6% 57.5%;
+
+  /* Gradient accents — brighter for dark mode */
+  --accent-gradient-1: linear-gradient(135deg, #7aab98, #7a9ed4);
+  --accent-gradient-1-hover: linear-gradient(135deg, #7a9ed4, #7aab98);
+  --accent-gradient-2: linear-gradient(180deg, #e07a92, #d4945a);
+  --accent-gradient-track: linear-gradient(90deg, #e07a92, #d4945a 40%, #7aab98);
+  --badge-gradient-linear: linear-gradient(
+    135deg,
+    rgba(122, 171, 152, 0.2),
+    rgba(122, 158, 212, 0.2)
+  );
+  --badge-gradient-radial: linear-gradient(
+    135deg,
+    rgba(224, 122, 146, 0.2),
+    rgba(212, 148, 90, 0.2)
+  );
+  --badge-color-linear: #7aab98;
+  --badge-color-radial: #e07a92;
+  --accent-gradient-2-hover: linear-gradient(180deg, #d4945a, #e07a92);
+  --accent-gradient-full: linear-gradient(90deg, #e07a92, #d4945a, #7aab98, #7a9ed4);
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Theme transition — only active during toggle, added/removed via JS */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition:
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

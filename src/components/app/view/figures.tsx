@@ -26,41 +26,21 @@ const Figures: FC = () => {
 
   return (
     <g filter={`url(#${GLOBAL_BLEND_MODE_ID})`}>
-      {state.gradients.map(
-        ({ id, shape, rectData, circleData, ellipseData }) => {
-          const fill = `url(#${id})`;
-          const filter = `url(#${id}-blend-mode)`;
-          return match(shape)
-            .with("rect", () => (
-              <Rect
-                key={id}
-                gradientId={id}
-                fill={fill}
-                filter={filter}
-                {...rectData}
-              />
-            ))
-            .with("circle", () => (
-              <Circle
-                key={id}
-                gradientId={id}
-                fill={fill}
-                filter={filter}
-                {...circleData}
-              />
-            ))
-            .with("ellipse", () => (
-              <Ellipse
-                key={id}
-                fill={fill}
-                filter={filter}
-                gradientId={id}
-                {...ellipseData}
-              />
-            ))
-            .exhaustive();
-        },
-      )}
+      {state.gradients.map(({ id, shape, rectData, circleData, ellipseData }) => {
+        const fill = `url(#${id})`;
+        const filter = `url(#${id}-blend-mode)`;
+        return match(shape)
+          .with("rect", () => (
+            <Rect key={id} gradientId={id} fill={fill} filter={filter} {...rectData} />
+          ))
+          .with("circle", () => (
+            <Circle key={id} gradientId={id} fill={fill} filter={filter} {...circleData} />
+          ))
+          .with("ellipse", () => (
+            <Ellipse key={id} fill={fill} filter={filter} gradientId={id} {...ellipseData} />
+          ))
+          .exhaustive();
+      })}
     </g>
   );
 };

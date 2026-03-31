@@ -3,7 +3,7 @@ name: Deploy Vite App to GitHub Pages
 on:
   push:
     branches:
-      - master # Trigger deployment on push to the main branch
+      - master
 
 jobs:
   deploy:
@@ -13,18 +13,17 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20" # or another version compatible with Vite
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
-      - name: Install yarn
-        run: npm install --global yarn
       - name: Install dependencies
-        run: yarn install
+        run: bun install
+
+      - name: Lint
+        run: bun run lint
 
       - name: Build the project
-        run: yarn run build
+        run: bun run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

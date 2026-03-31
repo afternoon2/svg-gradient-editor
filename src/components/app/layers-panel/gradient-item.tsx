@@ -14,14 +14,14 @@ const GradientItem: FC<
 > = ({ onDelete, gradient, selected, index, onSelect }) => {
   return (
     <li
-      className={`w-full flex flex-col mb-1 border-b-2 border-b-solid transition-all box-border ${
+      className={`w-full flex flex-col mb-1 transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] box-border rounded-r-md hover:bg-accent/20 ${
         selected
-          ? "border-accent-foreground border-b-[1px]"
-          : "border-transparent"
+          ? "border border-border border-l-[3px] [border-image:var(--accent-gradient-2)_1] bg-background"
+          : "border border-transparent border-l-[3px] border-l-border/45"
       }`}
     >
       <label
-        className="w-full flex items-center justify-between text-xs relative overflow-hidden pl-2 cursor-pointer rounded-lg"
+        className="w-full flex items-center justify-between text-sm relative overflow-hidden pl-3 py-2.5 pr-1 cursor-pointer rounded-lg"
         htmlFor={`gradient-${gradient.id}`}
       >
         <input
@@ -34,11 +34,20 @@ const GradientItem: FC<
           }}
           checked={selected}
         />
-        <span className="inline-flex w-2/3 h-full text-ellipsis overflow-hidden">
+        <span className="inline-flex flex-1 min-w-0 truncate">
           {gradient.alias ?? `Gradient ${index + 1}`}
         </span>
+        <span
+          className="shrink-0 text-[10px] font-semibold tracking-wide px-2.5 py-1 rounded mr-1"
+          style={{
+            background: `var(--badge-gradient-${gradient.type})`,
+            color: `var(--badge-color-${gradient.type})`,
+          }}
+        >
+          {gradient.type}
+        </span>
         <GenericButton onClick={onDelete} title="Delete gradient">
-          <Trash className="w-3 h-3 stroke-red-500" />
+          <Trash className="w-4 h-4 stroke-red-500" />
         </GenericButton>
       </label>
     </li>

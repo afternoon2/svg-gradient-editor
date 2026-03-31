@@ -1,7 +1,4 @@
-import {
-  gradientStateReducerAtom,
-  selectedGradientAtom,
-} from "@/state/gradient.store";
+import { gradientStateReducerAtom, selectedGradientAtom } from "@/state/gradient.store";
 import { GradientInterpolationMode, INTERPOLATION_MODES } from "@/state/types";
 import CheckboxRow from "@/components/app/checkbox-row";
 import SliderRow from "@/components/app/slider-row";
@@ -76,8 +73,8 @@ const ChromaProperties: FC = () => {
           <SelectRow<GradientInterpolationMode>
             label="Interpolation"
             options={[
-              { id: "linear", value: "linear", label: "linear"},
-              { id: "bezier", value: "bezier", label: "bezier"},
+              { id: "linear", value: "linear", label: "linear" },
+              { id: "bezier", value: "bezier", label: "bezier" },
             ]}
             value={gradient.chromaAttributes.interpolation}
             onValueChange={(value) => {
@@ -112,7 +109,7 @@ const ChromaProperties: FC = () => {
               options={INTERPOLATION_MODES.map((mode) => ({
                 id: mode,
                 value: mode,
-                label: mode
+                label: mode,
               }))}
             />
           )}

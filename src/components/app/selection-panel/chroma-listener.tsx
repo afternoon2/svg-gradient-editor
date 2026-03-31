@@ -1,7 +1,4 @@
-import {
-  gradientStateReducerAtom,
-  selectedGradientAtom,
-} from "@/state/gradient.store";
+import { gradientStateReducerAtom, selectedGradientAtom } from "@/state/gradient.store";
 import { useGradientWorker } from "@/components/worker/worker.hooks";
 import { Gradient, GradientWorkerOutput } from "@/state/types";
 import { FC, useCallback, useEffect } from "react";
@@ -15,13 +12,7 @@ const ChromaListener: FC = () => {
     id,
     useChroma,
     input,
-    chromaAttributes: {
-      interpolation,
-      colorSpace,
-      lightnessCorrection,
-      samples,
-      alpha,
-    },
+    chromaAttributes: { interpolation, colorSpace, lightnessCorrection, samples, alpha },
   } = gradient;
 
   const onMessage = useCallback(
@@ -53,15 +44,7 @@ const ChromaListener: FC = () => {
         },
       });
     }
-  }, [
-    useChroma,
-    input,
-    interpolation,
-    colorSpace,
-    lightnessCorrection,
-    samples,
-    alpha,
-  ]);
+  }, [useChroma, input, interpolation, colorSpace, lightnessCorrection, samples, alpha]);
 
   return null;
 };

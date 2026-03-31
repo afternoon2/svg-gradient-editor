@@ -14,18 +14,12 @@ const GradientDef: FC<{ gradient: Gradient }> = ({ gradient }) => {
   return (
     <>
       {gradient.type === "linear" && (
-        <LinearGradientElement
-          gradientId={gradient.id}
-          attrs={gradient.linearAttributes}
-        >
+        <LinearGradientElement gradientId={gradient.id} attrs={gradient.linearAttributes}>
           {stops}
         </LinearGradientElement>
       )}
       {gradient.type === "radial" && (
-        <RadialGradientElement
-          gradientId={gradient.id}
-          attrs={gradient.radialAttributes}
-        >
+        <RadialGradientElement gradientId={gradient.id} attrs={gradient.radialAttributes}>
           {stops}
         </RadialGradientElement>
       )}
