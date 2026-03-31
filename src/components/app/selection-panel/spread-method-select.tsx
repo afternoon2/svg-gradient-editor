@@ -1,7 +1,4 @@
-import {
-  gradientStateReducerAtom,
-  selectedGradientAtom,
-} from "@/state/gradient.store";
+import { gradientStateReducerAtom, selectedGradientAtom } from "@/state/gradient.store";
 import { Gradient, SPREAD_METHODS, SpreadMethod } from "@/state/types";
 import SelectRow from "@/components/app/select-row";
 import { useAtomValue, useSetAtom } from "jotai";

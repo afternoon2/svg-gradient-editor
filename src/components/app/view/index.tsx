@@ -8,15 +8,13 @@ const View: FC<PropsWithChildren> = ({ children }) => {
   const workerInitialized = useGradientWorkerInit();
 
   return (
-    <main className="w-full h-screen max-h-full relative flex items-center justify-center">
+    <main className="w-full h-screen max-h-full grid grid-cols-[400px_1fr]">
       {workerInitialized ? (
         children
       ) : (
-        <>
-          <Skeleton className="w-full h-full flex items-center justify-center">
-            <Label>Loading...</Label>
-          </Skeleton>
-        </>
+        <Skeleton className="w-full h-full flex items-center justify-center">
+          <Label>Loading...</Label>
+        </Skeleton>
       )}
     </main>
   );

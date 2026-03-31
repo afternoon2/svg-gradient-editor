@@ -1,7 +1,4 @@
-import {
-  LinearGradientAttributes,
-  RadialGradientAttributes,
-} from "@/state/types";
+import { LinearGradientAttributes, RadialGradientAttributes } from "@/state/types";
 import { gradientStateReducerAtom } from "@/state/gradient.store";
 import CheckboxRow from "@/components/app/checkbox-row";
 import SliderRow from "@/components/app/slider-row";

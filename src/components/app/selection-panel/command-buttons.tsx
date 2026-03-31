@@ -1,14 +1,11 @@
 import { gradientStateReducerAtom, randomColor } from "@/state/gradient.store";
-import GenericButton from "@/components/ui/generic-button";
+import { Button } from "@/components/ui/button";
 import { PlusIcon, Trash } from "lucide-react";
 import { AppColor } from "@/state/types";
 import { FC, useCallback } from "react";
 import { useSetAtom } from "jotai";
 
-const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({
-  gradientId,
-  colors,
-}) => {
+const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({ gradientId, colors }) => {
   const dispatch = useSetAtom(gradientStateReducerAtom);
 
   const noColors = colors.length <= 0;
@@ -33,19 +30,20 @@ const CommandButtons: FC<{ gradientId: string; colors: AppColor[] }> = ({
   }, [dispatch, gradientId]);
 
   return (
-    <div className="w-full flex items-center justify-between">
-      <div className="flex items-center">
-        <GenericButton onClick={addColor} title="Add color">
-          <PlusIcon className="w-3 h-3" />
-        </GenericButton>
-      </div>
-      <GenericButton
+    <div className="w-full flex items-center gap-2">
+      <Button onClick={addColor} variant="outline" size="sm" className="flex-1">
+        <PlusIcon className="w-4 h-4 mr-1" />
+        Add Color
+      </Button>
+      <Button
         onClick={deleteAllColors}
         disabled={noColors}
+        variant="outline"
+        size="sm"
         title={noColors ? "No colors to delete" : "Delete all colors"}
       >
-        <Trash className="w-3 h-3 stroke-red-500" />
-      </GenericButton>
+        <Trash className="w-4 h-4 stroke-red-500" />
+      </Button>
     </div>
   );
 };

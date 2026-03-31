@@ -1,0 +1,92 @@
+import {
+  LinearGradientProperties,
+  RadialGradientProperties,
+} from "@/components/app/selection-panel/gradient-properties";
+import SpreadMethodSelect from "@/components/app/selection-panel/spread-method-select";
+import ColorSpaceSelect from "@/components/app/selection-panel/color-space-switch";
+import ChromaProperties from "@/components/app/selection-panel/chroma-properties";
+import BlendModeSelect from "@/components/app/selection-panel/blend-mode-select";
+import CommandButtons from "@/components/app/selection-panel/command-buttons";
+import ChromaListener from "@/components/app/selection-panel/chroma-listener";
+import ColorsList from "@/components/app/selection-panel/colors-list";
+import ColorItem from "@/components/app/selection-panel/color-item";
+import GradientTypeSelect from "@/components/app/selection-panel/gradient-type-select";
+import ShapeProperties from "@/components/app/selection-panel/shape-properties";
+import ShapeSelect from "@/components/app/selection-panel/shape-select";
+import Properties from "@/components/app/selection-panel/properties";
+import { Separator } from "@/components/ui/separator";
+import FieldsetLegend from "@/components/app/fieldset-legend";
+import { selectedGradientAtom, selectedGradientIndexAtom } from "@/state/gradient.store";
+import { Label } from "@/components/ui/label";
+import { useAtomValue } from "jotai";
+import { FC } from "react";
+
+const SidebarProperties: FC = () => {
+  const gradient = useAtomValue(selectedGradientAtom);
+  const gradientIndex = useAtomValue(selectedGradientIndexAtom);
+
+  if (!gradient) {
+    return (
+      <Label className="text-foreground/50 text-sm">Select a gradient to edit its properties</Label>
+    );
+  }
+
+  return (
+    <div
+      key={gradient.id}
+      className="animate-fade-in border-none rounded-xl bg-background/50 p-4 min-w-0"
+    >
+      <h2 className="text-base font-bold text-foreground mb-4">
+        {gradient.alias ?? `Gradient ${gradientIndex}`}
+      </h2>
+
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <ColorSpaceSelect />
+          <BlendModeSelect />
+        </div>
+
+        <Separator variant="gradient" />
+
+        <FieldsetLegend title="Colors">
+          <CommandButtons gradientId={gradient.id} colors={gradient.input} />
+          <ColorsList>
+            {gradient.input.map((color) => (
+              <ColorItem key={color.id} color={color} gradientId={gradient.id} />
+            ))}
+          </ColorsList>
+        </FieldsetLegend>
+
+        <FieldsetLegend title="Shape & Type">
+          <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
+          <SpreadMethodSelect />
+          <Properties>
+            {gradient.type === "linear" && (
+              <LinearGradientProperties
+                gradientId={gradient.id}
+                attrs={gradient.linearAttributes}
+              />
+            )}
+            {gradient.type === "radial" && (
+              <RadialGradientProperties
+                gradientId={gradient.id}
+                attrs={gradient.radialAttributes}
+              />
+            )}
+          </Properties>
+          <ShapeSelect />
+          <Properties>
+            <ShapeProperties />
+          </Properties>
+        </FieldsetLegend>
+
+        <FieldsetLegend title="Advanced settings">
+          <ChromaProperties />
+        </FieldsetLegend>
+      </div>
+      <ChromaListener />
+    </div>
+  );
+};
+
+export default SidebarProperties;

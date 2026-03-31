@@ -16,9 +16,7 @@ const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
 
   const selectedPreset = useMemo(
     () =>
-      selectedPresetId
-        ? (presets.find((p) => p.id === selectedPresetId) as Preset)
-        : undefined,
+      selectedPresetId ? (presets.find((p) => p.id === selectedPresetId) as Preset) : undefined,
     [selectedPresetId, presets],
   );
 
@@ -42,7 +40,7 @@ const PresetSelect: FC<PropsWithChildren> = ({ children }) => {
       options={presets.map((preset) => ({
         id: preset.id,
         value: preset.id,
-        label: preset.name
+        label: preset.name,
       }))}
     >
       {children}

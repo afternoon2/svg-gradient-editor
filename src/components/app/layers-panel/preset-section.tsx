@@ -8,10 +8,7 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  gradientsLengthAtom,
-  gradientStateReducerAtom,
-} from "@/state/gradient.store";
+import { gradientsLengthAtom, gradientStateReducerAtom } from "@/state/gradient.store";
 import PresetSelect from "@/components/app/layers-panel/preset-select";
 import { globalBlendModeAtom } from "@/state/globalBlendMode.state";
 import { presetsAtom } from "@/state/presets.state";
@@ -40,18 +37,14 @@ const PresetSection: FC = () => {
           >
             <Save
               className={`w-4 h-4 ${
-                gradientsLength === 0
-                  ? "stroke-gray-400 cursor-not-allowed"
-                  : ""
+                gradientsLength === 0 ? "stroke-gray-400 cursor-not-allowed" : ""
               }`}
             />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Save preset</DialogTitle>
-              <DialogDescription>
-                Set preset name and click save
-              </DialogDescription>
+              <DialogDescription>Set preset name and click save</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4">
               <div className="grid gap-2">

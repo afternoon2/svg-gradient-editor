@@ -1,11 +1,8 @@
-import {
-  gradientStateReducerAtom,
-  randomGradient,
-} from "@/state/gradient.store";
+import { gradientStateReducerAtom, randomGradient } from "@/state/gradient.store";
 import { selectedPresetIdAtom } from "@/state/presets.state";
-import GenericButton from "@/components/ui/generic-button";
 import { artboardSizeAtom } from "@/state/artboard.state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { Button } from "@/components/ui/button";
 import { PlusIcon, Trash } from "lucide-react";
 import { FC, useCallback } from "react";
 
@@ -27,19 +24,22 @@ const CommandButtons: FC = () => {
   }, [dispatch, artboardSize]);
 
   return (
-    <div className="w-full flex items-center justify-between">
-      <GenericButton onClick={addGradient} title="Add gradient">
-        <PlusIcon className="w-3 h-3" />
-      </GenericButton>
-      <GenericButton
+    <div className="w-full flex items-center gap-2">
+      <Button onClick={addGradient} variant="outline" size="sm" className="flex-1">
+        <PlusIcon className="w-4 h-4 mr-1" />
+        Add Gradient
+      </Button>
+      <Button
         onClick={() => {
           dispatch({ type: "REMOVE_ALL_GRADIENTS" });
         }}
         disabled={noGradients}
+        variant="outline"
+        size="sm"
         title={noGradients ? "No gradients to delete" : "Delete all gradients"}
       >
-        <Trash className="w-3 h-3 stroke-red-500" />
-      </GenericButton>
+        <Trash className="w-4 h-4 stroke-red-500" />
+      </Button>
     </div>
   );
 };
