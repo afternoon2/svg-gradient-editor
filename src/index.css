@@ -72,7 +72,9 @@
 
   /* Gradient accents */
   --accent-gradient-1: linear-gradient(135deg, #5c7a6e, #6a8ec4);
+  --accent-gradient-1-hover: linear-gradient(135deg, #6a8ec4, #5c7a6e);
   --accent-gradient-2: linear-gradient(180deg, #d4627a, #c87a4e);
+  --accent-gradient-2-hover: linear-gradient(180deg, #c87a4e, #d4627a);
   --accent-gradient-full: linear-gradient(90deg, #d4627a, #c87a4e, #5c7a6e, #6a8ec4);
 }
 
@@ -100,7 +102,9 @@
 
   /* Gradient accents — brighter for dark mode */
   --accent-gradient-1: linear-gradient(135deg, #7aab98, #7a9ed4);
+  --accent-gradient-1-hover: linear-gradient(135deg, #7a9ed4, #7aab98);
   --accent-gradient-2: linear-gradient(180deg, #e07a92, #d4945a);
+  --accent-gradient-2-hover: linear-gradient(180deg, #d4945a, #e07a92);
   --accent-gradient-full: linear-gradient(90deg, #e07a92, #d4945a, #7aab98, #7a9ed4);
 }
 

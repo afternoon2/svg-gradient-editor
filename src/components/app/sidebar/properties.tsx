@@ -44,7 +44,7 @@ const SidebarProperties: FC = () => {
           ))}
         </ColorsList>
       </FieldsetLegend>
-      <Separator />
+      <Separator variant="gradient" />
       <FieldsetLegend title="Properties">
         <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
         <SpreadMethodSelect />
