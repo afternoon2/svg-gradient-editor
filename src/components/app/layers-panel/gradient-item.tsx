@@ -21,7 +21,7 @@ const GradientItem: FC<
       }`}
     >
       <label
-        className="w-full flex items-center justify-between text-xs relative overflow-hidden pl-2 cursor-pointer rounded-lg"
+        className="w-full flex items-center justify-between text-sm relative overflow-hidden pl-3 py-2 cursor-pointer rounded-lg"
         htmlFor={`gradient-${gradient.id}`}
       >
         <input
