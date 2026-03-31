@@ -16,17 +16,14 @@ import ShapeSelect from "@/components/app/selection-panel/shape-select";
 import Properties from "@/components/app/selection-panel/properties";
 import { Separator } from "@/components/ui/separator";
 import FieldsetLegend from "@/components/app/fieldset-legend";
-import { selectedGradientAtom, gradientStateReducerAtom } from "@/state/gradient.store";
+import { selectedGradientAtom, selectedGradientIndexAtom } from "@/state/gradient.store";
 import { Label } from "@/components/ui/label";
 import { useAtomValue } from "jotai";
 import { FC } from "react";
 
 const SidebarProperties: FC = () => {
   const gradient = useAtomValue(selectedGradientAtom);
-  const state = useAtomValue(gradientStateReducerAtom);
-  const gradientIndex = gradient
-    ? state.gradients.findIndex((g) => g.id === gradient.id) + 1
-    : 0;
+  const gradientIndex = useAtomValue(selectedGradientIndexAtom);
 
   if (!gradient) {
     return (

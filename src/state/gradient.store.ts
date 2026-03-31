@@ -427,3 +427,11 @@ export const gradientsLengthAtom = selectAtom(
   gradientStateReducerAtom,
   (state) => state.gradients.length,
 );
+
+export const selectedGradientIndexAtom = selectAtom(
+  gradientStateReducerAtom,
+  (state) =>
+    state.selectedGradientId
+      ? state.gradients.findIndex((g) => g.id === state.selectedGradientId) + 1
+      : 0,
+);

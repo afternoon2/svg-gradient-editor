@@ -23,7 +23,7 @@ const getURIComponentString = (el: HTMLElement): string => {
   );
   doc.replaceChild(el.cloneNode(true), doc.documentElement);
   const svgData = new XMLSerializer().serializeToString(doc);
-  return encodeURIComponent(svgData.replace(/>/g, ">\n\r<"));
+  return encodeURIComponent(svgData.replace(/></g, ">\n\r<"));
 };
 
 export const download = (name: string, svg: HTMLElement) => {
