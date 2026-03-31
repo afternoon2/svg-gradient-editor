@@ -36,7 +36,7 @@ const SidebarProperties: FC = () => {
   return (
     <div
       key={gradient.id}
-      className="animate-fade-in border-none rounded-xl bg-background/50 p-4"
+      className="animate-fade-in border-none rounded-xl bg-background/50 p-4 min-w-0"
     >
       <h2 className="text-base font-bold text-foreground mb-4">
         {gradient.alias ?? `Gradient ${gradientIndex}`}
