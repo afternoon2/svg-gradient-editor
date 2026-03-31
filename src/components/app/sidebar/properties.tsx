@@ -15,13 +15,17 @@ import ShapeProperties from "@/components/app/selection-panel/shape-properties";
 import ShapeSelect from "@/components/app/selection-panel/shape-select";
 import Properties from "@/components/app/selection-panel/properties";
 import FieldsetLegend from "@/components/app/fieldset-legend";
-import { selectedGradientAtom } from "@/state/gradient.store";
+import { selectedGradientAtom, gradientStateReducerAtom } from "@/state/gradient.store";
 import { Label } from "@/components/ui/label";
 import { useAtomValue } from "jotai";
 import { FC } from "react";
 
 const SidebarProperties: FC = () => {
   const gradient = useAtomValue(selectedGradientAtom);
+  const state = useAtomValue(gradientStateReducerAtom);
+  const gradientIndex = gradient
+    ? state.gradients.findIndex((g) => g.id === gradient.id) + 1
+    : 0;
 
   if (!gradient) {
     return (
@@ -33,8 +37,10 @@ const SidebarProperties: FC = () => {
 
   return (
     <div key={gradient.id} className="flex flex-col gap-4 animate-fade-in">
-      <ColorSpaceSelect />
-      <BlendModeSelect />
+      <FieldsetLegend title="Global properties">
+        <ColorSpaceSelect />
+        <BlendModeSelect />
+      </FieldsetLegend>
       <FieldsetLegend title="Colors">
         <CommandButtons gradientId={gradient.id} colors={gradient.input} />
         <ColorsList>
@@ -43,7 +49,7 @@ const SidebarProperties: FC = () => {
           ))}
         </ColorsList>
       </FieldsetLegend>
-      <FieldsetLegend title="Gradient">
+      <FieldsetLegend title={gradient.alias ?? `Gradient ${gradientIndex}`}>
         <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
         <SpreadMethodSelect />
         <Properties>

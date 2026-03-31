@@ -13,7 +13,7 @@ import { FC } from "react";
 
 const Sidebar: FC = () => {
   return (
-    <aside className="w-[350px] shrink-0 h-screen bg-card border-r-2 border-border flex flex-col overflow-hidden">
+    <aside className="w-100 shrink-0 h-screen bg-card border-r-2 border-border flex flex-col overflow-hidden">
       <header className="px-4 pt-4 pb-3 flex items-center justify-between">
         <h1 className="text-lg font-bold">SVG Gradient Editor</h1>
         <div className="flex items-center gap-1">
@@ -24,30 +24,18 @@ const Sidebar: FC = () => {
       <Separator />
       <ScrollArea className="flex-1">
         <div className="px-4 py-4 flex flex-col gap-4">
-          {/* Layers section */}
-          <section>
-            <h2 className="text-sm font-bold uppercase tracking-widest text-foreground mb-3">
-              Layers
-            </h2>
-            <div className="flex flex-col gap-3">
-              <FieldsetLegend title="Presets">
-                <PresetSection />
-              </FieldsetLegend>
-              <FieldsetLegend title="Gradients">
-                <GlobalBlendModeSelect />
-                <CommandButtons />
-                <GradientList />
-              </FieldsetLegend>
-            </div>
-          </section>
+          <div className="flex flex-col gap-3">
+            <FieldsetLegend title="Presets">
+              <PresetSection />
+            </FieldsetLegend>
+            <FieldsetLegend title="Gradients">
+              <GlobalBlendModeSelect />
+              <CommandButtons />
+              <GradientList />
+            </FieldsetLegend>
+          </div>
 
-          {/* Properties section */}
-          <section>
-            <h2 className="text-sm font-bold uppercase tracking-widest text-foreground mb-3">
-              Properties
-            </h2>
-            <SidebarProperties />
-          </section>
+          <SidebarProperties />
         </div>
       </ScrollArea>
       <Separator />
