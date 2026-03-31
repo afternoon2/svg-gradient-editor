@@ -14,13 +14,13 @@ import {
   ShapeType,
 } from "./types";
 import { atomWithReducer, selectAtom } from "jotai/utils";
-import { nanoid } from "nanoid";
+
 import chroma from "chroma-js";
 
 export const randomColor = (): AppColor => {
   const color = chroma.random().alpha(0.5);
   return {
-    id: nanoid(),
+    id: crypto.randomUUID(),
     value: color.rgba(),
     css: color.css(),
   };
@@ -30,7 +30,7 @@ export const randomGradient = (
   artboardSize: [number, number],
   id?: string,
 ): Gradient => ({
-  id: id ?? nanoid(),
+  id: id ?? crypto.randomUUID(),
   type: "linear",
   alias: null,
   useChroma: false,
