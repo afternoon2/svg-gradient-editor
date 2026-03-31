@@ -51,5 +51,8 @@
     "oxlint": "1.57.0",
     "typescript": "6.0.2",
     "vite": "8.0.3"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.29.0"
   }
 }
