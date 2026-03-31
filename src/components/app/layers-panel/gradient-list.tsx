@@ -1,3 +1,4 @@
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { FC } from "react";
 
 import GradientItem from "@/components/app/layers-panel/gradient-item";
@@ -8,7 +9,8 @@ const GradientList: FC = () => {
   const [state, dispatch] = useAtom(gradientStateReducerAtom);
 
   return (
-    <ul className="w-full flex flex-col overflow-y-auto max-h-[300px] pt-1">
+    <ScrollArea className="max-h-[300px]">
+    <ul className="w-full flex flex-col pt-1">
       {state.gradients.map((gradient, index) => (
         <GradientItem
           key={gradient.id}
@@ -30,6 +32,7 @@ const GradientList: FC = () => {
         />
       ))}
     </ul>
+    </ScrollArea>
   );
 };
 
