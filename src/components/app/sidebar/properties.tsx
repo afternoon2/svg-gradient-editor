@@ -37,7 +37,7 @@ const SidebarProperties: FC = () => {
 
   return (
     <div key={gradient.id} className="flex flex-col gap-4 animate-fade-in">
-      <FieldsetLegend title="Global properties">
+      <FieldsetLegend title="Local properties">
         <ColorSpaceSelect />
         <BlendModeSelect />
       </FieldsetLegend>
