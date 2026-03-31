@@ -8,10 +8,27 @@ import { Separator } from "@/components/ui/separator";
 import FieldsetLegend from "@/components/app/fieldset-legend";
 import RepoLink from "@/components/app/layers-panel/repo-link";
 import { ModeToggle } from "@/components/app/mode-toggle";
+import { gradientStateReducerAtom, randomGradient } from "@/state/gradient.store";
+import { artboardSizeAtom } from "@/state/artboard.state";
 import SidebarProperties from "@/components/app/sidebar/properties";
-import { FC } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { FC, useEffect, useRef } from "react";
 
 const Sidebar: FC = () => {
+  const dispatch = useSetAtom(gradientStateReducerAtom);
+  const artboardSize = useAtomValue(artboardSizeAtom);
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
+      dispatch({
+        type: "ADD_GRADIENT",
+        payload: { gradient: randomGradient(artboardSize) },
+      });
+    }
+  }, []);
+
   return (
     <aside className="bg-card border-r-2 border-border flex flex-col overflow-hidden">
       <header className="px-4 pt-4 pb-3 flex items-center justify-between">
