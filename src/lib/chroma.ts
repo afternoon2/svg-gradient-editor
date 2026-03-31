@@ -1,5 +1,5 @@
 import { AppColor, ChromaAttributes, GradientWorkerInput } from "@/state/types";
-import { nanoid } from "nanoid";
+
 import chroma from "chroma-js";
 
 type ScaleFnCreator = (
@@ -37,7 +37,7 @@ export const getWorkerOutput = (input: GradientWorkerInput): AppColor[] => {
     input.chromaAttributes.alpha,
   ).map((chromaColor, index, arr) => {
     return {
-      id: nanoid(),
+      id: crypto.randomUUID(),
       value: chromaColor.rgba(),
       offset: (index / arr.length) * 100,
       css: chromaColor.css(),

@@ -21,7 +21,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FC, useState } from "react";
 import { Save } from "lucide-react";
-import { nanoid } from "nanoid";
 
 const PresetSection: FC = () => {
   const setPresets = useSetAtom(presetsAtom);
@@ -78,7 +77,7 @@ const PresetSection: FC = () => {
                         setPresets((prev) => [
                           ...prev,
                           {
-                            id: nanoid(),
+                            id: crypto.randomUUID(),
                             name,
                             value: {
                               gradients: state.gradients,
