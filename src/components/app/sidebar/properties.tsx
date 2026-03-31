@@ -14,6 +14,7 @@ import GradientTypeSelect from "@/components/app/selection-panel/gradient-type-s
 import ShapeProperties from "@/components/app/selection-panel/shape-properties";
 import ShapeSelect from "@/components/app/selection-panel/shape-select";
 import Properties from "@/components/app/selection-panel/properties";
+import { Separator } from "@/components/ui/separator";
 import FieldsetLegend from "@/components/app/fieldset-legend";
 import { selectedGradientAtom, gradientStateReducerAtom } from "@/state/gradient.store";
 import { Label } from "@/components/ui/label";
@@ -36,44 +37,58 @@ const SidebarProperties: FC = () => {
   }
 
   return (
-    <div key={gradient.id} className="flex flex-col gap-4 animate-fade-in">
-      <FieldsetLegend title="Local properties">
-        <ColorSpaceSelect />
-        <BlendModeSelect />
-      </FieldsetLegend>
-      <FieldsetLegend title="Colors">
-        <CommandButtons gradientId={gradient.id} colors={gradient.input} />
-        <ColorsList>
-          {gradient.input.map((color) => (
-            <ColorItem key={color.id} color={color} gradientId={gradient.id} />
-          ))}
-        </ColorsList>
-      </FieldsetLegend>
-      <FieldsetLegend title={gradient.alias ?? `Gradient ${gradientIndex}`}>
-        <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
-        <SpreadMethodSelect />
-        <Properties>
-          {gradient.type === "linear" && (
-            <LinearGradientProperties
-              gradientId={gradient.id}
-              attrs={gradient.linearAttributes}
-            />
-          )}
-          {gradient.type === "radial" && (
-            <RadialGradientProperties
-              gradientId={gradient.id}
-              attrs={gradient.radialAttributes}
-            />
-          )}
-        </Properties>
-        <ShapeSelect />
-        <Properties>
-          <ShapeProperties />
-        </Properties>
-      </FieldsetLegend>
-      <FieldsetLegend title="Advanced settings">
-        <ChromaProperties />
-      </FieldsetLegend>
+    <div
+      key={gradient.id}
+      className="animate-fade-in border-none rounded-xl bg-background/50 p-4"
+    >
+      <h2 className="text-base font-bold text-foreground mb-4">
+        {gradient.alias ?? `Gradient ${gradientIndex}`}
+      </h2>
+
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <ColorSpaceSelect />
+          <BlendModeSelect />
+        </div>
+
+        <Separator variant="gradient" />
+
+        <FieldsetLegend title="Colors" >
+          <CommandButtons gradientId={gradient.id} colors={gradient.input} />
+          <ColorsList>
+            {gradient.input.map((color) => (
+              <ColorItem key={color.id} color={color} gradientId={gradient.id} />
+            ))}
+          </ColorsList>
+        </FieldsetLegend>
+
+        <FieldsetLegend title="Shape & Type" >
+          <GradientTypeSelect type={gradient.type} gradientId={gradient.id} />
+          <SpreadMethodSelect />
+          <Properties>
+            {gradient.type === "linear" && (
+              <LinearGradientProperties
+                gradientId={gradient.id}
+                attrs={gradient.linearAttributes}
+              />
+            )}
+            {gradient.type === "radial" && (
+              <RadialGradientProperties
+                gradientId={gradient.id}
+                attrs={gradient.radialAttributes}
+              />
+            )}
+          </Properties>
+          <ShapeSelect />
+          <Properties>
+            <ShapeProperties />
+          </Properties>
+        </FieldsetLegend>
+
+        <FieldsetLegend title="Advanced settings" >
+          <ChromaProperties />
+        </FieldsetLegend>
+      </div>
       <ChromaListener />
     </div>
   );
