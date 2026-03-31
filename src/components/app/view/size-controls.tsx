@@ -7,7 +7,7 @@ import { FC } from "react";
 const SizeControls: FC = () => {
   const [artboardSize, setArtboardSize] = useAtom(artboardSizeAtom);
   return (
-    <div className="flex items-center absolute z-10 top-2 p-2 bg-background rounded-lg shadow-lg ">
+    <div className="flex items-center absolute z-10 top-3 p-2.5 bg-card border border-border rounded-lg shadow-lg dark:shadow-[0_4px_12px_rgba(255,255,255,0.06)]">
       <Input
         type="number"
         min={10}

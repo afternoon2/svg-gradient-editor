@@ -18,7 +18,7 @@ const Artboard: FC<PropsWithChildren> = ({ children }) => {
       width={artboardSize[0]}
       height={artboardSize[1]}
       viewBox={`0 0 ${artboardSize.join(" ")}`}
-      className={`bg-white border-x-[1px] border-y-[1px] box-border border-slate-600 dark:border-slate-300`}
+      className="bg-white dark:bg-zinc-950 border-2 box-border border-border rounded-lg shadow-sm dark:shadow-[0_2px_8px_rgba(255,255,255,0.06)]"
     >
       {children}
     </svg>
