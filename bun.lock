@@ -46,7 +46,7 @@
         "vite": "8.0.3",
       },
       "peerDependencies": {
-        "@babel/core": "^7.29.0",
+        "@babel/core": "7.29.0",
       },
     },
   },
